@@ -9,7 +9,7 @@ interface HomeProps {
 }
 export const Home = ({ split }: HomeProps) => {
   return (
-    <div className="flex flex-col p-4 pb-24 gap-4">
+    <div className="flex flex-col items-center p-4 pb-24 gap-4">
       <TodayWorkoutCard split={split} />
       <ScheduleCard split={split} />
       <WorkoutsCard split={split} />
