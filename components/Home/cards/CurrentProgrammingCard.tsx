@@ -44,15 +44,12 @@ export const CurrentProgrammingCard = ({
 
   return (
     <DashCard className="w-[500px] max-md:w-full">
-      <CardHeader className="">
+      <CardHeader className="pb-4">
         <CardTitle className="flex items-center gap-[4px]">
           <Route className="h-4 w-4" /> Current Programming
         </CardTitle>
-        <CardDescription>
-          Details of your current workout programming.
-        </CardDescription>
       </CardHeader>
-      <CardContent className="text-stone-500">
+      <CardContent className="text-stone-500 pb-4">
         <span className="font-semibold text-black">
           {SPLIT_TYPE_TO_DESCRIPTION[split.type as SPLIT_TYPES]}
         </span>{" "}

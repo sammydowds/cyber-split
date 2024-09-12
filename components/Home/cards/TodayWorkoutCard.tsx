@@ -15,6 +15,7 @@ import { DashCard } from "../../DashCard";
 import { estimateTimeOfWorkout } from "@/lib/estimateTimeOfWorkout";
 import { getBodyPartsFromWorkout } from "@/lib/getBodyPartsFromWorkout";
 import { MapPin, Palmtree } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 interface TodayWorkCardProps {
   workout?: SplitDeep["workouts"][number];
@@ -43,19 +44,26 @@ export const TodayWorkoutCard = ({
   }
 
   const estimatedTime = estimateTimeOfWorkout(workout);
-  const muscleGroupsWorked = getBodyPartsFromWorkout(workout).join(", ");
+  const muscleGroupsWorked = getBodyPartsFromWorkout(workout);
 
   return (
     <DashCard className="w-[500px] max-md:w-full">
       <CardHeader className="p-4">
-        <CardTitle className="flex items-center gap-[4px]">
+        <CardTitle className="flex items-center gap-[4px] mb-[4px]">
           <MapPin className="h-4 w-4" /> Today's Workout
         </CardTitle>
-        <CardDescription>
-          This workout should take about {Math.round(estimatedTime / 60)} mins.
-          You will work <span className="capitalize">{muscleGroupsWorked}</span>{" "}
-          in this workout with a total of {workout.strengthGroups.length}{" "}
-          exercises.
+        <CardDescription className="flex flex-wrap gap-[4px]">
+          <Badge variant="outline">
+            {workout.strengthGroups.length} Exercises
+          </Badge>
+          <Badge variant="outline">{Math.round(estimatedTime / 60)} mins</Badge>
+          {muscleGroupsWorked.map((g) => {
+            return (
+              <Badge key={g} variant="outline" className="capitalize">
+                {g}
+              </Badge>
+            );
+          })}
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-row items-baseline gap-4 px-4 max-md:px-2">
