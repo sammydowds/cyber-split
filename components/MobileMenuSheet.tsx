@@ -1,14 +1,19 @@
 import { X } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-interface MobileMenuProps {
+interface MobileMenuSheetProps {
   open: boolean;
   setOpen: (open: boolean) => void;
   tab: string;
   setTab: (tab: string) => void;
 }
-export const MobileMenu = ({ open, setOpen, tab, setTab }: MobileMenuProps) => {
+export const MobileMenuSheet = ({
+  open,
+  setOpen,
+  tab,
+  setTab,
+}: MobileMenuSheetProps) => {
   return (
     <div
       className={`absolute sm:hidden inset-0 h-full backdrop-blur-lg p-6 z-50 transition-transform duration-300 ease-in-out ${
@@ -39,40 +44,14 @@ export const MobileMenu = ({ open, setOpen, tab, setTab }: MobileMenuProps) => {
           variant="link"
           className={cn(
             "text-lg p-0 font-bold",
-            tab === "workouts" ? "text-black" : "text-stone-500",
+            tab === "profile" ? "text-black" : "text-stone-500",
           )}
           onClick={() => {
-            setTab("workouts");
+            setTab("profile");
             setOpen(false);
           }}
         >
-          Workouts
-        </Button>
-        <Button
-          variant="link"
-          className={cn(
-            "text-lg p-0 font-bold",
-            tab === "data" ? "text-black" : "text-stone-500",
-          )}
-          onClick={() => {
-            setTab("data");
-            setOpen(false);
-          }}
-        >
-          Data
-        </Button>
-        <Button
-          variant="link"
-          className={cn(
-            "text-lg p-0 font-bold",
-            tab === "settings" ? "text-black" : "text-stone-500",
-          )}
-          onClick={() => {
-            setTab("settings");
-            setOpen(false);
-          }}
-        >
-          Settings
+          Profile
         </Button>
       </div>
     </div>

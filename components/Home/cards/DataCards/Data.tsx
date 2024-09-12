@@ -23,7 +23,9 @@ export const Data = ({ split }: DataProps) => {
         );
       })}
       {Object.keys(data)?.length === 0 ? (
-        <div className="w-full h-full flex items-center justify-center text-sm text-stone-600">Log workouts to record data</div>
+        <div className="w-full h-full flex items-center justify-center text-sm text-stone-600">
+          Log workouts to record data
+        </div>
       ) : null}
     </div>
   );

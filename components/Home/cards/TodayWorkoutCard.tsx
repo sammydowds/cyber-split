@@ -18,7 +18,7 @@ interface TodayWorkCardProps {
 export const TodayWorkoutCard = ({ split }: TodayWorkCardProps) => {
   const router = useRouter();
   return (
-    <Card className="w-full">
+    <Card className="w-[500px] max-md:w-full">
       <CardHeader className="p-4 pb-0">
         <CardTitle>Today's Workout</CardTitle>
         <CardDescription>

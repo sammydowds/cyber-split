@@ -24,7 +24,6 @@ export const getWorkoutLetterFromIndex = (idx: number, count: number) => {
   return WORKOUT_LABELS[idx];
 };
 
-
 interface WorkoutCardProps {
   split: Partial<SplitDeep>;
   index: number;

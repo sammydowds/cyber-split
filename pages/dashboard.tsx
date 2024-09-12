@@ -1,49 +1,51 @@
 "use client";
-import { Nav } from "@/components/Nav";
-import { SplitForm } from "@/components/SplitForm/SplitForm";
-import { SplitCard } from "@/components/SplitCard/SplitCard";
-import { Card } from "@/components/ui/card";
 import { useActiveSplit } from "@/hooks/useActiveSplit";
 import { useArchivedSplit } from "@/hooks/useArchivedSplits";
 import { Separator } from "@/components/ui/separator";
+import { DesktopMenu } from "@/components/DesktopMenu";
+import { ChevronRight, PanelLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Home } from "@/components/Home/Home";
+import { useState } from "react";
+import { Profile } from "@/components/Profile";
+import { MobileMenuSheet } from "@/components/MobileMenuSheet";
+import { MobileMenu } from "@/components/MobileMenu";
 
 export default function Dashboard() {
-  const { data: activeSplit } = useActiveSplit();
+  const { data: split } = useActiveSplit();
   const { data: archivedSplits } = useArchivedSplit();
+  const [tab, setTab] = useState("home");
+  const [showMenu, setShowMenu] = useState(false);
 
+  if (!split) {
+    return "Loading split...";
+  }
   return (
     <main>
-      <div className="flex flex-col items-center justify-start h-screen w-screen bg-stone-100 overflow-hidden">
-        <Nav />
-        <div className="grow w-full overflow-hidden">
-          <div className="h-full overflow-y-auto flex flex-col gap-4 pt-4">
-            <div className="w-full flex flex-col items-center justify-center gap-4">
-              {activeSplit ? (
-                <SplitCard split={activeSplit} />
-              ) : (
-                <Card className="w-[500px] max-md:w-full">
-                  <SplitForm />
-                </Card>
-              )}
+      <div className="flex overflow-hidden h-screen w-screen max-md:flex-col md:flex-row">
+        <DesktopMenu tab={tab} setTab={setTab} />
+        <MobileMenu tab={tab} setShowMenu={setShowMenu} showMenu={showMenu} />
+        <div className="flex flex-col w-full h-full">
+          <div className="max-md:hidden capitalize w-full">
+            <div className="p-2 flex items-center font-bold">
+              Cyber Split (LOGO)
+              <ChevronRight className="h-4 w-4" />
+              <div className="text-stone-600 capitalize">{tab}</div>
             </div>
-            <div className="w-full flex flex-col mt-4 items-center justify-center">
-              <div className="w-[300px] flex flex-col items-center">
-                <h2 className="text-lg font-bold text-sm text-stone-600">
-                  Past Splits
-                </h2>
-                <Separator className="bg-stone-300" />
-              </div>
-              {archivedSplits?.length ? (
-                <>
-                  {archivedSplits.map((s) => {
-                    return <SplitCard split={s} />;
-                  })}
-                </>
-              ) : (
-                <div className="text-stone-500 text-sm">Nothing Archived</div>
-              )}
-            </div>
+            <Separator />
           </div>
+          <main className="flex flex-col gap-4 relative grow overflow-hidden overflow-y-scroll">
+            <MobileMenuSheet
+              tab={tab}
+              setTab={setTab}
+              open={showMenu}
+              setOpen={setShowMenu}
+            />
+            <div className="h-max">
+              {tab === "home" ? <Home split={split} /> : null}
+              {tab === "profile" ? <Profile /> : null}
+            </div>
+          </main>
         </div>
       </div>
     </main>

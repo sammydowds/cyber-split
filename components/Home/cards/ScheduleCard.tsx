@@ -25,15 +25,13 @@ interface ScheduleCardProps {
 export const ScheduleCard = ({ split }: ScheduleCardProps) => {
   const { schedule } = createWorkoutSchedule({ ...split });
   return (
-    <Card>
+    <Card className="w-[500px] max-md:w-full">
       <CardHeader className="max-md:p-4 max-md:pb-0 pb-0">
         <CardTitle>Split Schedule</CardTitle>
         <CardDescription>
-          <p>
-            This is your schedule starting on{" "}
-            {new Date(split?.created).toLocaleDateString()}. This schedule skips{" "}
-            {split.skipDays.map((d) => DAYS[d]).join(", ")}.{" "}
-          </p>
+          This is your schedule starting on{" "}
+          {new Date(split?.created).toLocaleDateString()}. This schedule skips{" "}
+          {split.skipDays.map((d) => DAYS[d]).join(", ")}.{" "}
         </CardDescription>
       </CardHeader>
       <CardContent className="max-md:p-2 max-md:pt-0">

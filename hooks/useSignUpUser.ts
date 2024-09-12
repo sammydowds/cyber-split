@@ -22,8 +22,6 @@ const signUpUser = async (formData: z.infer<typeof schema>) => {
     email: data.user.email,
   });
 
-  console.log(profileData);
-
   if (profileData) {
     return true;
   } else {
