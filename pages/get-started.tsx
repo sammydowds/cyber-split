@@ -22,6 +22,7 @@ import { schema } from "@/components/signup/schema";
 import { useForm } from "react-hook-form";
 import { useSignUpUser } from "@/hooks/useSignUpUser";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 export default function GetStarted() {
   const router = useRouter();
@@ -49,11 +50,14 @@ export default function GetStarted() {
       <AnimatedGradientBackground />
       <Card className="w-full max-w-md z-50">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">
-            Start your journey
-            <span className="block text-sm font-normal text-gray-500 mt-1">
-              Create an account to track your progress
-            </span>
+          <CardTitle className="text-2xl font-bold text-center flex flex-col items-center gap-4">
+            <Image src="/logo.png" height={50} width={100} alt="logo" />
+            <div>
+              Start your journey
+              <span className="block text-sm font-normal text-gray-500 mt-1">
+                Create an account to track your progress
+              </span>
+            </div>
           </CardTitle>
         </CardHeader>
         <Form {...form}>

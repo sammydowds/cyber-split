@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -23,6 +22,7 @@ import {
 } from "@/components/ui/form";
 import { useLoginUser } from "@/hooks/useLoginUser";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 export default function Login() {
   const router = useRouter();
@@ -49,11 +49,14 @@ export default function Login() {
       <AnimatedGradientBackground />
       <Card className="w-full max-w-md z-50">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">
-            Log In
-            <span className="block text-sm font-normal text-gray-500 mt-1">
-              Access your account
-            </span>
+          <CardTitle className="text-2xl font-bold text-center flex flex-col items-center gap-4">
+            <Image src="/logo.png" height={50} width={100} alt="logo" />
+            <div>
+              Log in
+              <span className="block text-sm font-normal text-gray-500 mt-1">
+                Get access to your account
+              </span>
+            </div>
           </CardTitle>
         </CardHeader>
         <Form {...form}>
