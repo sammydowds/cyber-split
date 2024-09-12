@@ -1,0 +1,64 @@
+export enum FULL_BODY_SUB_FLOW {
+  CADENCE = "Cadence",
+  MUSCLES = "Muscles",
+}
+
+export enum TARGETED_SUB_FLOW {
+  SPLIT_TYPE = "Split Type",
+  MUSCLES = "Muscles",
+  CADENCE = "Cadence",
+}
+
+export enum SPLIT_TYPES {
+  FB = "FB",
+  TWO_DAY = "TWO_DAY",
+  THREE_DAY = "THREE_DAY",
+  FOUR_DAY = "FOUR_DAY",
+}
+
+// MUSCLES
+export enum FB_MUSCLES {
+  LTA = "LTA",
+  LPP = "LPP",
+  PP = "PP",
+  UL = "UL",
+}
+export enum TWO_DAY_MUSCLES {
+  TLA = "TLA",
+  PP = "PP",
+  UL = "UL",
+}
+export enum THREE_DAY_MUSCLES {
+  PPL = "PPL",
+  CBLSA = "CBLSA",
+}
+export enum FOUR_DAY_MUSCLES {
+  BBCTTSCA = "BBCTTSCA",
+  TPTPLAPLAP = "TPTPLAPLAP",
+}
+
+// CADENCE
+export enum FB_CADENCE {
+  EVERY_OTHER_DAY = "WX",
+  TWO_DAYS_PER_WEEK = "WXXWXXX",
+  THREE_DAYS_PER_WEEK = "WXWXWXX",
+}
+export enum TWO_DAY_CADENCE {
+  EVERY_OTHER_DAY = "AXBX",
+  TWO_DAYS_PER_WEEK = "AXBXXXX",
+  THREE_DAYS_PER_WEEK = "AXBXAXX, BXAXBXX",
+  FOUR_DAYS_PER_WEEK = "ABXABXX",
+  TWO_ON_ONE_OFF = "ABX",
+}
+export enum THREE_DAY_CADENCE {
+  THREE_DAYS_PER_WEEK_STAGGERED = "AXBXCXX",
+  THREE_DAYS_PER_WEEK_GROUPED = "ABCXXXX",
+  FIVE_DAYS_PER_WEEK = "ABCABXX, CABCAXX, BCABCXX",
+  SIX_DAYS_PER_WEEK = "ABCABCX",
+  THREE_ON_ONE_OFF = "ABCX",
+}
+export enum FOUR_DAY_CADENCE {
+  FOUR_DAYS_PER_WEEK = "ABCDXXX",
+  SIX_DAYS_PER_WEEK = "ABCDABX, CDABCDX",
+  FOUR_ON_ONE_OFF = "ABCDX",
+}

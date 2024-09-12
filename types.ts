@@ -1,0 +1,163 @@
+import { Prisma } from "@prisma/client";
+
+export type DeepTemplateWorkout = Prisma.TemplateWorkoutGetPayload<{
+  include: {
+    profile: true;
+    preWorkoutGroups: true;
+    strengthGroups: {
+      include: {
+        sets: {
+          include: {
+            exercise: {
+              include: {
+                equipment: true;
+              };
+            };
+          };
+        };
+      };
+    };
+    cardioGroups: true;
+    postWorkoutGroups: true;
+  };
+}>;
+
+export type TemplateWorkout = Prisma.TemplateWorkoutGetPayload<{
+  include: {
+    profile: true;
+    preWorkoutGroups: true;
+    strengthGroups: true;
+    cardioGroups: true;
+    postWorkoutGroups: true;
+  };
+}>;
+
+export type SplitDeep = Prisma.SplitGetPayload<{
+  include: {
+    workouts: {
+      include: {
+        strengthGroups: {
+          include: {
+            sets: {
+              include: {
+                exercise: true;
+              };
+            };
+          };
+        };
+      };
+    };
+    loggedWorkouts: {
+      include: {
+        strengthGroups: {
+          include: {
+            sets: {
+              include: {
+                exercise: true;
+              };
+            };
+          };
+        };
+      };
+    };
+  };
+}>;
+
+export type LoggedWorkoutSplitResponse = Prisma.SplitGetPayload<{
+  include: {
+    loggedWorkouts: {
+      include: {
+        strengthGroups: {
+          include: {
+            sets: {
+              include: {
+                exercise: true;
+              };
+            };
+          };
+        };
+      };
+    };
+  };
+}>;
+
+export type DeepSet = Prisma.SetGetPayload<{
+  include: {
+    exercise: true;
+  };
+}>;
+
+export type ExerciseWithEquipment = Prisma.ExerciseGetPayload<{
+  include: {
+    equipment: true;
+  };
+}>;
+
+export type DeepLoggedWorkout = Prisma.LoggedWorkoutGetPayload<{
+  include: {
+    preWorkoutGroups: {
+      include: {
+        sets: {
+          include: {
+            exercise: true;
+          };
+        };
+      };
+    };
+    strengthGroups: {
+      include: {
+        sets: {
+          include: {
+            exercise: true;
+          };
+        };
+      };
+    };
+    cardioGroups: true;
+    postWorkoutGroups: {
+      include: {
+        sets: {
+          include: {
+            exercise: true;
+          };
+        };
+      };
+    };
+  };
+}>;
+
+export enum BodyPart {
+  BICEPS = "BICEPS",
+  TRICEPS = "TRICEPS",
+  CHEST = "CHEST",
+  HAMSTRINGS = "HAMSTRINGS",
+  ABS = "ABS",
+  BACK = "BACK",
+  QUADS = "QUADS",
+  GLUTES = "GLUTES",
+  SHOULDERS = "SHOULDERS",
+  TRAPS = "TRAPS",
+  FOREARMS = "FOREARMS",
+  ADDUCTORS = "ADDUCTORS",
+  ABDUCTORS = "ABDUCTORS",
+  CALVES = "CALVES",
+  LOWERBACK = "LOWERBACK",
+}
+
+export const GROUPS = [
+  BodyPart.ABS,
+  BodyPart.BACK,
+  BodyPart.BICEPS,
+  BodyPart.TRAPS,
+  BodyPart.TRICEPS,
+  BodyPart.HAMSTRINGS,
+  BodyPart.GLUTES,
+  BodyPart.LOWERBACK,
+  BodyPart.QUADS,
+  BodyPart.SHOULDERS,
+  BodyPart.FOREARMS,
+  BodyPart.CALVES,
+  BodyPart.CHEST,
+  BodyPart.ABDUCTORS,
+  BodyPart.ADDUCTORS,
+];

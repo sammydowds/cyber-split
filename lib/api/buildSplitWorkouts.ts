@@ -1,0 +1,95 @@
+import { Prisma } from "@prisma/client";
+import { MuscleSpec } from "../programming/types";
+import { prisma } from "../prismaClient";
+
+export const getExercises = async (
+  muscleGroups: string[],
+  equipment: string[],
+  type: "STRENGTH" | "CARDIO" = "STRENGTH",
+  limit: number,
+  excludeExercises: string[] = [],
+  filters?: Prisma.ExerciseWhereInput[],
+) => {
+  const baseWhere: Prisma.ExerciseWhereInput = {
+    ...(muscleGroups?.length
+      ? {
+          bodyPart: {
+            in: muscleGroups,
+          },
+        }
+      : {}),
+    type,
+    id: {
+      notIn: excludeExercises,
+    },
+    ...(equipment.length
+      ? {
+          equipment: {
+            some: {
+              id: {
+                in: equipment,
+              },
+            },
+          },
+        }
+      : {}),
+  };
+
+  const combinedWhere: Prisma.ExerciseWhereInput = {
+    AND: [baseWhere, ...(filters ?? [])],
+  };
+
+  return await prisma.exercise.findMany({
+    where: combinedWhere,
+    take: limit,
+    include: {
+      equipment: true,
+    },
+  });
+};
+
+export const buildSplitWorkouts = async (
+  spec: MuscleSpec[][],
+  labels: string[],
+) => {
+  let workouts: any[] = [];
+  let exerciseIds: string[] = [];
+  for (const s of spec) {
+    let strengthGroups: any[] = [];
+    const name = labels[spec.indexOf(s)];
+    for (const exerciseSpec of s) {
+      const exercises = await getExercises(
+        [exerciseSpec.target],
+        [],
+        "STRENGTH",
+        5,
+        exerciseIds,
+        exerciseSpec.filters,
+      );
+      if (exercises.length === 0) {
+        console.info(
+          `Unable to find exercises for: target - ${exerciseSpec.target}`,
+        );
+        continue;
+      }
+      const randomIndex = Math.floor(Math.random() * exercises.length);
+      const exercise = exercises[randomIndex];
+      const baseSet = {
+        exercise,
+        dateLogged: null,
+        isInterval: false,
+        interval: null,
+        reps: 10,
+        restPeriod: 90,
+      };
+      strengthGroups.push({
+        sets: [baseSet, baseSet, baseSet],
+        name: exercise.name,
+      });
+      exerciseIds.push(exercise.id);
+    }
+    workouts.push({ strengthGroups, name });
+  }
+
+  return workouts;
+};
