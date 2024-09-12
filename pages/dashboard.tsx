@@ -4,7 +4,6 @@ import { useArchivedSplit } from "@/hooks/useArchivedSplits";
 import { Separator } from "@/components/ui/separator";
 import { DesktopMenu } from "@/components/DesktopMenu";
 import { ChevronRight, PanelLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Home } from "@/components/Home/Home";
 import { useState } from "react";
 import { Profile } from "@/components/Profile";
@@ -12,14 +11,11 @@ import { MobileMenuSheet } from "@/components/MobileMenuSheet";
 import { MobileMenu } from "@/components/MobileMenu";
 
 export default function Dashboard() {
-  const { data: split } = useActiveSplit();
+  const { data: split, isPending: loadingActiveSplit } = useActiveSplit();
   const { data: archivedSplits } = useArchivedSplit();
   const [tab, setTab] = useState("home");
   const [showMenu, setShowMenu] = useState(false);
 
-  if (!split) {
-    return "Loading split...";
-  }
   return (
     <main>
       <div className="flex overflow-hidden h-screen w-screen max-md:flex-col md:flex-row">
@@ -34,7 +30,7 @@ export default function Dashboard() {
             </div>
             <Separator />
           </div>
-          <main className="flex flex-col gap-4 relative grow overflow-hidden overflow-y-scroll">
+          <main className="flex flex-col gap-4 relative grow overflow-hidden overflow-y-scroll bg-stone-50">
             <MobileMenuSheet
               tab={tab}
               setTab={setTab}
@@ -42,7 +38,12 @@ export default function Dashboard() {
               setOpen={setShowMenu}
             />
             <div className="h-max">
-              {tab === "home" ? <Home split={split} /> : null}
+              {loadingActiveSplit ? (
+                <div className="h-[300px] w-full flex items-center justify-center">
+                  Loading data...
+                </div>
+              ) : null}
+              {split && tab === "home" ? <Home split={split} /> : null}
               {tab === "profile" ? <Profile /> : null}
             </div>
           </main>

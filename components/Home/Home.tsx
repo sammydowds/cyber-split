@@ -1,8 +1,8 @@
 import { SplitDeep } from "@/types";
 import { TodayWorkoutCard } from "./cards/TodayWorkoutCard";
 import { ScheduleCard } from "./cards/ScheduleCard";
-import { Data } from "./cards/DataCards/Data";
-import { Workouts } from "./cards/WorkoutsCard/Workouts";
+import { DataCards } from "./cards/DataCards/DataCards";
+import { WorkoutsCard } from "./cards/WorkoutsCard/WorkoutsCard";
 
 interface HomeProps {
   split: SplitDeep;
@@ -12,8 +12,8 @@ export const Home = ({ split }: HomeProps) => {
     <div className="flex flex-col p-4 pb-24 gap-4">
       <TodayWorkoutCard split={split} />
       <ScheduleCard split={split} />
-      <Workouts split={split} />
-      <Data split={split} />
+      <WorkoutsCard split={split} />
+      <DataCards split={split} />
     </div>
   );
 };

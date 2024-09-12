@@ -11,7 +11,7 @@ import { SplitDeep } from "@/types";
 interface WorkoutsProps {
   split: SplitDeep;
 }
-export const Workouts = ({ split }: WorkoutsProps) => {
+export const WorkoutsCard = ({ split }: WorkoutsProps) => {
   const { workouts } = split;
   return (
     <Card className="flex flex-col overflow-hidden w-[500px] max-md:w-full">

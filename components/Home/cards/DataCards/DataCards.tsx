@@ -5,10 +5,10 @@ import { useSplitChartData, Y_LABEL } from "@/hooks/useSplitChartData";
 interface DataProps {
   split: SplitDeep;
 }
-export const Data = ({ split }: DataProps) => {
+export const DataCards = ({ split }: DataProps) => {
   const { data } = useSplitChartData(split);
   return (
-    <div className="flex gap-4 p-4 h-full flex-wrap">
+    <div className="flex gap-4 p-4 h-full flex-wrap w-[500px] max-md:w-full">
       {Object.keys(data).map((exerciseKey) => {
         const chosenLabel = data[exerciseKey][Y_LABEL.ONE_REP_MAX]
           ? Y_LABEL.ONE_REP_MAX
