@@ -11,6 +11,7 @@ import { WorkoutMarker } from "@/components/WorkoutMarker";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/router";
 import { SplitDeep } from "@/types";
+import { DashCard } from "../DashCard";
 
 interface TodayWorkCardProps {
   split: SplitDeep;
@@ -18,7 +19,7 @@ interface TodayWorkCardProps {
 export const TodayWorkoutCard = ({ split }: TodayWorkCardProps) => {
   const router = useRouter();
   return (
-    <Card className="w-[500px] max-md:w-full">
+    <DashCard className="w-[500px] max-md:w-full">
       <CardHeader className="p-4 pb-0">
         <CardTitle>Today's Workout</CardTitle>
         <CardDescription>
@@ -41,6 +42,6 @@ export const TodayWorkoutCard = ({ split }: TodayWorkCardProps) => {
           </div>
         </Card>
       </CardContent>
-    </Card>
+    </DashCard>
   );
 };

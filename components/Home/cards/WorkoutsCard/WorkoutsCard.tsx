@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { SplitDeep } from "@/types";
+import { DashCard } from "../../DashCard";
 
 interface WorkoutsProps {
   split: SplitDeep;
@@ -14,7 +15,7 @@ interface WorkoutsProps {
 export const WorkoutsCard = ({ split }: WorkoutsProps) => {
   const { workouts } = split;
   return (
-    <Card className="flex flex-col overflow-hidden w-[500px] max-md:w-full">
+    <DashCard className="flex flex-col overflow-hidden w-[500px] max-md:w-full">
       <CardHeader className="pb-0">
         <CardTitle>Workouts</CardTitle>
         <CardDescription>
@@ -28,6 +29,6 @@ export const WorkoutsCard = ({ split }: WorkoutsProps) => {
           })}
         </div>
       </div>
-    </Card>
+    </DashCard>
   );
 };
