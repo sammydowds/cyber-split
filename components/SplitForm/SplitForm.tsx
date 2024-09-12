@@ -42,7 +42,7 @@ export function SplitForm() {
   }, [muscles, form]);
 
   if (isPending) {
-    return "Loading...";
+    return null;
   }
 
   const fieldValueKey = STEP_FIELD_VALUES[step] as keyof FormSchemaType | null;

@@ -12,22 +12,35 @@ import {
   SPLIT_TYPE_TO_DESCRIPTION,
 } from "@/lib/programming/constants";
 import { SPLIT_TYPES } from "@/lib/programming/enums";
-import { formatDistanceToNow } from "date-fns";
+import { differenceInDays, formatDistanceToNow } from "date-fns";
 import { Route } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEndSplit } from "@/hooks/useEndSplit";
 import { useQueryClient } from "@tanstack/react-query";
+import pluralize from "pluralize";
 
-interface ActiveSplitCardProps {
+interface CurrentProgrammingCardProps {
   split: SplitDeep;
 }
-export const ActiveSplitCard = ({ split }: ActiveSplitCardProps) => {
+export const CurrentProgrammingCard = ({
+  split,
+}: CurrentProgrammingCardProps) => {
   const queryClient = useQueryClient();
   const { mutate: endSplit, isPending } = useEndSplit({
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["activeSplit"] });
     },
   });
+
+  const daysDiff = Math.abs(
+    differenceInDays(
+      new Date(split.created).toLocaleDateString(),
+      new Date().toLocaleDateString(),
+    ),
+  );
+  const diffText = daysDiff
+    ? `${daysDiff} ${pluralize("day", daysDiff)} ago`
+    : "today";
 
   return (
     <DashCard className="w-[500px] max-md:w-full">
@@ -47,9 +60,7 @@ export const ActiveSplitCard = ({ split }: ActiveSplitCardProps) => {
         <span className="font-semibold text-black">
           {CADENCE_TO_DESCRIPTION_MAP[split.type][split.cadence].toLowerCase()}
         </span>{" "}
-        started{" "}
-        {formatDistanceToNow(new Date(split.created).toLocaleDateString())} days
-        ago.
+        started {diffText}.
       </CardContent>
       <CardFooter className="flex w-full pb-4">
         <Button

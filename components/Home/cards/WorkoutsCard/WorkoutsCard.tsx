@@ -28,7 +28,13 @@ export const WorkoutsCard = ({ split }: WorkoutsProps) => {
       <div className="overflow-x-auto">
         <div className="flex w-max space-x-2 p-4">
           {workouts?.map((_, idx) => {
-            return <SplitWorkoutCard key={idx} split={split} index={idx} />;
+            return (
+              <SplitWorkoutCard
+                key={`workout-card-${idx}`}
+                split={split}
+                index={idx}
+              />
+            );
           })}
         </div>
       </div>

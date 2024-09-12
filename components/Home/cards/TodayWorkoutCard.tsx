@@ -14,7 +14,7 @@ import { SplitDeep } from "@/types";
 import { DashCard } from "../../DashCard";
 import { estimateTimeOfWorkout } from "@/lib/estimateTimeOfWorkout";
 import { getBodyPartsFromWorkout } from "@/lib/getBodyPartsFromWorkout";
-import { MapPin } from "lucide-react";
+import { MapPin, Palmtree } from "lucide-react";
 
 interface TodayWorkCardProps {
   workout?: SplitDeep["workouts"][number];
@@ -28,17 +28,16 @@ export const TodayWorkoutCard = ({
 
   if (!workout || !workoutLabel) {
     return (
-      <DashCard className="w-[400px] max-md:w-full">
-        <CardHeader className="p-4">
+      <DashCard className="w-[500px] max-md:w-full">
+        <CardHeader className="p-4 pb-2">
           <CardTitle className="flex items-center gap-[4px]">
             <MapPin className="h-4 w-4" /> Today's Workout
           </CardTitle>
-          <CardDescription>
-            There is no workout on the schedule today. Ensure to allow for
-            proper muscle recovery.
-          </CardDescription>
+          <CardDescription>Rest Day</CardDescription>
         </CardHeader>
-        <CardContent className="flex flex-row items-baseline gap-4 p-4 pt-2"></CardContent>
+        <CardContent className="flex flex-row items-center gap-[4px] p-4 pt-2">
+          There is no workout on the schedule today. Rest and recover.
+        </CardContent>
       </DashCard>
     );
   }
@@ -59,15 +58,15 @@ export const TodayWorkoutCard = ({
           exercises.
         </CardDescription>
       </CardHeader>
-      <CardContent className="flex flex-row items-baseline gap-4 px-2">
+      <CardContent className="flex flex-row items-baseline gap-4 px-4 max-md:px-2">
         <Card className="w-full p-[8px] rounded-sm border-[1px] shadow-lg">
           <div className="flex items-center gap-2 justify-between">
-            <div className="flex items-center gap-[8px]">
+            <div className="flex items-center gap-[4px]">
               <WorkoutMarker
                 text={workoutLabel}
-                className="h-[32px] w-[32px]"
+                className="md:h-[32px] md:w-[32px] max-md:h-[24px] max-md:w-[24px]"
               />
-              <div className="font-bold">{workout.name}</div>
+              <div className="font-bold max-md:text-sm">{workout.name}</div>
             </div>
             <div>
               <Button onClick={() => router.push(`/log/${123}`)}>

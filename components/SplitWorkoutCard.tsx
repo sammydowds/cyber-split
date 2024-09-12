@@ -74,7 +74,7 @@ export const SplitWorkoutCard = ({
             {workout?.strengthGroups?.map((g) => {
               const targetMuscles = Array.from(
                 new Set(
-                  g.sets.map((s) => s.exercise.bodyPart?.toLocaleLowerCase()),
+                  g.sets.map((s) => s.exercise?.bodyPart?.toLocaleLowerCase()),
                 ),
               );
               return (
