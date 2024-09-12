@@ -7,6 +7,11 @@ export type Day = {
 
 type WorkoutSchedule = Day[][];
 
+export interface WorkoutScheduleResult {
+  schedule: WorkoutSchedule;
+  todaysWorkout: string | null;
+}
+
 interface Args {
   cadence: string;
   startDate?: Date;
@@ -16,7 +21,7 @@ export const createWorkoutSchedule = ({
   cadence,
   startDate = new Date(),
   skipDays = [],
-}: Args): { schedule: WorkoutSchedule; todaysWorkout: string | null } => {
+}: Args): WorkoutScheduleResult => {
   let processedCadence = cadence.split(", ").join("");
   const totalDays = 28;
   const cadenceLength = processedCadence.length;

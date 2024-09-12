@@ -7,28 +7,34 @@ import {
 } from "@/components/ui/card";
 import { MonthTable } from "@/components/MonthTable";
 import { SplitDeep } from "@/types";
-import { createWorkoutSchedule } from "@/lib/programming/createWorkoutSchedule";
-import { DashCard } from "../DashCard";
+import {
+  createWorkoutSchedule,
+  WorkoutScheduleResult,
+} from "@/lib/programming/createWorkoutSchedule";
+import { DashCard } from "../../DashCard";
+import { Calendar } from "lucide-react";
 
 const DAYS = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
+  "Sundays",
+  "Mondays",
+  "Tuesdays",
+  "Wednesdays",
+  "Thursdays",
+  "Fridays",
+  "Saturdays",
 ] as const;
 
 interface ScheduleCardProps {
+  schedule: WorkoutScheduleResult["schedule"];
   split: SplitDeep;
 }
-export const ScheduleCard = ({ split }: ScheduleCardProps) => {
-  const { schedule } = createWorkoutSchedule({ ...split });
+export const ScheduleCard = ({ schedule, split }: ScheduleCardProps) => {
   return (
     <DashCard className="w-[500px] max-md:w-full">
       <CardHeader className="max-md:p-4 max-md:pb-0 pb-0">
-        <CardTitle>Split Schedule</CardTitle>
+        <CardTitle className="flex items-center gap-[4px]">
+          <Calendar className="h-4 w-4" /> Split Schedule
+        </CardTitle>
         <CardDescription>
           This is your schedule starting on{" "}
           {new Date(split?.created).toLocaleDateString()}. This schedule skips{" "}

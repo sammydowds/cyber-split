@@ -10,6 +10,8 @@ import { Profile } from "@/components/Profile";
 import { MobileMenuSheet } from "@/components/MobileMenuSheet";
 import { MobileMenu } from "@/components/MobileMenu";
 import Image from "next/image";
+import { SplitForm } from "@/components/SplitForm/SplitForm";
+import { DashCard } from "@/components/DashCard";
 
 export default function Dashboard() {
   const { data: split, isPending: loadingActiveSplit } = useActiveSplit();
@@ -50,7 +52,9 @@ export default function Dashboard() {
                   Loading data...
                 </div>
               ) : null}
-              {split && tab === "home" ? <Home split={split} /> : null}
+              {!loadingActiveSplit && tab === "home" ? (
+                <Home split={split} />
+              ) : null}
               {tab === "profile" ? <Profile /> : null}
             </div>
           </main>

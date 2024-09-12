@@ -7,7 +7,8 @@ import {
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { SplitDeep } from "@/types";
-import { DashCard } from "../../DashCard";
+import { DashCard } from "../../../DashCard";
+import { Atom } from "lucide-react";
 
 interface WorkoutsProps {
   split: SplitDeep;
@@ -17,7 +18,9 @@ export const WorkoutsCard = ({ split }: WorkoutsProps) => {
   return (
     <DashCard className="flex flex-col overflow-hidden w-[500px] max-md:w-full">
       <CardHeader className="pb-0">
-        <CardTitle>Workouts</CardTitle>
+        <CardTitle className="flex items-center gap-[4px]">
+          <Atom className="h-4 w-4" /> Workouts
+        </CardTitle>
         <CardDescription>
           These are the workouts generated for your current active split.
         </CardDescription>
