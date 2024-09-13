@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 
-export const NavAnimatedGradientBackground = () => {
+export const MobileNavBackground = () => {
   return (
     <>
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-black to-[#fde047] opacity-50"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-white from-35% via-stone-400 to-black"></div>
       <motion.div
         className="absolute inset-0 opacity-30"
         style={{

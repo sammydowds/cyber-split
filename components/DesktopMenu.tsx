@@ -8,7 +8,7 @@ import {
   Notebook,
   User,
 } from "lucide-react";
-import { NavAnimatedGradientBackground } from "./NavAnimatedGradientBackground";
+import { DesktopNavBackground } from "./DesktopNavBackground";
 
 interface DesktopMenuProps {
   tab: string;
@@ -17,8 +17,8 @@ interface DesktopMenuProps {
 export const DesktopMenu = ({ tab, setTab }: DesktopMenuProps) => {
   return (
     <aside className="inset-y-0 top-0 bg-white left-0 z-10 hidden flex-col gap-2 border-r bg-background sm:flex">
-      <div className="h-[80px] flex items-center justify-center text-lg bg-black py-4 px-2 relative">
-        <NavAnimatedGradientBackground />
+      <div className="h-[60px] flex items-center justify-center text-lg bg-black py-4 px-2 relative">
+        <DesktopNavBackground />
         <div className="h-[30px] w-[165px] relative overflow-hidden">
           <Image src="/logo.png" alt="logo" fill />
         </div>

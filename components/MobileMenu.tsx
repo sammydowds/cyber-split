@@ -1,7 +1,7 @@
 import { ChevronRight, PanelLeft } from "lucide-react";
 import { Button } from "./ui/button";
 import Image from "next/image";
-import { NavAnimatedGradientBackground } from "./NavAnimatedGradientBackground";
+import { MobileNavBackground } from "./MobileNavBackground";
 
 interface MobileMenuProps {
   setShowMenu: (show: boolean) => void;
@@ -10,10 +10,12 @@ interface MobileMenuProps {
 }
 export const MobileMenu = ({ showMenu, setShowMenu, tab }: MobileMenuProps) => {
   return (
-    <div className="top-0 z-30 flex h-14 items-center gap-[4px] justify-between w-full shadow bg-gradient-to-r from-white from-20% via-stone-500 to-yellow-300 p-4 sm:hidden relative">
+    <div className="top-0 z-30 flex h-14 items-center gap-[4px] justify-between w-full shadow relative p-2 sm:hidden">
+      <MobileNavBackground />
       <Button
         size="icon"
         variant="outline"
+        className="z-50"
         onClick={() => setShowMenu(!showMenu)}
       >
         <PanelLeft className="h-5 w-5" />
