@@ -9,7 +9,9 @@
     "lint": "next lint",
     "format": "prettier -w .",
     "supabase:init": "supabase init",
-    "supabase:start": "supabase start"
+    "supabase:start": "supabase start",
+    "build:scripts": "tsc scripts/*.ts --outDir out/scripts --skipLibCheck",
+    "update:exercises": "node out/scripts/upsertExercises.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -51,6 +53,8 @@
     "@types/pluralize": "^0.0.33",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "csv-parser": "^3.0.0",
+    "dotenv": "^16.4.5",
     "eslint": "^8",
     "eslint-config-next": "14.2.8",
     "postcss": "^8",

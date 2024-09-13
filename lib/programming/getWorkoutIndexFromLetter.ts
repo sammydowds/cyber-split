@@ -11,6 +11,6 @@ export const getWorkoutIndexFromLetter = (letter?: string | null) => {
     case "D":
       return 3;
     default:
-      return 0;
+      return null;
   }
 };
