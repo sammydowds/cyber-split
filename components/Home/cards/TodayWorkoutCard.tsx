@@ -66,22 +66,28 @@ export const TodayWorkoutCard = ({
           })}
         </div>
       </CardHeader>
-      <CardContent className="flex flex-row items-baseline gap-4 px-4 max-md:px-2">
-        <Card className="w-full p-[8px] rounded-sm border-[1px] shadow">
-          <div className="flex items-center gap-2 justify-between">
-            <div className="flex items-center gap-[4px]">
-              <WorkoutMarker
-                text={workoutLabel}
-                className="md:h-[32px] md:w-[32px] max-md:h-[24px] max-md:w-[24px]"
-              />
-              <div className="font-bold max-md:text-sm">{workout.name}</div>
+      <CardContent className="flex flex-row items-baseline gap-4 px-4 max-md:px-2 md:py-2">
+        <Card className="w-full">
+          <CardContent className="py-2 px-4">
+            <div className="flex items-center gap-2 md:py-2 justify-between">
+              <div className="flex items-center gap-[8px]">
+                <WorkoutMarker
+                  text={workoutLabel}
+                  className="md:h-[36px] md:w-[36px] max-md:h-[24px] max-md:w-[24px]"
+                />
+                <div className="font-bold max-md:text-sm md:text-lg">
+                  {workout.name}
+                </div>
+              </div>
+              <div>
+                <Button
+                  onClick={() => router.push(`/log-workout/${workout.id}`)}
+                >
+                  Log Workout
+                </Button>
+              </div>
             </div>
-            <div>
-              <Button onClick={() => router.push(`/log-workout/${workout.id}`)}>
-                Log Workout
-              </Button>
-            </div>
-          </div>
+          </CardContent>
         </Card>
       </CardContent>
     </DashCard>

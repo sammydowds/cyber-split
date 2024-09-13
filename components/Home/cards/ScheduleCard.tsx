@@ -37,7 +37,7 @@ export const ScheduleCard = ({ schedule, split }: ScheduleCardProps) => {
     <DashCard className="w-[500px] max-md:w-full">
       <CardHeader className="max-md:p-4 max-md:pb-0 pb-0">
         <CardTitle className="flex items-center gap-[4px]">
-          <Calendar className="h-4 w-4" /> Split Schedule
+          <Calendar className="h-4 w-4" /> Schedule
         </CardTitle>
         <CardDescription>
           {dayStartedText}

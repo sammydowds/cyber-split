@@ -28,21 +28,23 @@ export const DataCards = ({ split }: DataProps) => {
       </CardHeader>
       <CardContent className="px-0">
         <div className="flex gap-4 h-full w-full overflow-hidden overflow-x-auto ">
-          <div className="flex items-center flex-row w-max gap-4 px-4">
-            {Object.keys(data).map((exerciseKey) => {
-              const chosenLabel = data[exerciseKey][Y_LABEL.ONE_REP_MAX]
-                ? Y_LABEL.ONE_REP_MAX
-                : Y_LABEL.REP_COUNT;
-              const chosenData = data[exerciseKey][chosenLabel] ?? [];
-              return (
-                <ExerciseChart
-                  data={chosenData}
-                  name={exerciseKey}
-                  type={chosenLabel}
-                />
-              );
-            })}
-          </div>
+          {Object.keys(data).length ? (
+            <div className="flex items-center flex-row w-max gap-4 px-4">
+              {Object.keys(data).map((exerciseKey) => {
+                const chosenLabel = data[exerciseKey][Y_LABEL.ONE_REP_MAX]
+                  ? Y_LABEL.ONE_REP_MAX
+                  : Y_LABEL.REP_COUNT;
+                const chosenData = data[exerciseKey][chosenLabel] ?? [];
+                return (
+                  <ExerciseChart
+                    data={chosenData}
+                    name={exerciseKey}
+                    type={chosenLabel}
+                  />
+                );
+              })}
+            </div>
+          ) : null}
           {Object.keys(data)?.length === 0 ? (
             <div className="w-full h-full flex items-center justify-center text-sm text-stone-600">
               Log workouts to record data
