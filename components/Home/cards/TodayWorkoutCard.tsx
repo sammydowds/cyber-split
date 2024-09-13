@@ -52,7 +52,7 @@ export const TodayWorkoutCard = ({
         <CardTitle className="flex items-center gap-[4px] mb-[4px]">
           <MapPin className="h-4 w-4" /> Today's Workout
         </CardTitle>
-        <CardDescription className="flex flex-wrap gap-[4px]">
+        <div className="flex flex-wrap gap-[4px]">
           <Badge variant="outline">
             {workout.strengthGroups.length} Exercises
           </Badge>
@@ -64,10 +64,10 @@ export const TodayWorkoutCard = ({
               </Badge>
             );
           })}
-        </CardDescription>
+        </div>
       </CardHeader>
       <CardContent className="flex flex-row items-baseline gap-4 px-4 max-md:px-2">
-        <Card className="w-full p-[8px] rounded-sm border-[1px] shadow-lg">
+        <Card className="w-full p-[8px] rounded-sm border-[1px] shadow">
           <div className="flex items-center gap-2 justify-between">
             <div className="flex items-center gap-[4px]">
               <WorkoutMarker
