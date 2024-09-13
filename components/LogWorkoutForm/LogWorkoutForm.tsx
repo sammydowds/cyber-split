@@ -28,8 +28,11 @@ export const LogWorkoutForm = ({ template }: LogWorkoutProps) => {
     useCreateLoggedWorkout({
       onSuccess: async () => {
         toast.success("Workout saved.");
+
         await clearDB();
-        queryCient.invalidateQueries(), form.reset();
+        queryCient.invalidateQueries();
+        form.reset();
+
         router.push("/dashboard");
       },
     });
