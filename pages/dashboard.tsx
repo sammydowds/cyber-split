@@ -10,8 +10,6 @@ import { Profile } from "@/components/Profile";
 import { MobileMenuSheet } from "@/components/MobileMenuSheet";
 import { MobileMenu } from "@/components/MobileMenu";
 import Image from "next/image";
-import { SplitForm } from "@/components/SplitForm/SplitForm";
-import { DashCard } from "@/components/DashCard";
 
 export default function Dashboard() {
   const { data: split, isPending: loadingActiveSplit } = useActiveSplit();

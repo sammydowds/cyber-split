@@ -77,7 +77,7 @@ export const TodayWorkoutCard = ({
               <div className="font-bold max-md:text-sm">{workout.name}</div>
             </div>
             <div>
-              <Button onClick={() => router.push(`/log/${123}`)}>
+              <Button onClick={() => router.push(`/log-workout/${workout.id}`)}>
                 Log Workout
               </Button>
             </div>
