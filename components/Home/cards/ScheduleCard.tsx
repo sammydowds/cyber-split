@@ -29,6 +29,10 @@ interface ScheduleCardProps {
   split: SplitDeep;
 }
 export const ScheduleCard = ({ schedule, split }: ScheduleCardProps) => {
+  const skipDayText = split.skipDays?.length
+    ? `This schedule skips ${split.skipDays.map((d) => DAYS[d]).join(", ")}.`
+    : "";
+  const dayStartedText = `This schedule was created on ${new Date(split.created).toLocaleDateString()}.`;
   return (
     <DashCard className="w-[500px] max-md:w-full">
       <CardHeader className="max-md:p-4 max-md:pb-0 pb-0">
@@ -36,9 +40,8 @@ export const ScheduleCard = ({ schedule, split }: ScheduleCardProps) => {
           <Calendar className="h-4 w-4" /> Split Schedule
         </CardTitle>
         <CardDescription>
-          This is your schedule starting on{" "}
-          {new Date(split?.created).toLocaleDateString()}. This schedule skips{" "}
-          {split.skipDays.map((d) => DAYS[d]).join(", ")}.{" "}
+          {dayStartedText}
+          {skipDayText}
         </CardDescription>
       </CardHeader>
       <CardContent className="max-md:p-2 max-md:pt-0">

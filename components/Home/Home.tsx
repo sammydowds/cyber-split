@@ -25,7 +25,9 @@ export const Home = ({ split }: HomeProps) => {
 
   const { schedule, todaysWorkout } = createWorkoutSchedule(split);
   const index = getWorkoutIndexFromLetter(todaysWorkout);
-  const workoutForToday = index ? split.workouts[index] : undefined;
+  const workoutForToday =
+    typeof index === "number" ? split.workouts[index] : undefined;
+
   return (
     <div className="flex flex-col items-center p-4 pb-24 gap-4 max-md:p-2">
       <CurrentProgrammingCard split={split} />
