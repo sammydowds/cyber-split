@@ -31,7 +31,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   const payload = req.body as LogWorkoutSchema;
-  const split = await prisma.loggedWorkout.create({
+  const loggedWorkout = await prisma.loggedWorkout.create({
     data: {
       name: payload.name,
       profileId: profile.id,
@@ -52,9 +52,24 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         })),
       },
     },
+    include: {
+      strengthGroups: {
+        include: {
+          sets: {
+            include: {
+              exercise: {
+                include: {
+                  equipment: true,
+                },
+              },
+            },
+          },
+        },
+      },
+    },
   });
 
-  return res.status(200).json({ data: split });
+  return res.status(200).json({ data: loggedWorkout });
 };
 
 export default handler;

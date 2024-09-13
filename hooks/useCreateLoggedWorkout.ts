@@ -1,17 +1,11 @@
-import {
-  useMutation,
-  UseMutationOptions,
-  useQueryClient,
-} from "@tanstack/react-query";
-import toast from "react-hot-toast";
+import { useMutation, UseMutationOptions } from "@tanstack/react-query";
 import { FetchOptions, useFetchOptions } from "@/hooks/useFetchOptions";
 import { throwErrorFromFetcher } from "@/lib/throwErrorFromFetcher";
 import { LogWorkoutSchema } from "../components/LogWorkoutForm/types";
-import { clearDB } from "@/lib/indexedDb";
-import { useRouter } from "next/router";
+import { DeepLoggedWorkout } from "@/types";
 
 interface CreateLoggedWorkoutResponse {
-  // Define the shape of your response data (e.g., scheduled workout ID, success message, etc.)
+  data: DeepLoggedWorkout;
 }
 
 const createLoggedWorkout = async (
@@ -31,8 +25,6 @@ const createLoggedWorkout = async (
 const useCreateLoggedWorkout = (
   options?: UseMutationOptions<CreateLoggedWorkoutResponse, Error, unknown>,
 ) => {
-  const router = useRouter();
-  const queryClient = useQueryClient();
   const opts = useFetchOptions();
   return useMutation<
     CreateLoggedWorkoutResponse,

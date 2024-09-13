@@ -1,9 +1,7 @@
-import { useTemplateWorkout } from "@/hooks/useTemplateWorkout";
 import { useRouter } from "next/router";
 import { LogWorkoutForm } from "@/components/LogWorkoutForm/LogWorkoutForm";
 import { useLogData } from "@/hooks/useLogData";
 import { LoadingLogWorkoutForm } from "@/components/LogWorkoutForm/LoadingLogWorkoutForm";
-import { useCreateLoggedWorkout } from "@/hooks/useCreateLoggedWorkout";
 
 export default function LogWorkout() {
   const router = useRouter();

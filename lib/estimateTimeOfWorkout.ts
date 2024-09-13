@@ -23,3 +23,29 @@ export const estimateTimeOfWorkout = (
 
   return time;
 };
+
+export const estimateTimeOfLoggedSets = (sets: Set[]) => {
+  let time = 0;
+  for (const set of sets) {
+    if (!set.dateLogged) {
+      continue;
+    }
+    const { reps, restPeriod } = set;
+    if (reps) {
+      time = time + 2 * reps + (restPeriod ?? 0);
+    }
+  }
+  return time;
+};
+
+export const estimateTimeOfLoggedWorkout = (
+  workout: Partial<DeepTemplateWorkout>,
+) => {
+  let time = 0;
+  // estimate time for strength sets logged
+  for (const group of workout?.strengthGroups ?? []) {
+    time = time + estimateTimeOfLoggedSets(group.sets);
+  }
+
+  return time;
+};

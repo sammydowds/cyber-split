@@ -24,7 +24,7 @@ interface ExerciseChartProps {
 export const ExerciseChart = ({ name, type, data }: ExerciseChartProps) => {
   const lastDataPoint = data[data.length - 1].y;
   return (
-    <Card className="md:min-w-[245px] max-md:min-w-[345px]">
+    <Card className="w-[275px] shadow-none">
       <CardHeader className="space-y-0 p-2">
         <CardDescription>{name}</CardDescription>
         <CardTitle className="flex items-baseline gap-1 text-xl tabular-nums">

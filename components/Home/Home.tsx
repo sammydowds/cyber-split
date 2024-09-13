@@ -29,15 +29,18 @@ export const Home = ({ split }: HomeProps) => {
     typeof index === "number" ? split.workouts[index] : undefined;
 
   return (
-    <div className="flex flex-col items-center p-4 pb-24 gap-4 max-md:p-2">
-      <CurrentProgrammingCard split={split} />
-      <TodayWorkoutCard
-        workout={workoutForToday}
-        workoutLabel={todaysWorkout}
-      />
-      <ScheduleCard schedule={schedule} split={split} />
-      <WorkoutsCard split={split} />
-
+    <div className="flex flex-col items-center p-4 mb-[120px] pb-24 gap-4 max-md:p-2">
+      <div className="flex gap-4 md:flex-row max-md:flex-col">
+        <CurrentProgrammingCard split={split} />
+        <TodayWorkoutCard
+          workout={workoutForToday}
+          workoutLabel={todaysWorkout}
+        />
+      </div>
+      <div className="flex gap-4 md:flex-row max-md:flex-col max-md:w-full">
+        <ScheduleCard schedule={schedule} split={split} />
+        <WorkoutsCard split={split} />
+      </div>
       <DataCards split={split} />
     </div>
   );
