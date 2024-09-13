@@ -7,7 +7,7 @@ export const DashCard = (props: React.HTMLAttributes<HTMLDivElement>) => {
       {...props}
       className={cn(
         props.className,
-        "border-[1px] border-stone-300 shadow-lg relative",
+        "border-[1px] border-stone-300 shadow-lg relative rounded-[8px]",
       )}
     />
   );
