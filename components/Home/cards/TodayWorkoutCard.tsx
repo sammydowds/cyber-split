@@ -66,7 +66,7 @@ export const TodayWorkoutCard = ({
           })}
         </div>
       </CardHeader>
-      <CardContent className="flex flex-row items-baseline gap-4 px-4 max-md:px-2 md:py-2">
+      <CardContent className="flex flex-row items-baseline gap-4 px-4 max-md:px-2">
         <Card className="w-full">
           <CardContent className="py-2 px-4">
             <div className="flex items-center gap-2 md:py-2 justify-between">
