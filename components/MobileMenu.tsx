@@ -10,7 +10,7 @@ interface MobileMenuProps {
 }
 export const MobileMenu = ({ showMenu, setShowMenu, tab }: MobileMenuProps) => {
   return (
-    <div className="top-0 z-30 flex h-14 items-center gap-[4px] justify-between w-full shadow bg-background p-4 sm:hidden relative">
+    <div className="top-0 z-30 flex h-14 items-center gap-[4px] justify-between w-full shadow bg-gradient-to-r from-white from-20% via-stone-500 to-yellow-300 p-4 sm:hidden relative">
       <Button
         size="icon"
         variant="outline"
