@@ -38,4 +38,5 @@ export const schema = z.object({
   strengthGroups: z.array(strengthGroupSchema).optional(),
   name: z.string(),
   id: z.string(),
+  splitId: z.string().optional().nullable(),
 });

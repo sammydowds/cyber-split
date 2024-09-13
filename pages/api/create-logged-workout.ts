@@ -1,9 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { supabase } from "@/lib/supbaseClient";
 import { prisma } from "@/lib/prismaClient";
+import { LogWorkoutSchema } from "@/components/LogWorkoutForm/types";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method !== "GET") {
+  if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed." });
   }
 
@@ -28,38 +29,27 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (!profile) {
     return res.status(500).json({ error: "Unable to find profile." });
   }
-  // find split with no end set
-  const split = await prisma.split.findFirst({
-    where: {
+
+  const payload = req.body as LogWorkoutSchema;
+  const split = await prisma.loggedWorkout.create({
+    data: {
+      name: payload.name,
       profileId: profile.id,
-      end: null,
-    },
-    include: {
-      workouts: {
-        include: {
-          strengthGroups: {
-            include: {
-              sets: {
-                include: {
-                  exercise: true,
-                },
+      splitId: payload.splitId,
+      units: "IMPERIAL",
+      strengthGroups: {
+        create: payload?.strengthGroups?.map((group: any) => ({
+          name: group.name,
+          sets: {
+            create: group.sets.map((set: any) => ({
+              ...{ ...set, previousWeight: undefined, previousReps: undefined },
+              created: new Date(),
+              exercise: {
+                connect: { id: set.exercise.id },
               },
-            },
+            })),
           },
-        },
-      },
-      loggedWorkouts: {
-        include: {
-          strengthGroups: {
-            include: {
-              sets: {
-                include: {
-                  exercise: true,
-                },
-              },
-            },
-          },
-        },
+        })),
       },
     },
   });

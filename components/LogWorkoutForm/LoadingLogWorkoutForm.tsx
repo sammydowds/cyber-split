@@ -1,7 +1,7 @@
-import { Skeleton } from "../../components/ui/skeleton";
+import { Skeleton } from "../ui/skeleton";
 import { LoadingGroup } from "./LoadingGroup";
 
-export const LoadingLogWorkout = () => {
+export const LoadingLogWorkoutForm = () => {
   return (
     <div className="md:max-w-[500px] mx-auto mb-[90px] mt-8 w-full bg-white shadow-[3px_3px_3px_0px_rgba(0,0,0,0.3)] overflow-hidden">
       <div className="h-[34px] w-full">

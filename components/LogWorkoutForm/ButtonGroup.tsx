@@ -1,5 +1,5 @@
 import { FiMinus, FiPlus } from "react-icons/fi";
-import { Button } from "../../components/ui/button";
+import { Button } from "../ui/button";
 import { useMemo } from "react";
 
 interface ButtonControlsProps {

@@ -1,7 +1,7 @@
 import { useFormContext, useWatch } from "react-hook-form";
 import { LogWorkoutSchema } from "../types";
 import { StrengthSet } from "./StrengthSet";
-import { Button } from "../../../components/ui/button";
+import { Button } from "../../ui/button";
 import { BsCheck } from "react-icons/bs";
 import { MdInfo } from "react-icons/md";
 
