@@ -23,14 +23,6 @@ export default function Dashboard() {
         <DesktopMenu tab={tab} setTab={setTab} />
         <MobileMenu tab={tab} setShowMenu={setShowMenu} showMenu={showMenu} />
         <div className="flex flex-col w-full h-full">
-          <div className="max-md:hidden capitalize w-full">
-            <div className="p-2 flex items-center font-bold">
-              <Image src="/logo.png" alt="logo" height={50} width={100} />
-              <ChevronRight className="h-3 w-3" />
-              <div className="text-stone-600 capitalize text-sm">{tab}</div>
-            </div>
-            <Separator />
-          </div>
           <main
             className="flex flex-col gap-4 relative grow overflow-hidden overflow-y-auto bg-stone-200 shadow-inner"
             style={{
