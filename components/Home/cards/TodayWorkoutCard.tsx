@@ -14,7 +14,7 @@ import { SplitDeep } from "@/types";
 import { DashCard } from "../../DashCard";
 import { estimateTimeOfWorkout } from "@/lib/estimateTimeOfWorkout";
 import { getBodyPartsFromWorkout } from "@/lib/getBodyPartsFromWorkout";
-import { MapPin, Palmtree } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 interface TodayWorkCardProps {
