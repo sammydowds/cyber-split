@@ -8,7 +8,7 @@ export const WorkoutMarker = ({ text, className }: WorkoutMarkerProps) => {
   return (
     <div
       className={cn(
-        "flex items-center justify-center h-6 w-6 rounded-sm bg-yellow-300 text-black font-extrabold",
+        "flex items-center justify-center h-7 w-7 rounded-sm bg-yellow-300 text-black font-extrabold text-[14px]",
         className,
       )}
     >

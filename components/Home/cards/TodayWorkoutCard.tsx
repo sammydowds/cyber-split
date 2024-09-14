@@ -73,7 +73,7 @@ export const TodayWorkoutCard = ({
               <div className="flex items-center gap-[8px]">
                 <WorkoutMarker
                   text={workoutLabel}
-                  className="md:h-[36px] md:w-[36px] max-md:h-[24px] max-md:w-[24px]"
+                  className="md:h-[36px] md:w-[36px] max-md:h-[32px] max-md:w-[32px] md:text-[18px] max-md:text-[16px]"
                 />
                 <div className="font-bold max-md:text-sm md:text-lg">
                   {workout.name}

@@ -9,6 +9,7 @@ import {
 import { Day } from "@/lib/programming/createWorkoutSchedule";
 import { cn } from "@/lib/utils";
 import { WorkoutMarker } from "@/components/WorkoutMarker";
+import { Moon } from "lucide-react";
 
 interface MonthTableProps {
   weeks: Day[][];
@@ -41,7 +42,7 @@ export const MonthTable = ({ weeks }: MonthTableProps) => {
                   <TableCell
                     className={cn(
                       "border-stone-200 border-[1px] p-0 w-[68px] h-[68px]",
-                      isToday ? "bg-stone-200" : skipDay ? "bg-stone-100" : "",
+                      skipDay ? "bg-stone-100" : "",
                     )}
                     key={day.date.toLocaleDateString()}
                   >
@@ -51,8 +52,10 @@ export const MonthTable = ({ weeks }: MonthTableProps) => {
                           day: "numeric",
                         })}
                       </div>
-                      <div className="grow py-2">
-                        {restDay || skipDay ? null : (
+                      <div className="grow py-2 flex items-center">
+                        {restDay || skipDay ? (
+                          <Moon className="text-stone-200" size={18} />
+                        ) : (
                           <WorkoutMarker text={day.workout} />
                         )}
                       </div>
