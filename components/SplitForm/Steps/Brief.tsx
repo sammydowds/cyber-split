@@ -11,7 +11,7 @@ export const Brief = () => {
     >
       <div className="flex items-center justify-left gap-2">
         <Route size={22} />
-        <h2 className="font-bold tracking-tighter text-lg">
+        <h2 className="font-bold tracking-tighter text-xl">
           Create your program
         </h2>
       </div>
