@@ -20,9 +20,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { CircleCheckBig, Save } from "lucide-react";
+import { Save } from "lucide-react";
 import { estimateTimeOfLoggedWorkout } from "@/lib/estimateTimeOfWorkout";
-import { getBodyPartsFromWorkout } from "@/lib/getBodyPartsFromWorkout";
 import { getMusclesRecoveringFromLoggedWorkout } from "@/lib/getMusclesRecoveringFromLoggedWorkout";
 import { cn } from "@/lib/utils";
 
@@ -35,7 +34,7 @@ export function LoggedWorkoutSuccess({ workout }: LoggedWorkoutSuccessProps) {
     return group.sets.filter((set) => set.dateLogged);
   });
   const totalReps = workingSets.reduce((acc, set) => acc + (set.reps ?? 0), 0);
-  const estimatedMins = Math.round(estimateTimeOfLoggedWorkout(workout) / 60);
+  const estimatedMins = estimateTimeOfLoggedWorkout(workout);
   const musclesRecovering = getMusclesRecoveringFromLoggedWorkout(workout);
 
   console.log(workingSets);

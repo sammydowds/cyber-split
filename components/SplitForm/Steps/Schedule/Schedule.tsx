@@ -12,6 +12,7 @@ import {
   SPLIT_TYPE_TO_CADENCE_MAP,
 } from "@/lib/programming/constants";
 import { SampleSchedule } from "./SampleSchedule";
+import { motion } from "framer-motion";
 
 export const Schedule = () => {
   const form = useFormContext();
@@ -22,7 +23,12 @@ export const Schedule = () => {
     ];
 
   return (
-    <div className="p-4 flex flex-col gap-4">
+    <motion.div
+      className="p-4 flex flex-col gap-4"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+    >
       <h2 className="font-bold tracking-tighter text-lg">
         What schedule would you like?
       </h2>
@@ -60,6 +66,6 @@ export const Schedule = () => {
         )}
       />
       <SampleSchedule />
-    </div>
+    </motion.div>
   );
 };

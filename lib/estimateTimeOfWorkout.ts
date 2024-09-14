@@ -1,7 +1,15 @@
 import { DeepTemplateWorkout } from "@/types";
 import { Set } from "@prisma/client";
 
-export const estimateTimeOfSets = (sets: Set[]) => {
+const roundTo5 = (n: number) => {
+  return Math.ceil(n / 5) * 5;
+};
+
+const secsToMins = (secs: number) => {
+  return Math.round(secs / 60);
+};
+
+const estimateTimeOfSets = (sets: Set[]) => {
   let time = 0;
   for (const set of sets) {
     const { reps, restPeriod } = set;
@@ -21,10 +29,10 @@ export const estimateTimeOfWorkout = (
     time = time + estimateTimeOfSets(group.sets);
   }
 
-  return time;
+  return roundTo5(secsToMins(time));
 };
 
-export const estimateTimeOfLoggedSets = (sets: Set[]) => {
+const estimateTimeOfLoggedSets = (sets: Set[]) => {
   let time = 0;
   for (const set of sets) {
     if (!set.dateLogged) {
@@ -47,5 +55,5 @@ export const estimateTimeOfLoggedWorkout = (
     time = time + estimateTimeOfLoggedSets(group.sets);
   }
 
-  return time;
+  return roundTo5(secsToMins(time));
 };

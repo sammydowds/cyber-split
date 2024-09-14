@@ -56,7 +56,7 @@ export const TodayWorkoutCard = ({
           <Badge variant="outline">
             {workout.strengthGroups.length} Exercises
           </Badge>
-          <Badge variant="outline">{Math.round(estimatedTime / 60)} mins</Badge>
+          <Badge variant="outline">{estimatedTime} mins</Badge>
           {muscleGroupsWorked.map((g) => {
             return (
               <Badge key={g} variant="outline" className="capitalize">

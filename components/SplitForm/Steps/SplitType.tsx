@@ -12,12 +12,18 @@ import {
   SPLIT_TYPE_TO_DESCRIPTION,
   SPLIT_TYPE_TO_META_DESCRIPTION,
 } from "@/lib/programming/constants";
+import { motion } from "framer-motion";
 
 export const SplitType = () => {
   const form = useFormContext();
 
   return (
-    <div className="p-4 flex flex-col gap-2">
+    <motion.div
+      className="p-4 flex flex-col gap-4"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+    >
       <div className="flex flex-col gap-[8px]">
         <h2 className="font-bold tracking-tighter text-lg max-w-[345px]">
           What kind of split do you want?
@@ -27,7 +33,6 @@ export const SplitType = () => {
           recommended to choose a 2-day split.
         </p>
       </div>
-
       <FormField
         control={form.control}
         name="splitType"
@@ -95,6 +100,6 @@ export const SplitType = () => {
           </FormItem>
         )}
       />
-    </div>
+    </motion.div>
   );
 };

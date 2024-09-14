@@ -1,23 +1,34 @@
+import { motion } from "framer-motion";
 import { Route } from "lucide-react";
 
 export const Brief = () => {
   return (
-    <div className="flex flex-col gap-2 p-4">
+    <motion.div
+      className="flex flex-col gap-2 p-4"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+    >
       <div className="flex items-center justify-left gap-2">
         <Route size={22} />
         <h2 className="font-bold tracking-tighter text-lg">
           Create your program
         </h2>
       </div>
-      <p className="max-md:max-w-[300px] md:max-w-[345px]">
-        Workout splits are a well-established way to breakdown workouts weekly.
-        They help maintain a simple structure and pattern to your weight
-        training journey.
-      </p>
-      <p className="max-md:max-w-[300px] md:max-w-[345px]">
-        A program included two important ingredients: workout splits and a
-        schedule. Get started by selecting preferences for both.
-      </p>
-    </div>
+      <div className="p-4 flex flex-col gap-4">
+        <p>
+          Workout splits are vital for effective training, allowing you to focus
+          on specific muscle groups while ensuring adequate recovery. This
+          structured approach enhances muscle growth and reduces the risk of
+          overtraining, leading to better results.
+        </p>
+        <p>
+          A successful workout program combines splits with a clear schedule
+          tailored to your preferences. This consistency fosters discipline and
+          accountability, making it easier to stay motivated and achieve your
+          fitness goals.
+        </p>
+      </div>
+    </motion.div>
   );
 };

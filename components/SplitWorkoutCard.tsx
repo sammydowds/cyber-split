@@ -45,7 +45,7 @@ export const SplitWorkoutCard = ({
   };
 
   const letter = getWorkoutLetterFromIndex(index, split?.workouts?.length);
-  const estTimeMins = Math.round(estimateTimeOfWorkout(workout) / 60);
+  const estTimeMins = estimateTimeOfWorkout(workout);
 
   return (
     <Card className="w-[290px] overflow-hidden shadow-sm">
