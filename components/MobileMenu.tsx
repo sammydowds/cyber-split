@@ -22,13 +22,7 @@ export const MobileMenu = ({ showMenu, setShowMenu, tab }: MobileMenuProps) => {
         <span className="sr-only">Toggle Menu</span>
       </Button>
       <div className="flex items-center font-bold md:hidden px-2 relative p-2">
-        <Image
-          src="/logo.png"
-          alt="logo"
-          height={25}
-          width={125}
-          // className="border-[1px] border-black"
-        />
+        <Image src="/logo.png" alt="logo" height={25} width={125} />
       </div>
     </div>
   );
