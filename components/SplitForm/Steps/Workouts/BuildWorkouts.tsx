@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { SplitWorkoutCard } from "@/components/SplitWorkoutCard";
 import { LoadingWorkoutCard } from "@/components/LoadingWorkoutCard";
 import { Repeat2 } from "lucide-react";
+import { motion } from "framer-motion";
 
 export const BuildWorkouts = () => {
   const form = useFormContext();
@@ -34,7 +35,12 @@ export const BuildWorkouts = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center h-full">
+    <motion.div
+      className="flex flex-col items-center justify-center h-full"
+      initial={{ opacity: 0, y: -40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+    >
       <Button
         className="flex items-center justify-center tracking-tighter gap-[4px] font-semibold text-sm text-stone-500"
         onClick={handleReGenClick}
@@ -62,6 +68,6 @@ export const BuildWorkouts = () => {
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
