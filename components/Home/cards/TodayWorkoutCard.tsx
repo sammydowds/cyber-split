@@ -69,7 +69,7 @@ export const TodayWorkoutCard = ({
       <CardContent className="flex flex-row items-baseline gap-4 px-4 max-md:px-2">
         <Card className="w-full">
           <CardContent className="py-2 px-4">
-            <div className="flex items-center gap-2 md:py-2 justify-between">
+            <div className="flex items-center gap-2 md:py-[4px] justify-between">
               <div className="flex items-center gap-[8px]">
                 <WorkoutMarker
                   text={workoutLabel}
