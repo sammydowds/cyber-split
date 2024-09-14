@@ -36,7 +36,7 @@ export const TodayWorkoutCard = ({
           </CardTitle>
           <CardDescription>Rest Day</CardDescription>
         </CardHeader>
-        <CardContent className="flex flex-row items-center justify-center gap-[4px] p-2 grow text-sm text-stone-500">
+        <CardContent className="flex flex-row items-center justify-center gap-[4px] p-4 grow text-sm text-stone-500">
           There is no workout on the schedule today. Rest and recover.
         </CardContent>
       </DashCard>
