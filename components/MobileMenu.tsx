@@ -10,7 +10,7 @@ interface MobileMenuProps {
 }
 export const MobileMenu = ({ showMenu, setShowMenu, tab }: MobileMenuProps) => {
   return (
-    <div className="top-0 z-30 flex h-14 items-center gap-[4px] justify-between w-full shadow relative p-2 sm:hidden">
+    <div className="top-0 z-30 flex h-14 items-center gap-[4px] justify-between w-full shadow relative p-2 md:hidden">
       <MobileNavBackground />
       <Button
         size="icon"
@@ -21,7 +21,7 @@ export const MobileMenu = ({ showMenu, setShowMenu, tab }: MobileMenuProps) => {
         <PanelLeft className="h-5 w-5" />
         <span className="sr-only">Toggle Menu</span>
       </Button>
-      <div className="flex items-center font-bold sm:hidden px-2 relative p-2">
+      <div className="flex items-center font-bold md:hidden px-2 relative p-2">
         <Image
           src="/logo.png"
           alt="logo"

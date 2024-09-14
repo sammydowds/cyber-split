@@ -46,7 +46,7 @@ export const CurrentProgrammingCard = ({
     <DashCard className="w-[500px] max-md:w-full">
       <CardHeader className="pb-4">
         <CardTitle className="flex items-center gap-[4px]">
-          <Route className="h-4 w-4" /> Current Programming
+          <Route className="h-5 w-5" /> Current Programming
         </CardTitle>
       </CardHeader>
       <CardContent className="text-stone-500 pb-4">

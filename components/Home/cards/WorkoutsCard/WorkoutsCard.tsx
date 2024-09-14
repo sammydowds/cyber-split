@@ -19,7 +19,7 @@ export const WorkoutsCard = ({ split }: WorkoutsProps) => {
     <DashCard className="flex flex-col overflow-hidden w-[500px] max-md:w-full">
       <CardHeader className="pb-0">
         <CardTitle className="flex items-center gap-[4px]">
-          <Atom className="h-4 w-4" /> Workouts
+          <Atom className="h-5 w-5" /> Workouts
         </CardTitle>
         <CardDescription>
           These are the workouts generated for your current active split.

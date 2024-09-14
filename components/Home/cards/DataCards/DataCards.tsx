@@ -17,10 +17,10 @@ interface DataProps {
 export const DataCards = ({ split }: DataProps) => {
   const { data } = useSplitChartData(split);
   return (
-    <DashCard className="max-w-[1012px] w-full">
+    <DashCard className="xl:w-[1012px] max-xl:w-[500px] max-md:w-full">
       <CardHeader>
         <CardTitle className="flex items-center gap-[4px]">
-          <ChartNoAxesCombined className="h-4 w-4" /> Results
+          <ChartNoAxesCombined className="h-5 w-5" /> Results
         </CardTitle>
         <CardDescription>
           Recorded from the current programming.

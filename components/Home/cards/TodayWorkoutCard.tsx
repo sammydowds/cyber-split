@@ -50,7 +50,7 @@ export const TodayWorkoutCard = ({
     <DashCard className="w-[500px] max-md:w-full">
       <CardHeader className="p-4">
         <CardTitle className="flex items-center gap-[4px] mb-[4px]">
-          <MapPin className="h-4 w-4" /> Today's Workout
+          <MapPin className="h-5 w-5" /> Today's Workout
         </CardTitle>
         <div className="flex flex-wrap gap-[4px]">
           <Badge variant="outline">
