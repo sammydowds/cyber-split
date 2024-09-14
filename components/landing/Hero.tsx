@@ -58,7 +58,6 @@ export const HeroSection = () => {
           </motion.div>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#fde047] to-transparent"></div>
     </section>
   );
 };

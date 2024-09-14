@@ -54,11 +54,11 @@ export function SplitForm() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-6 grow flex flex-col items-left justify-between w-full"
+          className="space-y-4 grow flex flex-col items-left justify-between w-full"
         >
           {STEPS[step]}
           {lastStep ? (
-            <div className="flex items-center gap-2 justify-end w-full p-4">
+            <div className="flex items-center gap-2 justify-end w-full p-4 pt-2">
               <>
                 <Button
                   className={cn(hidePrevious ? "hidden" : "")}
@@ -67,12 +67,14 @@ export function SplitForm() {
                 >
                   Previous
                 </Button>
-                <Button type="submit">Finish</Button>
+                <Button type="submit" disabled={disable}>
+                  Finish
+                </Button>
               </>
             </div>
           ) : null}
           {lastStep ? null : (
-            <div className="flex items-center p-4 gap-2 justify-end w-full">
+            <div className="flex items-center p-4 pt-2 gap-2 justify-end w-full">
               <>
                 <Button
                   className={cn(hidePrevious ? "hidden" : "")}
