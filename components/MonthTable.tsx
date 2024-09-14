@@ -31,7 +31,7 @@ export const MonthTable = ({ weeks }: MonthTableProps) => {
       <TableBody>
         {weeks?.map((week, idx) => {
           return (
-            <TableRow key={idx}>
+            <TableRow key={idx} className="hover:bg-unset">
               {week.map((day) => {
                 const skipDay = day.workout === "S";
                 const restDay = day.workout === "X";
@@ -42,7 +42,9 @@ export const MonthTable = ({ weeks }: MonthTableProps) => {
                   <TableCell
                     className={cn(
                       "border-stone-200 border-[1px] p-0 w-[68px] h-[68px]",
-                      skipDay ? "bg-stone-100" : "",
+                      isToday
+                        ? "bg-gradient-to-t from-white from-30% to-stone-200"
+                        : "",
                     )}
                     key={day.date.toLocaleDateString()}
                   >
@@ -51,9 +53,6 @@ export const MonthTable = ({ weeks }: MonthTableProps) => {
                         {day.date.toLocaleDateString("en-us", {
                           day: "numeric",
                         })}
-                        {isToday ? (
-                          <div className="h-[6px] w-[6px] bg-red-500 rounded-full ml-[1px]" />
-                        ) : null}
                       </div>
                       <div className="grow py-2 flex items-center">
                         {restDay || skipDay ? (
