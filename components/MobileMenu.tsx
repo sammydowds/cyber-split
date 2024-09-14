@@ -27,7 +27,7 @@ export const MobileMenu = ({ showMenu, setShowMenu, tab }: MobileMenuProps) => {
           alt="logo"
           height={25}
           width={125}
-          className="border-[1px] border-black"
+          // className="border-[1px] border-black"
         />
       </div>
     </div>
