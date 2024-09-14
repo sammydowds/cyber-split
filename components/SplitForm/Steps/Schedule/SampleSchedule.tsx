@@ -2,6 +2,7 @@ import { createWorkoutSchedule } from "@/../../lib/programming/createWorkoutSche
 import { useFormContext, useWatch } from "react-hook-form";
 import { Checkbox } from "@/components/ui/checkbox";
 import { MonthTable } from "@/components/MonthTable";
+import { motion } from "framer-motion";
 
 export const SampleSchedule = () => {
   const form = useFormContext();
@@ -23,7 +24,11 @@ export const SampleSchedule = () => {
     skipDays,
   });
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0, y: -40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+    >
       <div className="flex flex-col items-center gap-[8px]">
         <div className="flex flex-col w-full max-w-[325px] font-semibold gap-[4px]">
           <div className="flex items-center gap-2">
@@ -81,6 +86,6 @@ export const SampleSchedule = () => {
         </div>
         <MonthTable weeks={schedule} />
       </div>
-    </div>
+    </motion.div>
   );
 };
