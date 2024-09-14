@@ -29,14 +29,14 @@ export const TodayWorkoutCard = ({
 
   if (!workout || !workoutLabel) {
     return (
-      <DashCard className="w-[500px] max-md:w-full">
+      <DashCard className="w-[500px] max-md:w-full flex flex-col">
         <CardHeader className="p-4 pb-2">
           <CardTitle className="flex items-center gap-[4px]">
-            <MapPin className="h-4 w-4" /> Today's Workout
+            <MapPin className="h-5 w-5" /> Today's Workout
           </CardTitle>
           <CardDescription>Rest Day</CardDescription>
         </CardHeader>
-        <CardContent className="flex flex-row items-center gap-[4px] p-4 pt-2">
+        <CardContent className="flex flex-row items-center justify-center gap-[4px] p-2 grow text-sm text-stone-500">
           There is no workout on the schedule today. Rest and recover.
         </CardContent>
       </DashCard>
