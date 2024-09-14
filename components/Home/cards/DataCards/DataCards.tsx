@@ -46,8 +46,8 @@ export const DataCards = ({ split }: DataProps) => {
             </div>
           ) : null}
           {Object.keys(data)?.length === 0 ? (
-            <div className="w-full h-full flex items-center justify-center text-sm text-stone-600">
-              Log workouts to record data
+            <div className="w-full h-full flex items-center justify-center text-sm text-stone-500 h-[200px]">
+              Log workouts to populate exercise data.
             </div>
           ) : null}
         </div>
