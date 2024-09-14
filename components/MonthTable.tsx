@@ -51,6 +51,9 @@ export const MonthTable = ({ weeks }: MonthTableProps) => {
                         {day.date.toLocaleDateString("en-us", {
                           day: "numeric",
                         })}
+                        {isToday ? (
+                          <div className="h-[6px] w-[6px] bg-red-500 rounded-full ml-[1px]" />
+                        ) : null}
                       </div>
                       <div className="grow py-2 flex items-center">
                         {restDay || skipDay ? (

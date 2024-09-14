@@ -22,7 +22,13 @@ export const MobileMenu = ({ showMenu, setShowMenu, tab }: MobileMenuProps) => {
         <span className="sr-only">Toggle Menu</span>
       </Button>
       <div className="flex items-center font-bold md:hidden px-2 relative p-2">
-        <Image src="/mini-logo.png" alt="logo" height={14} width={34} className="rounded overflow-hidden" />
+        <Image
+          src="/mini-logo.png"
+          alt="logo"
+          height={14}
+          width={34}
+          className="rounded overflow-hidden"
+        />
       </div>
     </div>
   );
