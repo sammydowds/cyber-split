@@ -37,7 +37,6 @@ export function LoggedWorkoutSuccess({ workout }: LoggedWorkoutSuccessProps) {
   const estimatedMins = estimateTimeOfLoggedWorkout(workout);
   const musclesRecovering = getMusclesRecoveringFromLoggedWorkout(workout);
 
-  console.log(workingSets);
   return (
     <AlertDialog open={true}>
       <AlertDialogContent className="bg-white">
