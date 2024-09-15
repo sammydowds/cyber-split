@@ -14,7 +14,7 @@ import { SplitDeep } from "@/types";
 import { DashCard } from "../../DashCard";
 import { estimateTimeOfWorkout } from "@/lib/estimateTimeOfWorkout";
 import { getBodyPartsFromWorkout } from "@/lib/getBodyPartsFromWorkout";
-import { MapPin } from "lucide-react";
+import { MapPin, Moon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 interface TodayWorkCardProps {
@@ -36,8 +36,19 @@ export const TodayWorkoutCard = ({
           </CardTitle>
           <CardDescription>Rest Day</CardDescription>
         </CardHeader>
-        <CardContent className="flex flex-row items-center justify-center gap-[4px] p-4 grow text-sm text-stone-500">
-          There is no workout on the schedule today. Rest and recover.
+        <CardContent className="p-4 max-md:pt-0">
+          <Card className="w-full">
+            <CardContent className="py-2 px-4">
+              <div className="flex items-center gap-2 md:py-[4px] justify-between">
+                <div className="flex items-center gap-[8px]">
+                  <Moon className="text-stone-400" />
+                  <div className="font-bold max-md:text-sm md:text-lg text-stone-400">
+                    Rest and Recover
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </CardContent>
       </DashCard>
     );
