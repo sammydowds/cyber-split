@@ -7,7 +7,6 @@ import {
   CHEST_UPPER,
   EXCLUDE_ERECTOR_SPINAE,
   INCLUDE_ERECTOR_SPINAE,
-  SHOULDER_FRONT,
   SHOULDER_LATERAL,
 } from "./constants";
 import { TWO_DAY_MUSCLES } from "./enums";
@@ -28,7 +27,11 @@ export const TWO_DAY_SPLIT_PROGRAMMING: Splits = {
         optional: false,
         filters: [EXCLUDE_ERECTOR_SPINAE, BACK_GENERAL],
       },
-      { target: "CHEST", optional: false, filters: [CHEST_GENERAL, BASIC_UTILITY] },
+      {
+        target: "CHEST",
+        optional: false,
+        filters: [CHEST_GENERAL, BASIC_UTILITY],
+      },
       { target: "CHEST", optional: true, filters: [CHEST_UPPER] },
       { target: "SHOULDERS", optional: false, filters: [SHOULDER_LATERAL] },
     ],
@@ -74,7 +77,7 @@ export const TWO_DAY_SPLIT_PROGRAMMING: Splits = {
         optional: false,
         filters: [EXCLUDE_ERECTOR_SPINAE, BACK_GENERAL],
       },
-      { target: "SHOULDER", optional: false, filters: [SHOULDER_LATERAL] },
+      { target: "SHOULDERS", optional: false, filters: [SHOULDER_LATERAL] },
       { target: "BICEPS", optional: false },
       {
         target: "HAMSTRINGS",

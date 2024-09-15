@@ -22,7 +22,11 @@ export const THREE_DAY_SPLIT_PROGRAMMING_LABELS: SplitLabels = {
 export const THREE_DAY_SPLIT_PROGRAMMING: Splits = {
   [THREE_DAY_MUSCLES.CBLSA]: [
     [
-      { target: "CHEST", optional: false, filters: [CHEST_GENERAL, BASIC_UTILITY] },
+      {
+        target: "CHEST",
+        optional: false,
+        filters: [CHEST_GENERAL, BASIC_UTILITY],
+      },
       { target: "CHEST", optional: false, filters: [CHEST_UPPER] },
       {
         target: "CHEST",
@@ -59,7 +63,11 @@ export const THREE_DAY_SPLIT_PROGRAMMING: Splits = {
   ],
   [THREE_DAY_MUSCLES.PPL]: [
     [
-      { target: "CHEST", optional: false, filters: [CHEST_GENERAL, BASIC_UTILITY] },
+      {
+        target: "CHEST",
+        optional: false,
+        filters: [CHEST_GENERAL, BASIC_UTILITY],
+      },
       { target: "CHEST", optional: false, filters: [CHEST_UPPER] },
       {
         target: "CHEST",
@@ -75,7 +83,11 @@ export const THREE_DAY_SPLIT_PROGRAMMING: Splits = {
         optional: false,
         filters: [BACK_LAT, EXCLUDE_ERECTOR_SPINAE],
       },
-      { target: "BACK", optional: false, filters: [BACK_GENERAL, BASIC_UTILITY] },
+      {
+        target: "BACK",
+        optional: false,
+        filters: [BACK_GENERAL, BASIC_UTILITY],
+      },
       {
         target: "BACK",
         optional: true,
