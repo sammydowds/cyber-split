@@ -5,7 +5,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { SplitDeep } from "@/types";
 import { DashCard } from "../../../DashCard";
 import { Atom } from "lucide-react";

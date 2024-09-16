@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import {
   Card,
   CardContent,
@@ -14,6 +13,10 @@ import { useRouter } from "next/router";
 import { estimateTimeOfWorkout } from "@/lib/estimateTimeOfWorkout";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { StrengthGroup } from "@prisma/client";
+import { SwapGroupDropdown } from "./SwapGroupDropdown";
+import { FormSchemaType } from "./SplitForm/schema";
+import { motion } from "framer-motion";
 
 export const WORKOUT_LABELS = ["A", "B", "C", "D"] as const;
 
@@ -27,21 +30,48 @@ export const getWorkoutLetterFromIndex = (idx: number, count: number) => {
 interface WorkoutCardProps {
   split: Partial<SplitDeep>;
   index: number;
+  onWorkoutChange?: (workout: FormSchemaType["workouts"][number]) => void;
   hideCta?: boolean;
+  editable?: boolean;
 }
 export const SplitWorkoutCard = ({
   split,
   index,
   hideCta,
+  onWorkoutChange,
+  editable = false,
 }: WorkoutCardProps) => {
   const router = useRouter();
   const workout = split?.workouts?.[index];
+
   if (!split.workouts?.length || !workout) {
     return null;
   }
 
+  const ignoreExercises = Array.from(
+    new Set(
+      workout.strengthGroups.flatMap((group) => {
+        return group.sets.flatMap((set) => set?.exercise?.id);
+      }),
+    ),
+  );
+
   const handleClickLog = () => {
     router.push(`/log-workout/${workout.id}`);
+  };
+
+  const handleWorkoutChange = (
+    oldGroup: StrengthGroup,
+    group: StrengthGroup,
+  ) => {
+    const newGroups = workout.strengthGroups.map((g) => {
+      if (g.name === oldGroup.name) {
+        return group;
+      } else {
+        return g;
+      }
+    });
+    onWorkoutChange?.({ ...workout, strengthGroups: newGroups });
   };
 
   const letter = getWorkoutLetterFromIndex(index, split?.workouts?.length);
@@ -83,7 +113,13 @@ export const SplitWorkoutCard = ({
                   className="flex items-start justify-between text-xs"
                 >
                   <TableCell className="font-bold flex flex-col">
-                    <div>{g.name}</div>
+                    <motion.div
+                      initial={false}
+                      animate={{ opacity: [0, 1], y: [5, 0] }}
+                      transition={{ duration: 0.8 }}
+                    >
+                      {g.name}
+                    </motion.div>
                     {targetMuscles.map((m) => {
                       return (
                         <div key={m}>
@@ -95,7 +131,13 @@ export const SplitWorkoutCard = ({
                     })}
                   </TableCell>
                   <TableCell>
-                    {g.sets.length}x{g.sets.map((set) => set.reps).join(",")}
+                    {editable ? (
+                      <SwapGroupDropdown
+                        oldGroup={g}
+                        onClickGroup={handleWorkoutChange}
+                        ignoreExercises={ignoreExercises}
+                      />
+                    ) : null}
                   </TableCell>
                 </TableRow>
               );

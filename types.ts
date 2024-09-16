@@ -96,26 +96,7 @@ export type ExerciseWithEquipment = Prisma.ExerciseGetPayload<{
 
 export type DeepLoggedWorkout = Prisma.LoggedWorkoutGetPayload<{
   include: {
-    preWorkoutGroups: {
-      include: {
-        sets: {
-          include: {
-            exercise: true;
-          };
-        };
-      };
-    };
     strengthGroups: {
-      include: {
-        sets: {
-          include: {
-            exercise: true;
-          };
-        };
-      };
-    };
-    cardioGroups: true;
-    postWorkoutGroups: {
       include: {
         sets: {
           include: {

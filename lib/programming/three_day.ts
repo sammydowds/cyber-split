@@ -16,7 +16,7 @@ import { SplitLabels, Splits } from "./types";
 
 export const THREE_DAY_SPLIT_PROGRAMMING_LABELS: SplitLabels = {
   [THREE_DAY_MUSCLES.PPL]: ["Push", "Pull", "Legs"],
-  [THREE_DAY_MUSCLES.CBLSA]: ["Chest & Biceps", "Legs", "Shoulders & Arms"],
+  [THREE_DAY_MUSCLES.CBLSA]: ["Chest & Back", "Legs", "Shoulders & Arms"],
 };
 
 export const THREE_DAY_SPLIT_PROGRAMMING: Splits = {

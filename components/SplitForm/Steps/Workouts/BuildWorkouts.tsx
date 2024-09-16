@@ -7,6 +7,7 @@ import { SplitWorkoutCard } from "@/components/SplitWorkoutCard";
 import { LoadingWorkoutCard } from "@/components/LoadingWorkoutCard";
 import { Repeat2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { FormSchemaType } from "../../schema";
 
 export const BuildWorkouts = () => {
   const form = useFormContext();
@@ -22,6 +23,22 @@ export const BuildWorkouts = () => {
   const handleReGenClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e?.preventDefault();
     generateSplitWorkouts({ splitType, muscles });
+  };
+
+  const handleWorkoutChange = (
+    newWorkout: FormSchemaType["workouts"][number],
+  ) => {
+    let tempWorkouts = form.getValues("workouts");
+    tempWorkouts = tempWorkouts.map(
+      (workout: FormSchemaType["workouts"][number]) => {
+        if (newWorkout.name === workout.name) {
+          return newWorkout;
+        } else {
+          return workout;
+        }
+      },
+    );
+    form.setValue("workouts", tempWorkouts);
   };
 
   useEffect(() => {
@@ -63,7 +80,9 @@ export const BuildWorkouts = () => {
               key={workouts[idx].name}
               split={{ workouts }}
               index={idx}
+              onWorkoutChange={(workout) => handleWorkoutChange(workout)}
               hideCta
+              editable
             />
           ))}
         </div>
