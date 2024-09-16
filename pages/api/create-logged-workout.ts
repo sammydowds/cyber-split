@@ -31,11 +31,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   const payload = req.body as LogWorkoutSchema;
+  const now = new Date();
   const loggedWorkout = await prisma.loggedWorkout.create({
     data: {
       name: payload.name,
       profileId: profile.id,
       splitId: payload.splitId,
+      dateLogged: now,
       units: "IMPERIAL",
       strengthGroups: {
         create: payload?.strengthGroups?.map((group: any) => ({
@@ -43,7 +45,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           sets: {
             create: group.sets.map((set: any) => ({
               ...{ ...set, previousWeight: undefined, previousReps: undefined },
-              created: new Date(),
+              created: now,
               exercise: {
                 connect: { id: set.exercise.id },
               },

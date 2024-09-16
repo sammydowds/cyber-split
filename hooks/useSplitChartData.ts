@@ -21,17 +21,12 @@ export enum Y_LABEL {
 
 const determineChartType = (sets: Partial<Set>[]) => {
   let label = Y_LABEL.REP_COUNT;
-  let hasOneRepMaxData = true;
 
   sets.map((set) => {
-    if (!set?.weight || !set?.reps) {
-      hasOneRepMaxData = false;
+    if (set?.weight) {
+      label = Y_LABEL.ONE_REP_MAX;
     }
   });
-
-  if (hasOneRepMaxData) {
-    label = Y_LABEL.ONE_REP_MAX;
-  }
 
   return label;
 };
@@ -76,23 +71,26 @@ const convertLoggedWorkoutsToExerciseChartData = (
       let dataPoint: ExerciseData["data"][number] | null = null;
       label = determineChartType(sets);
       exerciseId = group.name;
+      const x = workout?.dateLogged ? new Date(workout?.dateLogged) : null;
 
       // construct data point
-      if (label === "Est. One Rep Max") {
-        let val = calcEstimatedOneRepMaxFromSets(sets);
-        if (val) {
-          dataPoint = {
-            x: new Date(workout?.dateLogged ?? ""),
-            y: calcEstimatedOneRepMaxFromSets(sets),
-          };
-        }
-      } else {
-        let val = calcTotalRepCount(sets);
-        if (val) {
-          dataPoint = {
-            x: new Date(workout?.dateLogged ?? ""),
-            y: calcTotalRepCount(sets),
-          };
+      if (x) {
+        if (label === "Est. One Rep Max") {
+          let val = calcEstimatedOneRepMaxFromSets(sets);
+          if (val) {
+            dataPoint = {
+              x,
+              y: calcEstimatedOneRepMaxFromSets(sets),
+            };
+          }
+        } else {
+          let val = calcTotalRepCount(sets);
+          if (val) {
+            dataPoint = {
+              x,
+              y: calcTotalRepCount(sets),
+            };
+          }
         }
       }
 

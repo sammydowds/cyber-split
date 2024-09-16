@@ -16,6 +16,7 @@ interface DataProps {
 }
 export const DataCards = ({ split }: DataProps) => {
   const { data } = useSplitChartData(split);
+  
   return (
     <DashCard className="xl:w-[1012px] max-xl:w-[500px] max-md:w-full">
       <CardHeader>

@@ -46,7 +46,7 @@ export const ExerciseChart = ({ name, type, data }: ExerciseChartProps) => {
             margin={{
               left: 0,
               right: 0,
-              top: 0,
+              top: 24,
               bottom: 0,
             }}
           >
@@ -54,8 +54,8 @@ export const ExerciseChart = ({ name, type, data }: ExerciseChartProps) => {
             <YAxis dataKey="y" domain={["dataMin - 5", "dataMax + 2"]} hide />
             <defs>
               <linearGradient id="fillTime" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#c026d3" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="#c026d3" stopOpacity={0.1} />
+                <stop offset="5%" stopColor="#d946ef" stopOpacity={0.9} />
+                <stop offset="95%" stopColor="#f0abfc" stopOpacity={0.1} />
               </linearGradient>
             </defs>
             <Area
@@ -63,19 +63,16 @@ export const ExerciseChart = ({ name, type, data }: ExerciseChartProps) => {
               type="natural"
               fill="url(#fillTime)"
               fillOpacity={0.4}
-              stroke="#c026d3"
+              stroke="#d946ef"
             />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
               formatter={(value) => (
                 <div className="flex min-w-[120px] items-center text-xs text-muted-foreground">
-                  One rep max
+                  {type}
                   <div className="ml-auto flex items-baseline gap-0.5 font-mono font-medium tabular-nums text-foreground">
                     {value}
-                    <span className="font-normal text-muted-foreground">
-                      lb
-                    </span>
                   </div>
                 </div>
               )}
