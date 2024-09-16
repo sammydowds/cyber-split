@@ -18,15 +18,6 @@ import { SwapGroupDropdown } from "./SwapGroupDropdown";
 import { FormSchemaType } from "./SplitForm/schema";
 import { motion } from "framer-motion";
 
-export const WORKOUT_LABELS = ["A", "B", "C", "D"] as const;
-
-export const getWorkoutLetterFromIndex = (idx: number, count: number) => {
-  if (count === 1) {
-    return "W";
-  }
-  return WORKOUT_LABELS[idx];
-};
-
 interface WorkoutCardProps {
   split: Partial<SplitDeep>;
   index: number;
@@ -74,7 +65,6 @@ export const SplitWorkoutCard = ({
     onWorkoutChange?.({ ...workout, strengthGroups: newGroups });
   };
 
-  const letter = getWorkoutLetterFromIndex(index, split?.workouts?.length);
   const estTimeMins = estimateTimeOfWorkout(workout);
 
   return (
@@ -82,7 +72,10 @@ export const SplitWorkoutCard = ({
       <CardHeader className="p-2">
         <CardTitle className="flex justify-between items-center gap-2 pr-4">
           <div className="flex gap-[6px] font-bold text-sm tracking-tighter">
-            <WorkoutMarker text={letter} className="h-[28px] w-[28px]" />
+            <WorkoutMarker
+              text={workout.letterLabel}
+              className="h-[28px] w-[28px]"
+            />
             <div className="flex flex-col pt-[2px]">
               <div className="leading-3">{workout.name}</div>
               <div className="flex items-center text-xs text-stone-400 gap-[4px]">

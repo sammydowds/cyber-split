@@ -16,7 +16,6 @@ import toast from "react-hot-toast";
 
 export default function Dashboard() {
   const { data: split, isPending: loadingActiveSplit } = useActiveSplit();
-  const { data: archivedSplits } = useArchivedSplit();
   const { data: profile, isPending: loadingProfile } = useProfile();
   const [tab, setTab] = useState("home");
   const [showMenu, setShowMenu] = useState(false);

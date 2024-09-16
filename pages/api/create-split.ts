@@ -48,6 +48,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       workouts: {
         create: workouts.map((w) => ({
           name: w.name,
+          letterLabel: w.letterLabel,
           profileId: profile.id,
           units: Units.IMPERIAL,
           strengthGroups: {

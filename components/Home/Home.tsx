@@ -32,10 +32,7 @@ export const Home = ({ split }: HomeProps) => {
     <div className="flex flex-col items-center p-4 mb-[120px] pb-24 gap-6 max-xl:gap-4 max-md:p-2 my-4">
       <div className="flex gap-6 max-xl:gap-4 xl:flex-row max-xl:flex-col max-xl:w-full max-xl:items-center">
         <CurrentProgrammingCard split={split} />
-        <TodayWorkoutCard
-          workout={workoutForToday}
-          workoutLabel={todaysWorkout}
-        />
+        <TodayWorkoutCard workout={workoutForToday} />
       </div>
       <div className="flex gap-6 max-xl:gap-4 xl:flex-row max-xl:flex-col max-xl:w-full max-xl:items-center">
         <ScheduleCard schedule={schedule} split={split} />

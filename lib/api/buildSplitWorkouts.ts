@@ -2,6 +2,14 @@ import { Prisma } from "@prisma/client";
 import { MuscleSpec } from "../programming/types";
 import { prisma } from "../prismaClient";
 
+export const WORKOUT_LABELS = ["A", "B", "C", "D"] as const;
+const getWorkoutLetterFromIndex = (idx: number, count: number) => {
+  if (count === 1) {
+    return "W";
+  }
+  return WORKOUT_LABELS[idx];
+};
+
 export const getExercises = async (
   muscleGroups: string[],
   equipment: string[],
@@ -54,9 +62,10 @@ export const buildSplitWorkouts = async (
 ) => {
   let workouts: any[] = [];
   let exerciseIds: string[] = [];
-  for (const s of spec) {
+  for (let i = 0; i < spec.length; i++) {
+    const s = spec[i];
+    const name = labels[i]; // Use the index to get the name
     let strengthGroups: any[] = [];
-    const name = labels[spec.indexOf(s)];
     for (const exerciseSpec of s) {
       const exercises = await getExercises(
         [exerciseSpec.target],
@@ -88,7 +97,11 @@ export const buildSplitWorkouts = async (
       });
       exerciseIds.push(exercise.id);
     }
-    workouts.push({ strengthGroups, name });
+    workouts.push({
+      strengthGroups,
+      name,
+      letterLabel: getWorkoutLetterFromIndex(i, spec.length),
+    });
   }
 
   return workouts;

@@ -19,15 +19,11 @@ import { Badge } from "@/components/ui/badge";
 
 interface TodayWorkCardProps {
   workout?: SplitDeep["workouts"][number];
-  workoutLabel?: string | null;
 }
-export const TodayWorkoutCard = ({
-  workout,
-  workoutLabel,
-}: TodayWorkCardProps) => {
+export const TodayWorkoutCard = ({ workout }: TodayWorkCardProps) => {
   const router = useRouter();
 
-  if (!workout || !workoutLabel) {
+  if (!workout) {
     return (
       <DashCard className="w-[500px] max-md:w-full flex flex-col">
         <CardHeader className="p-4 pb-2">
@@ -83,7 +79,7 @@ export const TodayWorkoutCard = ({
             <div className="flex items-center gap-2 md:py-[4px] justify-between">
               <div className="flex items-center gap-[8px]">
                 <WorkoutMarker
-                  text={workoutLabel}
+                  text={workout.letterLabel}
                   className="md:h-[36px] md:w-[36px] max-md:h-[32px] max-md:w-[32px] md:text-[18px] max-md:text-[16px]"
                 />
                 <div className="font-bold max-md:text-sm md:text-lg">

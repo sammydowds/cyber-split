@@ -146,6 +146,7 @@ model StrengthGroup {
 
 model TemplateWorkout {
   id             String          @id @default(cuid())
+  letterLabel    String
   name           String
   created        DateTime        @default(now())
   updated        DateTime?
@@ -160,6 +161,7 @@ model TemplateWorkout {
 model LoggedWorkout {
   id             String          @id @default(cuid())
   name           String
+  letterLabel    String
   created        DateTime        @default(now())
   updated        DateTime?
   profileId      String

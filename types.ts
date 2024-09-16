@@ -37,6 +37,7 @@ export type SplitDeep = Prisma.SplitGetPayload<{
   include: {
     workouts: {
       include: {
+        letterLabel: true;
         strengthGroups: {
           include: {
             sets: {
@@ -50,6 +51,7 @@ export type SplitDeep = Prisma.SplitGetPayload<{
     };
     loggedWorkouts: {
       include: {
+        letterLabel: true;
         strengthGroups: {
           include: {
             sets: {
