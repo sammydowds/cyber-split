@@ -10,12 +10,22 @@ import { Profile } from "@/components/Profile";
 import { MobileMenuSheet } from "@/components/MobileMenuSheet";
 import { MobileMenu } from "@/components/MobileMenu";
 import Image from "next/image";
+import { useProfile } from "@/hooks/useProfile";
+import { useRouter } from "next/router";
+import toast from "react-hot-toast";
 
 export default function Dashboard() {
   const { data: split, isPending: loadingActiveSplit } = useActiveSplit();
   const { data: archivedSplits } = useArchivedSplit();
+  const { data: profile, isPending: loadingProfile } = useProfile();
   const [tab, setTab] = useState("home");
   const [showMenu, setShowMenu] = useState(false);
+  const router = useRouter();
+
+  if (!profile && !loadingProfile) {
+    toast.error("You have been logged out.");
+    router.push("/login");
+  }
 
   return (
     <main>
@@ -45,7 +55,7 @@ export default function Dashboard() {
               {!loadingActiveSplit && tab === "home" ? (
                 <Home split={split} />
               ) : null}
-              {tab === "profile" ? <Profile /> : null}
+              {tab === "profile" ? <Profile profile={profile} /> : null}
             </div>
           </main>
         </div>
