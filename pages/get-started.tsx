@@ -46,7 +46,7 @@ export default function GetStarted() {
   };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-black p-4">
+    <div className="h-screen w-screen flex items-center justify-center bg-black p-4 fixed">
       <AnimatedGradientBackground />
       <Card className="w-full max-w-md z-50">
         <CardHeader>
