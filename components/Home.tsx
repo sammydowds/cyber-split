@@ -29,7 +29,7 @@ export const Home = ({ split }: HomeProps) => {
     typeof index === "number" ? split.workouts[index] : undefined;
 
   return (
-    <div className="flex flex-col items-center p-4 mb-[120px] pb-24 gap-6 max-xl:gap-4 max-md:p-2 my-4">
+    <div className="flex flex-col items-center p-4 mb-[120px] gap-6 max-xl:gap-4 max-md:p-2 mt-4 mb-[365px]">
       <div className="flex gap-6 max-xl:gap-4 xl:flex-row max-xl:flex-col max-xl:w-full max-xl:items-center">
         <CurrentProgrammingCard split={split} />
         <TodayWorkoutCard workout={workoutForToday} />
