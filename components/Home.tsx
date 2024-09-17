@@ -15,7 +15,7 @@ interface HomeProps {
 export const Home = ({ split }: HomeProps) => {
   if (!split) {
     return (
-      <div className="flex flex-col items-center p-4 mb-24 gap-4 max-md:px-2 max-md:py-6">
+      <div className="flex flex-col items-center p-4 mb-[364px] w-full gap-4 max-md:px-2 max-md:py-6">
         <DashCard className="w-[500px] max-md:w-full">
           <SplitForm />
         </DashCard>
