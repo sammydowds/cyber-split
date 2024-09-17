@@ -2,7 +2,6 @@ import { SplitDeep } from "@/types";
 import { ExerciseChart } from "./ExerciseChart";
 import { useSplitChartData, Y_LABEL } from "@/hooks/useSplitChartData";
 import {
-  Card,
   CardContent,
   CardDescription,
   CardHeader,

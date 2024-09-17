@@ -1,18 +1,14 @@
 import { SplitWorkoutCard } from "@/components/SplitWorkoutCard";
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { SplitDeep } from "@/types";
-import { DashCard } from "../../../DashCard";
+import { DashCard } from "../DashCard";
 import { Atom } from "lucide-react";
 
 interface WorkoutsProps {
   split: SplitDeep;
+  hideCta?: boolean;
 }
-export const WorkoutsCard = ({ split }: WorkoutsProps) => {
+export const WorkoutsCard = ({ split, hideCta }: WorkoutsProps) => {
   const { workouts } = split;
   return (
     <DashCard className="flex flex-col overflow-hidden w-[500px] max-md:w-full">
@@ -21,7 +17,7 @@ export const WorkoutsCard = ({ split }: WorkoutsProps) => {
           <Atom className="h-5 w-5" /> Workouts
         </CardTitle>
         <CardDescription>
-          These are the workouts generated for your current active split.
+          These are the workouts for this split.
         </CardDescription>
       </CardHeader>
       <div className="overflow-x-auto">
@@ -32,6 +28,7 @@ export const WorkoutsCard = ({ split }: WorkoutsProps) => {
                 key={`workout-card-${idx}`}
                 split={split}
                 index={idx}
+                hideCta={hideCta}
               />
             );
           })}

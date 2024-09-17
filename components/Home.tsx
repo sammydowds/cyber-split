@@ -1,13 +1,13 @@
 import { SplitDeep } from "@/types";
-import { TodayWorkoutCard } from "./cards/TodayWorkoutCard";
-import { ScheduleCard } from "./cards/ScheduleCard";
-import { DataCards } from "./cards/DataCards/DataCards";
-import { WorkoutsCard } from "./cards/WorkoutsCard/WorkoutsCard";
+import { TodayWorkoutCard } from "./split-cards/TodayWorkoutCard";
+import { ScheduleCard } from "./split-cards/ScheduleCard";
+import { DataCards } from "./split-cards/DataCards/DataCards";
+import { WorkoutsCard } from "./split-cards/WorkoutsCard";
 import { createWorkoutSchedule } from "@/lib/programming/createWorkoutSchedule";
 import { getWorkoutIndexFromLetter } from "@/lib/programming/getWorkoutIndexFromLetter";
-import { CurrentProgrammingCard } from "./cards/CurrentProgrammingCard";
-import { DashCard } from "../DashCard";
-import { SplitForm } from "../SplitForm/SplitForm";
+import { CurrentProgrammingCard } from "./split-cards/CurrentProgrammingCard";
+import { DashCard } from "./DashCard";
+import { SplitForm } from "./SplitForm/SplitForm";
 
 interface HomeProps {
   split?: SplitDeep;

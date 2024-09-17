@@ -1,15 +1,11 @@
 "use client";
 import { useActiveSplit } from "@/hooks/useActiveSplit";
-import { useArchivedSplit } from "@/hooks/useArchivedSplits";
-import { Separator } from "@/components/ui/separator";
 import { DesktopMenu } from "@/components/DesktopMenu";
-import { ChevronRight, PanelLeft } from "lucide-react";
-import { Home } from "@/components/Home/Home";
+import { Home } from "@/components/Home";
 import { useState } from "react";
 import { Profile } from "@/components/Profile";
 import { MobileMenuSheet } from "@/components/MobileMenuSheet";
 import { MobileMenu } from "@/components/MobileMenu";
-import Image from "next/image";
 import { useProfile } from "@/hooks/useProfile";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";

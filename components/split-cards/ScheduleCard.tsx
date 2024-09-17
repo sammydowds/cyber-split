@@ -1,5 +1,4 @@
 import {
-  Card,
   CardHeader,
   CardTitle,
   CardDescription,
@@ -7,11 +6,8 @@ import {
 } from "@/components/ui/card";
 import { MonthTable } from "@/components/MonthTable";
 import { SplitDeep } from "@/types";
-import {
-  createWorkoutSchedule,
-  WorkoutScheduleResult,
-} from "@/lib/programming/createWorkoutSchedule";
-import { DashCard } from "../../DashCard";
+import { WorkoutScheduleResult } from "@/lib/programming/createWorkoutSchedule";
+import { DashCard } from "../DashCard";
 import { Calendar } from "lucide-react";
 
 const DAYS = [
@@ -32,7 +28,6 @@ export const ScheduleCard = ({ schedule, split }: ScheduleCardProps) => {
   const skipDayText = split.skipDays?.length
     ? `This schedule skips ${split.skipDays.map((d) => DAYS[d]).join(", ")}.`
     : "";
-  const dayStartedText = `This schedule was created on ${new Date(split.created).toLocaleDateString()}.`;
   return (
     <DashCard className="w-[500px] max-md:w-full">
       <CardHeader className="max-md:p-4 max-md:pb-0 pb-0">
@@ -40,7 +35,7 @@ export const ScheduleCard = ({ schedule, split }: ScheduleCardProps) => {
           <Calendar className="h-5 w-5" /> Schedule
         </CardTitle>
         <CardDescription>
-          {dayStartedText}
+          This is the current projected schedule for this split.
           {skipDayText}
         </CardDescription>
       </CardHeader>

@@ -11,7 +11,7 @@ import { WorkoutMarker } from "@/components/WorkoutMarker";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/router";
 import { SplitDeep } from "@/types";
-import { DashCard } from "../../DashCard";
+import { DashCard } from "../DashCard";
 import { estimateTimeOfWorkout } from "@/lib/estimateTimeOfWorkout";
 import { getBodyPartsFromWorkout } from "@/lib/getBodyPartsFromWorkout";
 import { MapPin, Moon } from "lucide-react";
@@ -33,7 +33,7 @@ export const TodayWorkoutCard = ({ workout }: TodayWorkCardProps) => {
           <CardDescription>Rest Day</CardDescription>
         </CardHeader>
         <CardContent className="p-4 max-md:pt-0">
-          <Card className="w-full bg-gradient-to-r from-yellow-50 from-5% to-stone-100 shadow-xl ">
+          <Card className="w-full bg-gradient-to-r from-yellow-50 from-5% to-stone-100 shadow-xl border-stone-50">
             <CardContent className="py-2 px-4 text-stone-600">
               <div className="flex items-center gap-2 md:py-[4px] justify-between">
                 <div className="flex items-center gap-[8px]">
@@ -74,7 +74,7 @@ export const TodayWorkoutCard = ({ workout }: TodayWorkCardProps) => {
         </div>
       </CardHeader>
       <CardContent className="flex flex-row items-baseline gap-4 px-4 max-md:px-2">
-        <Card className="w-full bg-gradient-to-r from-yellow-50 from-5% to-stone-100 shadow-xl">
+        <Card className="w-full bg-gradient-to-r from-yellow-50 from-5% to-stone-100 shadow-xl border-stone-100">
           <CardContent className="py-2 px-4">
             <div className="flex items-center gap-2 md:py-[4px] justify-between">
               <div className="flex items-center gap-[8px]">
