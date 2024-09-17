@@ -9,7 +9,7 @@ export const StrengthGroups = () => {
     name: "strengthGroups",
   });
   return (
-    <div className="flex flex-col justify-center">
+    <div className="flex flex-wrap gap-2 justify-center max-md:px-2">
       {groupFields.map((g, idx) => {
         return <StrengthGroup groupIdx={idx} key={g.id} />;
       })}

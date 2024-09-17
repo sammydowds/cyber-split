@@ -24,6 +24,7 @@ import { Save } from "lucide-react";
 import { estimateTimeOfLoggedWorkout } from "@/lib/estimateTimeOfWorkout";
 import { getMusclesRecoveringFromLoggedWorkout } from "@/lib/getMusclesRecoveringFromLoggedWorkout";
 import { cn } from "@/lib/utils";
+import { WorkoutMarker } from "../WorkoutMarker";
 
 interface LoggedWorkoutSuccessProps {
   workout: DeepLoggedWorkout;
@@ -106,29 +107,37 @@ export const LogWorkoutForm = ({ template }: LogWorkoutProps) => {
   return (
     <div
       className={cn(
-        "mx-auto max-md:mb-[150px] mb-[90px] mt-8 flex flex-col bg-white",
+        "max-md:mb-[150px] mb-[90px] mt-4 flex flex-col",
         summary ? "blur-md" : "",
       )}
     >
       {summary ? <LoggedWorkoutSuccess workout={summary} /> : null}
-      <div className="flex w-full p-2 items-center relative justify-between text-xs text-stone-600">
-        {template?.name ? (
-          <div className="tracking-tighter font-bold pr-2">
-            Name: <span className="italic">{template?.name}</span>
-          </div>
-        ) : null}
-      </div>
-      <div className="">
+
+      <div className="w-full">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmit)}>
-            <StrengthGroups />
-            <Button
-              type="submit"
-              disabled={creatingLoggedWorkout}
-              className="w-full"
-            >
-              Finish
-            </Button>
+            <div className="flex flex-col items-center gap-4">
+              <div className="flex gap-[8px] bg-white px-4 py-2 backdrop-blur-lg border-[1px] rounded-lg items-center relative text-xl">
+                <WorkoutMarker
+                  className="h-10 w-10 text-xl"
+                  text={template.letterLabel}
+                />
+                {template?.name ? (
+                  <div className="tracking-tighter font-bold pr-2">
+                    <span className="italic">{template?.name}</span>
+                  </div>
+                ) : null}
+              </div>
+              <StrengthGroups />
+              <Button
+                type="submit"
+                size="lg"
+                disabled={creatingLoggedWorkout}
+                className="text-lg font-bold"
+              >
+                Finish
+              </Button>
+            </div>
           </form>
         </Form>
       </div>

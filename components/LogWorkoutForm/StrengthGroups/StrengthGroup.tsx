@@ -4,6 +4,7 @@ import { StrengthSet } from "./StrengthSet";
 import { Button } from "../../ui/button";
 import { BsCheck } from "react-icons/bs";
 import { MdInfo } from "react-icons/md";
+import { CirclePlus } from "lucide-react";
 
 interface StrengthGroupProps {
   groupIdx: number;
@@ -34,8 +35,8 @@ export const StrengthGroup = ({ groupIdx }: StrengthGroupProps) => {
   };
 
   return (
-    <div className="flex justify-between items-center w-full py-3">
-      <div className="flex flex-col w-full gap-[2px]">
+    <div className="flex justify-between items-center py-3 w-max backdrop-blur-lg bg-white border-[1px] rounded-lg max-md:w-full">
+      <div className="flex flex-col w-full gap-[2px] h-full">
         <div className="text-xl font-bold tracking-tighter flex items-center gap-[4px] dark:text-white w-full">
           <div className="flex items-center justify-center gap-2 relative px-4">
             {name}
@@ -46,7 +47,7 @@ export const StrengthGroup = ({ groupIdx }: StrengthGroupProps) => {
             ) : null}
           </div>
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 items-center justify-between h-full">
           <table className="w-full font-bold tracking-tighter text-lg text-stone-600">
             <thead className="text-sm">
               <tr>
@@ -72,10 +73,11 @@ export const StrengthGroup = ({ groupIdx }: StrengthGroupProps) => {
             </tbody>
           </table>
           <Button
-            className="w-full bg-stone-50 text-stone-500"
-            variant="ghost"
+            className="w-[200px] rounded-full flex items-center gap-[4px]"
+            variant="outline"
             onClick={addNewSet}
           >
+            <CirclePlus size={16} />
             Add Set
           </Button>
         </div>

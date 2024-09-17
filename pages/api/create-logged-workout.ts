@@ -37,6 +37,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       name: payload.name,
       profileId: profile.id,
       splitId: payload.splitId,
+      letterLabel: payload.letterLabel,
       dateLogged: now,
       units: "IMPERIAL",
       strengthGroups: {

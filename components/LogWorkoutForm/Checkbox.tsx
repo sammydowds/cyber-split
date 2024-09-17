@@ -11,11 +11,11 @@ export const Checkbox = ({ onClick, isChecked }: CheckboxProps) => {
     <Button
       onClick={onClick}
       className={cn(
-        "flex items-center justify-center h-[32px] px-3 shadow-none rounded-full hover:cursor-pointer hover:bg-unset bg-stone-100 text-stone-500",
+        "flex items-center justify-center h-[32px] shadow-none rounded-l-sm hover:cursor-pointer hover:bg-unset bg-stone-50 text-stone-500",
         isChecked ? "bg-green-500 text-white" : "",
       )}
     >
-      <BsCheck size={30} />
+      <BsCheck size={24} />
     </Button>
   );
 };

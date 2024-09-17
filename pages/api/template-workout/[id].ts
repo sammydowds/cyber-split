@@ -1,6 +1,68 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { supabase } from "@/lib/supbaseClient";
 import { prisma } from "@/lib/prismaClient";
+import { Profile, Set } from "@prisma/client";
+import { DeepSet, DeepTemplateWorkout } from "../../../types";
+
+const lookupLastLoggedSet = async (profileId: string, exerciseId: string) => {
+  const lastSets = await prisma.set.findMany({
+    orderBy: {
+      dateLogged: "desc",
+    },
+    where: {
+      exerciseId,
+      StrengthGroup: {
+        LoggedWorkout: {
+          profileId,
+        },
+      },
+      weight: {
+        not: null,
+      },
+      dateLogged: {
+        not: null,
+      },
+    },
+    take: 1,
+  });
+
+  return lastSets[0];
+};
+
+const populateWeight = async (
+  profile: Profile,
+  groups: DeepTemplateWorkout["strengthGroups"],
+) => {
+  let newStrengthGroups = [];
+  let exerciseIdToLastSet: { [k: string]: Set } = {};
+
+  if (groups) {
+    for (const group of groups) {
+      let updatedSets = [];
+      for (const s of group.sets) {
+        const { exercise } = s;
+        let lastSet: Set | null = null;
+
+        if (exercise.id in exerciseIdToLastSet) {
+          lastSet = exerciseIdToLastSet[exercise.id];
+        } else {
+          lastSet = await lookupLastLoggedSet(profile.id, exercise.id);
+          if (lastSet) {
+            exerciseIdToLastSet[exercise.id] = lastSet;
+          }
+        }
+        updatedSets.push({
+          ...s,
+          weight: lastSet?.weight,
+          previousWeight: lastSet?.weight,
+          previousReps: lastSet?.reps,
+        });
+      }
+      newStrengthGroups.push({ ...group, sets: updatedSets });
+    }
+  }
+  return newStrengthGroups;
+};
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "GET") {
@@ -28,12 +90,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (!profile) {
     return res.status(500).json({ error: "Unable to find profile." });
   }
-  const templateId = req?.query?.id as string;
+  const { id: templateId } = req.query;
 
   const template = await prisma.templateWorkout.findUnique({
     where: {
-      profileId: profile.id,
-      id: templateId,
+      id: templateId as string,
     },
     include: {
       strengthGroups: {
@@ -51,6 +112,14 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       },
     },
   });
+
+  // prefill strength sets weight
+  if (template?.strengthGroups) {
+    template.strengthGroups = await populateWeight(
+      profile,
+      template.strengthGroups,
+    );
+  }
 
   return res.status(200).json({ data: template });
 };

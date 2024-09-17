@@ -50,15 +50,15 @@ export const StrengthSet = ({ groupIdx, setIdx }: StrengthSetProps) => {
 
   return (
     <tr className={cn(dateLogged ? "bg-green-100" : "")}>
-      <td className="min-w-[80px] relative">
-        <div className="flex items-center justify-center gap-[2px]">
+      <td className="min-w-[50px] pl-4 relative">
+        <div className="flex items-center h-[32px] justify-center gap-[2px]">
           {increasedFromPrevious ? (
             <FaMedal className="text-yellow-500" />
           ) : null}
           {setIdx + 1}
         </div>
       </td>
-      <td className="text-center text-sm">
+      <td className="text-center text-sm p-2">
         {previousReps && previousWeight
           ? `${previousReps} x ${previousWeight} lb`
           : "-"}
@@ -77,7 +77,7 @@ export const StrengthSet = ({ groupIdx, setIdx }: StrengthSetProps) => {
           inputClass={cn(dateLogged ? "bg-green-100" : "")}
         />
       </td>
-      <td className="flex justify-center pr-4">
+      <td className="flex justify-center items-center pr-4">
         <Checkbox onClick={handleCheckBoxClick} isChecked={!!dateLogged} />
       </td>
     </tr>

@@ -30,7 +30,7 @@ export const NumberInput = ({
         inputMode="numeric"
         onChange={handleOnChange}
         className={cn(
-          "px-4 max-w-[65px] h-[32px] text-center rounded-full bg-stone-100",
+          "px-4 max-w-[65px] h-[32px] text-center rounded-sm bg-stone-50 focus:outline-black",
           inputClass,
         )}
       />
