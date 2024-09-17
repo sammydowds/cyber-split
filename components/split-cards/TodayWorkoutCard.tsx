@@ -40,7 +40,7 @@ export const TodayWorkoutCard = ({ workout }: TodayWorkCardProps) => {
             transition={{ delay: 1 }}
             className="w-full"
           >
-            <Card className="w-full bg-gradient-to-r from-yellow-50 from-5% to-stone-100 shadow-xl border-stone-50">
+            <Card className="w-full shadow-lg">
               <CardContent className="py-2 px-4 text-stone-600">
                 <div className="flex items-center gap-2 md:py-[4px] justify-between">
                   <div className="flex items-center gap-[8px]">
@@ -88,7 +88,7 @@ export const TodayWorkoutCard = ({ workout }: TodayWorkCardProps) => {
           transition={{ delay: 1 }}
           className="w-full"
         >
-          <Card className="w-full bg-gradient-to-r from-yellow-50 from-5% to-stone-100 shadow-xl border-stone-100">
+          <Card className="w-full shadow-lg">
             <CardContent className="py-2 px-4">
               <div className="flex items-center gap-2 md:py-[4px] justify-between">
                 <div className="flex items-center gap-[8px]">
