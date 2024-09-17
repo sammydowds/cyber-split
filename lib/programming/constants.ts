@@ -1,4 +1,4 @@
-import { Exercise, Prisma } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import {
   FB_CADENCE,
   FB_MUSCLES,

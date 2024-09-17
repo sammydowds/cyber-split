@@ -23,6 +23,7 @@ import {
 import { useLoginUser } from "@/hooks/useLoginUser";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Login() {
   const router = useRouter();
@@ -108,12 +109,12 @@ export default function Login() {
         </Form>
         <CardFooter className="flex justify-between text-sm">
           <p className="text-gray-600">Need an account?</p>
-          <a
+          <Link
             href="/get-started"
             className="text-gray-600 hover:text-black transition-colors duration-300"
           >
             Sign Up
-          </a>
+          </Link>
         </CardFooter>
       </Card>
     </div>

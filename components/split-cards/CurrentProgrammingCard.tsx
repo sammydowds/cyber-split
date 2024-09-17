@@ -1,6 +1,5 @@
 import {
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -12,7 +11,7 @@ import {
   SPLIT_TYPE_TO_DESCRIPTION,
 } from "@/lib/programming/constants";
 import { SPLIT_TYPES } from "@/lib/programming/enums";
-import { differenceInDays, formatDistanceToNow } from "date-fns";
+import { differenceInDays } from "date-fns";
 import { Check, ClipboardIcon, Route } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEndSplit } from "@/hooks/useEndSplit";

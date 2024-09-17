@@ -26,7 +26,7 @@ export default function Dashboard() {
     <main>
       <div className="flex overflow-hidden h-screen w-screen max-md:flex-col md:flex-row fixed">
         <DesktopMenu tab={tab} setTab={setTab} />
-        <MobileMenu tab={tab} setShowMenu={setShowMenu} showMenu={showMenu} />
+        <MobileMenu setShowMenu={setShowMenu} showMenu={showMenu} />
         <div className="flex flex-col w-full h-full">
           <main
             className="flex flex-col gap-4 relative grow overflow-hidden overflow-y-auto bg-stone-200 shadow-inner"

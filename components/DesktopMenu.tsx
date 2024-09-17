@@ -2,10 +2,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import {
-  ChartColumnIncreasing,
   House,
-  Settings,
-  Notebook,
   User,
 } from "lucide-react";
 import { DesktopNavBackground } from "./DesktopNavBackground";

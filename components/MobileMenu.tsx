@@ -6,9 +6,8 @@ import { MobileNavBackground } from "./MobileNavBackground";
 interface MobileMenuProps {
   setShowMenu: (show: boolean) => void;
   showMenu: boolean;
-  tab: string;
 }
-export const MobileMenu = ({ showMenu, setShowMenu, tab }: MobileMenuProps) => {
+export const MobileMenu = ({ showMenu, setShowMenu }: MobileMenuProps) => {
   return (
     <div className="top-0 z-30 flex h-14 items-center gap-[4px] justify-between w-full shadow relative py-2 px-4 md:hidden ">
       <MobileNavBackground />

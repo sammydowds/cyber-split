@@ -19,7 +19,7 @@ export enum Y_LABEL {
   REP_COUNT = "Rep Count",
 }
 
-const determineChartType = (sets: Partial<Set>[]) => {
+const determineChartType = (sets: Partial<Set>[]): Y_LABEL => {
   let label = Y_LABEL.REP_COUNT;
 
   sets.map((set) => {
@@ -75,7 +75,7 @@ const convertLoggedWorkoutsToExerciseChartData = (
 
       // construct data point
       if (x) {
-        if (label === "Est. One Rep Max") {
+        if (label === Y_LABEL.ONE_REP_MAX) {
           let val = calcEstimatedOneRepMaxFromSets(sets);
           if (val) {
             dataPoint = {

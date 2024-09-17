@@ -60,8 +60,8 @@ export const buildSplitWorkouts = async (
   spec: MuscleSpec[][],
   labels: string[],
 ) => {
-  let workouts: any[] = [];
-  let exerciseIds: string[] = [];
+  const workouts: any[] = [];
+  const exerciseIds: string[] = [];
   for (let i = 0; i < spec.length; i++) {
     const s = spec[i];
     const name = labels[i]; // Use the index to get the name

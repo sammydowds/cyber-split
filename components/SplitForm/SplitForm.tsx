@@ -12,7 +12,7 @@ import { useCreateSplit } from "@/hooks/useCreateSplit";
 import { useQueryClient } from "@tanstack/react-query";
 
 export function SplitForm() {
-  const { step, next, previous, setStep } = useNavigation();
+  const { step, next, previous } = useNavigation();
   const queryClient = useQueryClient();
   const { mutate: createSplit, isPending } = useCreateSplit({
     onSuccess: (data) => {
@@ -34,11 +34,11 @@ export function SplitForm() {
   useEffect(() => {
     form.setValue("cadence", null);
     form.setValue("muscles", null);
-    form.setValue("workouts", null);
+    form.setValue("workouts", []);
   }, [splitType, form]);
 
   useEffect(() => {
-    form.setValue("workouts", null);
+    form.setValue("workouts", []);
   }, [muscles, form]);
 
   if (isPending) {

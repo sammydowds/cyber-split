@@ -1,7 +1,6 @@
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { MobileNavBackground } from "./MobileNavBackground";
 
 interface MobileMenuSheetProps {
   open: boolean;

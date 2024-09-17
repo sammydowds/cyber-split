@@ -37,6 +37,7 @@ export const DataCards = ({ split }: DataProps) => {
                 const chosenData = data[exerciseKey][chosenLabel] ?? [];
                 return (
                   <ExerciseChart
+                    key={exerciseKey}
                     data={chosenData}
                     name={exerciseKey}
                     type={chosenLabel}

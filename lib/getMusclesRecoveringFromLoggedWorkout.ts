@@ -3,7 +3,7 @@ import { DeepLoggedWorkout } from "@/types";
 export const getMusclesRecoveringFromLoggedWorkout = (
   workout: DeepLoggedWorkout,
 ) => {
-  let list: string[] = [];
+  const list: string[] = [];
   workout.strengthGroups.map((g) => {
     g.sets.map((set) => {
       if (set.exercise?.bodyPart && set.dateLogged) {

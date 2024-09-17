@@ -1,13 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { supabase } from "@/lib/supbaseClient";
-import {
-  SPLIT_TYPE_PROGRAMMING_LABEL_MAP,
-  SPLIT_TYPE_PROGRAMMING_MAP,
-} from "@/lib/programming";
-import { SPLIT_TYPES } from "@/lib/programming/enums";
-import { buildSplitWorkouts } from "@/lib/api/buildSplitWorkouts";
-import { StrengthGroup } from "@prisma/client";
-import { DeepLoggedWorkout, DeepTemplateWorkout } from "@/types";
 import { getSimilarExercises } from "@/lib/api/getSimilarExercises";
 import { Payload } from "@/hooks/useGetSImilarGroups";
 
@@ -17,7 +9,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   const token = req.headers.authorization?.split(" ")[1] as string;
-  const { splitType, muscles } = req.body as { [k: string]: string };
 
   if (!token) {
     return res.status(401).json({ error: "Auth token missing" });
@@ -41,7 +32,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const oldExercise = payload.group.sets[0].exercise;
   const setNumber = payload.group.sets.length;
   const repsNumber = payload.group.sets[0].reps;
-  let suggestedGroups = [];
+  const suggestedGroups = [];
 
   const similarExercises = await getSimilarExercises({
     exercise: oldExercise,
@@ -49,9 +40,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     ignoreExercises: payload.ignoreExercises,
   });
   for (const exercise of similarExercises) {
-    let tempGroup: any = { name: exercise.name, sets: [] };
+    const tempGroup: any = { name: exercise.name, sets: [] };
     for (let i = 0; i < setNumber; i++) {
-      let tempSet = {
+      const tempSet = {
         reps: repsNumber,
         exercise,
       };

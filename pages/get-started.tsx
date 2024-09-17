@@ -23,6 +23,7 @@ import { useForm } from "react-hook-form";
 import { useSignUpUser } from "@/hooks/useSignUpUser";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function GetStarted() {
   const router = useRouter();
@@ -129,12 +130,12 @@ export default function GetStarted() {
 
         <CardFooter className="flex justify-between text-sm">
           <p className="text-gray-600">Already have an account?</p>
-          <a
+          <Link
             href="/login"
             className="text-gray-600 hover:text-black transition-colors duration-300"
           >
             Log In
-          </a>
+          </Link>
         </CardFooter>
       </Card>
     </div>

@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { supabase } from "@/lib/supbaseClient";
 import { prisma } from "@/lib/prismaClient";
 import { Profile, Set } from "@prisma/client";
-import { DeepSet, DeepTemplateWorkout } from "../../../types";
+import { DeepTemplateWorkout } from "../../../types";
 
 const lookupLastLoggedSet = async (profileId: string, exerciseId: string) => {
   const lastSets = await prisma.set.findMany({
@@ -33,12 +33,12 @@ const populateWeight = async (
   profile: Profile,
   groups: DeepTemplateWorkout["strengthGroups"],
 ) => {
-  let newStrengthGroups = [];
-  let exerciseIdToLastSet: { [k: string]: Set } = {};
+  const newStrengthGroups = [];
+  const exerciseIdToLastSet: { [k: string]: Set } = {};
 
   if (groups) {
     for (const group of groups) {
-      let updatedSets = [];
+      const updatedSets = [];
       for (const s of group.sets) {
         const { exercise } = s;
         let lastSet: Set | null = null;

@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { supabase } from "@/lib/supbaseClient";
 import { prisma } from "@/lib/prismaClient";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {

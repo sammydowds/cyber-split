@@ -5,14 +5,13 @@ import { cn } from "@/lib/utils";
 import { NumberInput } from "../NumberInput";
 import { FaMedal } from "react-icons/fa";
 import { calcOneRepMax } from "@/lib/calcOneRepMax";
-import toast from "react-hot-toast";
 
 interface StrengthSetProps {
   groupIdx: number;
   setIdx: number;
 }
 export const StrengthSet = ({ groupIdx, setIdx }: StrengthSetProps) => {
-  const { control, setValue, getValues } = useFormContext<LogWorkoutSchema>();
+  const { control, setValue } = useFormContext<LogWorkoutSchema>();
 
   const { reps, dateLogged, weight, previousReps, previousWeight } = useWatch({
     control,

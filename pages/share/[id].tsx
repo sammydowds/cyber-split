@@ -4,18 +4,11 @@ import { WorkoutsCard } from "@/components/split-cards/WorkoutsCard";
 import { ScheduleCard } from "@/components/split-cards/ScheduleCard";
 import { createWorkoutSchedule } from "@/lib/programming/createWorkoutSchedule";
 import { DashCard } from "@/components/DashCard";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import {
-  LoaderCircle,
-  Pencil,
-  Route,
-  SquareArrowUp,
   SquareArrowUpRight,
   Wrench,
 } from "lucide-react";
-import { FaSpinner } from "react-icons/fa";
-import { CurrentProgrammingCard } from "@/components/split-cards/CurrentProgrammingCard";
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   CADENCE_TO_DESCRIPTION_MAP,
