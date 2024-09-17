@@ -33,12 +33,12 @@ export const TodayWorkoutCard = ({ workout }: TodayWorkCardProps) => {
           <CardDescription>Rest Day</CardDescription>
         </CardHeader>
         <CardContent className="p-4 max-md:pt-0">
-          <Card className="w-full">
-            <CardContent className="py-2 px-4">
+          <Card className="w-full bg-gradient-to-r from-yellow-50 from-5% to-stone-100 shadow-xl ">
+            <CardContent className="py-2 px-4 text-stone-600">
               <div className="flex items-center gap-2 md:py-[4px] justify-between">
                 <div className="flex items-center gap-[8px]">
-                  <Moon className="text-stone-400" />
-                  <div className="font-bold max-md:text-sm md:text-lg text-stone-400">
+                  <Moon className="" />
+                  <div className="font-bold max-md:text-sm md:text-lg">
                     Rest and Recover
                   </div>
                 </div>
@@ -74,7 +74,7 @@ export const TodayWorkoutCard = ({ workout }: TodayWorkCardProps) => {
         </div>
       </CardHeader>
       <CardContent className="flex flex-row items-baseline gap-4 px-4 max-md:px-2">
-        <Card className="w-full">
+        <Card className="w-full bg-gradient-to-r from-yellow-50 from-5% to-stone-100 shadow-xl">
           <CardContent className="py-2 px-4">
             <div className="flex items-center gap-2 md:py-[4px] justify-between">
               <div className="flex items-center gap-[8px]">

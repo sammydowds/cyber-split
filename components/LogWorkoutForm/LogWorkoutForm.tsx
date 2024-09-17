@@ -117,14 +117,14 @@ export const LogWorkoutForm = ({ template }: LogWorkoutProps) => {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmit)}>
             <div className="flex flex-col items-center gap-4">
-              <div className="flex gap-[8px] bg-white px-4 py-2 backdrop-blur-lg border-[1px] rounded-lg items-center relative text-xl">
+              <div className="flex gap-[8px] px-4 py-2 w-[300px] rounded-lg overflow-hidden items-center relative text-xl bg-gradient-to-r from-yellow-100/60 from-10% via-stone-50 to-stone-200/60 shadow-lg border-none">
                 <WorkoutMarker
-                  className="h-10 w-10 text-xl"
+                  className="h-10 w-10 text-xl z-50"
                   text={template.letterLabel}
                 />
                 {template?.name ? (
-                  <div className="tracking-tighter font-bold pr-2">
-                    <span className="italic">{template?.name}</span>
+                  <div className="tracking-tighter font-bold pr-2 z-50">
+                    <span>{template?.name}</span>
                   </div>
                 ) : null}
               </div>

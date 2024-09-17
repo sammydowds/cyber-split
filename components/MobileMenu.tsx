@@ -1,4 +1,4 @@
-import { ChevronRight, PanelLeft } from "lucide-react";
+import { PanelLeft } from "lucide-react";
 import { Button } from "./ui/button";
 import Image from "next/image";
 import { MobileNavBackground } from "./MobileNavBackground";
@@ -10,7 +10,7 @@ interface MobileMenuProps {
 }
 export const MobileMenu = ({ showMenu, setShowMenu, tab }: MobileMenuProps) => {
   return (
-    <div className="top-0 z-30 flex h-14 items-center gap-[4px] justify-between w-full shadow relative py-2 px-4 md:hidden">
+    <div className="top-0 z-30 flex h-14 items-center gap-[4px] justify-between w-full shadow relative py-2 px-4 md:hidden ">
       <MobileNavBackground />
       <Button
         size="icon"

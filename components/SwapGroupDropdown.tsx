@@ -6,11 +6,10 @@ import {
   DropdownMenuSeparator,
 } from "./ui/dropdown-menu";
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
-import { Button } from "./ui/button";
 import { ArrowLeftRight } from "lucide-react";
 import { StrengthGroup } from "@prisma/client";
 import { useGetSimilarGroups } from "@/hooks/useGetSImilarGroups";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface SwapGroupDropdownProps {
   oldGroup: StrengthGroup;
