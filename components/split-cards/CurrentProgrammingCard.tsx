@@ -62,13 +62,14 @@ export const CurrentProgrammingCard = ({
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
+        className="h-full"
       >
         <CardHeader className="pb-4">
           <CardTitle className="flex items-center gap-[4px]">
             <Route className="h-5 w-5" /> Current Programming
           </CardTitle>
         </CardHeader>
-        <CardContent className="text-stone-500 pb-4">
+        <CardContent className="text-stone-500 p-4 min-h-[75px]">
           <span className="font-semibold text-black">
             {SPLIT_TYPE_TO_DESCRIPTION[split.type as SPLIT_TYPES]}
           </span>{" "}
