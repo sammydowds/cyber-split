@@ -1,10 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import {
-  House,
-  User,
-} from "lucide-react";
+import { House, User } from "lucide-react";
 import { DesktopNavBackground } from "./DesktopNavBackground";
 
 interface DesktopMenuProps {

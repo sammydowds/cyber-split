@@ -5,10 +5,7 @@ import { ScheduleCard } from "@/components/split-cards/ScheduleCard";
 import { createWorkoutSchedule } from "@/lib/programming/createWorkoutSchedule";
 import { DashCard } from "@/components/DashCard";
 import Link from "next/link";
-import {
-  SquareArrowUpRight,
-  Wrench,
-} from "lucide-react";
+import { SquareArrowUpRight, Wrench } from "lucide-react";
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   CADENCE_TO_DESCRIPTION_MAP,
