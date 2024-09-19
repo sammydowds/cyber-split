@@ -33,7 +33,7 @@ export const TodayWorkoutCard = ({ workout }: TodayWorkCardProps) => {
           </CardTitle>
           <CardDescription>Rest Day</CardDescription>
         </CardHeader>
-        <CardContent className="p-4 max-md:pt-0">
+        <CardContent className="p-4 max-md:pt-0 overflow-hidden">
           <motion.div
             initial={{ y: 100 }}
             animate={{ y: 0 }}
