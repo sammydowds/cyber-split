@@ -6,7 +6,6 @@ import { WorkoutsCard } from "./split-cards/WorkoutsCard";
 import { createWorkoutSchedule } from "@/lib/programming/createWorkoutSchedule";
 import { getWorkoutIndexFromLetter } from "@/lib/programming/getWorkoutIndexFromLetter";
 import { CurrentProgrammingCard } from "./split-cards/CurrentProgrammingCard";
-import { DashCard } from "./DashCard";
 import { SplitForm } from "./SplitForm/SplitForm";
 
 interface HomeProps {
@@ -15,10 +14,8 @@ interface HomeProps {
 export const Home = ({ split }: HomeProps) => {
   if (!split) {
     return (
-      <div className="flex flex-col items-center p-4 mb-[364px] w-full gap-4 max-md:px-2 max-md:py-6">
-        <DashCard className="w-[500px] max-md:w-full">
-          <SplitForm />
-        </DashCard>
+      <div className="flex flex-col items-center w-full h-full bg-white bg-gradient-to-b from-white from-30% via-stone-50 to-yellow-100">
+        <SplitForm />
       </div>
     );
   }

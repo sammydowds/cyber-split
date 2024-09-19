@@ -20,7 +20,7 @@ export const SplitType = () => {
 
   return (
     <motion.div
-      className="p-4 flex flex-col gap-4"
+      className="p-4 flex flex-col gap-4 md:w-[500px] max-md:w-full"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
@@ -44,7 +44,7 @@ export const SplitType = () => {
                 <RadioGroup
                   onValueChange={field.onChange}
                   defaultValue={field.value}
-                  className="flex flex-col space-y-1"
+                  className="flex flex-col space-y-1 md:w-[500px]"
                 >
                   <FormItem
                     className={cn(

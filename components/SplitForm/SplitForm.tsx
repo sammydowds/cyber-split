@@ -50,47 +50,39 @@ export function SplitForm() {
   const hidePrevious = step === 0;
   const lastStep = step === STEPS.length - 1;
   return (
-    <div className="flex gap-2 w-full">
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-4 grow flex flex-col items-left justify-between w-full"
-        >
-          {STEPS[step]}
+    <div className="flex flex-col justify-between gap-2 w-full relative overflow-hidden overflow-y-scroll">
+      <div className="flex h-[50px] items-center p-2 gap-2 w-full bg-white justify-between shadow sticky top-0 z-[1000]">
+        <div className="text-sm font-bold">Program Builder</div>
+        <div>
+          <Button
+            className={cn(hidePrevious ? "hidden" : "")}
+            variant="ghost"
+            onClick={previous}
+          >
+            Previous
+          </Button>
           {lastStep ? (
-            <div className="flex items-center gap-2 justify-end w-full p-4 pt-2">
-              <>
-                <Button
-                  className={cn(hidePrevious ? "hidden" : "")}
-                  variant="ghost"
-                  onClick={previous}
-                >
-                  Previous
-                </Button>
-                <Button type="submit" disabled={disable}>
-                  Finish
-                </Button>
-              </>
-            </div>
-          ) : null}
-          {lastStep ? null : (
-            <div className="flex items-center p-4 pt-2 gap-2 justify-end w-full">
-              <>
-                <Button
-                  className={cn(hidePrevious ? "hidden" : "")}
-                  variant="ghost"
-                  onClick={previous}
-                >
-                  Previous
-                </Button>
-                <Button onClick={next} disabled={disable}>
-                  {step === 0 ? "Get Started" : "Next"}
-                </Button>
-              </>
-            </div>
+            <Button type="submit" form="split-form" disabled={disable}>
+              Finish
+            </Button>
+          ) : (
+            <Button onClick={next} disabled={disable}>
+              {step === 0 ? "Get Started" : "Next"}
+            </Button>
           )}
-        </form>
-      </Form>
+        </div>
+      </div>
+      <div className="h-max mb-[364px]">
+        <Form {...form}>
+          <form
+            id="split-form"
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-4 grow flex flex-col items-center justify-between w-full overflow-y-scroll"
+          >
+            {STEPS[step]}
+          </form>
+        </Form>
+      </div>
     </div>
   );
 }

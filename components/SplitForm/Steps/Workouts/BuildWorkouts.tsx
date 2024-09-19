@@ -53,13 +53,13 @@ export const BuildWorkouts = () => {
 
   return (
     <motion.div
-      className="flex flex-col items-center justify-center h-full"
+      className="flex flex-col items-center justify-center h-full max-md:w-full"
       initial={{ opacity: 0, y: -40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
     >
       <Button
-        className="flex items-center justify-center tracking-tighter gap-[4px] font-semibold text-sm text-stone-500"
+        className="flex items-center justify-center tracking-tighter gap-[4px] font-semibold text-sm text-stone-500 md:self-start"
         onClick={handleReGenClick}
         variant="ghost"
       >
@@ -67,10 +67,9 @@ export const BuildWorkouts = () => {
         <Repeat2 strokeWidth={1.5} />
       </Button>
       <div className="overflow-x-auto w-full">
-        <div className="flex justify-center space-x-4 px-4 py-2 w-max min-w-full">
+        <div className="flex max-md:justify-center space-x-4 px-4 py-2 w-max min-w-full">
           {isPending ? (
             <>
-              <LoadingWorkoutCard hideCta />
               <LoadingWorkoutCard hideCta />
               <LoadingWorkoutCard hideCta />
             </>

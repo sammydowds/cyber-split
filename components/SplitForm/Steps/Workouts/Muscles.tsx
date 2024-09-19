@@ -35,7 +35,7 @@ export const Muscles = () => {
                 <RadioGroup
                   onValueChange={field.onChange}
                   defaultValue={field.value}
-                  className="flex flex-col space-y-1"
+                  className="flex flex-col space-y-1 md:min-w-[500px] w-full"
                 >
                   {muscles?.map((m) => {
                     return (

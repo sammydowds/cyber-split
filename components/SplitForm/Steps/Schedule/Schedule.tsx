@@ -25,7 +25,7 @@ export const Schedule = () => {
 
   return (
     <motion.div
-      className="p-4 flex flex-col gap-6"
+      className="p-4 flex flex-col gap-6 md:w-[500px] max-md:w-full"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
@@ -43,7 +43,7 @@ export const Schedule = () => {
                 <RadioGroup
                   onValueChange={field.onChange}
                   defaultValue={field.value}
-                  className="flex flex-col space-y-1"
+                  className="flex flex-col space-y-1 md:max-w-[500px]"
                 >
                   {cadences.map((c) => {
                     return (
@@ -71,7 +71,9 @@ export const Schedule = () => {
           )}
         />
       </div>
-      <SampleSchedule />
+      <div className="w-full h-full md:w-[500px]">
+        <SampleSchedule />
+      </div>
     </motion.div>
   );
 };

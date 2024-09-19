@@ -4,16 +4,14 @@ import { Route } from "lucide-react";
 export const Brief = () => {
   return (
     <motion.div
-      className="flex flex-col gap-2 p-4"
+      className="flex flex-col gap-2 p-4 md:w-[500px]"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
     >
       <div className="flex items-center justify-left gap-2">
         <Route size={22} />
-        <h2 className="font-bold tracking-tighter text-xl">
-          Create your program
-        </h2>
+        <h2 className="font-bold tracking-tighter text-xl">Programming</h2>
       </div>
       <div className="p-4 flex flex-col gap-4">
         <p>

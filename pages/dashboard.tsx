@@ -42,17 +42,15 @@ export default function Dashboard() {
               open={showMenu}
               setOpen={setShowMenu}
             />
-            <div className="h-max">
-              {loadingActiveSplit ? (
-                <div className="h-[300px] w-full flex items-center justify-center">
-                  <LoaderCircle className="animate-spin" />
-                </div>
-              ) : null}
-              {!loadingActiveSplit && tab === "home" ? (
-                <Home split={split} />
-              ) : null}
-              {tab === "profile" ? <Profile profile={profile} /> : null}
-            </div>
+            {loadingActiveSplit ? (
+              <div className="h-[300px] w-full flex items-center justify-center">
+                <LoaderCircle className="animate-spin" />
+              </div>
+            ) : null}
+            {!loadingActiveSplit && tab === "home" ? (
+              <Home split={split} />
+            ) : null}
+            {tab === "profile" ? <Profile profile={profile} /> : null}
           </main>
         </div>
       </div>
