@@ -51,7 +51,7 @@ export default function Login() {
       <Card className="w-full max-w-md z-50">
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-center flex flex-col items-center gap-4">
-            <Image src="/logo.png" height={50} width={100} alt="logo" />
+            <Image src="/logo.png" height={20} width={100} alt="logo" />
             <div>
               Log in
               <span className="block text-sm font-normal text-gray-500 mt-1">
