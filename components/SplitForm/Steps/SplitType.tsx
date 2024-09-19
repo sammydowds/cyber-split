@@ -13,6 +13,7 @@ import {
   SPLIT_TYPE_TO_META_DESCRIPTION,
 } from "@/lib/programming/constants";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 export const SplitType = () => {
   const form = useFormContext();
@@ -33,7 +34,7 @@ export const SplitType = () => {
           recommended to choose a 2-day split.
         </p>
       </div>
-      <div className="pl-4">
+      <div>
         <FormField
           control={form.control}
           name="splitType"
@@ -45,11 +46,16 @@ export const SplitType = () => {
                   defaultValue={field.value}
                   className="flex flex-col space-y-1"
                 >
-                  <FormItem className="flex items-center space-x-3 space-y-0">
+                  <FormItem
+                    className={cn(
+                      "flex items-center space-x-3 space-y-0 border-[1px] border-stone-300 min-h-[50px] p-2 rounded shadow-sm",
+                      field.value === SPLIT_TYPES.FB ? "border-black" : "",
+                    )}
+                  >
                     <FormControl>
                       <RadioGroupItem value={SPLIT_TYPES.FB} />
                     </FormControl>
-                    <FormLabel className="font-normal">
+                    <FormLabel className="font-normal w-full">
                       <div>
                         {SPLIT_TYPE_TO_META_DESCRIPTION[SPLIT_TYPES.FB]}
                       </div>
@@ -58,11 +64,16 @@ export const SplitType = () => {
                       </span>
                     </FormLabel>
                   </FormItem>
-                  <FormItem className="flex items-center space-x-3 space-y-0">
+                  <FormItem
+                    className={cn(
+                      "flex items-center space-x-3 space-y-0 border-[1px] border-stone-300 min-h-[50px] p-2 rounded shadow-sm",
+                      field.value === SPLIT_TYPES.TWO_DAY ? "border-black" : "",
+                    )}
+                  >
                     <FormControl>
                       <RadioGroupItem value={SPLIT_TYPES.TWO_DAY} />
                     </FormControl>
-                    <FormLabel className="font-normal">
+                    <FormLabel className="font-normal w-full">
                       <div>
                         {SPLIT_TYPE_TO_META_DESCRIPTION[SPLIT_TYPES.TWO_DAY]}
                       </div>
@@ -71,11 +82,18 @@ export const SplitType = () => {
                       </span>
                     </FormLabel>
                   </FormItem>
-                  <FormItem className="flex items-center space-x-3 space-y-0">
+                  <FormItem
+                    className={cn(
+                      "flex items-center space-x-3 space-y-0 border-[1px] border-stone-300 min-h-[50px] p-2 rounded shadow-sm",
+                      field.value === SPLIT_TYPES.THREE_DAY
+                        ? "border-black"
+                        : "",
+                    )}
+                  >
                     <FormControl>
                       <RadioGroupItem value={SPLIT_TYPES.THREE_DAY} />
                     </FormControl>
-                    <FormLabel className="font-normal">
+                    <FormLabel className="font-normal w-full">
                       <div>
                         {SPLIT_TYPE_TO_META_DESCRIPTION[SPLIT_TYPES.THREE_DAY]}
                       </div>
@@ -84,11 +102,18 @@ export const SplitType = () => {
                       </span>
                     </FormLabel>
                   </FormItem>
-                  <FormItem className="flex items-center space-x-3 space-y-0">
+                  <FormItem
+                    className={cn(
+                      "flex items-center space-x-3 space-y-0 border-[1px] border-stone-300 min-h-[50px] p-2 rounded shadow-sm",
+                      field.value === SPLIT_TYPES.FOUR_DAY
+                        ? "border-black"
+                        : "",
+                    )}
+                  >
                     <FormControl>
                       <RadioGroupItem value={SPLIT_TYPES.FOUR_DAY} />
                     </FormControl>
-                    <FormLabel className="font-normal">
+                    <FormLabel className="font-normal w-full">
                       <div>
                         {SPLIT_TYPE_TO_META_DESCRIPTION[SPLIT_TYPES.FOUR_DAY]}
                       </div>

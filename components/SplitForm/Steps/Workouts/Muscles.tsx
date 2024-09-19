@@ -11,6 +11,7 @@ import {
   MUSCLES_TO_DESCRIPTION_MAP,
   SPLIT_TYPE_TO_MUSCLES_MAP,
 } from "@/lib/programming/constants";
+import { cn } from "@/lib/utils";
 
 export const Muscles = () => {
   const form = useFormContext();
@@ -24,7 +25,7 @@ export const Muscles = () => {
       <h2 className="font-bold tracking-tighter text-xl">
         What type of breakdown would you like?
       </h2>
-      <div className="pl-4">
+      <div>
         <FormField
           control={form.control}
           name="muscles"
@@ -40,12 +41,15 @@ export const Muscles = () => {
                     return (
                       <FormItem
                         key={m}
-                        className="flex items-center space-x-3 space-y-0"
+                        className={cn(
+                          "flex items-center space-x-3 space-y-0 border-[1px] border-stone-300 min-h-[50px] p-2 rounded shadow-sm",
+                          field.value === m ? "border-black" : "",
+                        )}
                       >
                         <FormControl>
                           <RadioGroupItem value={m} />
                         </FormControl>
-                        <FormLabel className="font-normal max-w-[245px]">
+                        <FormLabel className="font-normal w-full">
                           {MUSCLES_TO_DESCRIPTION_MAP[splitType][m]}
                         </FormLabel>
                       </FormItem>

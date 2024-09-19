@@ -13,6 +13,7 @@ import {
 } from "@/lib/programming/constants";
 import { SampleSchedule } from "./SampleSchedule";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 export const Schedule = () => {
   const form = useFormContext();
@@ -32,7 +33,7 @@ export const Schedule = () => {
       <h2 className="font-bold tracking-tighter text-xl">
         What schedule would you like?
       </h2>
-      <div className="pl-4">
+      <div>
         <FormField
           control={form.control}
           name="cadence"
@@ -48,12 +49,15 @@ export const Schedule = () => {
                     return (
                       <FormItem
                         key={c}
-                        className="flex items-center space-x-3 space-y-0"
+                        className={cn(
+                          "flex items-center space-x-3 space-y-0 border-[1px] border-stone-300 min-h-[50px] p-2 rounded shadow-sm",
+                          field.value === c ? "border-black" : "",
+                        )}
                       >
                         <FormControl>
                           <RadioGroupItem value={c} />
                         </FormControl>
-                        <FormLabel className="font-normal md:max-w-[330px] max-md:max-w-[160px]">
+                        <FormLabel className="font-normal w-full">
                           <div>{CADENCE_TO_DESCRIPTION_MAP[splitType][c]}</div>
                           <span className="text-xs text-stone-800">{c}</span>
                         </FormLabel>
