@@ -17,6 +17,8 @@ import { StrengthGroup } from "@prisma/client";
 import { SwapGroupDropdown } from "./SwapGroupDropdown";
 import { FormSchemaType } from "./SplitForm/schema";
 import { motion } from "framer-motion";
+import toast from "react-hot-toast";
+import { ArrowRight, ArrowRightLeft, MoveRight } from "lucide-react";
 
 interface WorkoutCardProps {
   split: Partial<SplitDeep>;
@@ -62,6 +64,31 @@ export const SplitWorkoutCard = ({
         return g;
       }
     });
+    toast(
+      <div className="flex flex-col text-sm gap-[4px] text-stone-500 w-[245px]">
+        <div className="flex gap-[6px] items-center font-bold text-sm tracking-tighter">
+          <WorkoutMarker
+            text={workout.letterLabel}
+            className="h-[28px] w-[28px]"
+          />
+          <div className="leading-3">{workout.name}</div>
+        </div>
+        <div className="font-semibold text-black flex items-center gap-[4px]">
+          <ArrowRightLeft size="16px" className="text-stone-500" />
+          <span className="truncate max-w-[160px]">{oldGroup.name}</span>
+        </div>
+        <div>
+          to{" "}
+          <span className="truncate max-w-[160px] font-semibold text-black">
+            {group.name}
+          </span>
+        </div>
+      </div>,
+      {
+        position: "top-right",
+        style: { padding: "2px" },
+      },
+    );
     onWorkoutChange?.({ ...workout, strengthGroups: newGroups });
   };
 
@@ -106,13 +133,7 @@ export const SplitWorkoutCard = ({
                   className="flex items-start justify-between text-xs"
                 >
                   <TableCell className="font-bold flex flex-col">
-                    <motion.div
-                      initial={false}
-                      animate={{ opacity: [0, 1], y: [5, 0] }}
-                      transition={{ duration: 0.8 }}
-                    >
-                      {g.name}
-                    </motion.div>
+                    <div>{g.name}</div>
                     {targetMuscles.map((m) => {
                       return (
                         <div key={m}>

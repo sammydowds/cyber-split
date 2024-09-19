@@ -10,7 +10,6 @@ import { ArrowLeftRight, LoaderCircle } from "lucide-react";
 import { StrengthGroup } from "@prisma/client";
 import { useGetSimilarGroups } from "@/hooks/useGetSImilarGroups";
 import { useState } from "react";
-import { FaSpinner } from "react-icons/fa";
 
 interface SwapGroupDropdownProps {
   oldGroup: StrengthGroup;
