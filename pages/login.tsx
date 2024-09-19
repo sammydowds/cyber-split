@@ -70,7 +70,11 @@ export default function Login() {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="Email" {...field} />
+                      <Input
+                        placeholder="Email"
+                        className="max-md:text-[16px]"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage>
                       {form.formState.errors.email?.message}
@@ -88,6 +92,7 @@ export default function Login() {
                       <Input
                         type="password"
                         placeholder="Password"
+                        className="max-md:text-[16px]"
                         {...field}
                       />
                     </FormControl>

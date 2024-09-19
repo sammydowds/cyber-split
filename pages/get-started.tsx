@@ -71,7 +71,12 @@ export default function GetStarted() {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input type="email" placeholder="Email" {...field} />
+                      <Input
+                        type="email"
+                        placeholder="Email"
+                        className="max-md:text-[16px]"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage>
                       {form.formState.errors.email?.message}
@@ -89,6 +94,7 @@ export default function GetStarted() {
                       <Input
                         type="password"
                         placeholder="Password"
+                        className="max-md:text-[16px]"
                         {...field}
                       />
                     </FormControl>
@@ -107,6 +113,7 @@ export default function GetStarted() {
                     <FormControl>
                       <Input
                         type="password"
+                        className="max-md:text-[16px]"
                         placeholder="Confirm Password"
                         {...field}
                       />
@@ -128,7 +135,7 @@ export default function GetStarted() {
           </form>
         </Form>
 
-        <CardFooter className="flex justify-between text-sm">
+        <CardFooter className="flex justify-between">
           <p className="text-gray-600">Already have an account?</p>
           <Link
             href="/login"
