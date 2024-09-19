@@ -9,6 +9,7 @@ import { MobileMenu } from "@/components/MobileMenu";
 import { useProfile } from "@/hooks/useProfile";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
+import { LoaderCircle } from "lucide-react";
 
 export default function Dashboard() {
   const { data: split, isPending: loadingActiveSplit } = useActiveSplit();
@@ -44,7 +45,7 @@ export default function Dashboard() {
             <div className="h-max">
               {loadingActiveSplit ? (
                 <div className="h-[300px] w-full flex items-center justify-center">
-                  Loading data...
+                  <LoaderCircle className="animate-spin" />
                 </div>
               ) : null}
               {!loadingActiveSplit && tab === "home" ? (
