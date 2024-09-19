@@ -76,7 +76,7 @@ export const StrengthSet = ({ groupIdx, setIdx }: StrengthSetProps) => {
           inputClass={cn(dateLogged ? "bg-green-100" : "")}
         />
       </td>
-      <td className="flex justify-center items-center pr-4">
+      <td className="flex justify-center items-center h-[42px] pr-4">
         <Checkbox onClick={handleCheckBoxClick} isChecked={!!dateLogged} />
       </td>
     </tr>

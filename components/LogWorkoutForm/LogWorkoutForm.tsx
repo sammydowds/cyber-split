@@ -44,7 +44,7 @@ export function LoggedWorkoutSuccess({ workout }: LoggedWorkoutSuccessProps) {
         <AlertDialogHeader>
           <AlertDialogTitle className="flex items-center gap-[4px] text-md">
             <Save className="text-fuchsia-600" />
-            {workout.name} has been recoreded
+            Workout has been recoreded
           </AlertDialogTitle>
           <AlertDialogDescription>
             {workingSets.length} sets completed, {totalReps} reps done over an

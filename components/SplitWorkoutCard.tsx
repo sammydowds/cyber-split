@@ -95,7 +95,7 @@ export const SplitWorkoutCard = ({
   const estTimeMins = estimateTimeOfWorkout(workout);
 
   return (
-    <Card className="w-[290px] overflow-hidden shadow-sm">
+    <Card className="w-[290px] overflow-hidden shadow-sm rounded-[2px]">
       <CardHeader className="p-2">
         <CardTitle className="flex justify-between items-center gap-2 pr-4">
           <div className="flex gap-[6px] font-bold text-sm tracking-tighter">
