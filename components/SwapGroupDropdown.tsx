@@ -6,10 +6,11 @@ import {
   DropdownMenuSeparator,
 } from "./ui/dropdown-menu";
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
-import { ArrowLeftRight } from "lucide-react";
+import { ArrowLeftRight, LoaderCircle } from "lucide-react";
 import { StrengthGroup } from "@prisma/client";
 import { useGetSimilarGroups } from "@/hooks/useGetSImilarGroups";
 import { useState } from "react";
+import { FaSpinner } from "react-icons/fa";
 
 interface SwapGroupDropdownProps {
   oldGroup: StrengthGroup;
@@ -46,7 +47,11 @@ export const SwapGroupDropdown = ({
       <DropdownMenuContent side="left" className="min-w-[240px]">
         <DropdownMenuLabel>Swap {oldGroup.name}?</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {isPending ? "Loading..." : null}
+        {isPending ? (
+          <div className="w-full h-full flex items-center justify-center">
+            <LoaderCircle className="animate-spin" />
+          </div>
+        ) : null}
         {groups?.map((g) => {
           return (
             <DropdownMenuItem
