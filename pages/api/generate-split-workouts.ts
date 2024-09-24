@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { supabase } from "@/lib/supbaseClient";
+import { supabase } from "@/lib/api/supabaseClient";
 import {
   SPLIT_TYPE_PROGRAMMING_LABEL_MAP,
   SPLIT_TYPE_PROGRAMMING_MAP,

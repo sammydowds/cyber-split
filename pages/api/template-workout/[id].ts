@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { supabase } from "@/lib/supbaseClient";
+import { supabase } from "@/lib/api/supabaseClient";
 import { prisma } from "@/lib/prismaClient";
 import { Profile, Set } from "@prisma/client";
 import { DeepTemplateWorkout } from "../../../types";

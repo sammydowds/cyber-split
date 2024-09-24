@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/supbaseClient";
+import { supabase } from "@/lib/supabaseClient";
 import { useMutation, UseMutationOptions } from "@tanstack/react-query";
 
 const signOutUser = async () => {

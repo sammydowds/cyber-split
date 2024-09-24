@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { supabase } from "@/lib/supbaseClient";
+import { supabase } from "@/lib/api/supabaseClient";
 import { getSimilarExercises } from "@/lib/api/getSimilarExercises";
 import { Payload } from "@/hooks/useGetSImilarGroups";
 

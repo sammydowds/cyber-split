@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/lib/supbaseClient";
+import { supabase } from "@/lib/supabaseClient";
 import { Session } from "@supabase/supabase-js";
 
 const fetchUserSession = async () => {

@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { supabase } from "@/lib/supbaseClient";
+import { supabase } from "@/lib/api/supabaseClient";
 import { prisma } from "@/lib/prismaClient";
 import { Units } from "@prisma/client";
 import { FormSchemaType } from "@/components/SplitForm/schema";

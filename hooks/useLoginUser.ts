@@ -1,5 +1,5 @@
 import { schema } from "@/components/login/schema";
-import { supabase } from "@/lib/supbaseClient";
+import { supabase } from "@/lib/supabaseClient";
 import { useMutation, UseMutationOptions } from "@tanstack/react-query";
 import { z } from "zod";
 
