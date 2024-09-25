@@ -20,12 +20,12 @@ import pluralize from "pluralize";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-interface CurrentProgrammingCardProps {
+interface ActiveProgrammingCardProps {
   split: SplitDeep;
 }
-export const CurrentProgrammingCard = ({
+export const ActiveProgrammingCard = ({
   split,
-}: CurrentProgrammingCardProps) => {
+}: ActiveProgrammingCardProps) => {
   const queryClient = useQueryClient();
   const [isCopied, setIsCopied] = useState(false);
   const { mutate: endSplit, isPending } = useEndSplit({
@@ -65,7 +65,8 @@ export const CurrentProgrammingCard = ({
       >
         <CardHeader className="pb-4">
           <CardTitle className="flex items-center gap-[4px]">
-            <Route className="h-5 w-5" /> Current Programming
+            <Route className="h-5 w-5" />
+            Active Programming
           </CardTitle>
         </CardHeader>
         <CardContent className="text-stone-500 p-4 min-h-[75px]">

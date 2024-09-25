@@ -28,12 +28,17 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (!profile) {
     return res.status(500).json({ error: "Unable to find profile." });
   }
-  // find split with no end set
+
   const split = await prisma.split.findFirst({
     where: {
       profileId: profile.id,
-      end: null,
+      active: true,
     },
+    orderBy: [
+      {
+        created: "desc",
+      },
+    ],
     include: {
       workouts: {
         include: {

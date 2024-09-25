@@ -33,8 +33,26 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     where: {
       profileId: profile.id,
     },
+    orderBy: [
+      {
+        created: "desc",
+      },
+    ],
     include: {
       workouts: {
+        include: {
+          strengthGroups: {
+            include: {
+              sets: {
+                include: {
+                  exercise: true,
+                },
+              },
+            },
+          },
+        },
+      },
+      loggedWorkouts: {
         include: {
           strengthGroups: {
             include: {

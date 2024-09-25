@@ -33,7 +33,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   // find split with no end set
   const payload = req.body as FormSchemaType;
-  const { cadence, splitType, workouts, skipDays } = payload;
+  const { cadence, splitType, workouts, skipDays, name, active } = payload;
   if (!cadence || !splitType || !workouts?.length) {
     return res
       .status(400)
@@ -45,6 +45,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       profileId: profile.id,
       cadence,
       type: splitType,
+      active,
+      name,
       workouts: {
         create: workouts.map((w) => ({
           name: w.name,

@@ -29,27 +29,30 @@ import { SplitDeep } from "@/types";
 import { CADENCE_TO_DESCRIPTION_MAP } from "@/lib/programming/constants";
 import { WorkoutMarker } from "./WorkoutMarker";
 import { CommentRatings } from "./ui/rating";
+import { Badge } from "./ui/badge";
 
 interface SplitTableProps {
   splits?: SplitDeep[];
 }
 export const SplitTable = ({ splits }: SplitTableProps) => {
   return (
-    <Card className="mt-2 mb-[364px] md:mx-4">
+    <Card className="mt-2 mb-[364px] md:mx-4 rounded-sm">
       <CardHeader>
         <CardTitle>Created Programs</CardTitle>
         <CardDescription>View the programs you have created.</CardDescription>
       </CardHeader>
-      <CardContent className="px-0 mx-0">
+      <CardContent className="px-0 mx-0 pb-0">
         <Table>
           <TableHeader>
             <TableRow>
               <TableHead>Name</TableHead>
               <TableHead className="hidden md:table-cell">Workouts</TableHead>
               <TableHead className="hidden md:table-cell">Cadence</TableHead>
+              <TableHead className="hidden md:table-cell">
+                Logged Workouts
+              </TableHead>
               <TableHead className="hidden md:table-cell">Rating</TableHead>
-              <TableHead className="hidden md:table-cell">Started</TableHead>
-              <TableHead className="hidden md:table-cell">Ended</TableHead>
+              <TableHead className="hidden md:table-cell">Created</TableHead>
               <TableHead className="hidden md:table-cell">Notes</TableHead>
               <TableHead>
                 <span className="sr-only">Actions</span>
@@ -59,7 +62,14 @@ export const SplitTable = ({ splits }: SplitTableProps) => {
           <TableBody>
             {splits?.map((split) => (
               <TableRow key={split.id}>
-                <TableCell className="font-medium">SPLIT NAME</TableCell>
+                <TableCell>
+                  <div className="flex items-center gap-[4px]">
+                    {split.name ?? "Some Name"}
+                    {split.active ? (
+                      <Badge variant="outline">Active</Badge>
+                    ) : null}
+                  </div>
+                </TableCell>
                 <TableCell className="hidden md:table-cell">
                   <div className="flex flex-col items-start">
                     <div className="flex items-center gap-[2px]">
@@ -73,13 +83,15 @@ export const SplitTable = ({ splits }: SplitTableProps) => {
                   {CADENCE_TO_DESCRIPTION_MAP[split.type][split.cadence]}
                 </TableCell>
                 <TableCell>
+                  {split?.loggedWorkouts?.length
+                    ? split.loggedWorkouts.length
+                    : "-"}
+                </TableCell>
+                <TableCell>
                   <CommentRatings rating={3} />
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
                   {new Date(split.created).toLocaleDateString()}
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                  {split?.end ? new Date(split.end).toLocaleDateString() : null}
                 </TableCell>
                 <TableCell className="hidden md:table-cell max-w-[300px]">
                   This split was hard, but not too bad. Should be done with more

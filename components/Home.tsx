@@ -5,7 +5,7 @@ import { DataCards } from "./split-cards/DataCards/DataCards";
 import { WorkoutsCard } from "./split-cards/WorkoutsCard";
 import { createWorkoutSchedule } from "@/lib/programming/createWorkoutSchedule";
 import { getWorkoutIndexFromLetter } from "@/lib/programming/getWorkoutIndexFromLetter";
-import { CurrentProgrammingCard } from "./split-cards/CurrentProgrammingCard";
+import { ActiveProgrammingCard } from "./split-cards/ActiveProgrammingCard";
 import { SplitForm } from "./SplitForm/SplitForm";
 
 interface HomeProps {
@@ -28,7 +28,7 @@ export const Home = ({ split }: HomeProps) => {
   return (
     <div className="flex flex-col items-center p-4 mb-[120px] gap-6 max-xl:gap-4 max-md:p-2 mt-4 mb-[365px]">
       <div className="flex gap-6 max-xl:gap-4 xl:flex-row max-xl:flex-col max-xl:w-full max-xl:items-center">
-        <CurrentProgrammingCard split={split} />
+        <ActiveProgrammingCard split={split} />
         <TodayWorkoutCard workout={workoutForToday} />
       </div>
       <div className="flex gap-6 max-xl:gap-4 xl:flex-row max-xl:flex-col max-xl:w-full max-xl:items-center">

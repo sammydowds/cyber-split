@@ -29,7 +29,7 @@ export const SampleSchedule = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
     >
-      <div className="flex flex-col items-center gap-[8px]">
+      <div className="flex flex-col items-center gap-[34px]">
         <div className="flex flex-col w-full max-w-[325px] font-semibold gap-[4px]">
           <div className="flex items-center gap-2">
             <div className="text-xs">Skip:</div>
@@ -84,7 +84,10 @@ export const SampleSchedule = () => {
             </div>
           </div>
         </div>
-        <MonthTable weeks={schedule} />
+        <div className="flex flex-col items-center">
+          <div className="font-bold text-sm">Sample Schedule (1 Month)</div>
+          <MonthTable weeks={schedule} />
+        </div>
       </div>
     </motion.div>
   );

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { formSchema, FormSchemaType } from "./schema";
 import { useNavigation } from "./useNavigation";
-import { STEP_FIELD_VALUES, STEPS } from "./Steps/helpers";
+import { errorCheck, STEPS } from "./Steps/helpers";
 import { cn } from "@/lib/utils";
 import { useEffect } from "react";
 import { useCreateSplit } from "@/hooks/useCreateSplit";
@@ -22,7 +22,6 @@ export function SplitForm() {
   });
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
-    mode: "onBlur",
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
@@ -35,20 +34,21 @@ export function SplitForm() {
     form.setValue("cadence", null);
     form.setValue("muscles", null);
     form.setValue("workouts", []);
-  }, [splitType, form]);
+  }, [splitType]);
 
   useEffect(() => {
     form.setValue("workouts", []);
-  }, [muscles, form]);
+  }, [muscles]);
 
   if (isPending) {
     return null;
   }
 
-  const fieldValueKey = STEP_FIELD_VALUES[step] as keyof FormSchemaType | null;
-  const disable = fieldValueKey ? !form.getValues(fieldValueKey) : false;
+  const disable = errorCheck(step, form.watch());
   const hidePrevious = step === 0;
   const lastStep = step === STEPS.length - 1;
+  console.log(form.formState.errors);
+
   return (
     <div className="flex flex-col justify-between gap-2 w-full relative overflow-hidden overflow-y-scroll">
       <div className="flex h-[50px] items-center p-2 gap-2 w-full bg-white justify-between shadow sticky top-0 z-[1000]">
