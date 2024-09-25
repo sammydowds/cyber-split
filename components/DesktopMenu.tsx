@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { House, User } from "lucide-react";
+import { House, Library, User } from "lucide-react";
 import { DesktopNavBackground } from "./DesktopNavBackground";
 
 interface DesktopMenuProps {
@@ -28,6 +28,17 @@ export const DesktopMenu = ({ tab, setTab }: DesktopMenuProps) => {
         >
           <House className="h-5 w-5" />
           Home
+        </Button>
+        <Button
+          variant="ghost"
+          onClick={() => setTab("library")}
+          className={cn(
+            "hover:bg-stone-100/40 flex justify-start items-center w-[200px] gap-[8px] font-bold",
+            tab === "library" ? "bg-stone-200/70 hover:bg-stone-200/70" : "",
+          )}
+        >
+          <Library className="h-5 w-5" />
+          Library
         </Button>
         <Button
           variant="ghost"

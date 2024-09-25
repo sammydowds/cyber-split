@@ -6,6 +6,8 @@ export const formSchema = z.object({
   muscles: z.string().nullable(),
   workouts: z.array(z.any()).default([]),
   skipDays: z.array(z.number()).default([]),
+  name: z.string(),
+  activeOn: z.string(),
 });
 
 export type FormSchemaType = z.infer<typeof formSchema>;

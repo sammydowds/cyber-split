@@ -2,8 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { FetchOptions, useFetchOptions } from "@/hooks/useFetchOptions";
 import { SplitDeep } from "@/types";
 
-const fetchArchivedSplit = async (options: FetchOptions) => {
-  const res = await fetch("/api/archived-splits", {
+const fetchSplits = async (options: FetchOptions) => {
+  const res = await fetch("/api/splits", {
     method: "GET",
     ...options.options,
   });
@@ -15,12 +15,12 @@ const fetchArchivedSplit = async (options: FetchOptions) => {
   return data?.data;
 };
 
-const useArchivedSplit = () => {
+const useSplits = () => {
   const opts = useFetchOptions();
   return useQuery<SplitDeep[]>({
     queryKey: ["archivedSplit"],
-    queryFn: () => fetchArchivedSplit(opts),
+    queryFn: () => fetchSplits(opts),
   });
 };
 
-export { useArchivedSplit };
+export { useSplits };

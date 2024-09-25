@@ -7,7 +7,6 @@
 datasource db {
   provider  = "postgresql"
   url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
 }
 
 generator client {
@@ -177,8 +176,12 @@ model LoggedWorkout {
 model Split {
   id             String            @id @default(uuid())
   created        DateTime          @default(now())
+  activeOn       DateTime?
+  start          DateTime?
   end            DateTime?
   cadence        String
+  name           String?
+  notes          String?
   type           String
   skipDays       Int[]
   rating         Int?

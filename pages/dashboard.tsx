@@ -10,10 +10,13 @@ import { useProfile } from "@/hooks/useProfile";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { LoaderCircle } from "lucide-react";
+import { useSplits } from "@/hooks/useSplits";
+import { SplitTable } from "@/components/SplitTable";
 
 export default function Dashboard() {
   const { data: split, isPending: loadingActiveSplit } = useActiveSplit();
   const { data: profile, isPending: loadingProfile } = useProfile();
+  const { data: allSplits, isPending: loadingArchivedSplits } = useSplits();
   const [tab, setTab] = useState("home");
   const [showMenu, setShowMenu] = useState(false);
   const router = useRouter();
@@ -42,13 +45,16 @@ export default function Dashboard() {
               open={showMenu}
               setOpen={setShowMenu}
             />
-            {loadingActiveSplit ? (
+            {loadingActiveSplit || loadingArchivedSplits ? (
               <div className="h-[300px] w-full flex items-center justify-center">
                 <LoaderCircle className="animate-spin" />
               </div>
             ) : null}
             {!loadingActiveSplit && tab === "home" ? (
               <Home split={split} />
+            ) : null}
+            {!loadingArchivedSplits && tab === "library" ? (
+              <SplitTable splits={allSplits} />
             ) : null}
             {tab === "profile" ? <Profile profile={profile} /> : null}
           </main>

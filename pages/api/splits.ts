@@ -32,9 +32,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const splits = await prisma.split.findMany({
     where: {
       profileId: profile.id,
-      end: {
-        not: null,
-      },
     },
     include: {
       workouts: {
