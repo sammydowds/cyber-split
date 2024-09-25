@@ -1,4 +1,3 @@
-import { createId } from "@paralleldrive/cuid2";
 import { schema } from "../../components/signup/schema";
 import { supabase } from "@/lib/api/supabaseClient"; 
 import { NextApiRequest, NextApiResponse } from "next";
