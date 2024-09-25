@@ -1,32 +1,24 @@
-import { supabase } from "@/lib/supabaseClient";
 import { useMutation, UseMutationOptions } from "@tanstack/react-query";
 import { schema } from "../components/signup/schema";
 import { z } from "zod";
-import { createId } from "@paralleldrive/cuid2";
 
 type SuccessResponse = boolean;
 
 const signUpUser = async (formData: z.infer<typeof schema>) => {
-  // create an auth user
-  const { data, error: authError } = await supabase.auth.signUp({
-    email: formData.email,
-    password: formData.password,
-  });
-  if (authError || !data?.user?.email) {
-    throw authError;
-  }
-
-  // create a profile with auth user
-  const profileData = await supabase.from("Profile").insert({
-    id: createId(),
-    email: data.user.email,
+  const response = await fetch("/api/sign-up", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
   });
 
-  if (profileData) {
-    return true;
-  } else {
-    return false;
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error);
   }
+
+  return true;
 };
 
 type Options = UseMutationOptions<

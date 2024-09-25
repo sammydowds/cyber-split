@@ -24,12 +24,14 @@ import { useSignUpUser } from "@/hooks/useSignUpUser";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 export default function GetStarted() {
   const router = useRouter();
   const { mutate: createUser, isPending: isCreatingUser } = useSignUpUser({
     onSuccess: () => {
-      router.push("/dashboard");
+      toast.success("Welcome! Account created. Please login.")
+      router.push("/login");
     },
   });
 
