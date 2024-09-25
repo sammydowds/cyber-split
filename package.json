@@ -11,7 +11,7 @@
     "supabase:init": "supabase init",
     "supabase:start": "supabase start",
     "build:scripts": "tsc scripts/*.ts --outDir out/scripts --skipLibCheck",
-    "update:exercises": "node out/scripts/upsertExercises.js"
+    "update:exercises": "node out/scripts/scripts/upsertExercises.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

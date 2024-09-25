@@ -107,13 +107,11 @@ export const SplitTable = ({ splits }: SplitTableProps) => {
           </TableBody>
         </Table>
       </CardContent>
-      {
-        !splits?.length ? (
-            <CardFooter className="text-stone-500 flex items-center justify-center">
-                No programs created
-            </CardFooter>
-        ) : null 
-      }
+      {!splits?.length ? (
+        <CardFooter className="text-stone-500 flex items-center justify-center">
+          No programs created
+        </CardFooter>
+      ) : null}
     </Card>
   );
 };

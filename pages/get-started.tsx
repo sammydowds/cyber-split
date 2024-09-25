@@ -30,7 +30,7 @@ export default function GetStarted() {
   const router = useRouter();
   const { mutate: createUser, isPending: isCreatingUser } = useSignUpUser({
     onSuccess: () => {
-      toast.success("Welcome! Account created. Please login.")
+      toast.success("Welcome! Account created. Please login.");
       router.push("/login");
     },
   });
