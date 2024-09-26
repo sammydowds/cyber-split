@@ -38,7 +38,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       id,
     },
     data: {
-      end: new Date(),
+      active: false,
     },
   });
 

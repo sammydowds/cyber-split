@@ -5,8 +5,8 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
 
@@ -177,8 +177,9 @@ model LoggedWorkout {
 model Split {
   id             String            @id @default(uuid())
   created        DateTime          @default(now())
-  end            DateTime?
+  active         Boolean           @default(false)
   cadence        String
+  name           String?
   type           String
   skipDays       Int[]
   rating         Int?

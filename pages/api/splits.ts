@@ -1,11 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { supabase } from "@/lib/api/supabaseClient";
 import { prisma } from "@/lib/prismaClient";
-import { Units } from "@prisma/client";
-import { FormSchemaType } from "@/components/SplitForm/schema";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method !== "POST") {
+  if (req.method !== "GET") {
     return res.status(405).json({ error: "Method not allowed." });
   }
 
@@ -30,52 +28,39 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (!profile) {
     return res.status(500).json({ error: "Unable to find profile." });
   }
-
   // find split with no end set
-  const payload = req.body as FormSchemaType;
-  const { cadence, splitType, workouts, skipDays, name, active } = payload;
-  if (!cadence || !splitType || !workouts?.length) {
-    return res
-      .status(400)
-      .json({ error: "Unable to build split with incomplete data." });
-  }
-
-  const split = await prisma.split.create({
-    data: {
+  const splits = await prisma.split.findMany({
+    where: {
       profileId: profile.id,
-      cadence,
-      type: splitType,
-      active,
-      name,
-      workouts: {
-        create: workouts.map((w) => ({
-          name: w.name,
-          letterLabel: w.letterLabel,
-          profileId: profile.id,
-          units: Units.IMPERIAL,
-          strengthGroups: {
-            create: w.strengthGroups.map((g: any) => ({
-              ...g,
-              sets: {
-                create: g.sets.map((s: any) => ({
-                  ...s,
-                  exercise: {
-                    connect: { id: s.exercise.id },
-                  },
-                })),
-              },
-            })),
-          },
-        })),
-      },
-      skipDays: skipDays,
     },
+    orderBy: [
+      {
+        created: "desc",
+      },
+    ],
     include: {
       workouts: {
         include: {
           strengthGroups: {
             include: {
-              sets: true,
+              sets: {
+                include: {
+                  exercise: true,
+                },
+              },
+            },
+          },
+        },
+      },
+      loggedWorkouts: {
+        include: {
+          strengthGroups: {
+            include: {
+              sets: {
+                include: {
+                  exercise: true,
+                },
+              },
             },
           },
         },
@@ -83,7 +68,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     },
   });
 
-  return res.status(200).json({ data: split });
+  return res.status(200).json({ data: splits });
 };
 
 export default handler;

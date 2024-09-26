@@ -24,10 +24,6 @@ export const Profile = ({ profile }: ProfileProps) => {
               <div>Email</div>
               <div className="font-normal">{profile?.email}</div>
             </div>
-            <div className="flex flex-col gap-[4px]">
-              <div>Total Workouts</div>
-              <div className="font-normal">{profile?.totalWorkouts}</div>
-            </div>
           </div>
         </CardContent>
       </DashCard>

@@ -1,0 +1,37 @@
+id,name,mediaUrl
+1001,Hi-Lo Cable Pulley,hi_lo_cable_machine.png
+1002,Bodyweight,
+1003,Smith Machine,smith_machine.png
+1004,Cable Crossover,cable_crossover.png
+1005,Fly Machine,fly_machine.png
+1006,EZ-Bar,ez_bar.png
+1007,Seated Leg Curl Machine,seated_leg_curl_machine.png
+1008,Barbell,barbell.png
+1009,Standing Leg Curl Machine,
+1010,Dumbbells,dumbbells.png
+1011,Ab Crunch Machine,ab_crunch_machine.png
+1012,Vertical Bench,vertical_bench.png
+1013,Lat Pulldown Cable,lat_pulldown_machine.png
+1014,Landmine Connector,
+1015,Leg Extension Machine,leg_extension_machine.png
+1016,Hack Squat Bar,
+1017,Squat Rack,squat_rack.png
+1018,Leg Press Machine,seated_leg_press.png
+1019,Glute Kickback Machine,glute_kickback_machine.png
+1020,Kettlebell,
+1021,Exercise Ball,stability_ball.png
+1022,Band,band.png
+1023,Adjustable Bench,adjustable_bench.png
+1024,Barbell Bench,barbell_bench.png
+1025,Incline Barbell Bench,incline_barbell_bench.png
+1026,Adductor Machine,adductor_machine.png
+1027,Abductor Machine,abductor_machine.png
+1028,Cable Row,cable_row.png
+1029,Stair Stepper,stair_stepper.png
+1030,Treadmill,treadmill.png
+1031,Stationary Cycling,cycling.png
+1032,Rowing Machine,rowing_machine.png
+1033,Seated Back Extension,seated_back_extension.png
+1034,Jump Rope,jump_rope.png
+1035,Assisted Machine,assisted_machine.png
+1036,Chest Press Machine,chest_press.png

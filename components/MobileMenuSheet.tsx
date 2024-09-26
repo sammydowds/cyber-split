@@ -44,6 +44,19 @@ export const MobileMenuSheet = ({
           variant="link"
           className={cn(
             "text-lg p-0 font-bold",
+            tab === "library" ? "text-black" : "text-stone-500",
+          )}
+          onClick={() => {
+            setTab("library");
+            setOpen(false);
+          }}
+        >
+          Library
+        </Button>
+        <Button
+          variant="link"
+          className={cn(
+            "text-lg p-0 font-bold",
             tab === "profile" ? "text-black" : "text-stone-500",
           )}
           onClick={() => {

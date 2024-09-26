@@ -3,7 +3,7 @@ import { supabase } from "@/lib/api/supabaseClient";
 import { prisma } from "@/lib/prismaClient";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method !== "GET") {
+  if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed." });
   }
 
@@ -29,31 +29,20 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(500).json({ error: "Unable to find profile." });
   }
   // find split with no end set
-  const splits = await prisma.split.findMany({
+  const payload = req.body as { id: string };
+  const { id } = payload;
+
+  await prisma.split.update({
     where: {
       profileId: profile.id,
-      end: {
-        not: null,
-      },
+      id,
     },
-    include: {
-      workouts: {
-        include: {
-          strengthGroups: {
-            include: {
-              sets: {
-                include: {
-                  exercise: true,
-                },
-              },
-            },
-          },
-        },
-      },
+    data: {
+      active: true,
     },
   });
 
-  return res.status(200).json({ data: splits });
+  return res.status(200).json({ success: true });
 };
 
 export default handler;

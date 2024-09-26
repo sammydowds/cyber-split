@@ -1,5 +1,5 @@
 import { schema } from "../../components/signup/schema";
-import { supabase } from "@/lib/api/supabaseClient"; 
+import { supabase } from "@/lib/api/supabaseClient";
 import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "@/lib/prismaClient";
 
@@ -26,7 +26,9 @@ export default async function handler(
       });
 
       if (!profile) {
-        return res.status(400).json({ error: "We had an issue signing you up."  });
+        return res
+          .status(400)
+          .json({ error: "We had an issue signing you up." });
       }
 
       return res.status(200).json({ success: true });

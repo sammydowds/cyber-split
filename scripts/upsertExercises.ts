@@ -1,16 +1,11 @@
-import { createClient, SupabaseClient } from "@supabase/supabase-js";
 const fs = require("fs");
 const dotEnv = require("dotenv");
 const csv = require("csv-parser");
 const path = require("path");
 import { Exercise } from "@prisma/client";
+import { prisma } from "../lib/prismaClient";
 
-dotEnv.config({ path: path.resolve(".env") });
-
-// Initialize Supabase client
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
-const supabase: SupabaseClient = createClient(supabaseUrl, supabaseKey);
+dotEnv.config({ path: path.resolve(".env.local") });
 
 // Function to read CSV file
 function readCsvFile(filePath: string): Promise<Exercise[]> {
@@ -47,21 +42,24 @@ function prepareDataForUpsert(exercises: any[]): Exercise[] {
 
 // Main function to run the script
 async function updateExercises() {
+  let results;
   try {
     const exercises = await readCsvFile("data/exercises.csv");
     const upsertData = prepareDataForUpsert(exercises);
-    const { data, error } = await supabase
-      .from("Exercise")
-      .upsert(upsertData)
-      .select();
+    const upsertPromises = upsertData.map((exercise) =>
+      prisma.exercise.upsert({
+        where: { id: exercise.id }, // Assuming 'id' is the unique identifier
+        update: exercise,
+        create: exercise,
+      }),
+    );
 
-    if (error) {
-      console.error("Error occurred during upsert operation:", error);
-    } else {
-      console.log(`Successfully upserted ${data?.length} records.`);
-    }
+    results = await Promise.all(upsertPromises);
+    console.log(`Successfully upserted ${results.length} records.`);
   } catch (error) {
     console.error("Error:", error);
+  } finally {
+    await prisma.$disconnect(); // Ensure Prisma client disconnects
   }
 }
 

@@ -31,7 +31,7 @@ export const Schedule = () => {
       transition={{ duration: 0.8 }}
     >
       <h2 className="font-bold tracking-tighter text-xl">
-        What schedule would you like?
+        What weekly schedule would you like?
       </h2>
       <div>
         <FormField
@@ -71,7 +71,7 @@ export const Schedule = () => {
           )}
         />
       </div>
-      <div className="w-full h-full md:w-[500px]">
+      <div className="w-full h-full flex flex-col gap-2 items-center md:w-[500px]">
         <SampleSchedule />
       </div>
     </motion.div>

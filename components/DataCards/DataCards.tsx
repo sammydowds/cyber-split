@@ -1,6 +1,5 @@
-import { SplitDeep } from "@/types";
+import { DeepLoggedWorkout, SplitDeep } from "@/types";
 import { ExerciseChart } from "./ExerciseChart";
-import { useSplitChartData, Y_LABEL } from "@/hooks/useSplitChartData";
 import {
   CardContent,
   CardDescription,
@@ -9,12 +8,13 @@ import {
 } from "@/components/ui/card";
 import { ChartNoAxesCombined } from "lucide-react";
 import { DashCard } from "@/components/DashCard";
+import { useExerciseData, Y_LABEL } from "@/hooks/useExerciseData";
 
 interface DataProps {
-  split: SplitDeep;
+  workouts: DeepLoggedWorkout[];
 }
-export const DataCards = ({ split }: DataProps) => {
-  const { data } = useSplitChartData(split);
+export const DataCards = ({ workouts }: DataProps) => {
+  const { data } = useExerciseData(workouts);
 
   return (
     <DashCard className="xl:w-[1012px] max-xl:w-[500px] max-md:w-full">
@@ -22,9 +22,7 @@ export const DataCards = ({ split }: DataProps) => {
         <CardTitle className="flex items-center gap-[4px]">
           <ChartNoAxesCombined className="h-5 w-5" /> Data
         </CardTitle>
-        <CardDescription>
-          Recorded from the current programming.
-        </CardDescription>
+        <CardDescription>Recorded from logged workouts.</CardDescription>
       </CardHeader>
       <CardContent className="px-0">
         <div className="flex gap-4 h-full w-full overflow-hidden overflow-x-auto ">

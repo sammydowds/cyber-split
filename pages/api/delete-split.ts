@@ -3,7 +3,7 @@ import { supabase } from "@/lib/api/supabaseClient";
 import { prisma } from "@/lib/prismaClient";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method !== "GET") {
+  if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed." });
   }
 
@@ -28,48 +28,18 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (!profile) {
     return res.status(500).json({ error: "Unable to find profile." });
   }
+  // find split with no end set
+  const payload = req.body as { id: string };
+  const { id } = payload;
 
-  const split = await prisma.split.findFirst({
+  await prisma.split.delete({
     where: {
       profileId: profile.id,
-      active: true,
-    },
-    orderBy: [
-      {
-        created: "desc",
-      },
-    ],
-    include: {
-      workouts: {
-        include: {
-          strengthGroups: {
-            include: {
-              sets: {
-                include: {
-                  exercise: true,
-                },
-              },
-            },
-          },
-        },
-      },
-      loggedWorkouts: {
-        include: {
-          strengthGroups: {
-            include: {
-              sets: {
-                include: {
-                  exercise: true,
-                },
-              },
-            },
-          },
-        },
-      },
+      id,
     },
   });
 
-  return res.status(200).json({ data: split });
+  return res.status(200).json({ success: true });
 };
 
 export default handler;
