@@ -7,6 +7,7 @@ import {
   MoreHorizontal,
   OctagonX,
   Table as TableIcon,
+  Trash,
   X,
   Zap,
 } from "lucide-react";
@@ -45,6 +46,7 @@ import { useDeactivateSplit } from "@/hooks/useDeactivateSplit";
 import { useQueryClient } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { useActivateSplit } from "@/hooks/useActivateSplit";
+import { useDeleteSplit } from "@/hooks/useDeleteSplit";
 
 interface SplitTableProps {
   splits?: SplitDeep[];
@@ -79,8 +81,14 @@ export const SplitTable = ({ splits, oneSplitIsActive }: SplitTableProps) => {
       queryClient.invalidateQueries({ queryKey: ["allSplits"] });
     },
   });
+  const { mutate: deleteSplit } = useDeleteSplit({
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["activeSplit"] });
+      queryClient.invalidateQueries({ queryKey: ["allSplits"] });
+    },
+  });
   return (
-    <div className="flex flex-col items-center p-4 mb-[120px] gap-6 max-xl:gap-4 max-md:p-0 mt-4 mb-[365px]">
+    <div className="flex items-start p-4 mb-[120px] gap-6 max-xl:gap-4 max-md:px-0 mb-[365px] md:flex-wrap max-md:flex-col">
       <Dialog onOpenChange={setShowModal} open={showModal}>
         <DialogClose className="bg-white" />
         <DialogContent className="overflow-y-auto max-h-screen border-none px-0 py-[60px]">
@@ -110,9 +118,7 @@ export const SplitTable = ({ splits, oneSplitIsActive }: SplitTableProps) => {
                 <TableHead className="hidden md:table-cell font-bold">
                   Cadence
                 </TableHead>
-                <TableHead className="font-bold">
-                  Logged Workouts
-                </TableHead>
+                <TableHead className="font-bold">Logged Workouts</TableHead>
                 <TableHead className="hidden md:table-cell font-bold">
                   Created
                 </TableHead>
@@ -223,6 +229,15 @@ export const SplitTable = ({ splits, oneSplitIsActive }: SplitTableProps) => {
                               Activate
                             </DropdownMenuItem>
                           )}
+                          <DropdownMenuItem
+                            className="flex items-center gap-[4px] text-red-400"
+                            onClick={() => {
+                              deleteSplit({ id: split.id });
+                            }}
+                          >
+                            <Trash size={16} />
+                            Delete
+                          </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
                     </TableCell>
@@ -233,8 +248,8 @@ export const SplitTable = ({ splits, oneSplitIsActive }: SplitTableProps) => {
           </Table>
         </CardContent>
         {!splits?.length ? (
-          <CardFooter className="text-stone-500 flex items-center justify-center">
-            No programs created
+          <CardFooter className="text-stone-500 flex items-center justify-center p-2 text-sm">
+            No programs
           </CardFooter>
         ) : null}
       </Card>

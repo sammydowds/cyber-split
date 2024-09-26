@@ -10,14 +10,21 @@ import { cn } from "@/lib/utils";
 import { useEffect } from "react";
 import { useCreateSplit } from "@/hooks/useCreateSplit";
 import { useQueryClient } from "@tanstack/react-query";
+import { ArrowLeft } from "lucide-react";
 
-export function SplitForm() {
+interface SplitFormProps {
+  onSuccess: () => void;
+  onClickExit: () => void;
+}
+export function SplitForm({ onSuccess, onClickExit }: SplitFormProps) {
   const { step, next, previous } = useNavigation();
   const queryClient = useQueryClient();
   const { mutate: createSplit, isPending } = useCreateSplit({
     onSuccess: (data) => {
       queryClient.setQueryData(["activeSplit"], data?.data);
       queryClient.invalidateQueries({ queryKey: ["activeSplit"] });
+      queryClient.invalidateQueries({ queryKey: ["allSplits"] });
+      onSuccess?.();
     },
   });
   const form = useForm<FormSchemaType>({
@@ -47,12 +54,21 @@ export function SplitForm() {
   const disable = errorCheck(step, form.watch());
   const hidePrevious = step === 0;
   const lastStep = step === STEPS.length - 1;
-  console.log(form.formState.errors);
 
   return (
     <div className="flex flex-col justify-between gap-2 w-full relative overflow-hidden overflow-y-scroll">
       <div className="flex h-[50px] items-center p-2 gap-2 w-full bg-white justify-between shadow sticky top-0 z-[1000]">
-        <div className="text-sm font-bold">Program Builder</div>
+        <div className="flex items-center text-sm font-bold gap-[4px]">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="p-0 h-[24px] w-[24px] text-stone-700"
+            onClick={() => onClickExit()}
+          >
+            <ArrowLeft size={18} />
+          </Button>
+          <div>Program Builder</div>
+        </div>
         <div>
           <Button
             className={cn(hidePrevious ? "hidden" : "")}

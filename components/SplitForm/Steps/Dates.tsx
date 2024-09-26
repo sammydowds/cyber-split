@@ -1,7 +1,6 @@
 import { useFormContext } from "react-hook-form";
 import { motion } from "framer-motion";
-import { DatePickerWithRange } from "@/components/DateRangePicker";
-import { Archive, Play } from "lucide-react";
+import { Library, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const Dates = () => {
@@ -28,11 +27,11 @@ export const Dates = () => {
     >
       <div className="flex flex-col gap-[8px]">
         <h2 className="font-bold tracking-tighter text-xl max-w-[345px]">
-          Would you like to start this program now?
+          Would you like to start this program immediately?
         </h2>
         <p className="text-stone-600">
-          By selecting start later, the program will appear in your library but
-          not as active.
+          By selecting activate later, the program will appear in your library
+          but not as active.
         </p>
       </div>
       <div className="flex flex-col gap-2">
@@ -43,7 +42,8 @@ export const Dates = () => {
             active ? "" : "border-stone-300 text-stone-400",
           )}
         >
-          <Play /> Start Now
+          <Zap size={18} fill="#86efac" strokeWidth={0} />
+          Activate Now
         </button>
         <button
           onClick={handleClickStartLater}
@@ -52,7 +52,8 @@ export const Dates = () => {
             active ? "border-stone-300 text-stone-400" : "",
           )}
         >
-          <Archive /> Start Later
+          <Library size={18} />
+          Activate Later
         </button>
       </div>
     </motion.div>
