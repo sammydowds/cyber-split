@@ -16,7 +16,7 @@ import { SplitTable } from "@/components/SplitTable";
 export default function Dashboard() {
   const { data: split, isPending: loadingActiveSplit } = useActiveSplit();
   const { data: profile, isPending: loadingProfile } = useProfile();
-  const { data: allSplits, isPending: loadingArchivedSplits } = useSplits();
+  const { data: allSplits, isPending: loadingAllSplits } = useSplits();
   const [tab, setTab] = useState("home");
   const [showMenu, setShowMenu] = useState(false);
   const router = useRouter();
@@ -45,7 +45,7 @@ export default function Dashboard() {
               open={showMenu}
               setOpen={setShowMenu}
             />
-            {loadingActiveSplit || loadingArchivedSplits ? (
+            {loadingActiveSplit && tab === "home" ? (
               <div className="h-[300px] w-full flex items-center justify-center">
                 <LoaderCircle className="animate-spin" />
               </div>
@@ -53,7 +53,12 @@ export default function Dashboard() {
             {!loadingActiveSplit && tab === "home" ? (
               <Home split={split} />
             ) : null}
-            {!loadingArchivedSplits && tab === "library" ? (
+            {loadingAllSplits && tab === "library" ? (
+              <div className="h-[300px] w-full flex items-center justify-center">
+                <LoaderCircle className="animate-spin" />
+              </div>
+            ) : null}
+            {!loadingAllSplits && tab === "library" ? (
               <SplitTable splits={allSplits} oneSplitIsActive={!!split} />
             ) : null}
             {tab === "profile" ? <Profile profile={profile} /> : null}

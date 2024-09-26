@@ -2,7 +2,6 @@ import { SplitDeep } from "@/types";
 import { SplitForm } from "./SplitForm/SplitForm";
 import { ActiveSplitCard } from "./split-cards/ActiveSplitCard";
 import { useState } from "react";
-import { DashCard } from "./DashCard";
 import {
   Card,
   CardContent,
@@ -10,12 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
-import {
-  BookOpenText,
-  MessageCircleIcon,
-  MessageCircleWarningIcon,
-  MessageSquarePlus,
-} from "lucide-react";
+import { MessageCircleWarningIcon, MessageSquarePlus } from "lucide-react";
 import { Button } from "./ui/button";
 
 interface HomeProps {

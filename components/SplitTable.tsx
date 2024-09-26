@@ -88,7 +88,7 @@ export const SplitTable = ({ splits, oneSplitIsActive }: SplitTableProps) => {
     },
   });
   return (
-    <div className="flex items-start p-4 mb-[120px] gap-6 max-xl:gap-4 max-md:px-0 mb-[365px] md:flex-wrap max-md:flex-col">
+    <div className="flex items-start p-4 mb-[120px] max-xl:gap-4 max-md:px-0 mb-[365px] md:flex-wrap max-md:flex-col">
       <Dialog onOpenChange={setShowModal} open={showModal}>
         <DialogClose className="bg-white" />
         <DialogContent className="overflow-y-auto max-h-screen border-none px-0 py-[60px]">
