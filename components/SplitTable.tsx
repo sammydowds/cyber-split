@@ -25,6 +25,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -47,6 +48,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { useActivateSplit } from "@/hooks/useActivateSplit";
 import { useDeleteSplit } from "@/hooks/useDeleteSplit";
+import { Separator } from "./ui/separator";
 
 interface SplitTableProps {
   splits?: SplitDeep[];
@@ -88,17 +90,17 @@ export const SplitTable = ({ splits, oneSplitIsActive }: SplitTableProps) => {
     },
   });
   return (
-    <div className="flex items-start p-4 mb-[120px] max-xl:gap-4 max-md:px-0 mb-[365px] md:flex-wrap max-md:flex-col">
+    <div className="flex items-start p-4 max-md:px-0 mb-[365px] md:flex-wrap max-md:flex-col">
       <Dialog onOpenChange={setShowModal} open={showModal}>
         <DialogClose className="bg-white" />
         <DialogContent className="overflow-y-auto max-h-screen border-none px-0 py-[60px]">
           {selectedSpit ? <SplitDetailsCard split={selectedSpit} /> : null}
-          <DialogClose className="absolute p-2 right-2 top-2 max-md:top-12 bg-stone-300 rounded-full opacity-90 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+          <DialogClose className="absolute p-2 right-4 top-12 bg-stone-300 rounded-full opacity-90 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
             <X size={24} />
           </DialogClose>
         </DialogContent>
       </Dialog>
-      <Card className="w-full max-w-[900px] overflow-hidden rounded-[6px]">
+      <Card className="w-full max-w-[900px] overflow-hidden rounded-[6px] max-md:rounded-none">
         <CardHeader className="bg-stone-100/80 py-[6px] px-[8px]">
           <CardTitle className="text-xs text-stone-700 flex items-center justify-between">
             <div className="flex items-center gap-[4px]">
@@ -118,7 +120,9 @@ export const SplitTable = ({ splits, oneSplitIsActive }: SplitTableProps) => {
                 <TableHead className="hidden md:table-cell font-bold">
                   Cadence
                 </TableHead>
-                <TableHead className="font-bold">Logged Workouts</TableHead>
+                <TableHead className="hidden md:table-cell font-bold">
+                  Logged Workouts
+                </TableHead>
                 <TableHead className="hidden md:table-cell font-bold">
                   Created
                 </TableHead>
@@ -132,10 +136,12 @@ export const SplitTable = ({ splits, oneSplitIsActive }: SplitTableProps) => {
                 return (
                   <TableRow key={split.id}>
                     <TableCell>
-                      <div className="flex items-center gap-[4px]">
+                      <div className="flex items-center gap-[4px] font-bold">
                         {split.name ?? "Some Name"}
                         {split.active ? (
-                          <Badge variant="outline">Active</Badge>
+                          <Badge variant="outline" className="font-normal">
+                            Active
+                          </Badge>
                         ) : null}
                       </div>
                     </TableCell>
@@ -151,7 +157,7 @@ export const SplitTable = ({ splits, oneSplitIsActive }: SplitTableProps) => {
                     <TableCell className="hidden md:table-cell">
                       {CADENCE_TO_DESCRIPTION_MAP[split.type][split.cadence]}
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="hidden md:table-cell">
                       {split?.loggedWorkouts?.length
                         ? split.loggedWorkouts.length
                         : "-"}
@@ -171,8 +177,12 @@ export const SplitTable = ({ splits, oneSplitIsActive }: SplitTableProps) => {
                             <span className="sr-only">Toggle menu</span>
                           </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
+                        <DropdownMenuContent
+                          align="end"
+                          className="min-w-[200px]"
+                        >
                           <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                          <DropdownMenuSeparator />
                           <DropdownMenuItem
                             className="flex items-center gap-[4px]"
                             onClick={() => {

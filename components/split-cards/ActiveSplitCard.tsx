@@ -37,7 +37,6 @@ export const ActiveSplitCard = ({ split }: ActiveSplitCardProps) => {
           <Button
             variant="outline"
             className="font-bold bg-white flex items-center gap-[4px]"
-            size="sm"
             onClick={() => deativateSplit({ id: split.id })}
           >
             <OctagonX size={14} className="text-red-500" />
