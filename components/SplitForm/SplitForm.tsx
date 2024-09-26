@@ -38,9 +38,9 @@ export function SplitForm({ onSuccess, onClickExit }: SplitFormProps) {
   const { muscles, splitType } = useWatch({ control: form.control });
 
   useEffect(() => {
-    form.setValue("cadence", null);
-    form.setValue("muscles", null);
-    form.setValue("workouts", []);
+    form.resetField("cadence");
+    form.resetField("muscles");
+    form.resetField("workouts");
   }, [splitType]);
 
   useEffect(() => {
