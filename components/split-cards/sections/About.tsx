@@ -21,7 +21,7 @@ export const About = ({ split }: { split: SplitDeep }) => {
   };
   return (
     <div className="flex flex-col px-4">
-      <div className="flex items-center gap-2 font-bold text-2xl max-md:text-xl justify-between">
+      <div className="flex items-center gap-2 font-bold text-xl justify-between">
         <div>{split.name}</div>
       </div>
       <div className="flex items-center gap-[4px] text-xs text-stone-500">
