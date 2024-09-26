@@ -1,18 +1,14 @@
 import { SplitDeep } from "@/types";
-import { TodayWorkoutCard } from "./split-cards/TodayWorkoutCard";
-import { ScheduleCard } from "./split-cards/ScheduleCard";
-import { DataCards } from "./split-cards/DataCards/DataCards";
-import { WorkoutsCard } from "./split-cards/WorkoutsCard";
-import { createWorkoutSchedule } from "@/lib/programming/createWorkoutSchedule";
-import { getWorkoutIndexFromLetter } from "@/lib/programming/getWorkoutIndexFromLetter";
-import { ActiveProgrammingCard } from "./split-cards/ActiveProgrammingCard";
 import { SplitForm } from "./SplitForm/SplitForm";
+import { ActiveSplitCard } from "./split-cards/ActiveSplitCard";
+import { useState } from "react";
 
 interface HomeProps {
   split?: SplitDeep;
 }
 export const Home = ({ split }: HomeProps) => {
-  if (!split) {
+  const [showCreateProgram, setShowCreateProgram] = useState(false)
+  if (showCreateProgram) {
     return (
       <div className="flex flex-col items-center w-full h-full bg-white bg-gradient-to-b from-white from-30% via-stone-50 to-yellow-100">
         <SplitForm />
@@ -20,22 +16,9 @@ export const Home = ({ split }: HomeProps) => {
     );
   }
 
-  const { schedule, todaysWorkout } = createWorkoutSchedule(split);
-  const index = getWorkoutIndexFromLetter(todaysWorkout);
-  const workoutForToday =
-    typeof index === "number" ? split.workouts[index] : undefined;
-
   return (
-    <div className="flex flex-col items-center p-4 mb-[120px] gap-6 max-xl:gap-4 max-md:p-2 mt-4 mb-[365px]">
-      <div className="flex gap-6 max-xl:gap-4 xl:flex-row max-xl:flex-col max-xl:w-full max-xl:items-center">
-        <ActiveProgrammingCard split={split} />
-        <TodayWorkoutCard workout={workoutForToday} />
-      </div>
-      <div className="flex gap-6 max-xl:gap-4 xl:flex-row max-xl:flex-col max-xl:w-full max-xl:items-center">
-        <ScheduleCard schedule={schedule} split={split} />
-        <WorkoutsCard split={split} />
-      </div>
-      <DataCards split={split} />
+    <div className="flex flex-col items-center p-4 mb-[120px] gap-6 max-xl:gap-4 max-md:p-0 mt-4 mb-[365px]">
+      {split ? <ActiveSplitCard split={split} /> : null}
     </div>
   );
 };

@@ -18,7 +18,7 @@ const fetchSplits = async (options: FetchOptions) => {
 const useSplits = () => {
   const opts = useFetchOptions();
   return useQuery<SplitDeep[]>({
-    queryKey: ["archivedSplit"],
+    queryKey: ["allSplits"],
     queryFn: () => fetchSplits(opts),
   });
 };

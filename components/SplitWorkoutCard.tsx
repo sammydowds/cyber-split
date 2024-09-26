@@ -16,9 +16,8 @@ import { cn } from "@/lib/utils";
 import { StrengthGroup } from "@prisma/client";
 import { SwapGroupDropdown } from "./SwapGroupDropdown";
 import { FormSchemaType } from "./SplitForm/schema";
-import { motion } from "framer-motion";
 import toast from "react-hot-toast";
-import { ArrowRight, ArrowRightLeft, MoveRight } from "lucide-react";
+import { ArrowRightLeft } from "lucide-react";
 
 interface WorkoutCardProps {
   split: Partial<SplitDeep>;
@@ -95,7 +94,7 @@ export const SplitWorkoutCard = ({
   const estTimeMins = estimateTimeOfWorkout(workout);
 
   return (
-    <Card className="w-[290px] overflow-hidden shadow-sm rounded-[2px]">
+    <Card className="w-[290px] overflow-hidden shadow-sm rounded-lg">
       <CardHeader className="p-2">
         <CardTitle className="flex justify-between items-center gap-2 pr-4">
           <div className="flex gap-[6px] font-bold text-sm tracking-tighter">

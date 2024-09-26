@@ -15,7 +15,7 @@ interface LoadingWorkoutCardProps {
 }
 export const LoadingWorkoutCard = ({ hideCta }: LoadingWorkoutCardProps) => {
   return (
-    <Card className="w-[290px] overflow-hidden shadow-sm rounded-[2px]">
+    <Card className="w-[290px] overflow-hidden shadow-sm rounded-lg">
       <CardHeader className="p-0">
         <CardTitle>
           <Skeleton className="w-[45%] h-[34px] rounded-sm m-2" />

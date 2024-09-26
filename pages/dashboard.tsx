@@ -54,7 +54,7 @@ export default function Dashboard() {
               <Home split={split} />
             ) : null}
             {!loadingArchivedSplits && tab === "library" ? (
-              <SplitTable splits={allSplits} />
+              <SplitTable splits={allSplits} oneSplitIsActive={!!split} />
             ) : null}
             {tab === "profile" ? <Profile profile={profile} /> : null}
           </main>

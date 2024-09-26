@@ -1,25 +1,14 @@
 import { useRouter } from "next/router";
 import { useSplit } from "@/hooks/useSplit";
-import { WorkoutsCard } from "@/components/split-cards/WorkoutsCard";
-import { ScheduleCard } from "@/components/split-cards/ScheduleCard";
-import { createWorkoutSchedule } from "@/lib/programming/createWorkoutSchedule";
 import { DashCard } from "@/components/DashCard";
 import Link from "next/link";
-import { SquareArrowUpRight, Wrench } from "lucide-react";
-import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  CADENCE_TO_DESCRIPTION_MAP,
-  SPLIT_TYPE_TO_DESCRIPTION,
-} from "@/lib/programming/constants";
-import { SPLIT_TYPES } from "@/lib/programming/enums";
-import { motion } from "framer-motion";
+import { Wrench } from "lucide-react";
+import { PublicSplitDetailsCard } from "@/components/split-cards/PublicSplitDetailsCard";
 
 export default function ShareSplit() {
   const router = useRouter();
   const splitId = router?.query?.id as string;
   const { data, isPending } = useSplit(splitId);
-
-  const result = data ? createWorkoutSchedule(data) : undefined;
 
   return (
     <main>
@@ -36,46 +25,17 @@ export default function ShareSplit() {
           </div>
         ) : null}
         {data ? (
-          <div className="flex flex-col gap-4 my-4 max-md:w-full max-md:px-2">
-            <DashCard className="w-[500px] max-md:w-full overflow-hidden">
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-              >
-                <CardHeader className="pb-4">
-                  <CardTitle className="flex items-center gap-[4px]">
-                    <SquareArrowUpRight className="h-6 w-6" />
-                    Split Details
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="text-stone-500 pb-4">
-                  <span className="font-semibold text-black">
-                    {SPLIT_TYPE_TO_DESCRIPTION[data.type as SPLIT_TYPES]}
-                  </span>{" "}
-                  with a cadence of{" "}
-                  <span className="font-semibold text-black">
-                    {CADENCE_TO_DESCRIPTION_MAP[data.type][
-                      data.cadence
-                    ].toLowerCase()}
-                  </span>{" "}
-                  .
-                </CardContent>
-              </motion.div>
-            </DashCard>
-            <WorkoutsCard split={data} hideCta />
-            <DashCard className="border-[1px] bg-white p-4 font-bold flex gap-2 justify-between">
+          <div className="flex flex-col gap-4 my-4 max-md:w-full">
+            <DashCard className="border-[1px] bg-white p-4 m-[4px] font-bold flex gap-2 justify-between">
               <div className="flex items-center gap-[6px] text-stone-600">
                 <Wrench size={20} />
                 Want to build your own?
               </div>
-
               <Link href="/get-started" className="underline">
                 Sign Up
               </Link>
             </DashCard>
-            {result ? (
-              <ScheduleCard split={data} schedule={result?.schedule} />
-            ) : null}
+            <PublicSplitDetailsCard split={data} />
           </div>
         ) : null}
       </div>
