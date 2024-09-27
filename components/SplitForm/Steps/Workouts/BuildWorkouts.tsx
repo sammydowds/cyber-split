@@ -67,7 +67,7 @@ export const BuildWorkouts = () => {
         <Repeat2 strokeWidth={1.5} />
       </Button>
       <div className="overflow-x-auto w-full">
-        <div className="flex max-md:justify-center space-x-4 px-4 py-2 w-max min-w-full">
+        <div className="flex max-md:justify-center space-x-4 px-4 py-2 w-max mb-4 min-w-full">
           {isPending ? (
             <>
               <LoadingWorkoutCard hideCta />

@@ -12,7 +12,7 @@ export const Workouts = ({ split }: { split: SplitDeep }) => {
       </div>
 
       <div className="overflow-x-auto">
-        <div className="flex w-max space-x-2 px-4">
+        <div className="flex w-max space-x-4 px-4 pt-2 pb-6">
           {split.workouts?.map((_, idx: number) => {
             return (
               <SplitWorkoutCard
