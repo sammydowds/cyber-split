@@ -26,6 +26,7 @@ export default function ShareSplit() {
         ) : null}
         {data ? (
           <div className="flex flex-col gap-4 my-4 max-md:w-full">
+            <PublicSplitDetailsCard split={data} />
             <DashCard className="border-[1px] bg-white p-4 m-[4px] font-bold flex gap-2 justify-between">
               <div className="flex items-center gap-[6px] text-stone-600">
                 <Wrench size={20} />
@@ -35,7 +36,6 @@ export default function ShareSplit() {
                 Sign Up
               </Link>
             </DashCard>
-            <PublicSplitDetailsCard split={data} />
           </div>
         ) : null}
       </div>
