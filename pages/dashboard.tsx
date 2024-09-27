@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 import { LoaderCircle } from "lucide-react";
 import { useSplits } from "@/hooks/useSplits";
 import { SplitTable } from "@/components/SplitTable";
+import { SplitForm } from "@/components/SplitForm/SplitForm";
 
 export default function Dashboard() {
   const { data: split, isPending: loadingActiveSplit } = useActiveSplit();
@@ -20,6 +21,7 @@ export default function Dashboard() {
   const [tab, setTab] = useState("home");
   const [showMenu, setShowMenu] = useState(false);
   const router = useRouter();
+  const [showCreateProgram, setShowCreateProgram] = useState(false);
 
   if (!profile && !loadingProfile) {
     toast.error("You have been logged out.");
@@ -45,23 +47,41 @@ export default function Dashboard() {
               open={showMenu}
               setOpen={setShowMenu}
             />
-            {loadingActiveSplit && tab === "home" ? (
-              <div className="h-[300px] w-full flex items-center justify-center">
-                <LoaderCircle className="animate-spin" />
+            {showCreateProgram ? (
+              <div className="flex flex-col items-center w-full h-full bg-white bg-gradient-to-b from-white from-30% via-stone-50 to-yellow-100">
+                <SplitForm
+                  onSuccess={() => setShowCreateProgram(false)}
+                  onClickExit={() => setShowCreateProgram(false)}
+                />
               </div>
-            ) : null}
-            {!loadingActiveSplit && tab === "home" ? (
-              <Home split={split} />
-            ) : null}
-            {loadingAllSplits && tab === "library" ? (
-              <div className="h-[300px] w-full flex items-center justify-center">
-                <LoaderCircle className="animate-spin" />
-              </div>
-            ) : null}
-            {!loadingAllSplits && tab === "library" ? (
-              <SplitTable splits={allSplits} oneSplitIsActive={!!split} />
-            ) : null}
-            {tab === "profile" ? <Profile profile={profile} /> : null}
+            ) : (
+              <>
+                {loadingActiveSplit && tab === "home" ? (
+                  <div className="h-[300px] w-full flex items-center justify-center">
+                    <LoaderCircle className="animate-spin" />
+                  </div>
+                ) : null}
+                {!loadingActiveSplit && tab === "home" ? (
+                  <Home
+                    split={split}
+                    onClickCreateProgram={setShowCreateProgram}
+                  />
+                ) : null}
+                {loadingAllSplits && tab === "library" ? (
+                  <div className="h-[300px] w-full flex items-center justify-center">
+                    <LoaderCircle className="animate-spin" />
+                  </div>
+                ) : null}
+                {!loadingAllSplits && tab === "library" ? (
+                  <SplitTable
+                    splits={allSplits}
+                    oneSplitIsActive={!!split}
+                    onClickCreateProgram={setShowCreateProgram}
+                  />
+                ) : null}
+                {tab === "profile" ? <Profile profile={profile} /> : null}
+              </>
+            )}
           </main>
         </div>
       </div>

@@ -53,8 +53,13 @@ import { Separator } from "./ui/separator";
 interface SplitTableProps {
   splits?: SplitDeep[];
   oneSplitIsActive?: boolean;
+  onClickCreateProgram?: (show: boolean) => void;
 }
-export const SplitTable = ({ splits, oneSplitIsActive }: SplitTableProps) => {
+export const SplitTable = ({
+  splits,
+  oneSplitIsActive,
+  onClickCreateProgram,
+}: SplitTableProps) => {
   const [selectedSpit, setSelectedSplit] = useState<SplitDeep | undefined>();
   const queryClient = useQueryClient();
   const [showModal, setShowModal] = useState(false);
@@ -103,9 +108,14 @@ export const SplitTable = ({ splits, oneSplitIsActive }: SplitTableProps) => {
       <Card className="w-full max-w-[900px] overflow-hidden rounded-[6px] max-md:rounded-none">
         <CardHeader className="bg-stone-100/80 py-[6px] px-[8px]">
           <CardTitle className="text-xs text-stone-700 flex items-center justify-between">
-            <div className="flex items-center gap-[4px]">
-              <TableIcon />
-              Created Programs
+            <div className="flex items-center justify-between w-full">
+              <div className="flex items-center gap-[4px">
+                <TableIcon />
+                Created Programs
+              </div>
+              <Button size="sm" onClick={() => onClickCreateProgram?.(true)}>
+                Create
+              </Button>
             </div>
           </CardTitle>
         </CardHeader>
@@ -190,10 +200,7 @@ export const SplitTable = ({ splits, oneSplitIsActive }: SplitTableProps) => {
                               setShowModal(true);
                             }}
                           >
-                            <BookOpenText
-                              size={16}
-                              className="text-stone-400"
-                            />
+                            <BookOpenText className="text-stone-400" />
                             Details
                           </DropdownMenuItem>
                           <DropdownMenuItem
