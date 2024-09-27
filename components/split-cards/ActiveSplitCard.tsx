@@ -6,7 +6,7 @@ import {
   Day,
 } from "@/lib/programming/createWorkoutSchedule";
 import { Button } from "../ui/button";
-import { OctagonX, Zap } from "lucide-react";
+import { Octagon, OctagonX, Zap } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useDeactivateSplit } from "@/hooks/useDeactivateSplit";
 import { About } from "./sections/About";
@@ -39,7 +39,7 @@ export const ActiveSplitCard = ({ split }: ActiveSplitCardProps) => {
             className="font-bold bg-white flex items-center gap-[4px]"
             onClick={() => deativateSplit({ id: split.id })}
           >
-            <OctagonX size={14} className="text-red-500" />
+            <Octagon size={14} stroke="red" fill="#f87171" />
             Deactivate
           </Button>
         </CardTitle>

@@ -5,6 +5,7 @@ import {
   Check,
   Link,
   MoreHorizontal,
+  Octagon,
   OctagonX,
   Table as TableIcon,
   Trash,
@@ -236,7 +237,7 @@ export const SplitTable = ({
                               className="flex items-center gap-[4px]"
                               onClick={() => deativateSplit({ id: split.id })}
                             >
-                              <OctagonX size={14} className="text-red-500" />
+                              <Octagon size={14} stroke="red" fill="#f87171" />
                               Deactivate
                             </DropdownMenuItem>
                           ) : (
@@ -245,7 +246,7 @@ export const SplitTable = ({
                               className="flex items-center gap-[4px]"
                               onClick={() => activateSplit({ id: split.id })}
                             >
-                              <Zap size={14} fill="#86efac" strokeWidth={0} />
+                              <Zap size={14} fill="#86efac" />
                               Activate
                             </DropdownMenuItem>
                           )}
