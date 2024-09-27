@@ -109,8 +109,8 @@ export const SplitTable = ({
         <CardHeader className="bg-stone-100/80 py-[6px] px-[8px]">
           <CardTitle className="text-xs text-stone-700 flex items-center justify-between">
             <div className="flex items-center justify-between w-full">
-              <div className="flex items-center gap-[4px">
-                <TableIcon />
+              <div className="flex items-center gap-[4px]">
+                <TableIcon size={16} fill="#86efac" />
                 Created Programs
               </div>
               <Button size="sm" onClick={() => onClickCreateProgram?.(true)}>
@@ -200,7 +200,10 @@ export const SplitTable = ({
                               setShowModal(true);
                             }}
                           >
-                            <BookOpenText className="text-stone-400" />
+                            <BookOpenText
+                              size={14}
+                              className="text-stone-400"
+                            />
                             Details
                           </DropdownMenuItem>
                           <DropdownMenuItem

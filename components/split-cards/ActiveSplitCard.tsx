@@ -30,7 +30,7 @@ export const ActiveSplitCard = ({ split }: ActiveSplitCardProps) => {
       <CardHeader className="bg-stone-100/80 py-[6px] px-[8px]">
         <CardTitle className="text-xs text-stone-700 flex items-center justify-between">
           <div className="flex items-center gap-[2px]">
-            <Zap size={16} fill="#86efac" strokeWidth={0} />
+            <Zap size={16} fill="#86efac" />
             Active Programming
           </div>
 
