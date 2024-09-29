@@ -9,13 +9,17 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
+import { MobileNavBackground } from "./MobileNavBackground";
 
 interface LoadingWorkoutCardProps {
   hideCta?: boolean;
 }
 export const LoadingWorkoutCard = ({ hideCta }: LoadingWorkoutCardProps) => {
   return (
-    <Card className="w-[290px] overflow-hidden shadow-sm rounded-[2px] shadow-[5px_5px_2px_rgba(0,0,0,0.15)]">
+    <Card className="w-[345px] overflow-hidden shadow-sm rounded-md shadow-[5px_5px_2px_rgba(0,0,0,0.15)] relative">
+      <div className="h-[46px] w-full relative">
+        <MobileNavBackground />
+      </div>
       <CardHeader className="p-0">
         <CardTitle>
           <Skeleton className="w-[45%] h-[34px] rounded-sm m-2" />

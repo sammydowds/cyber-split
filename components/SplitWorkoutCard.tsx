@@ -27,6 +27,8 @@ import {
   Target,
 } from "lucide-react";
 import { boolean } from "zod";
+import { DesktopNavBackground } from "./DesktopNavBackground";
+import { MobileNavBackground } from "./MobileNavBackground";
 
 interface WorkoutCardProps {
   split: Partial<SplitDeep>;
@@ -103,16 +105,19 @@ export const SplitWorkoutCard = ({
   const estTimeMins = estimateTimeOfWorkout(workout);
 
   return (
-    <Card className="w-[345px] overflow-hidden shadow-sm rounded-[2px] shadow-[5px_5px_2px_rgba(0,0,0,0.15)]">
-      <CardHeader className="p-2">
+    <Card className="w-[345px] overflow-hidden shadow-sm rounded-md shadow-[5px_5px_2px_rgba(0,0,0,0.15)] relative">
+      <div className="h-[46px] w-full relative">
+        <MobileNavBackground />
+      </div>
+      <CardHeader className="p-2 pl-4">
         <CardTitle className="flex justify-between items-center gap-2 pr-4">
           <div className="flex gap-[6px] font-bold text-sm tracking-tighter">
             <WorkoutMarker
               text={workout.letterLabel}
-              className="h-[28px] w-[28px]"
+              className="h-[44px] w-[44px] absolute top-[18px] text-xl border-black border-[1px]"
             />
-            <div className="flex flex-col pt-[2px]">
-              <div className="leading-3">{workout.name}</div>
+            <div className="flex flex-col py-[8px] mt-[12px] ml-[4px] gap-[6px]">
+              <div className="leading-3 text-xl">{workout.name}</div>
               <div className="flex items-center text-xs text-stone-400 gap-[4px]">
                 <div>{estTimeMins} mins</div>
                 <Separator
@@ -126,7 +131,7 @@ export const SplitWorkoutCard = ({
         </CardTitle>
       </CardHeader>
       <Separator />
-      <CardContent className="p-0 overflow-scroll h-[300px]">
+      <CardContent className="p-0 overflow-scroll h-[245px]">
         <Table className="bg-white flex flex-col gap-[4px]">
           <TableBody>
             {workout?.strengthGroups?.map((g) => {
@@ -171,9 +176,9 @@ export const SplitWorkoutCard = ({
               return (
                 <TableRow
                   key={g.name}
-                  className="flex items-start justify-between text-xs"
+                  className="flex items-start justify-between text-xs px-[4px]"
                 >
-                  <TableCell className="font-bold flex flex-col my-[4px]">
+                  <TableCell className="font-bold flex flex-col">
                     <div className="text-[14px]">{g.name}</div>
                     <div className="flex items-center flex-wrap gap-[4px] max-w-[245px] py-[4px]">
                       {parts.map((m) => {
