@@ -1,12 +1,9 @@
 import { SplitDeep } from "@/types";
 import { Card, CardHeader, CardContent, CardTitle } from "../ui/card";
 import { Separator } from "../ui/separator";
-import {
-  createWorkoutSchedule,
-  Day,
-} from "@/lib/programming/createWorkoutSchedule";
+import { createWorkoutSchedule } from "@/lib/programming/createWorkoutSchedule";
 import { Button } from "../ui/button";
-import { Octagon, OctagonX, Zap } from "lucide-react";
+import { Octagon, Zap } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useDeactivateSplit } from "@/hooks/useDeactivateSplit";
 import { About } from "./sections/About";

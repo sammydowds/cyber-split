@@ -17,7 +17,16 @@ import { StrengthGroup } from "@prisma/client";
 import { SwapGroupDropdown } from "./SwapGroupDropdown";
 import { FormSchemaType } from "./SplitForm/schema";
 import toast from "react-hot-toast";
-import { ArrowRightLeft } from "lucide-react";
+import {
+  Anchor,
+  ArrowRightLeft,
+  Boxes,
+  Focus,
+  Group,
+  Link,
+  Target,
+} from "lucide-react";
+import { boolean } from "zod";
 
 interface WorkoutCardProps {
   split: Partial<SplitDeep>;
@@ -94,7 +103,7 @@ export const SplitWorkoutCard = ({
   const estTimeMins = estimateTimeOfWorkout(workout);
 
   return (
-    <Card className="w-[290px] overflow-hidden shadow-sm rounded-[2px] shadow-[5px_5px_2px_rgba(0,0,0,0.15)]">
+    <Card className="w-[345px] overflow-hidden shadow-sm rounded-[2px] shadow-[5px_5px_2px_rgba(0,0,0,0.15)]">
       <CardHeader className="p-2">
         <CardTitle className="flex justify-between items-center gap-2 pr-4">
           <div className="flex gap-[6px] font-bold text-sm tracking-tighter">
@@ -117,13 +126,46 @@ export const SplitWorkoutCard = ({
         </CardTitle>
       </CardHeader>
       <Separator />
-      <CardContent className="p-0 overflow-scroll h-[250px]">
+      <CardContent className="p-0 overflow-scroll h-[300px]">
         <Table className="bg-white flex flex-col gap-[4px]">
           <TableBody>
             {workout?.strengthGroups?.map((g) => {
-              const targetMuscles = Array.from(
+              const parts = Array.from(
                 new Set(
                   g.sets.map((s) => s.exercise?.bodyPart?.toLocaleLowerCase()),
+                ),
+              );
+              const synergists = Array.from(
+                new Set(
+                  g.sets.flatMap((s) =>
+                    s.exercise?.synergists?.flatMap((s) =>
+                      s.toLocaleLowerCase().split("_").join(" "),
+                    ),
+                  ),
+                ),
+              );
+              const targets = Array.from(
+                new Set(
+                  g.sets
+                    .flatMap((s) => {
+                      return s.exercise.target &&
+                        parts.includes(s.exercise?.target?.toLocaleLowerCase())
+                        ? undefined
+                        : s.exercise?.target
+                            ?.split("_")
+                            .join(" ")
+                            .toLocaleLowerCase();
+                    })
+                    .filter(Boolean),
+                ),
+              );
+              const stabilizers = Array.from(
+                new Set(
+                  g.sets.flatMap((s) =>
+                    s.exercise?.stabilizers?.flatMap((s) =>
+                      s.toLocaleLowerCase().split("_").join(" "),
+                    ),
+                  ),
                 ),
               );
               return (
@@ -131,17 +173,58 @@ export const SplitWorkoutCard = ({
                   key={g.name}
                   className="flex items-start justify-between text-xs"
                 >
-                  <TableCell className="font-bold flex flex-col">
-                    <div>{g.name}</div>
-                    {targetMuscles.map((m) => {
-                      return (
-                        <div key={m}>
-                          <span className="capitalize text-stone-400/90 text-xs font-semibold">
-                            {m}
-                          </span>
-                        </div>
-                      );
-                    })}
+                  <TableCell className="font-bold flex flex-col my-[4px]">
+                    <div className="text-[14px]">{g.name}</div>
+                    <div className="flex items-center flex-wrap gap-[4px] max-w-[245px] py-[4px]">
+                      {parts.map((m) => {
+                        return (
+                          <>
+                            <div key={m}>
+                              <span className="capitalize text-stone-400/90 font-semibold flex items-center gap-[2px]">
+                                <Group className="text-green-400" size={14} />
+                                {m}
+                              </span>
+                            </div>
+                          </>
+                        );
+                      })}
+                      {synergists.map((s) => {
+                        return (
+                          <>
+                            <div key={s}>
+                              <span className="capitalize text-stone-400/90 font-semibold flex items-center gap-[2px]">
+                                <Link className="text-stone-800" size={14} />
+                                {s}
+                              </span>
+                            </div>
+                          </>
+                        );
+                      })}
+                      {targets.map((s) => {
+                        return (
+                          <>
+                            <div key={s}>
+                              <span className="capitalize text-stone-400/90 font-semibold flex items-center gap-[2px]">
+                                <Target className="text-red-400" size={14} />
+                                {s}
+                              </span>
+                            </div>
+                          </>
+                        );
+                      })}
+                      {stabilizers.map((s) => {
+                        return (
+                          <>
+                            <div key={s}>
+                              <span className="capitalize text-stone-400/90 font-semibold flex items-center gap-[2px]">
+                                <Anchor className="text-blue-400" size={14} />
+                                {s}
+                              </span>
+                            </div>
+                          </>
+                        );
+                      })}
+                    </div>
                   </TableCell>
                   <TableCell>
                     {editable ? (
