@@ -7,6 +7,7 @@ import {
   MoreHorizontal,
   Octagon,
   OctagonX,
+  Plus,
   Table as TableIcon,
   Trash,
   X,
@@ -114,7 +115,12 @@ export const SplitTable = ({
                 <TableIcon size={16} fill="#86efac" />
                 Created Programs
               </div>
-              <Button size="sm" onClick={() => onClickCreateProgram?.(true)}>
+              <Button
+                variant="outline"
+                className="bg-white font-bold flex items-center gap-[4px]"
+                onClick={() => onClickCreateProgram?.(true)}
+              >
+                <Plus size={16} />
                 Create
               </Button>
             </div>
