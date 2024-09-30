@@ -10,7 +10,6 @@ import { useCreateLoggedWorkout } from "@/hooks/useCreateLoggedWorkout";
 import { useQueryClient } from "@tanstack/react-query";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { MobileNavBackground } from "../MobileNavBackground";
 
 export const ExerciseData = ({
   group,
@@ -80,6 +79,11 @@ export const MobileLogWorkoutForm = ({
     group: DeepTemplateWorkout["strengthGroups"][number];
     swipeDirection: "left" | "right";
   }>({ group: template.strengthGroups[0], swipeDirection: "left" });
+  const [nextGroup, setNextGroup] = useState<
+    DeepTemplateWorkout["strengthGroups"][number]
+  >(template.strengthGroups[1]);
+  const [previousGroup, setPreviousGroup] =
+    useState<DeepTemplateWorkout["strengthGroups"][number]>();
 
   const { mutate: save, isPending: creatingLoggedWorkout } =
     useCreateLoggedWorkout({
@@ -112,13 +116,39 @@ export const MobileLogWorkoutForm = ({
   const handleClickExercise = (
     group: DeepTemplateWorkout["strengthGroups"][number],
   ) => {
-    const prevIdx = template.strengthGroups.indexOf(selected.group);
-    const nextIdx = template.strengthGroups.indexOf(group);
+    const idx = template.strengthGroups.indexOf(group);
+
+    const nextIdx = idx + 1;
+    const prevIdx = idx - 1;
+    const previousGroup = template.strengthGroups[prevIdx];
+    const nextGroup = template.strengthGroups[nextIdx];
+
     setSelected({
       group,
       swipeDirection: prevIdx > nextIdx ? "right" : "left",
     });
+    setPreviousGroup(previousGroup);
+    setNextGroup(nextGroup);
   };
+
+  const handleClickNext = () => {
+    if (nextGroup) {
+      handleClickExercise(nextGroup);
+    }
+  };
+
+  const handleClickPrevious = () => {
+    if (previousGroup) {
+      handleClickExercise(previousGroup);
+    }
+  };
+
+  useEffect(() => {
+    if (selected.group.id) {
+      const el = document.getElementById(selected.group.id);
+      el?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [selected.group.id]);
 
   return (
     <div
@@ -143,6 +173,15 @@ export const MobileLogWorkoutForm = ({
                 <div className="whitespace-nowrap text-[16px]">{g.name}</div>
               </div>
             ))}
+            <div
+              key="end"
+              id="end"
+              className={cn(
+                "h-[75px] min-w-[150px] snap-start flex flex-col font-bold text-stone-400 items-center justify-center bg-red-200/80 cursor-pointer p-2 flex-nowrap",
+              )}
+            >
+              <div className="whitespace-nowrap text-[16px]">End</div>
+            </div>
           </div>
         </div>
         <div className="h-max w-full">
@@ -169,10 +208,18 @@ export const MobileLogWorkoutForm = ({
           </Form>
         </div>
         <div className="fixed bottom-0 left-0 w-full h-[50px] flex justify-end border-t-[1px] bg-white border-black">
-          <button className="h-full w-[100px] border-l-[1px] border-black">
+          <button
+            className="h-full w-[100px] border-l-[1px] border-black"
+            onClick={handleClickPrevious}
+          >
             Previous
           </button>
-          <button className="h-full w-[100px] bg-black text-white">Next</button>
+          <button
+            className="h-full w-[100px] bg-black text-white"
+            onClick={handleClickNext}
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>
