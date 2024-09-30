@@ -19,7 +19,7 @@ export const ExerciseData = ({
 }) => {
   return (
     <div className="w-full h-full flex flex-col relative">
-      <div className="flex items-center px-6 py-2 font-bold text-xl tracking-tighter relative border-b-[1px] border-black bg-stone-100/90">
+      <div className="flex items-center px-6 py-2 font-bold text-xl tracking-tighter relative border-b-[1px] border-black">
         <span className="z-50">{group.name}</span>
       </div>
       <div className="flex flex-col text-center">
@@ -136,7 +136,7 @@ export const MobileLogWorkoutForm = ({
                 id={g.id}
                 onClick={() => handleClickExercise(g)}
                 className={cn(
-                  "h-[75px] min-w-[150px] snap-start flex flex-col font-bold text-stone-400 items-center justify-center bg-stone-300/80 cursor-pointer p-2 flex-nowrap",
+                  "h-[75px] min-w-[150px] snap-start flex flex-col font-bold text-stone-400 items-center justify-center bg-stone-200/80 cursor-pointer p-2 flex-nowrap",
                   selected.group.id === g.id ? "bg-white text-black" : "",
                 )}
               >
