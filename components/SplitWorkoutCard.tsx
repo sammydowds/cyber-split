@@ -250,7 +250,11 @@ export const SplitWorkoutCard = ({
         <>
           <Separator />
           <CardFooter className={cn("p-2 flex items-center justify-center")}>
-            <Button className="w-full font-bold text-md" size="lg" onClick={handleClickLog}>
+            <Button
+              className="w-full font-bold text-md"
+              size="lg"
+              onClick={handleClickLog}
+            >
               Log Workout
             </Button>
           </CardFooter>
