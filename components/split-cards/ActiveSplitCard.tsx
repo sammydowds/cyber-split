@@ -41,7 +41,7 @@ export const ActiveSplitCard = ({ split }: ActiveSplitCardProps) => {
           </Button>
         </CardTitle>
       </CardHeader>
-      <CardContent className="flex flex-col gap-4 py-2 px-0">
+      <CardContent className="flex flex-col gap-4 pt-2 pb-0 px-0">
         <About split={split} />
         <Separator />
         <Schedule weeks={schedule} split={split} />

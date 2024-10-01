@@ -33,7 +33,7 @@ export const TopNav = ({
                 <div
                   className={cn(selectedGroup.id === g.id ? "underline" : "")}
                 >
-                  {idx + 1}
+                  {idx + 1}.
                 </div>
                 <div className="capitalize text-stone-400">
                   {g.sets[0].exercise.bodyPart?.toLocaleLowerCase()}
