@@ -47,6 +47,21 @@ export const Page = ({
               <td className="border border-gray-300 p-2">Data 3</td>
             </tr>
             <tr>
+              <td className="border border-gray-300 w-[50px]">5</td>
+              <td className="border border-gray-300 p-2">Data 2</td>
+              <td className="border border-gray-300 p-2">Data 3</td>
+            </tr>
+            <tr>
+              <td className="border border-gray-300 w-[50px]">5</td>
+              <td className="border border-gray-300 p-2">Data 2</td>
+              <td className="border border-gray-300 p-2">Data 3</td>
+            </tr>
+            <tr>
+              <td className="border border-gray-300 w-[50px]">5</td>
+              <td className="border border-gray-300 p-2">Data 2</td>
+              <td className="border border-gray-300 p-2">Data 3</td>
+            </tr>
+            <tr>
               <td className="border border-gray-300 text-stone-400 w-[50px] m-auto"></td>
               <td colSpan={2} className="border border-gray-300 h-[40px]">
                 <button className="w-full h-full bg-stone-100 flex items-center justify-center gap-[4px] text-stone-500 text-sm">
