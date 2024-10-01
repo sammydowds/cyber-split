@@ -1,7 +1,5 @@
 import { cn } from "@/lib/utils";
 import { DeepTemplateWorkout } from "@/types";
-import { Button } from "../ui/button";
-import { WorkoutMarker } from "../WorkoutMarker";
 
 interface GroupNavProps {
   template: DeepTemplateWorkout;
