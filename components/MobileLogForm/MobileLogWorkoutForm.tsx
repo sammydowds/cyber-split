@@ -58,10 +58,10 @@ export const MobileLogWorkoutForm = ({
           </button>
           {isLastGroup ? (
             <button
-              className="h-full w-[125px] bg-green-300 font-bold border-l-[1px] border-black"
+              className="h-full w-[125px] bg-red-300 font-bold border-l-[1px] border-black"
               onClick={handleClickNext}
             >
-              Finish
+              End
             </button>
           ) : (
             <button

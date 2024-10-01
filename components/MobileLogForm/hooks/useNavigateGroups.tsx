@@ -19,6 +19,19 @@ export const useNavigateGroups = (template: DeepTemplateWorkout) => {
   const [previousGroup, setPreviousGroup] =
     useState<DeepTemplateWorkout["strengthGroups"][number]>();
 
+  useEffect(() => {
+    if (selected.id) {
+      const el = document.getElementById(selected.id);
+      if (el) {
+        el.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "center",
+        });
+      }
+    }
+  }, [selected.id]);
+
   const handleSelectGroup = (
     group: DeepTemplateWorkout["strengthGroups"][number],
   ) => {

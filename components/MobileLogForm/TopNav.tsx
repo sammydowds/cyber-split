@@ -15,7 +15,8 @@ export const TopNav = ({
 }: GroupNavProps) => {
   return (
     <div className="flex flex-col">
-      <div className="flex items-center justify-between h-[50px] border-t-[1px] border-black">
+      <div className="flex flex-col border-t-[1px] border-black py-[6px]">
+        <div className="text-xs text-stone-400 font-bold pl-2">Workout</div>
         <div className="font-bold text-xl pl-2">{template.name}</div>
       </div>
       <div className="w-full overflow-x-scroll snap-x snap-mandatory flex divide-x divide-dashed shadow z-[100]">
