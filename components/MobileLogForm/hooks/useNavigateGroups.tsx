@@ -10,22 +10,14 @@ import { useEffect, useState } from "react";
  * @returns An object containing the selected group and navigation functions.
  */
 export const useNavigateGroups = (template: DeepTemplateWorkout) => {
-  const [selected, setSelected] = useState<{
-    group: DeepTemplateWorkout["strengthGroups"][number];
-    swipeDirection: "left" | "right";
-  }>({ group: template.strengthGroups[0], swipeDirection: "left" });
+  const [selected, setSelected] = useState<
+    DeepTemplateWorkout["strengthGroups"][number]
+  >(template.strengthGroups[0]);
   const [nextGroup, setNextGroup] = useState<
     DeepTemplateWorkout["strengthGroups"][number]
   >(template.strengthGroups[1]);
   const [previousGroup, setPreviousGroup] =
     useState<DeepTemplateWorkout["strengthGroups"][number]>();
-
-  useEffect(() => {
-    if (selected.group.id) {
-      const el = document.getElementById(selected.group.id);
-      el?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }, [selected.group.id]);
 
   const handleSelectGroup = (
     group: DeepTemplateWorkout["strengthGroups"][number],
@@ -36,14 +28,8 @@ export const useNavigateGroups = (template: DeepTemplateWorkout) => {
     const prevIdx = idx - 1;
     const previousGroup = template.strengthGroups[prevIdx];
     const nextGroup = template.strengthGroups[nextIdx];
-    const previouslySelectedGroupIdx = template.strengthGroups.indexOf(
-      selected.group,
-    );
 
-    setSelected({
-      group,
-      swipeDirection: previouslySelectedGroupIdx > idx ? "right" : "left",
-    });
+    setSelected(group);
     setPreviousGroup(previousGroup);
     setNextGroup(nextGroup);
   };

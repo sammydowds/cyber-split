@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useNavigateGroups } from "./hooks/useNavigateGroups";
 import { useLogForm } from "./hooks/useLogForm";
 import { Page } from "./Page";
-import { GroupNav } from "./GroupNav";
+import { TopNav } from "./TopNav";
 
 interface MobileLogWorkoutFormProps {
   template: DeepTemplateWorkout;
@@ -17,30 +17,32 @@ export const MobileLogWorkoutForm = ({
   const { selected, handleSelectGroup, handleClickNext, handleClickPrevious } =
     useNavigateGroups(template);
 
+  const isLastGroup =
+    template.strengthGroups.indexOf(selected) + 1 ===
+    template.strengthGroups.length;
   return (
     <div className={cn("max-md:mb-[150px] mb-[90px] flex flex-col")}>
       <div className="relative">
-        <GroupNav
-          selectedGroup={selected.group}
+        <TopNav
+          selectedGroup={selected}
           onClickGroup={handleSelectGroup}
-          groups={template.strengthGroups}
+          template={template}
         />
         <div className="h-max w-full">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(handleSubmit)}>
               <div className="flex items-center">
-                <AnimatePresence mode="wait" initial={false}>
+                <AnimatePresence mode="wait">
                   <motion.div
                     className="w-full"
-                    key={selected.group.id}
+                    key={selected.id}
                     initial={{
-                      x: selected.swipeDirection === "left" ? 100 : -100,
-                      opacity: 0.5,
+                      opacity: 0,
                     }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.2, ease: "easeInOut" }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.8, ease: "easeInOut" }}
                   >
-                    <Page group={selected.group} key={selected.group.id} />
+                    <Page group={selected} key={selected.id} />
                   </motion.div>
                 </AnimatePresence>
               </div>
@@ -54,12 +56,21 @@ export const MobileLogWorkoutForm = ({
           >
             Previous
           </button>
-          <button
-            className="h-full w-[125px] bg-black text-white"
-            onClick={handleClickNext}
-          >
-            Next
-          </button>
+          {isLastGroup ? (
+            <button
+              className="h-full w-[125px] bg-green-300 font-bold border-l-[1px] border-black"
+              onClick={handleClickNext}
+            >
+              Finish
+            </button>
+          ) : (
+            <button
+              className="h-full w-[125px] bg-black text-white"
+              onClick={handleClickNext}
+            >
+              Next
+            </button>
+          )}
         </div>
       </div>
     </div>
