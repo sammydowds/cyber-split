@@ -2,9 +2,9 @@ import { DeepTemplateWorkout } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
-import { LogWorkoutSchema } from "../types";
+import { LogWorkoutSchema } from "../../LogWorkoutForm/types";
 import { useForm } from "react-hook-form";
-import { schema } from "../zodSchema";
+import { schema } from "../../LogWorkoutForm/zodSchema";
 import { useCreateLoggedWorkout } from "@/hooks/useCreateLoggedWorkout";
 import { clearDB, LOG_WORKOUT_KEY, saveToDB } from "@/lib/indexedDb";
 

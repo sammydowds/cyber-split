@@ -1,61 +1,10 @@
 import { Form } from "../ui/form";
-import {  DeepTemplateWorkout } from "../../types";
+import { DeepTemplateWorkout } from "../../types";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import { usePageNavigation } from "./hooks/usePageNavigation";
+import { useNavigateGroups } from "./hooks/useNavigateGroups";
 import { useLogForm } from "./hooks/useLogForm";
-
-export const ExerciseData = ({
-  group,
-}: {
-  group: DeepTemplateWorkout["strengthGroups"][number];
-}) => {
-  return (
-    <div className="w-full h-full flex flex-col relative">
-      <div className="flex items-center px-6 py-2 font-bold text-xl tracking-tighter relative border-b-[1px] border-black">
-        <span className="z-50">{group.name}</span>
-      </div>
-      <div className="flex flex-col text-center">
-        <table className="min-w-full border-collapse">
-          <thead>
-            <tr>
-              <th className="border-b border-x border-gray-300 p-2">Set</th>
-              <th className="border-b border-x border-gray-300 p-2">Reps</th>
-              <th className="border-b border-x border-gray-300 p-2">Weight</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className="border border-gray-300 p-2">Data 1</td>
-              <td className="border border-gray-300 p-2">Data 2</td>
-              <td className="border border-gray-300 p-2">Data 3</td>
-            </tr>
-            <tr>
-              <td className="border border-gray-300 p-2">Data 1</td>
-              <td className="border border-gray-300 p-2">Data 2</td>
-              <td className="border border-gray-300 p-2">Data 3</td>
-            </tr>
-            <tr>
-              <td className="border border-gray-300 p-2">Data 1</td>
-              <td className="border border-gray-300 p-2">Data 2</td>
-              <td className="border border-gray-300 p-2">Data 3</td>
-            </tr>
-            <tr>
-              <td className="border border-gray-300 p-2">Data 1</td>
-              <td className="border border-gray-300 p-2">Data 2</td>
-              <td className="border border-gray-300 p-2">Data 3</td>
-            </tr>
-            <tr>
-              <td className="border border-gray-300 p-2">Data 1</td>
-              <td className="border border-gray-300 p-2">Data 2</td>
-              <td className="border border-gray-300 p-2">Data 3</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-};
+import { Page } from "./Page";
 
 interface MobileLogWorkoutFormProps {
   template: DeepTemplateWorkout;
@@ -64,12 +13,8 @@ export const MobileLogWorkoutForm = ({
   template,
 }: MobileLogWorkoutFormProps) => {
   const { form, handleSubmit } = useLogForm(template);
-  const {
-    selected,
-    handleClickExercise,
-    handleClickNext,
-    handleClickPrevious,
-  } = usePageNavigation(template);
+  const { selected, handleSelectGroup, handleClickNext, handleClickPrevious } =
+    useNavigateGroups(template);
 
   return (
     <div className={cn("max-md:mb-[150px] mb-[90px] flex flex-col")}>
@@ -80,7 +25,7 @@ export const MobileLogWorkoutForm = ({
               <div
                 key={g.id}
                 id={g.id}
-                onClick={() => handleClickExercise(g)}
+                onClick={() => handleSelectGroup(g)}
                 className={cn(
                   "h-[75px] min-w-[150px] snap-start flex flex-col font-bold text-stone-400 items-center justify-center bg-stone-200/80 cursor-pointer p-2 flex-nowrap",
                   selected.group.id === g.id ? "bg-white text-black" : "",
@@ -115,10 +60,7 @@ export const MobileLogWorkoutForm = ({
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.2, ease: "easeInOut" }}
                   >
-                    <ExerciseData
-                      group={selected.group}
-                      key={selected.group.id}
-                    />
+                    <Page group={selected.group} key={selected.group.id} />
                   </motion.div>
                 </AnimatePresence>
               </div>

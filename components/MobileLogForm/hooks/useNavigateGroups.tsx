@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
  * @param template - The workout template containing strength groups.
  * @returns An object containing the selected group and navigation functions.
  */
-export const usePageNavigation = (template: DeepTemplateWorkout) => {
+export const useNavigateGroups = (template: DeepTemplateWorkout) => {
   const [selected, setSelected] = useState<{
     group: DeepTemplateWorkout["strengthGroups"][number];
     swipeDirection: "left" | "right";
@@ -27,7 +27,7 @@ export const usePageNavigation = (template: DeepTemplateWorkout) => {
     }
   }, [selected.group.id]);
 
-  const handleClickExercise = (
+  const handleSelectGroup = (
     group: DeepTemplateWorkout["strengthGroups"][number],
   ) => {
     const idx = template.strengthGroups.indexOf(group);
@@ -50,18 +50,18 @@ export const usePageNavigation = (template: DeepTemplateWorkout) => {
 
   const handleClickNext = () => {
     if (nextGroup) {
-      handleClickExercise(nextGroup);
+      handleSelectGroup(nextGroup);
     }
   };
 
   const handleClickPrevious = () => {
     if (previousGroup) {
-      handleClickExercise(previousGroup);
+      handleSelectGroup(previousGroup);
     }
   };
 
   return {
-    handleClickExercise,
+    handleSelectGroup,
     handleClickNext,
     handleClickPrevious,
     selected,
