@@ -122,10 +122,13 @@ export const MobileLogWorkoutForm = ({
     const prevIdx = idx - 1;
     const previousGroup = template.strengthGroups[prevIdx];
     const nextGroup = template.strengthGroups[nextIdx];
+    const previouslySelectedGroupIdx = template.strengthGroups.indexOf(
+      selected.group,
+    );
 
     setSelected({
       group,
-      swipeDirection: prevIdx > nextIdx ? "right" : "left",
+      swipeDirection: previouslySelectedGroupIdx > idx ? "right" : "left",
     });
     setPreviousGroup(previousGroup);
     setNextGroup(nextGroup);
