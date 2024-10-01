@@ -1,15 +1,9 @@
-import { useForm, useFormContext, useWatch } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { schema } from "./zodSchema";
 import { Form } from "../ui/form";
-import { DeepLoggedWorkout, DeepTemplateWorkout } from "../../types";
-import { useEffect, useState } from "react";
-import { LogWorkoutSchema } from "./types";
-import { clearDB, LOG_WORKOUT_KEY, saveToDB } from "@/lib/indexedDb";
-import { useCreateLoggedWorkout } from "@/hooks/useCreateLoggedWorkout";
-import { useQueryClient } from "@tanstack/react-query";
+import {  DeepTemplateWorkout } from "../../types";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
+import { usePageNavigation } from "./hooks/usePageNavigation";
+import { useLogForm } from "./hooks/useLogForm";
 
 export const ExerciseData = ({
   group,
@@ -69,97 +63,16 @@ interface MobileLogWorkoutFormProps {
 export const MobileLogWorkoutForm = ({
   template,
 }: MobileLogWorkoutFormProps) => {
-  const [summary, setSummary] = useState<DeepLoggedWorkout | undefined>();
-  const queryCient = useQueryClient();
-  const form = useForm<LogWorkoutSchema>({
-    resolver: zodResolver(schema),
-    defaultValues: template,
-  });
-  const [selected, setSelected] = useState<{
-    group: DeepTemplateWorkout["strengthGroups"][number];
-    swipeDirection: "left" | "right";
-  }>({ group: template.strengthGroups[0], swipeDirection: "left" });
-  const [nextGroup, setNextGroup] = useState<
-    DeepTemplateWorkout["strengthGroups"][number]
-  >(template.strengthGroups[1]);
-  const [previousGroup, setPreviousGroup] =
-    useState<DeepTemplateWorkout["strengthGroups"][number]>();
-
-  const { mutate: save, isPending: creatingLoggedWorkout } =
-    useCreateLoggedWorkout({
-      onSuccess: async (data) => {
-        const { data: loggedWorkout } = data;
-        // clear state
-        await clearDB();
-        queryCient.invalidateQueries();
-        form.reset();
-
-        setSummary(loggedWorkout);
-      },
-    });
-
-  const handleSubmit = (data: LogWorkoutSchema) => {
-    save(data);
-  };
-
-  const handleFormChange = async (data: LogWorkoutSchema) => {
-    await saveToDB(`${LOG_WORKOUT_KEY}-${template.id}`, data);
-  };
-
-  const values = form.watch();
-  useEffect(() => {
-    if (!creatingLoggedWorkout) {
-      handleFormChange?.(values);
-    }
-  }, [handleFormChange, values]);
-
-  const handleClickExercise = (
-    group: DeepTemplateWorkout["strengthGroups"][number],
-  ) => {
-    const idx = template.strengthGroups.indexOf(group);
-
-    const nextIdx = idx + 1;
-    const prevIdx = idx - 1;
-    const previousGroup = template.strengthGroups[prevIdx];
-    const nextGroup = template.strengthGroups[nextIdx];
-    const previouslySelectedGroupIdx = template.strengthGroups.indexOf(
-      selected.group,
-    );
-
-    setSelected({
-      group,
-      swipeDirection: previouslySelectedGroupIdx > idx ? "right" : "left",
-    });
-    setPreviousGroup(previousGroup);
-    setNextGroup(nextGroup);
-  };
-
-  const handleClickNext = () => {
-    if (nextGroup) {
-      handleClickExercise(nextGroup);
-    }
-  };
-
-  const handleClickPrevious = () => {
-    if (previousGroup) {
-      handleClickExercise(previousGroup);
-    }
-  };
-
-  useEffect(() => {
-    if (selected.group.id) {
-      const el = document.getElementById(selected.group.id);
-      el?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }, [selected.group.id]);
+  const { form, handleSubmit } = useLogForm(template);
+  const {
+    selected,
+    handleClickExercise,
+    handleClickNext,
+    handleClickPrevious,
+  } = usePageNavigation(template);
 
   return (
-    <div
-      className={cn(
-        "max-md:mb-[150px] mb-[90px] flex flex-col",
-        summary ? "blur-md" : "",
-      )}
-    >
+    <div className={cn("max-md:mb-[150px] mb-[90px] flex flex-col")}>
       <div className="relative">
         <div className="w-full overflow-x-scroll snap-x snap-mandatory flex divide-x divide-dashed shadow z-[100]">
           <div className="flex w-max divide-x divide-solid divide-black border-y-[1px] border-black">
@@ -212,15 +125,15 @@ export const MobileLogWorkoutForm = ({
             </form>
           </Form>
         </div>
-        <div className="fixed bottom-0 left-0 w-full h-[50px] flex justify-end border-t-[1px] bg-white border-black">
+        <div className="fixed bottom-0 left-0 w-full h-[75px] flex justify-end border-t-[1px] bg-white border-black text-lg">
           <button
-            className="h-full w-[100px] border-l-[1px] border-black"
+            className="h-full w-[125px] border-l-[1px] border-black"
             onClick={handleClickPrevious}
           >
             Previous
           </button>
           <button
-            className="h-full w-[100px] bg-black text-white"
+            className="h-full w-[125px] bg-black text-white"
             onClick={handleClickNext}
           >
             Next
