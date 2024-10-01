@@ -7,7 +7,7 @@ export const Page = ({
 }) => {
   return (
     <div className="w-full h-full flex flex-col relative">
-      <div className="flex items-center px-6 py-2 font-bold text-xl tracking-tighter relative border-b-[1px] border-black">
+      <div className="flex items-center px-6 py-2 font-bold text-xl tracking-tighter relative border-b-[1px] border-black bg-yellow-300 bg-opacity-30">
         <span className="z-50">{group.name}</span>
       </div>
       <div className="flex flex-col text-center">

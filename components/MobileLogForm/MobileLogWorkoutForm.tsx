@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useNavigateGroups } from "./hooks/useNavigateGroups";
 import { useLogForm } from "./hooks/useLogForm";
 import { Page } from "./Page";
+import { GroupNav } from "./GroupNav";
 
 interface MobileLogWorkoutFormProps {
   template: DeepTemplateWorkout;
@@ -19,32 +20,11 @@ export const MobileLogWorkoutForm = ({
   return (
     <div className={cn("max-md:mb-[150px] mb-[90px] flex flex-col")}>
       <div className="relative">
-        <div className="w-full overflow-x-scroll snap-x snap-mandatory flex divide-x divide-dashed shadow z-[100]">
-          <div className="flex w-max divide-x divide-solid divide-black border-y-[1px] border-black">
-            {template.strengthGroups.map((g) => (
-              <div
-                key={g.id}
-                id={g.id}
-                onClick={() => handleSelectGroup(g)}
-                className={cn(
-                  "h-[75px] min-w-[150px] snap-start flex flex-col font-bold text-stone-400 items-center justify-center bg-stone-200/80 cursor-pointer p-2 flex-nowrap",
-                  selected.group.id === g.id ? "bg-white text-black" : "",
-                )}
-              >
-                <div className="whitespace-nowrap text-[16px]">{g.name}</div>
-              </div>
-            ))}
-            <div
-              key="end"
-              id="end"
-              className={cn(
-                "h-[75px] min-w-[150px] snap-start flex flex-col font-bold text-stone-400 items-center justify-center bg-red-200/80 cursor-pointer p-2 flex-nowrap",
-              )}
-            >
-              <div className="whitespace-nowrap text-[16px]">End</div>
-            </div>
-          </div>
-        </div>
+        <GroupNav
+          selectedGroup={selected.group}
+          onClickGroup={handleSelectGroup}
+          groups={template.strengthGroups}
+        />
         <div className="h-max w-full">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(handleSubmit)}>
