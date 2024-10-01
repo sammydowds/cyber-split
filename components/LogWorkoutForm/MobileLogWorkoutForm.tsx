@@ -9,7 +9,7 @@ import { clearDB, LOG_WORKOUT_KEY, saveToDB } from "@/lib/indexedDb";
 import { useCreateLoggedWorkout } from "@/hooks/useCreateLoggedWorkout";
 import { useQueryClient } from "@tanstack/react-query";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 export const ExerciseData = ({
   group,
@@ -191,21 +191,23 @@ export const MobileLogWorkoutForm = ({
           <Form {...form}>
             <form onSubmit={form.handleSubmit(handleSubmit)}>
               <div className="flex items-center">
-                <motion.div
-                  className="w-full"
-                  key={selected.group.id}
-                  initial={{
-                    x: selected.swipeDirection === "left" ? 100 : -100,
-                    opacity: 0.5,
-                  }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.2, ease: "easeInOut" }}
-                >
-                  <ExerciseData
-                    group={selected.group}
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.div
+                    className="w-full"
                     key={selected.group.id}
-                  />
-                </motion.div>
+                    initial={{
+                      x: selected.swipeDirection === "left" ? 100 : -100,
+                      opacity: 0.5,
+                    }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.2, ease: "easeInOut" }}
+                  >
+                    <ExerciseData
+                      group={selected.group}
+                      key={selected.group.id}
+                    />
+                  </motion.div>
+                </AnimatePresence>
               </div>
             </form>
           </Form>
