@@ -16,12 +16,14 @@ export const Row = ({ groupIdx, setIdx }: RowProps) => {
   });
 
   const handleChangeReps = (n?: number) => {
-    if (n === undefined || n === null) {
+    setValue(`strengthGroups.${groupIdx}.sets.${setIdx}.reps`, n);
+  };
+
+  const handleOnBlurReps = () => {
+    if (reps === undefined || reps === null) {
       const currentSets = getValues(`strengthGroups.${groupIdx}.sets`);
       const updatedSets = currentSets.filter((_, index) => index !== setIdx);
       setValue(`strengthGroups.${groupIdx}.sets`, updatedSets);
-    } else {
-      setValue(`strengthGroups.${groupIdx}.sets.${setIdx}.reps`, n);
     }
   };
 
@@ -36,6 +38,7 @@ export const Row = ({ groupIdx, setIdx }: RowProps) => {
         <NumberInput
           value={reps}
           onChange={handleChangeReps}
+          onBlur={handleOnBlurReps}
           inputClass={cn(dateLogged ? "bg-green-100" : "")}
         />
       </td>

@@ -1,15 +1,21 @@
-import { ChangeEvent } from "react";
+import {
+  ChangeEvent,
+  HTMLInputTypeAttribute,
+  InputHTMLAttributes,
+} from "react";
 import { cn } from "@/lib/utils";
 
 interface NubmerInputProps {
   value?: number | null;
   onChange: (newValue?: number) => void;
+  onBlur?: () => void;
   label?: string;
   inputClass?: string;
 }
 export const NumberInput = ({
   value,
   onChange,
+  onBlur,
   label,
   inputClass,
 }: NubmerInputProps) => {
@@ -29,6 +35,7 @@ export const NumberInput = ({
         value={value ?? undefined}
         inputMode="numeric"
         onChange={handleOnChange}
+        onBlur={onBlur}
         className={cn(
           "h-full w-full text-center rounded-sm bg-stone-50/80 focus:outline-black p-0 text-[20px]",
           inputClass,
