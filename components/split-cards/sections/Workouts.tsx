@@ -1,7 +1,13 @@
 import { SplitDeep } from "@/types";
 import { SplitWorkoutCard } from "../../SplitWorkoutCard";
 
-export const Workouts = ({ split, hideCta }: { split: SplitDeep, hideCta?: boolean }) => {
+export const Workouts = ({
+  split,
+  hideCta,
+}: {
+  split: SplitDeep;
+  hideCta?: boolean;
+}) => {
   return (
     <div className="flex flex-col gap-[8px] bg-stone-100/60 pt-2">
       <div className="flex flex-col">

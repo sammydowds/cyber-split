@@ -8,7 +8,7 @@ interface RowProps {
   setIdx: number;
 }
 export const Row = ({ groupIdx, setIdx }: RowProps) => {
-  const { control, setValue } = useFormContext<LogWorkoutSchema>();
+  const { control, setValue, getValues } = useFormContext<LogWorkoutSchema>();
 
   const { reps, dateLogged, weight } = useWatch({
     control,
@@ -16,7 +16,13 @@ export const Row = ({ groupIdx, setIdx }: RowProps) => {
   });
 
   const handleChangeReps = (n?: number) => {
-    setValue(`strengthGroups.${groupIdx}.sets.${setIdx}.reps`, n);
+    if (n === undefined || n === null) {
+      const currentSets = getValues(`strengthGroups.${groupIdx}.sets`);
+      const updatedSets = currentSets.filter((_, index) => index !== setIdx);
+      setValue(`strengthGroups.${groupIdx}.sets`, updatedSets);
+    } else {
+      setValue(`strengthGroups.${groupIdx}.sets.${setIdx}.reps`, n);
+    }
   };
 
   const handleChangeWeight = (n?: number) => {
