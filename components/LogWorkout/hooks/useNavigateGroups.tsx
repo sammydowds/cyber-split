@@ -47,13 +47,15 @@ export const useNavigateGroups = (template: DeepTemplateWorkout) => {
     setNextGroup(nextGroup);
   };
 
-  const handleClickNext = () => {
+  const handleClickNext = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e?.preventDefault();
     if (nextGroup) {
       handleSelectGroup(nextGroup);
     }
   };
 
-  const handleClickPrevious = () => {
+  const handleClickPrevious = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e?.preventDefault();
     if (previousGroup) {
       handleSelectGroup(previousGroup);
     }

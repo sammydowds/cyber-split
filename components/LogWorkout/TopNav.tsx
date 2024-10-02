@@ -17,7 +17,7 @@ export const TopNav = ({
         <div className="text-xs text-stone-400 font-bold pl-2">Workout</div>
         <div className="font-bold text-xl pl-2">{template.name}</div>
       </div>
-      <div className="w-full overflow-x-scroll snap-x snap-mandatory flex divide-x divide-dashed shadow z-[100]">
+      <div className="w-full overflow-x-scroll snap-x snap-mandatory flex divide-x divide-dashed shadow z-[49]">
         <div className="flex w-max divide-x divide-solid divide-black border-y-[1px] border-black">
           {template.strengthGroups.map((g, idx) => (
             <div
