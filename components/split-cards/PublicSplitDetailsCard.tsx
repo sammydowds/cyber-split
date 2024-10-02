@@ -30,7 +30,7 @@ export const PublicSplitDetailsCard = ({
         <About split={split} />
         <Separator />
         <Schedule weeks={schedule} split={split} />
-        <Workouts split={split} />
+        <Workouts split={split} hideCta />
       </CardContent>
     </Card>
   );
