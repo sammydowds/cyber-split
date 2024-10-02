@@ -4,7 +4,7 @@ import { throwErrorFromFetcher } from "@/lib/throwErrorFromFetcher";
 import { LogWorkoutSchema } from "../components/LogWorkoutForm/types";
 import { DeepLoggedWorkout } from "@/types";
 
-interface CreateLoggedWorkoutResponse {
+export interface CreateLoggedWorkoutResponse {
   data: DeepLoggedWorkout;
 }
 

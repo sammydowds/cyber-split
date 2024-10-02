@@ -23,14 +23,14 @@ export const NumberInput = ({
     }
   };
   return (
-    <div className="flex items-center gap-[2px] justify-center text-lg font-bold">
+    <div className="flex items-center gap-[2px] justify-center text-lg font-bold h-full">
       <input
         type="text"
         value={value ?? undefined}
         inputMode="numeric"
         onChange={handleOnChange}
         className={cn(
-          "max-w-[65px] text-xl h-[40px] text-center rounded-sm bg-stone-50/80 focus:outline-black",
+          "h-full w-full text-center rounded-sm bg-stone-50/80 focus:outline-black p-0 text-[20px]",
           inputClass,
         )}
       />
