@@ -46,9 +46,9 @@ export default function Login() {
   };
 
   return (
-    <div className="h-screen w-screen flex items-start justify-center bg-black p-4 fixed">
+    <div className="h-screen w-screen flex items-start justify-center bg-black md:p-4 fixed">
       <AnimatedGradientBackground />
-      <Card className="w-full max-w-md z-50">
+      <Card className="w-full max-md:h-full max-md:rounded-none max-w-md z-50">
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-center flex flex-col items-center gap-4">
             <Image src="/logo.png" height={20} width={100} alt="logo" />

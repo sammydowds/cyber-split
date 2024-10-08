@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -5,12 +7,41 @@ import { AnimatedGradientBackground } from "../AnimatedGradientBackground";
 import { useSession } from "@/hooks/useSession";
 import { MoveRight } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+
+interface TextGenerateEffectProps {
+  text: string;
+  speed: number;
+}
+function TextGenerateEffect({ text, speed }: TextGenerateEffectProps) {
+  const [displayedText, setDisplayedText] = useState("");
+
+  useEffect(() => {
+    let index = 0;
+    const interval = setInterval(() => {
+      if (index < text.length) {
+        setDisplayedText(text.slice(0, index + 1));
+        index++;
+      } else {
+        clearInterval(interval);
+      }
+    }, speed);
+
+    return () => clearInterval(interval);
+  }, [text, speed]);
+
+  return (
+    <p className="text-[20px] tracking-tighter font-inter">{displayedText}</p>
+  );
+}
+
+export default TextGenerateEffect;
 
 export const HeroSection = () => {
   const { data } = useSession();
   return (
-    <section className="relative bg-black text-white overflow-hidden font-inter h-screen w-screen overflow-hidden flex items-center">
-      <AnimatedGradientBackground />
+    <section className="relative bg-black text-white overflow-hidden font-inter w-full h-full overflow-hidden flex items-center">
+      <AnimatedGradientBackground direction="b" />
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
@@ -21,14 +52,17 @@ export const HeroSection = () => {
           >
             <Image src="/logo.png" height={80} width={200} alt="logo" />
           </motion.div>
-          <motion.p
+          <motion.div
             className="text-xl md:text-2xl mb-12 text-[#e7e5e4] font-light leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Enhance your resistance training.
-          </motion.p>
+            <TextGenerateEffect
+              text={"Create weight training programs from scratch."}
+              speed={50}
+            />
+          </motion.div>
           <motion.div
             className="flex flex-col items-center justify-center md:flex-row gap-4"
             initial={{ opacity: 0, y: 20 }}

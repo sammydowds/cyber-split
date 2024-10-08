@@ -1,9 +1,19 @@
+import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
-export const AnimatedGradientBackground = () => {
+interface AnimatedGradientBackgroundProps {
+  direction?: "tr" | "br" | "t" | "b";
+}
+export const AnimatedGradientBackground = ({
+  direction = "br",
+}: AnimatedGradientBackgroundProps) => {
   return (
     <>
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-black to-[#fde047] opacity-50"></div>
+      <div
+        className={cn(
+          `absolute inset-0 bg-gradient-to-${direction} from-black via-black to-[#fde047] opacity-50`,
+        )}
+      ></div>
       <motion.div
         className="absolute inset-0 opacity-30"
         style={{
