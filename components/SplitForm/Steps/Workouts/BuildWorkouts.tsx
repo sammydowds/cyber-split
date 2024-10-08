@@ -11,13 +11,12 @@ import { FormSchemaType } from "../../schema";
 
 export const BuildWorkouts = () => {
   const form = useFormContext();
-  const { mutate: generateSplitWorkouts, isPending } = useGenerateSplitWorkouts(
-    {
+  const { mutate: generateSplitWorkouts, isPending: generatingWorkouts } =
+    useGenerateSplitWorkouts({
       onSuccess: (data) => {
         form.setValue("workouts", data.data ?? []);
       },
-    },
-  );
+    });
   const { splitType, muscles, workouts } = useWatch({ control: form.control });
 
   const handleReGenClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -42,10 +41,10 @@ export const BuildWorkouts = () => {
   };
 
   useEffect(() => {
-    if (muscles && !workouts?.length) {
+    if (muscles && !workouts?.length && !generatingWorkouts) {
       generateSplitWorkouts({ splitType, muscles });
     }
-  }, [muscles, generateSplitWorkouts, splitType, workouts]);
+  }, [muscles, workouts]);
 
   if (!muscles) {
     return null;
@@ -68,7 +67,7 @@ export const BuildWorkouts = () => {
       </Button>
       <div className="overflow-x-auto w-full">
         <div className="flex max-md:justify-center space-x-4 px-4 py-2 w-max mb-4 min-w-full">
-          {isPending ? (
+          {generatingWorkouts ? (
             <>
               <LoadingWorkoutCard hideCta />
               <LoadingWorkoutCard hideCta />
