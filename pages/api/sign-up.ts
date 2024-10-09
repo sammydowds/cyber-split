@@ -1,7 +1,7 @@
 import { schema } from "../../components/signup/schema";
 import { supabase } from "@/lib/api/supabaseClient";
 import { NextApiRequest, NextApiResponse } from "next";
-import { prisma } from "@/lib/prismaClient";
+import prisma from "@/lib/prismaClient";
 
 export default async function handler(
   req: NextApiRequest,

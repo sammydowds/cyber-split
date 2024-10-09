@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { supabase } from "@/lib/api/supabaseClient";
-import { prisma } from "@/lib/prismaClient";
+import prisma from "@/lib/prismaClient";
 import { LogWorkoutSchema } from "@/components/LogWorkoutForm/types";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {

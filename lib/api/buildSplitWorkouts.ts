@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
 import { MuscleSpec } from "../programming/types";
-import { prisma } from "../prismaClient";
+import prisma from "../prismaClient";
 
 export const WORKOUT_LABELS = ["A", "B", "C", "D"] as const;
 const getWorkoutLetterFromIndex = (idx: number, count: number) => {

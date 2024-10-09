@@ -3,7 +3,7 @@ const dotEnv = require("dotenv");
 const csv = require("csv-parser");
 const path = require("path");
 import { Exercise } from "@prisma/client";
-import { prisma } from "../lib/prismaClient";
+import prisma from "@/lib/prismaClient";
 
 dotEnv.config({ path: path.resolve(".env.local") });
 

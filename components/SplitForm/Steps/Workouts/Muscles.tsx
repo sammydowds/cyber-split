@@ -16,10 +16,12 @@ import { cn } from "@/lib/utils";
 export const Muscles = () => {
   const form = useFormContext();
   const { splitType } = useWatch({ control: form.control });
+
   const muscles =
     SPLIT_TYPE_TO_MUSCLES_MAP[
       splitType as keyof typeof SPLIT_TYPE_TO_MUSCLES_MAP
     ];
+
   return (
     <div className="flex flex-col gap-4 p-4">
       <h2 className="font-bold tracking-tighter text-xl">
