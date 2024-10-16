@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { FetchOptions, useFetchOptions } from "@/hooks/useFetchOptions";
 import { DeepTemplateWorkout } from "@/types";
 import { getFromDB, LOG_WORKOUT_KEY } from "@/lib/indexedDb";
@@ -24,11 +24,15 @@ const lookupLogData = async (options: FetchOptions, id: string) => {
   return workout;
 };
 
-const useLogData = (id: string) => {
+const useLogData = (
+  id: string,
+  options?: Partial<UseQueryOptions<DeepTemplateWorkout>>,
+) => {
   const opts = useFetchOptions();
   return useQuery<DeepTemplateWorkout>({
     queryKey: ["logData", id],
     queryFn: () => lookupLogData(opts, id),
+    ...options,
   });
 };
 
