@@ -10,7 +10,7 @@ import {
 import { AnimatedGradientBackground } from "@/components/AnimatedGradientBackground";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { schema } from "@/components/login/schema";
+import { schema } from "@/lib/formSchemas/login";
 import { z } from "zod";
 import {
   Form,

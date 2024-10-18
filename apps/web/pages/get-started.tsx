@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { schema } from "@/components/signup/schema";
+import { schema } from "@/lib/formSchemas/signup";
 import { useForm } from "react-hook-form";
 import { useSignUpUser } from "@/hooks/useSignUpUser";
 import { useRouter } from "next/router";

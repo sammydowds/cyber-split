@@ -1,4 +1,4 @@
-import { SplitDeep } from "@/types";
+import { SplitDeep } from "@repo/database";
 
 export const getBodyPartsFromWorkout = (
   workout: SplitDeep["workouts"][number],

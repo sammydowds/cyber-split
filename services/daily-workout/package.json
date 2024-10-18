@@ -1,0 +1,19 @@
+{
+  "name": "daily-workout",
+  "version": "1.0.0",
+  "description": "Text users their workout for the day",
+  "main": "index.js",
+  "author": "Sammy",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "tsc", 
+    "start": "node index.js" 
+  },
+  "devDependencies": {
+    "typescript": "^4.0.0"
+  },
+  "dependencies": {
+    "@repo/database": "*"
+  }
+}

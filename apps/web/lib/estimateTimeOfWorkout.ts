@@ -1,4 +1,4 @@
-import { DeepTemplateWorkout } from "@/types";
+import { DeepTemplateWorkout } from "@repo/database";
 import { Set } from "@prisma/client";
 
 const roundTo5 = (n: number) => {

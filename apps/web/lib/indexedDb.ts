@@ -1,4 +1,4 @@
-const DB_NAME = "sweat_db";
+const DB_NAME = "cyber-split";
 const STORE_NAME = "fetch_cache";
 const DB_VERSION = 1;
 

@@ -1,4 +1,4 @@
-import { DeepLoggedWorkout, SplitDeep } from "@/types";
+import { DeepLoggedWorkout, SplitDeep } from "@repo/database";
 import { ExerciseChart } from "./ExerciseChart";
 import {
   CardContent,

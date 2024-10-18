@@ -1,4 +1,4 @@
-import { HeroSection } from "../components/landing/Hero";
+import { HeroSection } from "../components/Hero";
 import { AnimatedGradientBackground } from "@/components/AnimatedGradientBackground";
 
 export default function Landing() {

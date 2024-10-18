@@ -6,29 +6,17 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
-import { SplitDeep } from "@/types";
+import { SplitDeep } from "@repo/database";
 import { Separator } from "@/components/ui/separator";
 import { WorkoutMarker } from "./WorkoutMarker";
 import { useRouter } from "next/router";
-import { estimateTimeOfWorkout } from "@/lib/estimateTimeOfWorkout";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { StrengthGroup } from "@prisma/client";
+import { StrengthGroup } from "@repo/database/src/client";
 import { SwapGroupDropdown } from "./SwapGroupDropdown";
 import { FormSchemaType } from "./SplitForm/schema";
 import toast from "react-hot-toast";
-import {
-  Anchor,
-  ArrowRightLeft,
-  Boxes,
-  Focus,
-  Group,
-  Link,
-  Target,
-} from "lucide-react";
-import { boolean } from "zod";
-import { DesktopNavBackground } from "./DesktopNavBackground";
-import { MobileNavBackground } from "./MobileNavBackground";
+import { ArrowRightLeft } from "lucide-react";
 
 interface WorkoutCardProps {
   split: Partial<SplitDeep>;
@@ -60,7 +48,7 @@ export const SplitWorkoutCard = ({
   );
 
   const handleClickLog = () => {
-    router.push(`/log-workout/${workout.id}`);
+    router.push(`/dashboard/active/log-workout/${workout.id}`);
   };
 
   const handleWorkoutChange = (
@@ -75,7 +63,7 @@ export const SplitWorkoutCard = ({
       }
     });
     toast(
-      <div className="flex flex-col text-sm gap-[4px] text-stone-500 w-[245px]">
+      <div className="flex flex-col text-sm gap-[4px] text-stone-500 w-[245px] z-[100]">
         <div className="flex gap-[6px] items-center font-bold text-sm tracking-tighter">
           <WorkoutMarker
             text={workout.letterLabel}
@@ -103,23 +91,20 @@ export const SplitWorkoutCard = ({
   };
 
   return (
-    <Card className="w-[345px] overflow-hidden shadow-sm border-black rounded-none shadow-[5px_5px_2px_rgba(0,0,0,0.15)] relative">
-      <CardHeader className="p-2">
+    <Card className="w-[245px] overflow-hidden shadow-sm rounded-lg shadow-[5px_5px_2px_rgba(0,0,0,0.15)] relative">
+      <CardHeader className="p-[8px]">
         <CardTitle className="flex justify-between items-center">
-          <div className="flex flex-col ml-[4px]">
-            <div className="text-xs text-stone-400 flex items-center gap-[4px]">
-              Workout
-              <WorkoutMarker
-                className="h-4 w-4 text-xs shadow-none"
-                text={workout.letterLabel}
-              />
-            </div>
-            <div className="text-xl">{workout.name}</div>
+          <div className="flex items-center gap-2 ml-[4px]">
+            <WorkoutMarker
+              className="h-6 w-6 shadow-none"
+              text={workout.letterLabel}
+            />
+            <div className="text-lg max-w-[180px] truncate">{workout.name}</div>
           </div>
         </CardTitle>
       </CardHeader>
-      <Separator className="bg-black" />
-      <CardContent className="p-0 overflow-scroll h-[245px]">
+      <Separator />
+      <CardContent className="p-0 overflow-scroll h-[200px]">
         <Table className="bg-white flex flex-col gap-[4px]">
           <TableBody>
             {workout?.strengthGroups?.map((g, idx) => {
@@ -128,14 +113,14 @@ export const SplitWorkoutCard = ({
                   key={g.name}
                   className="flex items-start justify-between text-xs px-[4px] border-dotted"
                 >
-                  <TableCell className="font-bold flex flex-col py-[10px] gap-[2px]">
+                  <TableCell className="font-bold flex flex-col py-[6px] gap-[2px]">
                     <div className="text-xs flex items-center gap-[2px] text-stone-400">
                       <div>{idx + 1}.</div>
                       <div className="capitalize">
                         {g.sets[0].exercise.bodyPart?.toLocaleLowerCase()}
                       </div>
                     </div>
-                    <div className="text-lg leading-5">{g.name}</div>
+                    <div className="leading-5 text-[14px]">{g.name}</div>
                   </TableCell>
                   <TableCell>
                     {editable ? (
@@ -154,13 +139,13 @@ export const SplitWorkoutCard = ({
       </CardContent>
       {hideCta ? null : (
         <>
-          <CardFooter className={cn("flex items-center justify-center p-0")}>
-            <button
-              className="w-full h-full font-bold text-md bg-black text-white p-2 text-lg"
-              onClick={handleClickLog}
-            >
+          <Separator />
+          <CardFooter
+            className={cn("flex items-center justify-center px-[4px] py-2")}
+          >
+            <Button className="w-full" onClick={handleClickLog}>
               Log Workout
-            </button>
+            </Button>
           </CardFooter>
         </>
       )}

@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { supabase } from "@/lib/api/supabaseClient";
-import { getSimilarExercises } from "@/lib/api/getSimilarExercises";
 import { Payload } from "@/hooks/useGetSImilarGroups";
+import { getSimilarExercises } from "@repo/database";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "POST") {
@@ -12,18 +11,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   if (!token) {
     return res.status(401).json({ error: "Auth token missing" });
-  }
-
-  const {
-    data: { user },
-    error,
-  } = await supabase.auth.getUser(token);
-
-  if (error) {
-    return res.status(401).json({ error: "Invalid or expired token" });
-  }
-  if (!user?.email) {
-    return res.status(401).json({ error: "Invalid user" });
   }
 
   const payload = req.body as Payload;

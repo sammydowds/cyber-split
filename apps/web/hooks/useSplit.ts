@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useFetchOptions } from "@/hooks/useFetchOptions";
-import { SplitDeep } from "@/types";
+import { SplitDeep } from "@repo/database";
 
 const fetchSplit = async (id: string) => {
   const res = await fetch(`/api/split/${id}`, {

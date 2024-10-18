@@ -1,4 +1,4 @@
-import { DeepLoggedWorkout } from "@/types";
+import { DeepLoggedWorkout } from "@repo/database";
 
 export const getMusclesRecoveringFromLoggedWorkout = (
   workout: DeepLoggedWorkout,

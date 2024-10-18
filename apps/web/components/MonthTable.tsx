@@ -6,7 +6,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Day } from "@/lib/programming/createWorkoutSchedule";
+import { Day } from "@repo/database";
 import { cn } from "@/lib/utils";
 import { WorkoutMarker } from "@/components/WorkoutMarker";
 import { Moon } from "lucide-react";
