@@ -19,7 +19,9 @@ const isLogWorkoutRoute = (paths?: string[]) => {
 
 const isCreateRoute = (paths?: string[]) => {
   return (
-    paths?.length === 2 && paths?.includes("library") && paths?.includes("create")
+    paths?.length === 2 &&
+    paths?.includes("library") &&
+    paths?.includes("create")
   );
 };
 
@@ -49,7 +51,10 @@ const isProfilePage = (paths?: string[]) => {
 };
 
 const isEmptyActivePage = (paths?: string[], activeSplit?: ActiveSplitDeep) => {
-  return !activeSplit?.id && ((paths?.length === 1 && paths?.includes("active")) || !paths);
+  return (
+    !activeSplit?.id &&
+    ((paths?.length === 1 && paths?.includes("active")) || !paths)
+  );
 };
 
 interface DashContentRouterProps {
