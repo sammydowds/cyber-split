@@ -7,15 +7,11 @@
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 generator client {
   provider = "prisma-client-js"
-}
-
-enum Units {
-  METRIC
-  IMPERIAL
 }
 
 model TextNotifications {
@@ -36,7 +32,7 @@ model Profile {
   stripeSubscriptionStatus String?
   workoutsPerWeekGoal      Int                 @default(3)
   verifiedAuthor           Boolean             @default(false)
-  preferredUnits           Units               @default(IMPERIAL)
+  preferredUnits           String @default("IMPERIAL")
   tier                     String              @default("IGNITE")
   nextTier                 String              @default("SILVER")
   multiplier               String              @default("SINGLE")
@@ -54,54 +50,6 @@ model Profile {
   @@index([email], name: "idx_profile_email")
 }
 
-enum Difficulty {
-  BEGINNER
-  NOVICE
-  INTERMEDIATE
-  ADVANCED
-  LEGENDARY
-  GRANDMASTER
-  MASTER
-  EXPERT
-}
-
-enum ExerciseType {
-  STRENGTH
-  AEROBIC
-  STRETCHING
-}
-
-enum BodyPart {
-  BICEPS
-  TRICEPS
-  CHEST
-  HAMSTRINGS
-  ABS
-  BACK
-  QUADS
-  GLUTES
-  SHOULDERS
-  TRAPS
-  FOREARMS
-  ADDUCTORS
-  ABDUCTORS
-  CALF
-  LOWERBACK
-}
-
-enum Mode {
-  PUSH
-  PULL
-  CORE
-  LOWER
-}
-
-enum Type {
-  FLEXIBILITY
-  STRENGTH
-  CARDIO
-}
-
 model Equipment {
   id        String     @id @default(cuid())
   name      String
@@ -116,8 +64,8 @@ model Exercise {
   name               String
   bodyPart           String?
   exRxLink           String?
-  mode               Mode?
-  type               Type?
+  mode               String?
+  type               String?
   target             String?
   classification     String?
   synergists         String[]
@@ -164,7 +112,7 @@ model TemplateWorkout {
   updated        DateTime?
   profileId      String
   profile        Profile         @relation(fields: [profileId], references: [id], onDelete: Cascade)
-  units          Units
+  units          String
   strengthGroups StrengthGroup[]
   Split          Split?          @relation(fields: [splitId], references: [id], onDelete: Cascade)
   splitId        String?
@@ -178,7 +126,7 @@ model LoggedWorkout {
   updated        DateTime?
   profileId      String
   profile        Profile         @relation(fields: [profileId], references: [id], onDelete: Cascade)
-  units          Units
+  units          String 
   dateLogged     DateTime?
   strengthGroups StrengthGroup[]
   Split          Split?          @relation(fields: [splitId], references: [id])

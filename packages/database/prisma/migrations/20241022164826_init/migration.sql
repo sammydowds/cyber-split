@@ -1,21 +1,3 @@
--- CreateEnum
-CREATE TYPE "Units" AS ENUM ('METRIC', 'IMPERIAL');
-
--- CreateEnum
-CREATE TYPE "Difficulty" AS ENUM ('BEGINNER', 'NOVICE', 'INTERMEDIATE', 'ADVANCED', 'LEGENDARY', 'GRANDMASTER', 'MASTER', 'EXPERT');
-
--- CreateEnum
-CREATE TYPE "ExerciseType" AS ENUM ('STRENGTH', 'AEROBIC', 'STRETCHING');
-
--- CreateEnum
-CREATE TYPE "BodyPart" AS ENUM ('BICEPS', 'TRICEPS', 'CHEST', 'HAMSTRINGS', 'ABS', 'BACK', 'QUADS', 'GLUTES', 'SHOULDERS', 'TRAPS', 'FOREARMS', 'ADDUCTORS', 'ABDUCTORS', 'CALF', 'LOWERBACK');
-
--- CreateEnum
-CREATE TYPE "Mode" AS ENUM ('PUSH', 'PULL', 'CORE', 'LOWER');
-
--- CreateEnum
-CREATE TYPE "Type" AS ENUM ('FLEXIBILITY', 'STRENGTH', 'CARDIO');
-
 -- CreateTable
 CREATE TABLE "TextNotifications" (
     "id" TEXT NOT NULL,
@@ -37,7 +19,7 @@ CREATE TABLE "Profile" (
     "stripeSubscriptionStatus" TEXT,
     "workoutsPerWeekGoal" INTEGER NOT NULL DEFAULT 3,
     "verifiedAuthor" BOOLEAN NOT NULL DEFAULT false,
-    "preferredUnits" "Units" NOT NULL DEFAULT 'IMPERIAL',
+    "preferredUnits" TEXT NOT NULL DEFAULT 'IMPERIAL',
     "tier" TEXT NOT NULL DEFAULT 'IGNITE',
     "nextTier" TEXT NOT NULL DEFAULT 'SILVER',
     "multiplier" TEXT NOT NULL DEFAULT 'SINGLE',
@@ -65,8 +47,8 @@ CREATE TABLE "Exercise" (
     "name" TEXT NOT NULL,
     "bodyPart" TEXT,
     "exRxLink" TEXT,
-    "mode" "Mode",
-    "type" "Type",
+    "mode" TEXT,
+    "type" TEXT,
     "target" TEXT,
     "classification" TEXT,
     "synergists" TEXT[],
@@ -114,7 +96,7 @@ CREATE TABLE "TemplateWorkout" (
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated" TIMESTAMP(3),
     "profileId" TEXT NOT NULL,
-    "units" "Units" NOT NULL,
+    "units" TEXT NOT NULL,
     "splitId" TEXT,
 
     CONSTRAINT "TemplateWorkout_pkey" PRIMARY KEY ("id")
@@ -128,7 +110,7 @@ CREATE TABLE "LoggedWorkout" (
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated" TIMESTAMP(3),
     "profileId" TEXT NOT NULL,
-    "units" "Units" NOT NULL,
+    "units" TEXT NOT NULL,
     "dateLogged" TIMESTAMP(3),
     "splitId" TEXT,
 
