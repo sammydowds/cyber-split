@@ -11,7 +11,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environemnt: prod-cybersplit
+    environment: prod-cybersplit
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
