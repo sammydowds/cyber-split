@@ -1,8 +1,8 @@
-name: Deploy
+name: Migrate Database - Production 
 on:
   push:
     paths:
-      - pacakges/database/prisma/migrations/** # Only run this workflow when migrations are updated
+      - pacakges/database/prisma/migrations/** 
     branches:
       - main
   workflow_dispatch: 
@@ -11,6 +11,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environemnt: prod-cybersplit
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
