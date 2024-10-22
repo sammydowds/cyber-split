@@ -2,7 +2,7 @@ import { useMutation, UseMutationOptions } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { FetchOptions, useFetchOptions } from "@/hooks/useFetchOptions";
 import { throwErrorFromFetcher } from "@/lib/throwErrorFromFetcher";
-import { DeepTemplateWorkout } from "@/types";
+import { DeepTemplateWorkout } from "@repo/database";
 import { FormSchemaType } from "@/components/SplitForm/schema";
 
 interface CreateSplitResponse {

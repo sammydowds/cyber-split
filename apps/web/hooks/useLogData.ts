@@ -1,6 +1,6 @@
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { FetchOptions, useFetchOptions } from "@/hooks/useFetchOptions";
-import { DeepTemplateWorkout } from "@/types";
+import { DeepTemplateWorkout } from "@repo/database";
 import { getFromDB, LOG_WORKOUT_KEY } from "@/lib/indexedDb";
 
 const lookupLogData = async (options: FetchOptions, id: string) => {

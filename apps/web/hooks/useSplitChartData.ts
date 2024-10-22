@@ -1,5 +1,5 @@
 import { calcOneRepMax } from "@/lib/calcOneRepMax";
-import { DeepSet, LoggedWorkoutSplitResponse, SplitDeep } from "@/types";
+import { DeepSet, LoggedWorkoutSplitResponse, SplitDeep } from "@repo/database";
 import { Set } from "@prisma/client";
 
 export type ChartData = {

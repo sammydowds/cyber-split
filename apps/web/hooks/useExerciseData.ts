@@ -4,7 +4,7 @@ import {
   DeepSet,
   LoggedWorkoutSplitResponse,
   SplitDeep,
-} from "@/types";
+} from "@repo/database";
 import { Set } from "@prisma/client";
 
 export type ChartData = {

@@ -7,7 +7,7 @@ import {
 } from "./ui/dropdown-menu";
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { ArrowLeftRight, LoaderCircle } from "lucide-react";
-import { StrengthGroup } from "@prisma/client";
+import { StrengthGroup } from "@repo/database/src/client";
 import { useGetSimilarGroups } from "@/hooks/useGetSImilarGroups";
 import { useState } from "react";
 

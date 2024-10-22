@@ -1,5 +1,5 @@
 import { useMutation, UseMutationOptions } from "@tanstack/react-query";
-import { schema } from "../components/signup/schema";
+import { schema } from "../lib/formSchemas/signup";
 import { z } from "zod";
 
 type SuccessResponse = boolean;

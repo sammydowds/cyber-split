@@ -2,7 +2,7 @@ import { useMutation, UseMutationOptions } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { FetchOptions, useFetchOptions } from "@/hooks/useFetchOptions";
 import { throwErrorFromFetcher } from "@/lib/throwErrorFromFetcher";
-import { DeepTemplateWorkout } from "@/types";
+import { DeepTemplateWorkout } from "@repo/database";
 
 interface GenerateSplitWorkoutsResponse {
   data: Partial<DeepTemplateWorkout>[];

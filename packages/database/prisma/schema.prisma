@@ -18,26 +18,38 @@ enum Units {
   IMPERIAL
 }
 
+model TextNotifications {
+  id        String   @id @default(cuid())
+  type      String
+  phone     String   @unique @db.VarChar(255)
+  enabled   Boolean  @default(false)
+  time      DateTime @db.Timestamptz(0)
+  profileId String
+  profile   Profile  @relation(fields: [profileId], references: [id])
+}
+
 model Profile {
-  id                       String            @id @default(cuid())
-  email                    String            @unique
+  id                       String              @id @default(cuid())
+  email                    String              @unique
   firstName                String?
-  stripeCustomerId         String?           @unique
+  stripeCustomerId         String?             @unique
   stripeSubscriptionStatus String?
-  workoutsPerWeekGoal      Int               @default(3)
-  verifiedAuthor           Boolean           @default(false)
-  preferredUnits           Units             @default(IMPERIAL)
-  tier                     String            @default("IGNITE")
-  nextTier                 String            @default("SILVER")
-  multiplier               String            @default("SINGLE")
-  nextMultiplier           String            @default("SINGLE")
+  workoutsPerWeekGoal      Int                 @default(3)
+  verifiedAuthor           Boolean             @default(false)
+  preferredUnits           Units               @default(IMPERIAL)
+  tier                     String              @default("IGNITE")
+  nextTier                 String              @default("SILVER")
+  multiplier               String              @default("SINGLE")
+  nextMultiplier           String              @default("SINGLE")
   preferredEquipment       Equipment[]
-  workoutsUntilNextTier    Int               @default(10)
-  totalWorkouts            Int               @default(0)
+  workoutsUntilNextTier    Int                 @default(10)
+  totalWorkouts            Int                 @default(0)
   timezoneId               String?
   TemplateWorkout          TemplateWorkout[]
   LoggedWorkout            LoggedWorkout[]
   Split                    Split[]
+  TextNotifications        TextNotifications[]
+  ActiveSplit              ActiveSplit[]
 
   @@index([email], name: "idx_profile_email")
 }
@@ -186,4 +198,17 @@ model Split {
   profile        Profile           @relation(fields: [profileId], references: [id], onDelete: Cascade)
   workouts       TemplateWorkout[]
   loggedWorkouts LoggedWorkout[]
+  ActiveSplit    ActiveSplit[]
+}
+
+model ActiveSplit {
+  id        String   @id @default(uuid())
+  start     DateTime
+  end       DateTime
+  schedule  Json?
+  notes     String?
+  splitId   String
+  split     Split    @relation(fields: [splitId], references: [id], onDelete: Cascade)
+  profileId String
+  profile   Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
 }

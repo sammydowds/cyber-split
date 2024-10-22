@@ -1,7 +1,7 @@
-import { schema } from "../../components/signup/schema";
+import { schema } from "../../lib/formSchemas/signup";
 import { supabase } from "@/lib/api/supabaseClient";
 import { NextApiRequest, NextApiResponse } from "next";
-import { prisma } from "@repo/database";
+import { getProfile } from "@repo/database";
 
 export default async function handler(
   req: NextApiRequest,
@@ -19,11 +19,7 @@ export default async function handler(
         return res.status(400).json({ error: authError?.message });
       }
 
-      const profile = await prisma.profile.create({
-        data: {
-          email: data.user.email,
-        },
-      });
+      const profile = await getProfile(data.user.email);
 
       if (!profile) {
         return res

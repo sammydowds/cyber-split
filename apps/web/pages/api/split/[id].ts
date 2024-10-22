@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { prisma } from "@repo/database";
+import { findSplit } from "@repo/database";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "GET") {
@@ -7,28 +7,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   const { id: splitId } = req.query;
-
-  const split = await prisma.split.findUnique({
-    where: {
-      id: splitId as string,
-    },
-    include: {
-      workouts: {
-        include: {
-          strengthGroups: {
-            include: {
-              sets: {
-                include: {
-                  exercise: true,
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-  });
-
+  const split = await findSplit(splitId as string);
   return res.status(200).json({ data: split });
 };
 

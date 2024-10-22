@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { FetchOptions, useFetchOptions } from "@/hooks/useFetchOptions";
-import { DeepTemplateWorkout, SplitDeep } from "@/types";
+import { DeepTemplateWorkout, SplitDeep } from "@repo/database";
 
 const fetchTemplateWorkout = async (options: FetchOptions, id: string) => {
   const res = await fetch(`/api/template-workout/${id}`, {

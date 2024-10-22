@@ -3,13 +3,16 @@ import type { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ToastBar, Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
-      <Component {...pageProps} />
+      <SidebarProvider>
+        <Component {...pageProps} />
+      </SidebarProvider>
       <Toaster>
         {(t) => (
           <motion.div

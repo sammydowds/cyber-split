@@ -1,34 +1,19 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { supabase } from "@/lib/api/supabaseClient";
-import { prisma } from "@repo/database";
-import { Units } from "@prisma/client";
-import { FormSchemaType } from "@/components/SplitForm/schema";
+import { FormSchemaType } from "@/lib/formSchemas/create";
+import { createSplit, getProfile } from "@repo/database";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed." });
   }
 
-  const token = req.headers.authorization?.split(" ")[1] as string;
-  if (!token) {
-    return res.status(401).json({ error: "Auth token missing" });
+  const { email } = req.headers ?? {};
+  if (!email) {
+    return res.status(500).json({ error: "No email passed" });
   }
-  const {
-    data: { user },
-    error,
-  } = await supabase.auth.getUser(token);
-
-  if (error) {
-    return res.status(401).json({ error: "Invalid or expired token" });
-  }
-
-  const profile = await prisma.profile.findUnique({
-    where: {
-      email: user?.email,
-    },
-  });
+  const profile = await getProfile(email as string);
   if (!profile) {
-    return res.status(500).json({ error: "Unable to find profile." });
+    return res.status(500).json({ error: "No profile found" });
   }
 
   // find split with no end set
@@ -40,47 +25,14 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       .json({ error: "Unable to build split with incomplete data." });
   }
 
-  const split = await prisma.split.create({
-    data: {
-      profileId: profile.id,
-      cadence,
-      type: splitType,
-      active,
-      name,
-      workouts: {
-        create: workouts.map((w) => ({
-          name: w.name,
-          letterLabel: w.letterLabel,
-          profileId: profile.id,
-          units: Units.IMPERIAL,
-          strengthGroups: {
-            create: w.strengthGroups.map((g: any) => ({
-              ...g,
-              sets: {
-                create: g.sets.map((s: any) => ({
-                  ...s,
-                  exercise: {
-                    connect: { id: s.exercise.id },
-                  },
-                })),
-              },
-            })),
-          },
-        })),
-      },
-      skipDays: skipDays,
-    },
-    include: {
-      workouts: {
-        include: {
-          strengthGroups: {
-            include: {
-              sets: true,
-            },
-          },
-        },
-      },
-    },
+  const split = await createSplit({
+    cadence,
+    type: splitType,
+    workouts,
+    skipDays,
+    name,
+    active,
+    profileId: profile.id as string,
   });
 
   return res.status(200).json({ data: split });
