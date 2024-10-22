@@ -5,6 +5,8 @@ on:
       - pacakges/database/prisma/migrations/** # Only run this workflow when migrations are updated
     branches:
       - main
+  workflow_dispatch: 
+
 
 jobs:
   deploy:
