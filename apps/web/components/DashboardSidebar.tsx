@@ -64,7 +64,7 @@ export const DashboardSidebar = ({
             <SidebarMenu className="gap-2">
               <SidebarMenuItem className="hover:bg-none">
                 <SidebarMenuButton
-                  isActive={crumbs.includes("active")}
+                  isActive={crumbs?.includes("active")}
                   onClick={() => {
                     handleSidebar(false);
                     router.push("/dashboard/active");
@@ -76,7 +76,7 @@ export const DashboardSidebar = ({
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton
-                  isActive={crumbs.includes("library")}
+                  isActive={crumbs?.includes("library")}
                   onClick={() => {
                     handleSidebar(false);
                     router.push("/dashboard/library");
@@ -109,7 +109,7 @@ export const DashboardSidebar = ({
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton
-                  isActive={crumbs.includes("profile")}
+                  isActive={crumbs?.includes("profile")}
                   onClick={() => {
                     handleSidebar(false);
                     router.push("/dashboard/profile");
@@ -131,8 +131,8 @@ export const DashboardSidebar = ({
             <BreadcrumbList>
               {crumbs?.map((crumb, idx) => {
                 const currentCrumbs = crumbs?.slice(0, idx + 1);
-                const isLast = crumbs.length === idx + 1;
-                const url = "/dashboard/" + currentCrumbs.join("/");
+                const isLast = crumbs?.length === idx + 1;
+                const url = "/dashboard/" + currentCrumbs?.join("/");
                 return (
                   <>
                     <BreadcrumbItem className="">
