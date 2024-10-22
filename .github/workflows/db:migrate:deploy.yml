@@ -2,7 +2,7 @@ name: Migrate Database - Production
 on:
   push:
     paths:
-      - pacakges/database/prisma/migrations/** 
+      - packages/database/prisma/migrations/** 
     branches:
       - main
   workflow_dispatch: 
