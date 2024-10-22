@@ -1,7 +1,7 @@
 import { schema } from "../../lib/formSchemas/signup";
 import { supabase } from "@/lib/api/supabaseClient";
 import { NextApiRequest, NextApiResponse } from "next";
-import { getProfile } from "@repo/database";
+import { createProfile, getProfile } from "@repo/database";
 
 export default async function handler(
   req: NextApiRequest,
@@ -15,12 +15,12 @@ export default async function handler(
         email: formData.email,
         password: formData.password,
       });
+
       if (authError || !data?.user?.email) {
         return res.status(400).json({ error: authError?.message });
       }
 
-      const profile = await getProfile(data.user.email);
-
+      const profile = await createProfile(data.user.email);
       if (!profile) {
         return res
           .status(400)

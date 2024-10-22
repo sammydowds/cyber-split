@@ -166,6 +166,14 @@ export const getProfile = async (email: string) => {
   });
 };
 
+export const createProfile = async (email: string) => {
+  return await prisma.profile.create({
+    data: {
+      email: email,
+    },
+  });
+};
+
 export const deactivateActiveSplit = async (id: string) => {
   return await prisma.activeSplit.update({
     where: {

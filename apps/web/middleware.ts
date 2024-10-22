@@ -35,5 +35,18 @@ export const middleware = async (request: NextRequest) => {
 };
 
 export const config = {
-  matcher: ["/api/:path*"],
+  matcher: [
+    "/api/active-split",
+    "/api/activate-split",
+    "/api/create-logged-workout",
+    "/api/create-split",
+    "/api/deactivate-split",
+    "/api/delete-split",
+    "/api/generate-split-workouts",
+    "/api/profile",
+    "/api/similar-groups",
+    "/api/splits",
+    "/api/template-workout/:path*",
+    "/api/split/:path*",
+  ],
 };
