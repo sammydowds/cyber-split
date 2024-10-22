@@ -6,8 +6,9 @@
       "cache": false
     },
     "build": {
-      "dependsOn": ["^generate"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
+      "cache": false
     },
     "generate": {
       "cache": false 
