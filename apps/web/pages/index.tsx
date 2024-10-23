@@ -18,7 +18,7 @@ export default function Landing() {
       <header className="flex flex-col items-center justify-start w-full mt-14">
         <div className="w-[500px] max-md:w-full flex flex-col gap-[20px] px-6">
           <h1 className="text-5xl max-md:text-4xl font-bold tracking-tight text-black w-full align-left max-w-[340px]">
-            Wieght training made easier.
+            Weight training made easier.
           </h1>
           <h2 className="text-2xl tracking-tight text-black w-full align-left">
             Your space to organize and prioritize your weightraining.
