@@ -109,6 +109,18 @@ export const DashboardSidebar = ({
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton
+                  isActive={crumbs?.includes("log")}
+                  onClick={() => {
+                    handleSidebar(false);
+                    router.push("/dashboard/log");
+                  }}
+                  className="text-lg"
+                >
+                  Log
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton
                   isActive={crumbs?.includes("profile")}
                   onClick={() => {
                     handleSidebar(false);

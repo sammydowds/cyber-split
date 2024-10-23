@@ -8,18 +8,28 @@ import * as React from "react";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { DashContentRouter } from "@/components/dash-pages/DashContentRouter";
 import { DashboardSidebar } from "@/components/DashboardSidebar";
+import { useLoggedWorkouts } from "@/hooks/useLoggedWorkouts";
+import { Loader } from "lucide-react";
 
 export default function Dashboard() {
   const { data: activeSplit, isPending: loadingActiveScheduledSplit } =
     useActiveScheduledSplit();
   const { data: profile, isPending: loadingProfile } = useProfile();
   const { data: allSplits, isPending: loadingAllSplits } = useSplits();
+  const { data: loggedWorkouts, isPending: loadingLoggedWorkouts } =
+    useLoggedWorkouts();
   const router = useRouter();
 
   if (!profile && !loadingProfile) {
     toast.error("You have been logged out.");
     router.push("/login");
   }
+
+  const loadingData =
+    loadingActiveScheduledSplit ||
+    loadingAllSplits ||
+    loadingLoggedWorkouts ||
+    loadingProfile;
 
   return (
     <main className="w-full">
@@ -33,15 +43,18 @@ export default function Dashboard() {
       >
         <DashboardSidebar allSplits={allSplits} activeSplit={activeSplit}>
           <div className="py-8">
-            {!loadingActiveScheduledSplit &&
-            !loadingAllSplits &&
-            !loadingProfile ? (
+            {loadingData ? (
+              <div className="w-full flex items-center justify-center">
+                <Loader className="animate-spin" />
+              </div>
+            ) : (
               <DashContentRouter
                 activeSplit={activeSplit}
                 allSplits={allSplits ?? []}
                 profile={profile}
+                loggedWorkouts={loggedWorkouts}
               />
-            ) : null}
+            )}
           </div>
         </DashboardSidebar>
       </SidebarProvider>
