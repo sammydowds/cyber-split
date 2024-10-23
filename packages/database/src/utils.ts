@@ -122,6 +122,33 @@ export const buildSplitWorkouts = async (
   return workouts;
 };
 
+export const getAllWorkoutsForUser = async (profileId: string) => {
+  return await prisma.loggedWorkout.findMany({
+    where: {
+      profileId: profileId,
+    },
+    include: {
+      strengthGroups: {
+        include: {
+          sets: {
+            include: {
+              exercise: true,
+            },
+          },
+        },
+      },
+      Split: {
+        select: {
+          name: true,
+        },
+      },
+    },
+    orderBy: {
+      dateLogged: "desc",
+    },
+  });
+};
+
 export const createActiveSplit = async (
   splitId: string,
   profileId: string,

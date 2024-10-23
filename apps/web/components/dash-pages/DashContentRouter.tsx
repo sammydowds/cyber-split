@@ -2,12 +2,13 @@ import { useRouter } from "next/router";
 import { LibraryPage } from "./LibraryPage";
 import { ProfilePage } from "./ProfilePage";
 import { ActiveSplitPage } from "./ActiveSplitPage";
-import { ActiveSplitDeep, SplitDeep } from "@repo/database";
+import { ActiveSplitDeep, DeepLoggedWorkout, SplitDeep } from "@repo/database";
 import { Profile } from "@repo/database/dist/src/client";
 import { LogWorkoutPage } from "./LogWorkoutPage";
 import { CreatePage } from "./CreatePage/CreatePage";
-import { Construction, TriangleAlert } from "lucide-react";
+import { Construction } from "lucide-react";
 import { EmptyActivePage } from "./EmptyActivePage";
+import { LogPage } from "./LogPage";
 
 const isLogWorkoutRoute = (paths?: string[]) => {
   return (
@@ -50,6 +51,10 @@ const isProfilePage = (paths?: string[]) => {
   return paths?.length === 1 && paths.includes("profile");
 };
 
+const isLogPage = (paths?: string[]) => {
+  return paths?.length === 1 && paths.includes("log");
+};
+
 const isEmptyActivePage = (paths?: string[], activeSplit?: ActiveSplitDeep) => {
   return (
     !activeSplit?.id &&
@@ -62,11 +67,13 @@ interface DashContentRouterProps {
   allSplits: SplitDeep[];
   profile: Profile;
   draftWorkout?: ActiveSplitDeep["split"]["workouts"][number];
+  loggedWorkouts?: DeepLoggedWorkout[];
 }
 export const DashContentRouter = ({
   activeSplit,
   allSplits = [],
   profile,
+  loggedWorkouts = [],
 }: DashContentRouterProps) => {
   const router = useRouter();
   const paths = router.query.slug as string[];
@@ -92,6 +99,10 @@ export const DashContentRouter = ({
 
   if (isProfilePage(paths)) {
     return <ProfilePage profile={profile} />;
+  }
+
+  if (isLogPage(paths)) {
+    return <LogPage workouts={loggedWorkouts} />;
   }
 
   if (isCreateRoute(paths)) {

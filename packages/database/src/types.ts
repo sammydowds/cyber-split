@@ -144,6 +144,7 @@ export type DeepLoggedWorkout = Prisma.LoggedWorkoutGetPayload<{
         };
       };
     };
+    Split: true;
   };
 }>;
 

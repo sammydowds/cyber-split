@@ -45,6 +45,7 @@ export const config = {
     "/api/generate-split-workouts",
     "/api/profile",
     "/api/similar-groups",
+    "/api/logged-workouts",
     "/api/splits",
     "/api/template-workout/:path*",
     "/api/split/:path*",
