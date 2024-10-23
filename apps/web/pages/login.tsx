@@ -46,9 +46,8 @@ export default function Login() {
   };
 
   return (
-    <div className="h-screen w-screen flex items-start justify-center bg-black md:p-4 fixed">
-      <AnimatedGradientBackground />
-      <Card className="w-full max-md:h-full max-md:rounded-none max-w-md z-50">
+    <div className="h-screen w-screen flex items-start justify-center md:p-4 fixed">
+      <Card className="w-full max-md:h-full max-md:rounded-none border-none shadow-none max-w-md z-50">
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-center flex flex-col items-center gap-4">
             <Image src="/logo.png" height={20} width={100} alt="logo" />
@@ -72,7 +71,7 @@ export default function Login() {
                     <FormControl>
                       <Input
                         placeholder="Email"
-                        className="max-md:text-[16px]"
+                        className="text-[18px] h-[50px]"
                         {...field}
                       />
                     </FormControl>
@@ -92,7 +91,7 @@ export default function Login() {
                       <Input
                         type="password"
                         placeholder="Password"
-                        className="max-md:text-[16px]"
+                        className="text-[18px] h-[50px]"
                         {...field}
                       />
                     </FormControl>
@@ -105,7 +104,8 @@ export default function Login() {
               <Button
                 type="submit"
                 disabled={logginIn}
-                className="w-full bg-black transition-colors duration-300"
+                size="lg"
+                className="w-full bg-black transition-colors duration-300 font-bold"
               >
                 Log In
               </Button>

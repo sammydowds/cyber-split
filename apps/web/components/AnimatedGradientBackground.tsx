@@ -11,7 +11,7 @@ export const AnimatedGradientBackground = ({
     <>
       <div
         className={cn(
-          `absolute inset-0 bg-gradient-to-${direction} from-black via-black to-[#fde047] opacity-50`,
+          `absolute inset-0 bg-gradient-to-${direction} from-black via-black to-[#fde047]`,
         )}
       ></div>
       <motion.div

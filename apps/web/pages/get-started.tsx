@@ -49,16 +49,15 @@ export default function GetStarted() {
   };
 
   return (
-    <div className="h-screen w-screen flex items-start justify-center bg-black md:p-4 fixed">
-      <AnimatedGradientBackground />
-      <Card className="w-full max-md:h-full max-md:rounded-none max-w-md z-50">
+    <div className="h-screen w-screen flex items-start justify-center md:p-4 fixed">
+      <Card className="w-full max-md:h-full max-md:rounded-none border-none shadow-none max-w-md z-50">
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-center flex flex-col items-center gap-4">
             <Image src="/logo.png" height={20} width={100} alt="logo" />
             <div>
-              Start your journey
+              Get started
               <span className="block text-sm font-normal text-gray-500 mt-1">
-                Create an account to start building
+                Create an account to start training
               </span>
             </div>
           </CardTitle>
@@ -76,7 +75,7 @@ export default function GetStarted() {
                       <Input
                         type="email"
                         placeholder="Email"
-                        className="max-md:text-[16px]"
+                        className="text-[18px] h-[50px]"
                         {...field}
                       />
                     </FormControl>
@@ -96,7 +95,7 @@ export default function GetStarted() {
                       <Input
                         type="password"
                         placeholder="Password"
-                        className="max-md:text-[16px]"
+                        className="text-[18px] h-[50px]"
                         {...field}
                       />
                     </FormControl>
@@ -115,7 +114,7 @@ export default function GetStarted() {
                     <FormControl>
                       <Input
                         type="password"
-                        className="max-md:text-[16px]"
+                        className="text-[18px] h-[50px]"
                         placeholder="Confirm Password"
                         {...field}
                       />
@@ -129,7 +128,8 @@ export default function GetStarted() {
               <Button
                 type="submit"
                 disabled={isCreatingUser}
-                className="w-full bg-black transition-colors duration-300"
+                size="lg"
+                className="w-full bg-black transition-colors duration-300 font-bold"
               >
                 Sign Up
               </Button>
