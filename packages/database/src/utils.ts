@@ -413,7 +413,10 @@ export const createLoggedWorkout = async (
 };
 
 export const createSplit = async (
-  data: Omit<SplitDeep, "id" | "loggedWorkouts" | "created" | "rating" | "Split">,
+  data: Omit<
+    SplitDeep,
+    "id" | "loggedWorkouts" | "created" | "rating" | "Split"
+  >,
 ) => {
   const { cadence, type, active, name, workouts, skipDays, profileId } = data;
   return await prisma.split.create({

@@ -33,7 +33,6 @@ export const CreatePage = () => {
     createSplit(values);
   };
 
-  console.log("values", form.getValues());
   return (
     <div className="flex flex-col items-center">
       <div className="w-full md:max-w-[600px]">
