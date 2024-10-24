@@ -8,14 +8,15 @@ export const SampleSchedule = () => {
   const form = useFormContext();
   const { cadence, skipDays } = useWatch({ control: form.control });
 
+  if (!cadence) {
+    return;
+  }
+
   const { schedule } = createWorkoutSchedule({
     cadence,
     skipDays,
   });
 
-  if (!cadence) {
-    return;
-  }
   const handleCheckboxChange = (day: number) => {
     let newSkipDays = skipDays;
     if (skipDays?.includes(day)) {
