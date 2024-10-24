@@ -1,36 +1,8 @@
-import {
-  ActiveSplitDeep,
-  DeepLoggedWorkout,
-  DeepTemplateWorkout,
-} from "@repo/database";
-import {
-  Section,
-  SectionContent,
-  SectionDescription,
-  SectionHeader,
-  SectionTitle,
-} from "./components/sections";
+import { ActiveSplitDeep } from "@repo/database";
+import { Section, SectionHeader } from "./components/sections";
 import { Page } from "./components/pages";
 import { WorkoutMarker } from "../WorkoutMarker";
-import { useLogForm } from "./hooks/useLogForm";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../ui/form";
-import { useWatch } from "react-hook-form";
-import { Checkbox } from "../ui/checkbox";
-import { NumberInput } from "../NumberInput";
-import { cn } from "@/lib/utils";
-import { Button } from "../ui/button";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
-import { useRouter } from "next/router";
 import { Loader } from "lucide-react";
 import { useDraftLoggedWorkout } from "./hooks/useDraftLoggedWorkout";
 import { LogWorkoutForm } from "./components/LogWorkoutForm";
@@ -46,11 +18,21 @@ export const LogWorkoutPage = ({
   const { data: workout, isPending } = useDraftLoggedWorkout(workoutId);
 
   if (isPending) {
-    return <Loader className="animate-spin" />;
+    return (
+      <Page>
+        <Section></Section>
+      </Page>
+    );
   }
 
   if (!isPending && !workout) {
-    return <div>Oops. We had an issue loading that workout.</div>;
+    return (
+      <Page>
+        <Section>
+          <div>Oops. We had an issue loading that workout.</div>;
+        </Section>
+      </Page>
+    );
   }
 
   return (
