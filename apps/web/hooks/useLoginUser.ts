@@ -1,4 +1,4 @@
-import { schema } from "@/components/login/schema";
+import { schema } from "@/lib/formSchemas/login";
 import { supabase } from "@/lib/supabaseClient";
 import { useMutation, UseMutationOptions } from "@tanstack/react-query";
 import { z } from "zod";

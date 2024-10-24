@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import { FetchOptions, useFetchOptions } from "@/hooks/useFetchOptions";
 import { throwErrorFromFetcher } from "@/lib/throwErrorFromFetcher";
 import { DeepTemplateWorkout } from "@repo/database";
-import { FormSchemaType } from "@/components/SplitForm/schema";
+import { FormSchemaType } from "@/lib/formSchemas/create";
 
 interface CreateSplitResponse {
   data: Partial<DeepTemplateWorkout>[];

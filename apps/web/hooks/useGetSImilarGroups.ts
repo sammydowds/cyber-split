@@ -1,7 +1,7 @@
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { FetchOptions, useFetchOptions } from "@/hooks/useFetchOptions";
 import { StrengthGroup } from "@prisma/client";
-import { FormSchemaType } from "@/components/SplitForm/schema";
+import { FormSchemaType } from "@/lib/formSchemas/create";
 
 export interface Payload {
   group: FormSchemaType["workouts"][number]["strengthGroups"][number];

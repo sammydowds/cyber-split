@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { StrengthGroup } from "@repo/database/src/client";
 import { SwapGroupDropdown } from "./SwapGroupDropdown";
-import { FormSchemaType } from "./SplitForm/schema";
+import { FormSchemaType } from "@/lib/formSchemas/create";
 import toast from "react-hot-toast";
 import { ArrowRightLeft } from "lucide-react";
 

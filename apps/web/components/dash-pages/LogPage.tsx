@@ -48,9 +48,11 @@ const LoggedWorkoutData = ({ workout }: LoggedWorkoutDataProps) => {
       </div>
 
       <Separator />
-      <div className="text-xs mt-[4px]">
-        via <span className="italic">{workout.Split?.name}</span>
-      </div>
+      {workout.Split?.name ? (
+        <div className="text-xs mt-[4px]">
+          via <span className="italic">{workout.Split?.name}</span>
+        </div>
+      ) : null}
       <div className="mt-4">
         {workout.strengthGroups.map((group) => {
           const loggedSets = group.sets.filter((set) => set.dateLogged);

@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { createActiveSplit, getProfile } from "@repo/database";
+import { ActivateSplitPayload } from "@/hooks/useActivateSplit";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "POST") {
@@ -15,9 +16,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(500).json({ error: "No profile found" });
   }
 
-  const payload = req.body as { id: string };
-  const { id } = payload;
-  await createActiveSplit(id, profile.id as string);
+  const payload = req.body as ActivateSplitPayload;
+  const { splitId, startDate, endDate, schedule } = payload;
+  await createActiveSplit(splitId, profile.id, startDate, endDate, schedule);
   return res.status(200).json({ success: true });
 };
 

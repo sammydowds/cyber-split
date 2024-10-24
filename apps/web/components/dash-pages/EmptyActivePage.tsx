@@ -59,7 +59,7 @@ export const EmptyActivePage = ({ allSplits }: EmptyPageProps) => {
                       className="font-bold"
                       variant="outline"
                       disabled={isActivating}
-                      onClick={() => activate({ id: split.id })}
+                      onClick={() => activate(split)}
                     >
                       Activate
                     </Button>

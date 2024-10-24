@@ -7,6 +7,12 @@ import { motion } from "framer-motion";
 export const SampleSchedule = () => {
   const form = useFormContext();
   const { cadence, skipDays } = useWatch({ control: form.control });
+
+  const { schedule } = createWorkoutSchedule({
+    cadence,
+    skipDays,
+  });
+
   if (!cadence) {
     return;
   }
@@ -19,10 +25,7 @@ export const SampleSchedule = () => {
     }
     form.setValue("skipDays", newSkipDays);
   };
-  const { schedule } = createWorkoutSchedule({
-    cadence,
-    skipDays,
-  });
+
   return (
     <motion.div
       initial={{ opacity: 0, y: -40 }}

@@ -1,4 +1,4 @@
-import { Prisma, prisma } from "./client";
+import { ActiveSplit, Prisma, prisma } from "./client";
 import {
   SPLIT_TYPE_PROGRAMMING_LABEL_MAP,
   SPLIT_TYPE_PROGRAMMING_MAP,
@@ -154,6 +154,7 @@ export const createActiveSplit = async (
   profileId: string,
   start: Date = new Date(),
   end: Date = new Date(new Date().setDate(new Date().getDate() + 30)),
+  schedule: any,
 ) => {
   // create schedule
   const baseSplit = await prisma.split.findUnique({
@@ -166,19 +167,12 @@ export const createActiveSplit = async (
       workouts: true,
     },
   });
-  let schedule;
-  if (baseSplit) {
-    schedule = createActiveSplitWorkoutSchedule({
-      split: baseSplit,
-      startDate: start,
-    });
-  }
 
   return await prisma.activeSplit.create({
     data: {
       splitId,
       profileId,
-      schedule: schedule?.schedule,
+      schedule,
       start,
       end,
     },
@@ -372,7 +366,7 @@ export const getSimilarExercises = async ({
 export const createLoggedWorkout = async (
   data: Omit<
     DeepLoggedWorkout,
-    "id" | "created" | "units" | "dateLogged" | "updated"
+    "id" | "created" | "units" | "dateLogged" | "updated" | "Split"
   >,
 ) => {
   const { name, profileId, splitId, letterLabel, strengthGroups } = data;
@@ -419,7 +413,7 @@ export const createLoggedWorkout = async (
 };
 
 export const createSplit = async (
-  data: Omit<SplitDeep, "id" | "loggedWorkouts" | "created" | "rating">,
+  data: Omit<SplitDeep, "id" | "loggedWorkouts" | "created" | "rating" | "Split">,
 ) => {
   const { cadence, type, active, name, workouts, skipDays, profileId } = data;
   return await prisma.split.create({

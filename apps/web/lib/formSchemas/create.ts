@@ -8,7 +8,6 @@ export const formSchema = z.object({
   skipDays: z.array(z.number()).default([]),
   name: z.string(),
   notes: z.string().nullable().default(null),
-  active: z.boolean().default(false),
 });
 
 export type FormSchemaType = z.infer<typeof formSchema>;

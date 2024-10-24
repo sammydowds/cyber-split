@@ -51,12 +51,6 @@ export const LibraryPage = ({ splits, oneSplitIsActive }: LibraryPageProps) => {
   const [showModal, setShowModal] = useState(false);
   const router = useRouter();
 
-  const { mutate: deativateSplit } = useDeactivateSplit({
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["activeSplit"] });
-      toast.success("Successfully Deactivated Split");
-    },
-  });
   const { mutate: activateSplit } = useActivateSplit({
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["activeSplit"] });
@@ -179,7 +173,7 @@ export const LibraryPage = ({ splits, oneSplitIsActive }: LibraryPageProps) => {
                       <DropdownMenuItem
                         disabled={oneSplitIsActive}
                         className="flex items-center gap-[4px]"
-                        onClick={() => activateSplit({ id: split.id })}
+                        onClick={() => activateSplit(split)}
                       >
                         <Zap size={14} fill="#86efac" />
                         Activate

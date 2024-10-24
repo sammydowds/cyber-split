@@ -7,7 +7,6 @@ import { Form } from "../../ui/form";
 import { Button } from "../../ui/button";
 import { SplitType } from "./Sections/SplitType";
 import { Workouts } from "./Sections/Workouts/Workouts";
-import { Dates } from "./Sections/Dates";
 import { Schedule } from "./Sections/Schedule/Schedule";
 import { Name } from "./Sections/Name";
 import { z } from "zod";
@@ -34,6 +33,7 @@ export const CreatePage = () => {
     createSplit(values);
   };
 
+  console.log("values", form.getValues());
   return (
     <div className="flex flex-col items-center">
       <div className="w-full md:max-w-[600px]">
@@ -45,7 +45,6 @@ export const CreatePage = () => {
             <Name />
             <SplitType />
             <Workouts />
-            <Dates />
             <Schedule />
             <Button
               type="submit"

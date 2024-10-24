@@ -1,7 +1,7 @@
 import { useMutation, UseMutationOptions } from "@tanstack/react-query";
 import { FetchOptions, useFetchOptions } from "@/hooks/useFetchOptions";
 import { throwErrorFromFetcher } from "@/lib/throwErrorFromFetcher";
-import { LogWorkoutSchema } from "../components/LogWorkout/types";
+import { LogWorkoutSchema } from "@/lib/formSchemas/log";
 import { DeepLoggedWorkout } from "@repo/database";
 
 export interface CreateLoggedWorkoutResponse {

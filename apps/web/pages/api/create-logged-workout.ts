@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { createLoggedWorkout, getProfile } from "@repo/database";
-import { LogWorkoutSchema } from "@/components/LogWorkout/types";
+import { LogWorkoutSchema } from "@/lib/formSchemas/log";
 import { DeepLoggedWorkout } from "@repo/database";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -27,7 +27,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const loggedWorkout = await createLoggedWorkout({
     ...payload,
     splitId,
-    strengthGroups: strengthGroups as DeepLoggedWorkout["strenghthGroups"],
+    strengthGroups: strengthGroups as DeepLoggedWorkout["strengthGroups"],
     profileId: profile.id as string,
   });
 

@@ -4,7 +4,7 @@ import {
   getProfile,
   lookupLastLoggedSet,
 } from "@repo/database";
-import { DeepTemplateWorkout } from "../../../types";
+import { DeepTemplateWorkout } from "@repo/database";
 
 const populateWeight = async (
   profileId: string,
