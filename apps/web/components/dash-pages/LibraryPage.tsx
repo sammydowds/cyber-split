@@ -90,7 +90,7 @@ export const LibraryPage = ({ splits, oneSplitIsActive }: LibraryPageProps) => {
               📚
             </span>
           </div>
-          Created Programs
+          Created Splits
         </div>
         <Button
           variant="outline"

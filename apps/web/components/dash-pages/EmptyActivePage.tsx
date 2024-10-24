@@ -27,9 +27,9 @@ export const EmptyActivePage = ({ allSplits }: EmptyPageProps) => {
     <Page>
       <Section>
         <SectionHeader>
-          <SectionTitle>Create a program</SectionTitle>
+          <SectionTitle>Create a split</SectionTitle>
           <SectionDescription>
-            Create a new program and activate it.
+            Create a new split and activate it.
           </SectionDescription>
         </SectionHeader>
         <SectionContent>
@@ -37,16 +37,16 @@ export const EmptyActivePage = ({ allSplits }: EmptyPageProps) => {
             className="font-bold"
             onClick={() => router.push("/dashboard/library/create")}
           >
-            Create Program
+            Create Split
           </Button>
         </SectionContent>
       </Section>
       {allSplits?.length ? (
         <Section>
           <SectionHeader>
-            <SectionTitle>Activate an existing program</SectionTitle>
+            <SectionTitle>Activate an existing split</SectionTitle>
             <SectionDescription>
-              Activate an existing program you have created.
+              Activate an existing split you have created.
             </SectionDescription>
           </SectionHeader>
           <div className="flex flex-col gap-[8px]">

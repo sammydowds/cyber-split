@@ -71,7 +71,7 @@ export const DashboardSidebar = ({
                   }}
                   className="text-lg"
                 >
-                  Active Programming
+                  Active Split
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>

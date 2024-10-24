@@ -27,11 +27,11 @@ export const Dates = () => {
     >
       <div className="flex flex-col gap-[8px]">
         <h2 className="font-bold tracking-tighter text-xl max-w-[345px]">
-          Would you like to start this program immediately?
+          Would you like to start this split immediately?
         </h2>
         <p className="text-stone-600">
-          By selecting activate later, the program will appear in your library
-          but not as active.
+          By selecting activate later, the split will appear in your library but
+          not as active.
         </p>
       </div>
       <div className="flex flex-col gap-2">

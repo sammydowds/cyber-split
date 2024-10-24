@@ -21,10 +21,10 @@ export const Name: React.FC = () => {
     >
       <div className="flex flex-col gap-[8px]">
         <h2 className="font-bold tracking-tighter text-xl max-w-[345px]">
-          What would you like to name this program?
+          What would you like to name this split?
         </h2>
         <p className="text-stone-600">
-          Enter a name that differentiates it from other programs you have
+          Enter a name that differentiates it from other splits you have
           created.
         </p>
       </div>

@@ -56,7 +56,7 @@ export const CreatePage = () => {
               {isPending ? (
                 <Loader className="animate-spinner" />
               ) : (
-                "Create Program"
+                "Create Split"
               )}
             </Button>
           </form>
