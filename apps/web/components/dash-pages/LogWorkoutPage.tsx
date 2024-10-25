@@ -1,5 +1,5 @@
 import { ActiveSplitDeep } from "@repo/database";
-import { Section, SectionHeader } from "./components/sections";
+import { Section, SectionContent, SectionHeader } from "./components/sections";
 import { Page } from "./components/pages";
 import { WorkoutMarker } from "../WorkoutMarker";
 import Link from "next/link";
@@ -65,7 +65,9 @@ export const LogWorkoutPage = ({
             </div>
           </div>
         </SectionHeader>
-        <LogWorkoutForm workout={workout} />
+        <div className="mt-8">
+          <LogWorkoutForm workout={workout} />
+        </div>
       </Section>
     </Page>
   );

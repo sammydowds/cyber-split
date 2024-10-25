@@ -88,7 +88,7 @@ export const LogWorkoutForm = ({ workout }: LogWorkoutFormProps) => {
                               onCheckedChange={(checked) =>
                                 handleCheckToggle(groupIdx, setIdx, checked)
                               }
-                              className="h-[30px] w-[30px] rounded-none border-2"
+                              className="h-[30px] w-[30px]"
                               checked={!!dateLogged}
                             />
                             <div
