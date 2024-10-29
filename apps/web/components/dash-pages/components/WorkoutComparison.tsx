@@ -16,9 +16,7 @@ export const WorkoutComparison = ({ workout }: WorkoutComparisonProps) => {
   });
 
   const { data } = useCompareSetsData({ workout, previousWorkout });
-  console.log(data);
 
-  console.log(data);
   return (
     <div className="text-xs">
       <div className="flex justify-end my-[4px]">

@@ -16,7 +16,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   const { dateLogged, type, templateWorkoutId } = req.query;
-  console.log(req.query);
 
   const workouts = await getFirstOrLastLoggedWorkout(
     profile.id,

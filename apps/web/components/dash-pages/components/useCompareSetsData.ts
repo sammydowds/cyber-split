@@ -22,19 +22,16 @@ export const useCompareSetsData = ({ workout, previousWorkout }: Args) => {
       let existingEntry = data[set.exercise.id];
       if (set.dateLogged && set.weight && set.reps) {
         let tempCurrentOneRepMax = calcOneRepMax(set.weight, set.reps);
-        if (
-          existingEntry?.currentOneRepMax &&
-          tempCurrentOneRepMax > existingEntry.currentOneRepMax
-        ) {
-          data[set.exercise.id] = {
-            ...existingEntry,
-            currentOneRepMax: tempCurrentOneRepMax,
-          };
-        } else {
+        if (!existingEntry?.currentOneRepMax) {
           data[set.exercise.id] = {
             name: set.exercise.name,
             currentOneRepMax: tempCurrentOneRepMax,
             previousOneRepMax: null,
+          };
+        } else if (tempCurrentOneRepMax > existingEntry.currentOneRepMax) {
+          data[set.exercise.id] = {
+            ...existingEntry,
+            currentOneRepMax: tempCurrentOneRepMax,
           };
         }
       }
