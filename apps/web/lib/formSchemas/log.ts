@@ -40,6 +40,7 @@ export const schema = z.object({
   letterLabel: z.string(),
   id: z.string(),
   splitId: z.string().optional().nullable(),
+  templateWorkoutId: z.string(),
 });
 
 export type LogWorkoutSchema = z.infer<typeof schema>;

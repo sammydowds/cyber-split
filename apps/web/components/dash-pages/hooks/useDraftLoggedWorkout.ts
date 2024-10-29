@@ -16,7 +16,7 @@ const fetchLogData = async (opts: FetchOptions, id?: string) => {
   });
 
   const apiData = await response.json();
-  return apiData.data;
+  return { ...apiData?.data, templateWorkoutId: apiData?.data?.id };
 };
 
 const useDraftLoggedWorkout = (

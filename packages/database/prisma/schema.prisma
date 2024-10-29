@@ -5,8 +5,8 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
 
@@ -32,7 +32,7 @@ model Profile {
   stripeSubscriptionStatus String?
   workoutsPerWeekGoal      Int                 @default(3)
   verifiedAuthor           Boolean             @default(false)
-  preferredUnits           String @default("IMPERIAL")
+  preferredUnits           String              @default("IMPERIAL")
   tier                     String              @default("IGNITE")
   nextTier                 String              @default("SILVER")
   multiplier               String              @default("SINGLE")
@@ -116,21 +116,24 @@ model TemplateWorkout {
   strengthGroups StrengthGroup[]
   Split          Split?          @relation(fields: [splitId], references: [id], onDelete: Cascade)
   splitId        String?
+  LoggedWorkout  LoggedWorkout[]
 }
 
 model LoggedWorkout {
-  id             String          @id @default(cuid())
-  name           String
-  letterLabel    String
-  created        DateTime        @default(now())
-  updated        DateTime?
-  profileId      String
-  profile        Profile         @relation(fields: [profileId], references: [id], onDelete: Cascade)
-  units          String 
-  dateLogged     DateTime?
-  strengthGroups StrengthGroup[]
-  Split          Split?          @relation(fields: [splitId], references: [id])
-  splitId        String?
+  id                String           @id @default(cuid())
+  name              String
+  letterLabel       String
+  created           DateTime         @default(now())
+  updated           DateTime?
+  profileId         String
+  profile           Profile          @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  units             String
+  dateLogged        DateTime?
+  strengthGroups    StrengthGroup[]
+  Split             Split?           @relation(fields: [splitId], references: [id])
+  splitId           String?
+  templateWorkoutId String?
+  templateWorkout   TemplateWorkout? @relation(fields: [templateWorkoutId], references: [id])
 }
 
 model Split {
