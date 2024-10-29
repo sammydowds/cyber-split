@@ -23,3 +23,4 @@ jobs:
         run: yarn db:migrate:deploy 
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_URL: ${{ secrets.DIRECT_URL }}
