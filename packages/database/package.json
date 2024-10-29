@@ -20,7 +20,7 @@
     "update:exercises": "node out/scripts/scripts/upsertExercises.js"
   },
   "dependencies": {
-    "@prisma/client": "^5.10.2"
+    "@prisma/client": "5.15.0"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",

@@ -1,8 +1,4 @@
-import {
-  ChangeEvent,
-  HTMLInputTypeAttribute,
-  InputHTMLAttributes,
-} from "react";
+import { ChangeEvent } from "react";
 import { cn } from "@/lib/utils";
 
 interface NubmerInputProps {

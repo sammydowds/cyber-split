@@ -122,6 +122,42 @@ export const buildSplitWorkouts = async (
   return workouts;
 };
 
+export const getFirstOrLastLoggedWorkout = async (
+  profileId: string,
+  loggedBefore: Date,
+  templateWorkoutId: string,
+  type: "FIRST" | "LAST",
+) => {
+  return await prisma.loggedWorkout.findFirst({
+    where: {
+      profileId: profileId,
+      templateWorkoutId,
+      dateLogged: {
+        lte: loggedBefore,
+      },
+    },
+    include: {
+      strengthGroups: {
+        include: {
+          sets: {
+            include: {
+              exercise: true,
+            },
+          },
+        },
+      },
+      Split: {
+        select: {
+          name: true,
+        },
+      },
+    },
+    orderBy: {
+      dateLogged: type === "FIRST" ? "asc" : "desc",
+    },
+  });
+};
+
 export const getAllWorkoutsForUser = async (profileId: string) => {
   return await prisma.loggedWorkout.findMany({
     where: {
@@ -369,7 +405,14 @@ export const createLoggedWorkout = async (
     "id" | "created" | "units" | "dateLogged" | "updated" | "Split"
   >,
 ) => {
-  const { name, profileId, splitId, letterLabel, strengthGroups } = data;
+  const {
+    name,
+    profileId,
+    splitId,
+    letterLabel,
+    strengthGroups,
+    templateWorkoutId,
+  } = data;
   const now = new Date();
   return await prisma.loggedWorkout.create({
     data: {
@@ -377,6 +420,7 @@ export const createLoggedWorkout = async (
       profileId: profileId as string,
       splitId: splitId,
       letterLabel: letterLabel,
+      templateWorkoutId,
       dateLogged: now,
       units: "IMPERIAL",
       strengthGroups: {

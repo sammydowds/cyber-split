@@ -47,6 +47,7 @@ export const config = {
     "/api/similar-groups",
     "/api/logged-workouts",
     "/api/splits",
+    "/api/previous-workout",
     "/api/template-workout/:path*",
     "/api/split/:path*",
   ],
