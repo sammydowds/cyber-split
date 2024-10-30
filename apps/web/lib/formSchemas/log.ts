@@ -16,10 +16,10 @@ export const exerciseSchema = z.object({
 });
 
 export const setSchema = z.object({
-  reps: z.number().optional().nullable(),
+  reps: z.coerce.number().optional().nullable(),
   previousReps: z.number().optional().nullable(),
   isInterval: z.boolean().optional().nullable(),
-  weight: z.number().optional().nullable(),
+  weight: z.coerce.number().optional().nullable(),
   previousWeight: z.number().optional().nullable(),
   distance: z.number().optional().nullable(),
   duration: z.number().optional().nullable(),
