@@ -1,11 +1,14 @@
 import { ActiveSplitDeep } from "@repo/database";
-import { Section, SectionContent, SectionHeader } from "./components/sections";
+import { Section, SectionHeader } from "./components/sections";
 import { Page } from "./components/pages";
 import { WorkoutMarker } from "../WorkoutMarker";
 import Link from "next/link";
-import { Loader } from "lucide-react";
 import { useDraftLoggedWorkout } from "./hooks/useDraftLoggedWorkout";
 import { LogWorkoutForm } from "./components/LogWorkoutForm";
+import { deleteFromDB, LOG_WORKOUT_KEY } from "@/lib/indexedDb";
+import { useQueryClient } from "@tanstack/react-query";
+import { Button } from "../ui/button";
+import { Loader, RotateCcw } from "lucide-react";
 
 interface LogWorkoutPageProps {
   activeSplit: ActiveSplitDeep;
@@ -15,7 +18,12 @@ export const LogWorkoutPage = ({
   activeSplit,
   workoutId,
 }: LogWorkoutPageProps) => {
-  const { data: workout, isPending } = useDraftLoggedWorkout(workoutId);
+  const {
+    data: workout,
+    isPending,
+    isRefetching,
+  } = useDraftLoggedWorkout(workoutId);
+  const queryClient = useQueryClient();
 
   if (isPending) {
     return (
@@ -34,6 +42,12 @@ export const LogWorkoutPage = ({
       </Page>
     );
   }
+
+  const handleResetForm = async (e: React.MouseEvent) => {
+    e?.preventDefault();
+    await deleteFromDB(`${LOG_WORKOUT_KEY}-${workout.id}`);
+    queryClient.invalidateQueries({ queryKey: ["logData", workout.id] });
+  };
 
   return (
     <Page>
@@ -64,10 +78,29 @@ export const LogWorkoutPage = ({
               </div>
             </div>
           </div>
+          <div className="flex items-center justify-between bg-stone-100 rounded my-2">
+            <div className="px-4 font-bold">
+              {workout.strengthGroups?.length} exercises
+            </div>
+            <Button
+              variant="link"
+              className="flex items-center font-bold gap-[4px] justify-between"
+              onClick={handleResetForm}
+            >
+              <RotateCcw size="16" /> Reset All
+            </Button>
+          </div>
         </SectionHeader>
-        <div className="mt-8">
-          <LogWorkoutForm workout={workout} />
-        </div>
+
+        {isRefetching ? (
+          <div className="flex items-center justify-center w-full">
+            <Loader className="animate-spin" />
+          </div>
+        ) : (
+          <div>
+            <LogWorkoutForm workout={workout} />
+          </div>
+        )}
       </Section>
     </Page>
   );
