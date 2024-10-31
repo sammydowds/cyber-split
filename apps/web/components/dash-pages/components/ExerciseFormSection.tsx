@@ -201,7 +201,7 @@ export const ExerciseFormSection = ({ group, groupIdx }: ContentProps) => {
 
       <Dialog open={group_unique_name === param_unique_name}>
         <DialogContent
-          className="bg-white flex flex-col items-center max-md:h-screen max-md:min-w-screen"
+          className="bg-white flex flex-col items-center max-md:h-screen max-md:min-w-screen max-md:pt-[75px]"
           hideCloseIcon
         >
           <DialogHeader className="text-left w-full">
