@@ -24,8 +24,7 @@ const Content = ({ group, groupIdx }: ContentProps) => {
   const [currentIdx, setCurrentIdx] = useState<number>(
     group.sets.findIndex((set) => !set.dateLogged),
   );
-
-  const { setValue } = form;
+  const { setValue, getValues } = form;
 
   const logCurrentIndex = (e: React.MouseEvent) => {
     e?.preventDefault();
@@ -33,18 +32,18 @@ const Content = ({ group, groupIdx }: ContentProps) => {
       `strengthGroups.${groupIdx}.sets.${currentIdx}.dateLogged`,
       new Date(),
     );
-    if (currentIdx > -1 && currentIdx + 1 < group.sets.length) {
-      setValue(
-        `strengthGroups.${groupIdx}.sets.${currentIdx + 1}.dateLogged`,
-        null,
-      );
+
+    // calc next index
+    const groupVals = getValues("strengthGroups")[groupIdx];
+    const nextIdx = groupVals.sets.findIndex((set) => !set.dateLogged);
+    if (nextIdx > -1 && nextIdx < group.sets.length) {
       setCurrentIdx(currentIdx + 1);
     } else {
       setCurrentIdx(-1);
     }
   };
 
-  const onFocusField = (setIdx: number) => {
+  const onChangeField = (setIdx: number) => {
     setValue(`strengthGroups.${groupIdx}.sets.${setIdx}.dateLogged`, null);
     setCurrentIdx(setIdx);
   };
@@ -89,7 +88,7 @@ const Content = ({ group, groupIdx }: ContentProps) => {
                     `strengthGroups.${groupIdx}.sets.${setIdx}.reps`,
                   )}
                   placeholder=" "
-                  onFocus={() => onFocusField(setIdx)}
+                  onChange={() => onChangeField(setIdx)}
                 />
                 <label
                   htmlFor={`${groupIdx}-${setIdx}-reps`}
@@ -113,7 +112,7 @@ const Content = ({ group, groupIdx }: ContentProps) => {
                     `strengthGroups.${groupIdx}.sets.${setIdx}.weight`,
                   )}
                   placeholder=" "
-                  onFocus={() => onFocusField(setIdx)}
+                  onChange={() => onChangeField(setIdx)}
                 />
                 <label
                   htmlFor={`${groupIdx}-${setIdx}-weight`}
