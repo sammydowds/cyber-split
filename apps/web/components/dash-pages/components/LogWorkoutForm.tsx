@@ -1,7 +1,4 @@
-import { Section } from "../components/sections";
 import { Form } from "../../ui/form";
-import { Checkbox } from "../../ui/checkbox";
-import { cn } from "@/lib/utils";
 import { Button } from "../../ui/button";
 import { Loader } from "lucide-react";
 import { DeepLoggedWorkout } from "@repo/database";
@@ -19,7 +16,7 @@ export const LogWorkoutForm = ({ workout }: LogWorkoutFormProps) => {
   const { form, handleSubmit, isSaving, loggedWorkout } = useLogForm(workout);
   const router = useRouter();
 
-  const { control, setValue, reset } = form;
+  const { control } = form;
 
   const strengthGroups = useWatch({
     control,
@@ -32,17 +29,6 @@ export const LogWorkoutForm = ({ workout }: LogWorkoutFormProps) => {
       router.push("/dashboard/active");
     }
   }, [loggedWorkout]);
-
-  const handleCheckToggle = (
-    groupIdx: number,
-    setIdx: number,
-    checked: boolean | string,
-  ) => {
-    setValue(
-      `strengthGroups.${groupIdx}.sets.${setIdx}.dateLogged`,
-      checked === true ? new Date() : null,
-    );
-  };
 
   return (
     <Form {...form}>

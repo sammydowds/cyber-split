@@ -1,20 +1,18 @@
 import { StrengthGroupSchemaType } from "@/lib/formSchemas/log";
-import { Check, ChevronRight } from "lucide-react";
+import { Check, ChevronRight, HexagonIcon } from "lucide-react";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import { useFormContext, useWatch } from "react-hook-form";
 import { cn } from "@/lib/utils";
-import pluralize from "pluralize";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
 interface ContentProps {
   group: StrengthGroupSchemaType;
@@ -22,17 +20,33 @@ interface ContentProps {
 }
 const Content = ({ group, groupIdx }: ContentProps) => {
   const form = useFormContext();
+  const router = useRouter();
+  const [currentIdx, setCurrentIdx] = useState<number>(
+    group.sets.findIndex((set) => !set.dateLogged),
+  );
 
   const { setValue } = form;
-  const handleCheckToggle = (
-    groupIdx: number,
-    setIdx: number,
-    checked: boolean | string,
-  ) => {
+
+  const logCurrentIndex = (e: React.MouseEvent) => {
+    e?.preventDefault();
     setValue(
-      `strengthGroups.${groupIdx}.sets.${setIdx}.dateLogged`,
-      checked === true ? new Date() : null,
+      `strengthGroups.${groupIdx}.sets.${currentIdx}.dateLogged`,
+      new Date(),
     );
+    if (currentIdx > -1 && currentIdx + 1 < group.sets.length) {
+      setValue(
+        `strengthGroups.${groupIdx}.sets.${currentIdx + 1}.dateLogged`,
+        null,
+      );
+      setCurrentIdx(currentIdx + 1);
+    } else {
+      setCurrentIdx(-1);
+    }
+  };
+
+  const onFocusField = (setIdx: number) => {
+    setValue(`strengthGroups.${groupIdx}.sets.${setIdx}.dateLogged`, null);
+    setCurrentIdx(setIdx);
   };
 
   return (
@@ -41,24 +55,25 @@ const Content = ({ group, groupIdx }: ContentProps) => {
         const { dateLogged } = set;
         return (
           <div className="flex items-center gap-2" key={setIdx}>
-            <div className="flex items-center gap-2 text-nowrap">
-              <Checkbox
-                onCheckedChange={(checked) =>
-                  handleCheckToggle(groupIdx, setIdx, checked)
-                }
-                className="h-[30px] w-[30px]"
-                checked={!!dateLogged}
-              />
-              <div
+            <div className="flex items-center justify-center h-[40px] w-[40px]">
+              <HexagonIcon
+                strokeWidth={0}
                 className={cn(
-                  "min-w-[75px]",
-                  dateLogged
-                    ? "line-through text-stone-400 decoration-[2px] decoration-stone-800/30"
-                    : "",
+                  "fill-stone-300 relative",
+                  set.dateLogged ? "fill-green-600" : null,
+                  currentIdx === setIdx ? "fill-black" : null,
                 )}
-              >
-                Set {setIdx + 1}
-              </div>
+                size={38}
+              />
+              {set.dateLogged ? (
+                <div className="absolute text-sm font-bold text-white">
+                  <Check size={16} />
+                </div>
+              ) : (
+                <div className="absolute text-sm font-bold text-white">
+                  {setIdx + 1}
+                </div>
+              )}
             </div>
             <div className={cn("grow", dateLogged ? "text-stone-400" : "")}>
               <div className="relative">
@@ -66,11 +81,15 @@ const Content = ({ group, groupIdx }: ContentProps) => {
                   type="text"
                   inputMode="numeric"
                   id={`${groupIdx}-${setIdx}-reps`}
-                  className="block p-2 w-full text-[16px] text-gray-900 bg-transparent rounded border-[2px] border-stone-200 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:border-stone-800 peer ring-0 outline-none"
+                  className={cn(
+                    "block p-2 w-full text-[16px] text-gray-900 bg-transparent rounded border-[2px] border-stone-100 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:border-stone-800 peer ring-0 outline-none",
+                    setIdx === currentIdx ? "border-stone-400" : null,
+                  )}
                   {...form.register(
                     `strengthGroups.${groupIdx}.sets.${setIdx}.reps`,
                   )}
                   placeholder=" "
+                  onFocus={() => onFocusField(setIdx)}
                 />
                 <label
                   htmlFor={`${groupIdx}-${setIdx}-reps`}
@@ -86,11 +105,15 @@ const Content = ({ group, groupIdx }: ContentProps) => {
                   type="text"
                   inputMode="numeric"
                   id={`${groupIdx}-${setIdx}-weight`}
-                  className="block p-2 w-full text-[16px] text-gray-900 bg-transparent rounded border-[2px] border-stone-200 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:border-stone-800 peer ring-0 outline-none"
+                  className={cn(
+                    "block p-2 w-full text-[16px] text-gray-900 bg-transparent rounded border-[2px] border-stone-100 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:border-stone-800 peer ring-0 outline-none",
+                    setIdx === currentIdx ? "border-stone-400" : null,
+                  )}
                   {...form.register(
                     `strengthGroups.${groupIdx}.sets.${setIdx}.weight`,
                   )}
                   placeholder=" "
+                  onFocus={() => onFocusField(setIdx)}
                 />
                 <label
                   htmlFor={`${groupIdx}-${setIdx}-weight`}
@@ -103,12 +126,41 @@ const Content = ({ group, groupIdx }: ContentProps) => {
           </div>
         );
       })}
+      <div className="flex items-center gap-2 px-2 mt-2">
+        <Button
+          className="grow font-bold"
+          variant="outline"
+          onClick={() => router.push(window.location.pathname)}
+        >
+          Done
+        </Button>
+        {currentIdx > -1 ? (
+          <Button
+            className="grow font-bold"
+            onClick={(e) => logCurrentIndex(e)}
+          >
+            Log Set
+          </Button>
+        ) : (
+          <Button
+            className="grow font-bold"
+            onClick={() => router.push(window.location.pathname)}
+          >
+            Finish
+          </Button>
+        )}
+      </div>
     </div>
   );
 };
 
 export const ExerciseFormSection = ({ group, groupIdx }: ContentProps) => {
   const form = useFormContext();
+  const params = useSearchParams();
+  const name = params.get("name");
+  const router = useRouter();
+  const param_unique_name = name?.replace(/ /g, "");
+  const group_unique_name = group.name?.replace(/ /g, "");
 
   const data = useWatch({ control: form.control, name: "strengthGroups" })[
     groupIdx
@@ -119,8 +171,13 @@ export const ExerciseFormSection = ({ group, groupIdx }: ContentProps) => {
     ? loggedSets.map((set) => `${set.reps}x${set.weight ?? "-"}`).join(", ")
     : undefined;
   return (
-    <Dialog>
-      <DialogTrigger className="w-full flex items-center text-left justify-between">
+    <>
+      <div
+        className="flex items-center justify-between w-full"
+        onClick={() =>
+          router.push(`${window.location.pathname}?name=${group_unique_name}`)
+        }
+      >
         <div className="h-[80px] w-[60px] rounded bg-stone-100 relative">
           {setsText ? (
             <div className="bg-green-600 flex items-center justify-center text-white rounded-full h-[20px] w-[20px] absolute -top-1 -right-1">
@@ -138,22 +195,22 @@ export const ExerciseFormSection = ({ group, groupIdx }: ContentProps) => {
             )}
           </div>
         </div>
+
         <ChevronRight className="text-stone-400" />
-      </DialogTrigger>
-      <DialogContent className="bg-white flex flex-col items-center max-md:h-screen max-md:min-w-screen max-md:pt-[75px]">
-        <DialogHeader className="text-left w-full">
-          <DialogTitle>{group.name}</DialogTitle>
-          <DialogDescription>Log data below.</DialogDescription>
-        </DialogHeader>
-        <Content group={group} groupIdx={groupIdx} />
-        <DialogFooter className="w-full">
-          <DialogClose>
-            <Button variant="outline" className="w-full">
-              Done
-            </Button>
-          </DialogClose>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+      </div>
+
+      <Dialog open={group_unique_name === param_unique_name}>
+        <DialogContent
+          className="bg-white flex flex-col items-center max-md:h-screen max-md:min-w-screen"
+          hideCloseIcon
+        >
+          <DialogHeader className="text-left w-full">
+            <DialogTitle>{group.name}</DialogTitle>
+            <DialogDescription>Log data below.</DialogDescription>
+          </DialogHeader>
+          <Content group={group} groupIdx={groupIdx} />
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
