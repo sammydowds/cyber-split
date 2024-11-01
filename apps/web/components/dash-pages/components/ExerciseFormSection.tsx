@@ -62,11 +62,11 @@ const Content = ({ group, groupIdx }: ContentProps) => {
                   set.dateLogged ? "fill-green-600" : null,
                   currentIdx === setIdx ? "fill-black" : null,
                 )}
-                size={38}
+                size={42}
               />
               {set.dateLogged ? (
                 <div className="absolute text-sm font-bold text-white">
-                  <Check size={16} />
+                  <Check size={18} />
                 </div>
               ) : (
                 <div className="absolute text-sm font-bold text-white">
@@ -81,8 +81,9 @@ const Content = ({ group, groupIdx }: ContentProps) => {
                   inputMode="numeric"
                   id={`${groupIdx}-${setIdx}-reps`}
                   className={cn(
-                    "block p-2 w-full text-[16px] text-gray-900 bg-transparent rounded border-[2px] border-stone-100 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:border-stone-800 peer ring-0 outline-none",
+                    "block p-2 w-full text-[20px] text-gray-900 bg-transparent rounded border-[2px] border-stone-100 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:border-stone-800 peer ring-0 outline-none",
                     setIdx === currentIdx ? "border-stone-400" : null,
+                    set?.dateLogged ? "text-green-700" : null,
                   )}
                   {...form.register(
                     `strengthGroups.${groupIdx}.sets.${setIdx}.reps`,
@@ -105,8 +106,9 @@ const Content = ({ group, groupIdx }: ContentProps) => {
                   inputMode="numeric"
                   id={`${groupIdx}-${setIdx}-weight`}
                   className={cn(
-                    "block p-2 w-full text-[16px] text-gray-900 bg-transparent rounded border-[2px] border-stone-100 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:border-stone-800 peer ring-0 outline-none",
+                    "block p-2 w-full text-[20px] text-gray-900 bg-transparent rounded border-[2px] border-stone-100 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:border-stone-800 peer ring-0 outline-none",
                     setIdx === currentIdx ? "border-stone-400" : null,
+                    set?.dateLogged ? "text-green-700" : null,
                   )}
                   {...form.register(
                     `strengthGroups.${groupIdx}.sets.${setIdx}.weight`,
@@ -127,7 +129,7 @@ const Content = ({ group, groupIdx }: ContentProps) => {
       })}
       <div className="flex items-center gap-2 px-2 mt-2">
         <Button
-          className="grow font-bold"
+          className="grow font-bold h-[50px] text-lg"
           variant="outline"
           onClick={() => router.push(window.location.pathname)}
         >
@@ -135,14 +137,14 @@ const Content = ({ group, groupIdx }: ContentProps) => {
         </Button>
         {currentIdx > -1 ? (
           <Button
-            className="grow font-bold"
+            className="grow font-bold h-[50px] text-lg"
             onClick={(e) => logCurrentIndex(e)}
           >
             Log Set
           </Button>
         ) : (
           <Button
-            className="grow font-bold"
+            className="grow font-bold h-[50px] text-lg"
             onClick={() => router.push(window.location.pathname)}
           >
             Finish
@@ -169,6 +171,22 @@ export const ExerciseFormSection = ({ group, groupIdx }: ContentProps) => {
   const setsText = loggedSets?.length
     ? loggedSets.map((set) => `${set.reps}x${set.weight ?? "-"}`).join(", ")
     : undefined;
+
+  const handleDialogOpenAutoFocus = (
+    event: React.FocusEvent<HTMLDivElement>,
+  ) => {
+    event?.preventDefault();
+    const firstUnloggedSetIndex = group.sets.findIndex(
+      (set) => !set.dateLogged,
+    );
+    const inputElement = document.getElementById(
+      `${groupIdx}-${firstUnloggedSetIndex}-weight`,
+    );
+
+    if (inputElement) {
+      (inputElement as HTMLInputElement).focus();
+    }
+  };
   return (
     <>
       <div
@@ -202,6 +220,7 @@ export const ExerciseFormSection = ({ group, groupIdx }: ContentProps) => {
         <DialogContent
           className="bg-white flex flex-col items-center max-md:h-screen max-md:min-w-screen max-md:pt-[75px]"
           hideCloseIcon
+          onOpenAutoFocus={(e) => handleDialogOpenAutoFocus(e)}
         >
           <DialogHeader className="text-left w-full">
             <DialogTitle>{group.name}</DialogTitle>

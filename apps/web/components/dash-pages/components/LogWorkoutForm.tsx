@@ -44,7 +44,7 @@ export const LogWorkoutForm = ({ workout }: LogWorkoutFormProps) => {
           <Button
             disabled={isSaving}
             type="submit"
-            className="max-md:w-full font-bold h-[40px] text-lg"
+            className="max-md:w-full font-bold h-[50px] text-lg"
           >
             {isSaving ? <Loader className="animate-spin" /> : "Log Workout"}
           </Button>
