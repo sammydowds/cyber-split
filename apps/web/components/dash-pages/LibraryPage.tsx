@@ -64,7 +64,7 @@ export const LibraryPage = ({ splits, oneSplitIsActive }: LibraryPageProps) => {
     },
   });
   return (
-    <div className="flex items-start justify-center px-4 max-md:px-0 mb-[365px] md:flex-wrap max-md:flex-col">
+    <div className="flex items-start justify-center px-4 max-md:px-0 mb-[365px] md:flex-wrap max-md:flex-col mt-8">
       <Dialog onOpenChange={setShowModal} open={showModal}>
         <DialogClose className="bg-white" />
         <DialogContent className="overflow-y-auto max-h-screen border-none px-0 py-[60px]">
@@ -73,7 +73,7 @@ export const LibraryPage = ({ splits, oneSplitIsActive }: LibraryPageProps) => {
           </DialogClose>
         </DialogContent>
       </Dialog>
-      <div className="flex items-center justify-between w-full">
+      <div className="flex items-center justify-between w-full px-4">
         <div className="flex items-center gap-[4px] text-xl font-bold">
           <div className="flex items-start justify-center h-full">
             <span

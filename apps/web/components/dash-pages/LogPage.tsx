@@ -15,15 +15,15 @@ export const LogPage = ({ workouts }: LogPageProps) => {
   return (
     <Page>
       <Section>
-        <SectionHeader>
+        <div className="px-4">
           <SectionTitle>Logged Workouts</SectionTitle>
           <SectionDescription>
             Here is all of the workouts you have logged.
           </SectionDescription>
-        </SectionHeader>
+        </div>
       </Section>
       <Section>
-        <div className="flex flex-col gap-12">
+        <div className="flex flex-col gap-12 px-4">
           {workouts?.map((workout) => {
             return <LoggedWorkoutData workout={workout} />;
           })}

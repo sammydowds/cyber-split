@@ -42,9 +42,9 @@ export default function Dashboard() {
         }
       >
         <DashboardSidebar allSplits={allSplits} activeSplit={activeSplit}>
-          <div className="py-8">
+          <div className="py-8 max-md:w-screen">
             {loadingData ? (
-              <div className="w-full flex items-center justify-center">
+              <div className="w-full flex items-center justify-center mt-8">
                 <Loader className="animate-spin" />
               </div>
             ) : (

@@ -53,7 +53,7 @@ export const LogWorkoutPage = ({
     <Page>
       <Section>
         <SectionHeader>
-          <div className="flex items-center gap-[8px]">
+          <div className="flex items-center gap-[8px] px-4">
             <div className="flex items-start h-full">
               <span
                 role="img"
@@ -78,7 +78,7 @@ export const LogWorkoutPage = ({
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-between bg-stone-100 rounded my-2">
+          <div className="flex items-center justify-between bg-stone-100 rounded m-4">
             <div className="px-4 font-bold">
               {workout.strengthGroups?.length} exercises
             </div>
@@ -97,7 +97,7 @@ export const LogWorkoutPage = ({
             <Loader className="animate-spin" />
           </div>
         ) : (
-          <div>
+          <div className="px-4">
             <LogWorkoutForm workout={workout} />
           </div>
         )}

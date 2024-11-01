@@ -34,7 +34,7 @@ export const CreatePage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center mt-4">
       <div className="w-full md:max-w-[600px]">
         <Form {...form}>
           <form
@@ -49,7 +49,7 @@ export const CreatePage = () => {
               type="submit"
               disabled={isPending}
               size="lg"
-              className="font-bold"
+              className="font-bold mx-2"
             >
               {isPending ? (
                 <Loader className="animate-spinner" />

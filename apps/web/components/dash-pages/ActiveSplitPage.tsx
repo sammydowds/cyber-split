@@ -22,6 +22,7 @@ import {
   SectionTitle,
 } from "./components/sections";
 import { Page } from "./components/pages";
+import { HorizontalCarousel } from "../HorizontalCarousel";
 
 interface ActiveSplitPageProps {
   activeSplit: ActiveSplitDeep;
@@ -62,7 +63,7 @@ export const ActiveSplitPage = ({ activeSplit }: ActiveSplitPageProps) => {
   return (
     <Page>
       <Section>
-        <div className="flex flex-col">
+        <div className="flex flex-col px-4">
           <div className="flex md:flex-row md:items-center max-md:flex-col gap-2 leading-3">
             <div className="flex gap-[8px] items-center">
               <div className="flex items-start justify-center h-full">
@@ -104,7 +105,7 @@ export const ActiveSplitPage = ({ activeSplit }: ActiveSplitPageProps) => {
         </div>
       </Section>
       {today?.workout ? (
-        <div className="flex md:flex-row max-md:flex-col md:gap-8 md:w-[600px] max-md:w-full">
+        <div className="flex md:flex-row max-md:flex-col md:gap-8 md:w-[600px] max-md:w-full px-4">
           <SectionHeader>
             <SectionDescription>Today's Workout</SectionDescription>
             <div className="flex items-center gap-12 max-md:justify-between">
@@ -127,7 +128,7 @@ export const ActiveSplitPage = ({ activeSplit }: ActiveSplitPageProps) => {
       ) : null}
 
       <Section>
-        <SectionHeader>
+        <div className="px-4">
           <SectionDescription>Schedule</SectionDescription>
           <SectionTitle>
             {
@@ -136,7 +137,7 @@ export const ActiveSplitPage = ({ activeSplit }: ActiveSplitPageProps) => {
               ]
             }
           </SectionTitle>
-        </SectionHeader>
+        </div>
         <SectionContent>
           <div className="md:w-max max-md:w-full">
             <ScheduleTable schedule={activeSplit.schedule as any} />
@@ -144,14 +145,14 @@ export const ActiveSplitPage = ({ activeSplit }: ActiveSplitPageProps) => {
         </SectionContent>
       </Section>
       <Section>
-        <SectionHeader>
+        <div className="px-4">
           <SectionDescription>Workouts</SectionDescription>
           <SectionTitle>
             {activeSplit.split.workouts.map((w) => w.name).join(", ")}
           </SectionTitle>
-        </SectionHeader>
+        </div>
         <SectionContent>
-          <div className="flex flex-wrap gap-4">
+          <HorizontalCarousel>
             {activeSplit.split.workouts?.map((_, idx: number) => {
               return (
                 <SplitWorkoutCard
@@ -162,10 +163,9 @@ export const ActiveSplitPage = ({ activeSplit }: ActiveSplitPageProps) => {
                 />
               );
             })}
-          </div>
+          </HorizontalCarousel>
         </SectionContent>
       </Section>
-      <div></div>
     </Page>
   );
 };

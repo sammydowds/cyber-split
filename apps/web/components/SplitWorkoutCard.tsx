@@ -91,7 +91,7 @@ export const SplitWorkoutCard = ({
   };
 
   return (
-    <Card className="w-[245px] overflow-hidden shadow-sm rounded-lg shadow-[5px_5px_2px_rgba(0,0,0,0.15)] relative">
+    <Card className="min-w-[245px] overflow-hidden shadow-sm rounded-lg shadow-[5px_5px_2px_rgba(0,0,0,0.15)] relative">
       <CardHeader className="p-[8px]">
         <CardTitle className="flex justify-between items-center">
           <div className="flex items-center gap-2 ml-[4px]">

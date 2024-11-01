@@ -8,6 +8,7 @@ import { LoadingWorkoutCard } from "@/components/LoadingWorkoutCard";
 import { Repeat2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { FormSchemaType } from "@/lib/formSchemas/create";
+import { HorizontalCarousel } from "@/components/HorizontalCarousel";
 
 export const BuildWorkouts = () => {
   const form = useFormContext();
@@ -65,28 +66,26 @@ export const BuildWorkouts = () => {
         Rebuild
         <Repeat2 strokeWidth={1.5} />
       </Button>
-      <div className="overflow-x-auto w-full">
-        <div className="flex max-md:justify-center space-x-4 px-4 py-2 w-max mb-4 min-w-full">
-          {generatingWorkouts ? (
-            <>
-              <LoadingWorkoutCard hideCta />
-              <LoadingWorkoutCard hideCta />
-            </>
-          ) : null}
-          {!generatingWorkouts
-            ? workouts?.map((_: any, idx: number) => (
-                <SplitWorkoutCard
-                  key={workouts[idx].name}
-                  split={{ workouts }}
-                  index={idx}
-                  onWorkoutChange={(workout) => handleWorkoutChange(workout)}
-                  hideCta
-                  editable
-                />
-              ))
-            : null}
-        </div>
-      </div>
+      <HorizontalCarousel>
+        {generatingWorkouts ? (
+          <>
+            <LoadingWorkoutCard hideCta />
+            <LoadingWorkoutCard hideCta />
+          </>
+        ) : null}
+        {!generatingWorkouts
+          ? workouts?.map((_: any, idx: number) => (
+              <SplitWorkoutCard
+                key={workouts[idx].name}
+                split={{ workouts }}
+                index={idx}
+                onWorkoutChange={(workout) => handleWorkoutChange(workout)}
+                hideCta
+                editable
+              />
+            ))
+          : null}
+      </HorizontalCarousel>
     </motion.div>
   );
 };
