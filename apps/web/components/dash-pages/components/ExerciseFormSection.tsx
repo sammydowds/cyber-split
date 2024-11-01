@@ -184,7 +184,10 @@ export const ExerciseFormSection = ({ group, groupIdx }: ContentProps) => {
     );
 
     if (inputElement) {
-      (inputElement as HTMLInputElement).focus();
+      // delay for opening
+      setTimeout(() => {
+        (inputElement as HTMLInputElement).focus();
+      }, 100);
     }
   };
   return (
