@@ -13,12 +13,24 @@ import { cn } from "@/lib/utils";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { useTimer } from "./useTimer";
+import { TimerButton } from "./TimerButton";
+import { convertMsToText } from "./helpers";
 
 interface ContentProps {
   group: StrengthGroupSchemaType;
   groupIdx: number;
+  restTimeRemaining?: number;
+  startTimer: (secs: number) => void;
+  resetTime: () => void;
 }
-const Content = ({ group, groupIdx }: ContentProps) => {
+const Content = ({
+  group,
+  groupIdx,
+  restTimeRemaining,
+  resetTime,
+  startTimer,
+}: ContentProps) => {
   const form = useFormContext();
   const router = useRouter();
   const [currentIdx, setCurrentIdx] = useState<number>(
@@ -38,7 +50,10 @@ const Content = ({ group, groupIdx }: ContentProps) => {
     const nextIdx = groupVals.sets.findIndex((set) => !set.dateLogged);
     if (nextIdx > -1 && nextIdx < group.sets.length) {
       setCurrentIdx(currentIdx + 1);
+      resetTime();
+      startTimer(60);
     } else {
+      resetTime();
       setCurrentIdx(-1);
     }
   };
@@ -127,29 +142,40 @@ const Content = ({ group, groupIdx }: ContentProps) => {
           </div>
         );
       })}
-      <div className="flex items-center gap-2 px-2 mt-2">
-        <Button
-          className="grow font-bold h-[50px] text-lg"
-          variant="outline"
-          onClick={() => router.push(window.location.pathname)}
-        >
-          Done
-        </Button>
-        {currentIdx > -1 ? (
+      <div className="flex flex-col mt-2">
+        <div className="self-end">
+          <TimerButton
+            timeRemaining={restTimeRemaining}
+            startCountdown={() => startTimer(60)}
+            stopCountdown={resetTime}
+          />
+        </div>
+
+        <div className="flex items-center gap-2 mt-2">
           <Button
             className="grow font-bold h-[50px] text-lg"
-            onClick={(e) => logCurrentIndex(e)}
-          >
-            Log Set
-          </Button>
-        ) : (
-          <Button
-            className="grow font-bold h-[50px] text-lg"
+            variant="outline"
             onClick={() => router.push(window.location.pathname)}
           >
-            Finish
+            Done
           </Button>
-        )}
+          {currentIdx > -1 ? (
+            <Button
+              disabled={restTimeRemaining ? true : false}
+              className="grow font-bold h-[50px] text-lg"
+              onClick={(e) => logCurrentIndex(e)}
+            >
+              Log Set
+            </Button>
+          ) : (
+            <Button
+              className="grow font-bold h-[50px] text-lg"
+              onClick={() => router.push(window.location.pathname)}
+            >
+              Finish
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -162,6 +188,7 @@ export const ExerciseFormSection = ({ group, groupIdx }: ContentProps) => {
   const router = useRouter();
   const param_unique_name = name?.replace(/ /g, "");
   const group_unique_name = group.name?.replace(/ /g, "");
+  const { timeRemaining, startCountDown, resetCountdown } = useTimer();
 
   const data = useWatch({ control: form.control, name: "strengthGroups" })[
     groupIdx
@@ -207,12 +234,17 @@ export const ExerciseFormSection = ({ group, groupIdx }: ContentProps) => {
         </div>
         <div className="grow flex flex-col font-bold px-2">
           <div>{group.name}</div>
-          <div className="text-xs font-normal text-stone-600">
+          <div className="text-xs font-normal text-stone-600 flex items-center gap-2">
             {setsText ? (
               <div className="text-green-500">{setsText}</div>
             ) : (
               <div className="text-red-500">Not logged</div>
             )}
+            {timeRemaining ? (
+              <div className="flex items-center text-red-500">
+                Rest: {convertMsToText(timeRemaining)}
+              </div>
+            ) : null}
           </div>
         </div>
 
@@ -229,7 +261,13 @@ export const ExerciseFormSection = ({ group, groupIdx }: ContentProps) => {
             <DialogTitle>{group.name}</DialogTitle>
             <DialogDescription>Log data below.</DialogDescription>
           </DialogHeader>
-          <Content group={group} groupIdx={groupIdx} />
+          <Content
+            group={group}
+            groupIdx={groupIdx}
+            resetTime={resetCountdown}
+            startTimer={startCountDown}
+            restTimeRemaining={timeRemaining}
+          />
         </DialogContent>
       </Dialog>
     </>

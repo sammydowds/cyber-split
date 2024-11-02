@@ -9,6 +9,7 @@ import { deleteFromDB, LOG_WORKOUT_KEY } from "@/lib/indexedDb";
 import { useQueryClient } from "@tanstack/react-query";
 import { Button } from "../ui/button";
 import { Loader, RotateCcw } from "lucide-react";
+import { useTimer } from "./components/useTimer";
 
 interface LogWorkoutPageProps {
   activeSplit: ActiveSplitDeep;
