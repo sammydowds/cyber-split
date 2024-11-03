@@ -81,14 +81,6 @@ export const ActiveSplitPage = ({ activeSplit }: ActiveSplitPageProps) => {
             </div>
           </div>
           <div className="flex items-center text-sm max-md:text-xs gap-2 max-md:gap-[8px] text-stone-500 text-[12px] leading-tightest">
-            <div className="flex gap-2 items-center">
-              Week{" "}
-              {Math.floor(
-                differenceInDays(new Date(), new Date(activeSplit.start)) / 7,
-              ) + 1}{" "}
-              of 4
-            </div>
-            <div className="text-stone-400">•</div>
             <div className="flex items-center gap-[2px] text-nowrap">
               {SPLIT_TYPE_TO_DESCRIPTION[activeSplit.split.type as SPLIT_TYPES]}
             </div>

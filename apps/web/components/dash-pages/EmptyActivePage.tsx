@@ -24,7 +24,7 @@ export const EmptyActivePage = ({ allSplits }: EmptyPageProps) => {
     },
   });
   return (
-    <Page>
+    <div className="flex flex-col items-center gap-12 mt-8 px-4">
       <Section>
         <SectionHeader>
           <SectionTitle>Create a split</SectionTitle>
@@ -70,6 +70,6 @@ export const EmptyActivePage = ({ allSplits }: EmptyPageProps) => {
           </div>
         </Section>
       ) : null}
-    </Page>
+    </div>
   );
 };
