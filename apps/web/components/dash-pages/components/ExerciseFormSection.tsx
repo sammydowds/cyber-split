@@ -245,7 +245,7 @@ export const ExerciseFormSection = ({
           {loggedSets.length && completionText ? (
             <div
               className={cn(
-                "bg-yellow-300 flex items-center justify-center rounded-md h-[20px] w-[50px] text-[10px] absolute top-1 -right-3 shadow text-black z-50",
+                "bg-yellow-300 flex items-center justify-center rounded-md h-[20px] w-[50px] text-[10px] absolute top-1 -right-3 shadow text-black z-50 font-bold",
                 allCompleted
                   ? "h-6 w-6 -right-2 bg-green-600 border-none text-white rounded-full"
                   : "",
