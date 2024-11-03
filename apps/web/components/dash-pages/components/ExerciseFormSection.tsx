@@ -1,5 +1,12 @@
 import { StrengthGroupSchemaType } from "@/lib/formSchemas/log";
-import { Check, ChevronRight, HexagonIcon } from "lucide-react";
+import {
+  Check,
+  ChevronRight,
+  Dumbbell,
+  HexagonIcon,
+  Timer,
+  Weight,
+} from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -181,7 +188,10 @@ const Content = ({
   );
 };
 
-export const ExerciseFormSection = ({ group, groupIdx }: ContentProps) => {
+export const ExerciseFormSection = ({
+  group,
+  groupIdx,
+}: Pick<ContentProps, "group" | "groupIdx">) => {
   const form = useFormContext();
   const params = useSearchParams();
   const name = params.get("name");
@@ -195,9 +205,15 @@ export const ExerciseFormSection = ({ group, groupIdx }: ContentProps) => {
   ];
 
   const loggedSets = data.sets.filter((set) => set.dateLogged);
+  const allCompleted = loggedSets.length === data.sets.length;
   const setsText = loggedSets?.length
     ? loggedSets.map((set) => `${set.reps}x${set.weight ?? "-"}`).join(", ")
     : undefined;
+  const completionText = allCompleted ? (
+    <Check size={14} />
+  ) : (
+    `${loggedSets.length}/${data.sets.length} sets`
+  );
 
   const handleDialogOpenAutoFocus = (
     event: React.FocusEvent<HTMLDivElement>,
@@ -225,24 +241,35 @@ export const ExerciseFormSection = ({ group, groupIdx }: ContentProps) => {
           router.push(`${window.location.pathname}?name=${group_unique_name}`)
         }
       >
-        <div className="h-[80px] w-[60px] rounded bg-stone-100 relative">
-          {setsText ? (
-            <div className="bg-green-600 flex items-center justify-center text-white rounded-full h-[20px] w-[20px] absolute -top-1 -right-1">
-              <Check size={12} />
+        <div className="h-[90px] w-[70px] rounded bg-stone-100 relative border-[1px] flex flex-col items-center justify-center">
+          {loggedSets.length && completionText ? (
+            <div
+              className={cn(
+                "bg-yellow-300 flex items-center justify-center rounded-md h-[20px] w-[50px] text-[10px] absolute top-1 -right-3 shadow text-black z-50",
+                allCompleted
+                  ? "h-6 w-6 -right-2 bg-green-600 border-none text-white rounded-full"
+                  : "",
+              )}
+            >
+              {completionText}
             </div>
           ) : null}
+          <div>
+            <Dumbbell className="text-stone-200" />
+          </div>
         </div>
-        <div className="grow flex flex-col font-bold px-2">
-          <div>{group.name}</div>
-          <div className="text-xs font-normal text-stone-600 flex items-center gap-2">
+        <div className="grow flex flex-col font-bold px-2 text-lg">
+          <div className="text-wrap max-md:max-w-[200px]">{group.name}</div>
+          <div className="text-sm font-normal text-stone-600 flex items-center gap-2">
             {setsText ? (
               <div className="text-green-500">{setsText}</div>
             ) : (
-              <div className="text-red-500">Not logged</div>
+              <div className="text-stone-400">Not logged</div>
             )}
             {timeRemaining ? (
-              <div className="flex items-center text-red-500">
-                Rest: {convertMsToText(timeRemaining)}
+              <div className="flex items-center text-red-500 gap-[2px]">
+                <Timer size={12} className="" />{" "}
+                {convertMsToText(timeRemaining)}
               </div>
             ) : null}
           </div>

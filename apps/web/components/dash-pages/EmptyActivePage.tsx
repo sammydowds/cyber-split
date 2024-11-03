@@ -9,7 +9,6 @@ import {
   SectionHeader,
   SectionTitle,
 } from "./components/sections";
-import { Page } from "./components/pages";
 import { useActivateSplit } from "@/hooks/useActivateSplit";
 
 interface EmptyPageProps {

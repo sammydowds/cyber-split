@@ -12,7 +12,6 @@ import { useDeactivateSplit } from "@/hooks/useDeactivateSplit";
 import toast from "react-hot-toast";
 import { useQueryClient } from "@tanstack/react-query";
 import { useMemo } from "react";
-import { differenceInDays, differenceInWeeks } from "date-fns";
 import { useRouter } from "next/router";
 import {
   Section,
@@ -23,6 +22,7 @@ import {
 } from "./components/sections";
 import { Page } from "./components/pages";
 import { HorizontalCarousel } from "../HorizontalCarousel";
+import { differenceInCalendarDays, formatDistanceToNow } from "date-fns";
 
 interface ActiveSplitPageProps {
   activeSplit: ActiveSplitDeep;
@@ -84,6 +84,8 @@ export const ActiveSplitPage = ({ activeSplit }: ActiveSplitPageProps) => {
             <div className="flex items-center gap-[2px] text-nowrap">
               {SPLIT_TYPE_TO_DESCRIPTION[activeSplit.split.type as SPLIT_TYPES]}
             </div>
+            <div className="text-stone-400">•</div>
+            <div>{formatDistanceToNow(activeSplit.end)} remaining</div>
             <div className="text-stone-400">•</div>
             <Button
               variant="link"
