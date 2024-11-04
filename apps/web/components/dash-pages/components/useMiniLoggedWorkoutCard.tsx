@@ -31,10 +31,10 @@ export const useMiniLoggedWorkout = ({ workout }: Args) => {
     return diffDays > 7
       ? `${new Date(workout.dateLogged).toLocaleDateString("en-us", { month: "2-digit", day: "2-digit", year: "2-digit" })}`
       : diffDays > 0
-        ? `${diffDays}d`
+        ? `${diffDays}d ago`
         : diffHours > 0
-          ? `${diffHours}h`
-          : `${diffMinutes}m`;
+          ? `${diffHours}h ago`
+          : `${diffMinutes}m ago`;
   }, [workout?.id]);
 
   return {

@@ -121,6 +121,26 @@ export const ActiveSplitPage = ({ activeSplit }: ActiveSplitPageProps) => {
           </SectionHeader>
         </div>
       ) : null}
+      {activeSplit?.split?.loggedWorkouts?.length ? (
+        <Section>
+          <div className="px-4">
+            <SectionDescription>History</SectionDescription>
+            <SectionTitle>Logged Workouts</SectionTitle>
+          </div>
+          <SectionContent>
+            <HorizontalCarousel>
+              {activeSplit.split.loggedWorkouts?.map((workout, idx) => {
+                return (
+                  <MiniLoggedWorkoutCard
+                    key={`workout-card-${idx}`}
+                    workout={workout}
+                  />
+                );
+              })}
+            </HorizontalCarousel>
+          </SectionContent>
+        </Section>
+      ) : null}
 
       <Section>
         <div className="px-4">
@@ -155,24 +175,6 @@ export const ActiveSplitPage = ({ activeSplit }: ActiveSplitPageProps) => {
                   split={activeSplit.split}
                   index={idx}
                   hideCta={false}
-                />
-              );
-            })}
-          </HorizontalCarousel>
-        </SectionContent>
-      </Section>
-      <Section>
-        <div className="px-4">
-          <SectionDescription>History</SectionDescription>
-          <SectionTitle>Logged Workouts</SectionTitle>
-        </div>
-        <SectionContent>
-          <HorizontalCarousel>
-            {activeSplit.split.loggedWorkouts?.map((workout, idx) => {
-              return (
-                <MiniLoggedWorkoutCard
-                  key={`workout-card-${idx}`}
-                  workout={workout}
                 />
               );
             })}
