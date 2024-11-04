@@ -1,4 +1,4 @@
-import { ActiveSplitDeep, DeepLoggedWorkout } from "@repo/database";
+import { ActiveSplitDeep } from "@repo/database";
 import { useMiniLoggedWorkout } from "./useMiniLoggedWorkoutCard";
 import { useMemo } from "react";
 import { WorkoutMarker } from "@/components/WorkoutMarker";
