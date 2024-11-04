@@ -22,7 +22,7 @@ import {
 } from "./components/sections";
 import { Page } from "./components/pages";
 import { HorizontalCarousel } from "../HorizontalCarousel";
-import { differenceInCalendarDays, formatDistanceToNow } from "date-fns";
+import { formatDistanceToNow } from "date-fns";
 import { MiniLoggedWorkoutCard } from "./components/MiniLoggedWorkoutCard";
 
 interface ActiveSplitPageProps {
@@ -64,7 +64,7 @@ export const ActiveSplitPage = ({ activeSplit }: ActiveSplitPageProps) => {
   return (
     <Page>
       <Section>
-        <div className="flex flex-col px-4">
+        <div className="flex flex-col px-6">
           <div className="flex md:flex-row md:items-center max-md:flex-col gap-2 leading-3">
             <div className="flex gap-[8px] items-center">
               <div className="flex items-start justify-center h-full">
@@ -100,7 +100,7 @@ export const ActiveSplitPage = ({ activeSplit }: ActiveSplitPageProps) => {
         </div>
       </Section>
       {today?.workout ? (
-        <div className="flex md:flex-row max-md:flex-col md:gap-8 md:w-[600px] max-md:w-full px-4">
+        <div className="flex md:flex-row max-md:flex-col md:gap-8 md:w-[600px] max-md:w-full px-6">
           <SectionHeader>
             <SectionDescription>Today's Workout</SectionDescription>
             <div className="flex items-center gap-12 max-md:justify-between">
@@ -123,7 +123,7 @@ export const ActiveSplitPage = ({ activeSplit }: ActiveSplitPageProps) => {
       ) : null}
       {activeSplit?.split?.loggedWorkouts?.length ? (
         <Section>
-          <div className="px-4">
+          <div className="px-6">
             <SectionDescription>History</SectionDescription>
             <SectionTitle>Logged Workouts</SectionTitle>
           </div>
@@ -143,7 +143,7 @@ export const ActiveSplitPage = ({ activeSplit }: ActiveSplitPageProps) => {
       ) : null}
 
       <Section>
-        <div className="px-4">
+        <div className="px-6">
           <SectionDescription>Schedule</SectionDescription>
           <SectionTitle>
             {
@@ -160,7 +160,7 @@ export const ActiveSplitPage = ({ activeSplit }: ActiveSplitPageProps) => {
         </SectionContent>
       </Section>
       <Section>
-        <div className="px-4">
+        <div className="px-6">
           <SectionDescription>Workouts</SectionDescription>
           <SectionTitle>
             {activeSplit.split.workouts.map((w) => w.name).join(", ")}
