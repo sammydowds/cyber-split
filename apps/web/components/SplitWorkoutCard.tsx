@@ -91,7 +91,7 @@ export const SplitWorkoutCard = ({
   };
 
   return (
-    <Card className="min-w-[245px] overflow-hidden shadow-sm rounded-lg shadow-[5px_5px_2px_rgba(0,0,0,0.15)] relative">
+    <Card className="min-w-[245px] overflow-hidden shadow-sm rounded-lg relative">
       <CardHeader className="p-[8px]">
         <CardTitle className="flex justify-between items-center">
           <div className="flex items-center gap-2 ml-[4px]">
@@ -143,7 +143,7 @@ export const SplitWorkoutCard = ({
           <CardFooter
             className={cn("flex items-center justify-center px-[4px] py-2")}
           >
-            <Button className="w-full" onClick={handleClickLog}>
+            <Button className="w-full font-bold" onClick={handleClickLog}>
               Log Workout
             </Button>
           </CardFooter>

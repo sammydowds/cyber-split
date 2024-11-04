@@ -51,10 +51,6 @@ const isProfilePage = (paths?: string[]) => {
   return paths?.length === 1 && paths.includes("profile");
 };
 
-const isLogPage = (paths?: string[]) => {
-  return paths?.length === 1 && paths.includes("log");
-};
-
 const isEmptyActivePage = (paths?: string[], activeSplit?: ActiveSplitDeep) => {
   return (
     !activeSplit?.id &&
@@ -99,10 +95,6 @@ export const DashContentRouter = ({
 
   if (isProfilePage(paths)) {
     return <ProfilePage profile={profile} />;
-  }
-
-  if (isLogPage(paths)) {
-    return <LogPage workouts={loggedWorkouts} />;
   }
 
   if (isCreateRoute(paths)) {

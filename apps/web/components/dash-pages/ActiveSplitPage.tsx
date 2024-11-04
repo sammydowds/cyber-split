@@ -23,6 +23,7 @@ import {
 import { Page } from "./components/pages";
 import { HorizontalCarousel } from "../HorizontalCarousel";
 import { differenceInCalendarDays, formatDistanceToNow } from "date-fns";
+import { MiniLoggedWorkoutCard } from "./components/MiniLoggedWorkoutCard";
 
 interface ActiveSplitPageProps {
   activeSplit: ActiveSplitDeep;
@@ -133,7 +134,7 @@ export const ActiveSplitPage = ({ activeSplit }: ActiveSplitPageProps) => {
           </SectionTitle>
         </div>
         <SectionContent>
-          <div className="md:w-max max-md:w-full">
+          <div className="md:w-max max-md:w-full px-4">
             <ScheduleTable schedule={activeSplit.schedule as any} />
           </div>
         </SectionContent>
@@ -154,6 +155,24 @@ export const ActiveSplitPage = ({ activeSplit }: ActiveSplitPageProps) => {
                   split={activeSplit.split}
                   index={idx}
                   hideCta={false}
+                />
+              );
+            })}
+          </HorizontalCarousel>
+        </SectionContent>
+      </Section>
+      <Section>
+        <div className="px-4">
+          <SectionDescription>History</SectionDescription>
+          <SectionTitle>Logged Workouts</SectionTitle>
+        </div>
+        <SectionContent>
+          <HorizontalCarousel>
+            {activeSplit.split.loggedWorkouts?.map((workout, idx) => {
+              return (
+                <MiniLoggedWorkoutCard
+                  key={`workout-card-${idx}`}
+                  workout={workout}
                 />
               );
             })}
