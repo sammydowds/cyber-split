@@ -560,8 +560,8 @@ export const getActiveSchedule = async (profileId: string) => {
               },
             },
             orderBy: {
-              dateLogged: "desc"
-            }
+              dateLogged: "desc",
+            },
           },
         },
       },

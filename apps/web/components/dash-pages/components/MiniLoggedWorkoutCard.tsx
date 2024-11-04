@@ -33,10 +33,10 @@ export const MiniLoggedWorkoutCard = ({
       <div className="font-bold absolute top-[6px] left-2 text-[10px]">
         <WorkoutMarker
           text={workout.letterLabel}
-          className="h-3 w-3 text-[8px] shadow-none"
+          className="h-4 w-4 text-[10px] shadow-none"
         />
       </div>
-      <div className="flex items-center justify-between px-2 pt-4 pb-2">
+      <div className="flex items-center justify-between px-2 pt-6 pb-4">
         <div className="font-bold tracking-tightest text-xl max-w-[120px] truncate">
           {workoutName}
         </div>
