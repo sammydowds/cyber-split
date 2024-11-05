@@ -58,7 +58,6 @@ const Content = ({
     if (nextIdx > -1 && nextIdx < group.sets.length) {
       setCurrentIdx(currentIdx + 1);
       resetTime();
-      startTimer(60);
     } else {
       resetTime();
       setCurrentIdx(-1);

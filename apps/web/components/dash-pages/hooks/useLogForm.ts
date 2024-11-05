@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { LogWorkoutSchema, schema } from "../../../lib/formSchemas/log";
 import { useCreateLoggedWorkout } from "@/hooks/useCreateLoggedWorkout";
 import { clearDB, LOG_WORKOUT_KEY, saveToDB } from "@/lib/indexedDb";
+import toast from "react-hot-toast";
+import { useRouter } from "next/router";
 
 export const useLogForm = (
   template: ActiveSplitDeep["split"]["workouts"][number],
@@ -18,12 +20,15 @@ export const useLogForm = (
     resolver: zodResolver(schema),
     defaultValues: template,
   });
+  const router = useRouter();
   const { mutate: save, isPending: isSaving } = useCreateLoggedWorkout({
     onSuccess: async (data) => {
       setLoggedWorkout(data?.data);
       await clearDB();
       queryCient.invalidateQueries();
       form.reset();
+      toast.success("Workout saved to server.", { duration: 3000 });
+      router.push("/dashboard/active");
     },
   });
 

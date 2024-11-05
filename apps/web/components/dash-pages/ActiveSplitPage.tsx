@@ -4,6 +4,7 @@ import {
   DayPayload,
   SPLIT_TYPE_TO_DESCRIPTION,
   SPLIT_TYPES,
+  WorkoutSchedule,
 } from "@repo/database";
 import { ScheduleTable } from "../ScheduleTable";
 import { SplitWorkoutCard } from "../SplitWorkoutCard";
@@ -22,8 +23,9 @@ import {
 } from "./components/sections";
 import { Page } from "./components/pages";
 import { HorizontalCarousel } from "../HorizontalCarousel";
-import { formatDistanceToNow } from "date-fns";
+import { formatDistanceToNow, isAfter, isToday } from "date-fns";
 import { MiniLoggedWorkoutCard } from "./components/MiniLoggedWorkoutCard";
+import { UpcomingWorkoutCard } from "./components/UpcomingWorkoutCard";
 
 interface ActiveSplitPageProps {
   activeSplit: ActiveSplitDeep;
@@ -36,30 +38,6 @@ export const ActiveSplitPage = ({ activeSplit }: ActiveSplitPageProps) => {
       queryClient.invalidateQueries({ queryKey: ["activeSplit"] });
     },
   });
-  const router = useRouter();
-
-  const { today } = useMemo(() => {
-    const sched = activeSplit?.schedule as any;
-    let upcomingDay: DayPayload | undefined;
-
-    if (sched?.length) {
-      const days = sched.flat();
-      days.map((day: DayPayload) => {
-        if (day.workout) {
-          const now = new Date();
-          const date = new Date(day.date);
-          const isSameDay =
-            date.getFullYear() === now.getFullYear() &&
-            date.getMonth() === now.getMonth() &&
-            date.getDate() === now.getDate();
-          if (isSameDay) {
-            upcomingDay = day;
-          }
-        }
-      });
-    }
-    return { today: upcomingDay };
-  }, [activeSplit.schedule]);
 
   return (
     <Page>
@@ -86,7 +64,13 @@ export const ActiveSplitPage = ({ activeSplit }: ActiveSplitPageProps) => {
               {SPLIT_TYPE_TO_DESCRIPTION[activeSplit.split.type as SPLIT_TYPES]}
             </div>
             <div className="text-stone-400">•</div>
-            <div>{formatDistanceToNow(activeSplit.end)} remaining</div>
+            <div>
+              {
+                CADENCE_TO_DESCRIPTION_MAP[activeSplit.split.type][
+                  activeSplit.split.cadence
+                ]
+              }
+            </div>
             <div className="text-stone-400">•</div>
             <Button
               variant="link"
@@ -99,33 +83,47 @@ export const ActiveSplitPage = ({ activeSplit }: ActiveSplitPageProps) => {
           </div>
         </div>
       </Section>
-      {today?.workout ? (
-        <div className="flex md:flex-row max-md:flex-col md:gap-8 md:w-[600px] max-md:w-full px-6">
-          <SectionHeader>
-            <SectionDescription>Today's Workout</SectionDescription>
-            <div className="flex items-center gap-12 max-md:justify-between">
-              <SectionTitle>{today.workout.name}</SectionTitle>
-              <div className="flex max-md:flex-col md:flex-row items-center justify-between">
-                <Button
-                  className="w-full font-bold"
-                  onClick={() =>
-                    router.push(
-                      `/dashboard/active/log-workout/${today?.workout?.id}`,
-                    )
-                  }
-                >
-                  Workout
-                </Button>
-              </div>
-            </div>
-          </SectionHeader>
+      <Section>
+        <div className="px-6">
+          <SectionDescription>Future</SectionDescription>
+          <SectionTitle>Upcoming Workouts</SectionTitle>
         </div>
-      ) : null}
+        <SectionContent>
+          <HorizontalCarousel>
+            {// @ts-ignore json to WorkoutSchedule types
+            activeSplit?.schedule?.map((week, weekIdx) => {
+              return week.map(
+                (day: WorkoutSchedule[number][number], dayIdx: number) => {
+                  const { workout, date } = day;
+                  const workoutData = activeSplit.split.workouts.filter(
+                    (template) => template.id === workout?.id,
+                  )[0];
+                  const d = new Date(date);
+                  if (
+                    workout &&
+                    workoutData &&
+                    (isToday(d) || isAfter(d, new Date()))
+                  ) {
+                    return (
+                      <UpcomingWorkoutCard
+                        workout={workoutData}
+                        dayIdx={dayIdx}
+                        weekIdx={weekIdx}
+                        scheduledDate={d}
+                      />
+                    );
+                  }
+                },
+              );
+            })}
+          </HorizontalCarousel>
+        </SectionContent>
+      </Section>
       {activeSplit?.split?.loggedWorkouts?.length ? (
         <Section>
           <div className="px-6">
             <SectionDescription>History</SectionDescription>
-            <SectionTitle>Logged Workouts</SectionTitle>
+            <SectionTitle>Logged Volume</SectionTitle>
           </div>
           <SectionContent>
             <HorizontalCarousel>
@@ -141,27 +139,9 @@ export const ActiveSplitPage = ({ activeSplit }: ActiveSplitPageProps) => {
           </SectionContent>
         </Section>
       ) : null}
-
       <Section>
         <div className="px-6">
-          <SectionDescription>Schedule</SectionDescription>
-          <SectionTitle>
-            {
-              CADENCE_TO_DESCRIPTION_MAP[activeSplit.split.type][
-                activeSplit.split.cadence
-              ]
-            }
-          </SectionTitle>
-        </div>
-        <SectionContent>
-          <div className="md:w-max max-md:w-full px-4">
-            <ScheduleTable schedule={activeSplit.schedule as any} />
-          </div>
-        </SectionContent>
-      </Section>
-      <Section>
-        <div className="px-6">
-          <SectionDescription>Workouts</SectionDescription>
+          <SectionDescription>Workout Templates</SectionDescription>
           <SectionTitle>
             {activeSplit.split.workouts.map((w) => w.name).join(", ")}
           </SectionTitle>
