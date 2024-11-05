@@ -55,15 +55,6 @@ export const LogWorkoutPage = ({
       <Section>
         <SectionHeader>
           <div className="flex items-center gap-[8px] px-4">
-            <div className="flex items-start h-full">
-              <span
-                role="img"
-                aria-label="🗒️"
-                className="flex items-start text-[36px] p-0 m-0"
-              >
-                🗒️
-              </span>
-            </div>
             <div className="text-sm">
               <h2 className="text-2xl font-bold">{workout?.name}</h2>
               <div className="flex items-center gap-[6px]">

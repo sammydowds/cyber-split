@@ -75,15 +75,6 @@ export const LibraryPage = ({ splits, oneSplitIsActive }: LibraryPageProps) => {
       </Dialog>
       <div className="flex items-center justify-between w-full px-4">
         <div className="flex items-center gap-[4px] text-xl font-bold">
-          <div className="flex items-start justify-center h-full">
-            <span
-              role="img"
-              aria-label="📚"
-              className="flex items-start text-[36px] p-0"
-            >
-              📚
-            </span>
-          </div>
           Created Splits
         </div>
         <Button
