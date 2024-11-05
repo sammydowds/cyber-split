@@ -4,17 +4,13 @@ import { Loader } from "lucide-react";
 import { DeepLoggedWorkout } from "@repo/database";
 import { useLogForm } from "../hooks/useLogForm";
 import { useWatch } from "react-hook-form";
-import { useEffect } from "react";
-import toast from "react-hot-toast";
-import { useRouter } from "next/router";
 import { ExerciseFormSection } from "./ExerciseFormSection";
 
 interface LogWorkoutFormProps {
   workout: DeepLoggedWorkout;
 }
 export const LogWorkoutForm = ({ workout }: LogWorkoutFormProps) => {
-  const { form, handleSubmit, isSaving, loggedWorkout } = useLogForm(workout);
-  const router = useRouter();
+  const { form, handleSubmit, isSaving } = useLogForm(workout);
 
   const { control } = form;
 
@@ -22,13 +18,6 @@ export const LogWorkoutForm = ({ workout }: LogWorkoutFormProps) => {
     control,
     name: "strengthGroups",
   });
-
-  useEffect(() => {
-    if (loggedWorkout) {
-      toast.success("Workout saved to server.", { duration: 3000 });
-      router.push("/dashboard/active");
-    }
-  }, [loggedWorkout]);
 
   return (
     <Form {...form}>

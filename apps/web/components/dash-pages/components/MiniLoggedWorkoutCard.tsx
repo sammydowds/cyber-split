@@ -27,16 +27,10 @@ export const MiniLoggedWorkoutCard = ({
 
   return (
     <div className="flex flex-col w-full max-md:min-w-[250px] md:max-w-[250px] relative border-[1px] rounded p-2">
-      <div className="font-bold absolute top-[4px] right-2 text-[10px]">
+      <div className="font-bold absolute top-[2px] left-2 text-[10px]">
         {daysAgoText}
       </div>
-      <div className="font-bold absolute top-[6px] left-2 text-[10px]">
-        <WorkoutMarker
-          text={workout.letterLabel}
-          className="h-4 w-4 text-[10px] shadow-none"
-        />
-      </div>
-      <div className="flex items-center justify-between px-2 pt-6 pb-4">
+      <div className="flex items-center justify-between px-2 pt-2">
         <div className="font-bold tracking-tightest text-xl max-w-[120px] truncate">
           {workoutName}
         </div>
