@@ -4,22 +4,27 @@ import * as ProgressPrimitive from "@radix-ui/react-progress";
 import { cn } from "@/lib/utils";
 import { StrengthGroupSchemaType } from "@/lib/formSchemas/log";
 
+const calcVolumeFromGroup = (group: StrengthGroupSchemaType) => {
+  let vol = 0;
+  if (group.sets.length) {
+    group.sets.map((set) => {
+      const reps = Number(set.reps);
+      const weight = Number(set.weight);
+      const volume = reps * weight;
+      if (set.dateLogged && set.weight && set.reps) {
+        vol += volume;
+      }
+    });
+  }
+  return vol;
+};
+
 export const VolumeProgressBar = ({
   group,
 }: {
   group: StrengthGroupSchemaType;
 }) => {
-  const currentVolume = React.useMemo(() => {
-    let vol = 0;
-    if (group.sets.length) {
-      group.sets.map((set) => {
-        if (set.dateLogged && set.weight && set.reps) {
-          vol = vol + Number(set.reps) * Number(set.weight);
-        }
-      });
-    }
-    return vol;
-  }, [group]);
+  const currentVolume = calcVolumeFromGroup(group);
   const { previousVolume } = group;
   if (!previousVolume) {
     return;
@@ -34,6 +39,8 @@ export const VolumeProgressBar = ({
         <div className="z-30 absolute -top-4 left-0 w-full flex items-center gap-2 font-bold italic text-xs text-stone-400 tracking-tighter">
           <div>Progressive Volume</div>
           <div>
+            {(currentVolume / 1000).toFixed(1)}k /{" "}
+            {(previousVolume / 1000).toFixed(1)}k{" "}
             {relativeVal > 0 ? (
               <span
                 className={cn(

@@ -14,6 +14,7 @@ import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { VolumeProgressBar } from "./VolumeProgressBar";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface ContentProps {
   group: StrengthGroupSchemaType;
@@ -246,11 +247,11 @@ export const ExerciseFormSection = ({
 
       <Dialog open={group_unique_name === param_unique_name}>
         <DialogContent
-          className="bg-white flex flex-col items-center max-md:h-screen max-md:min-w-screen max-md:pt-[75px]"
+          className="bg-white flex flex-col items-center max-md:h-screen max-md:min-w-screen max-md:pt-[50px]"
           hideCloseIcon
           onOpenAutoFocus={(e) => handleDialogOpenAutoFocus(e)}
         >
-          <DialogHeader className="text-left w-full">
+          <DialogHeader className="text-left w-full flex-col">
             <DialogTitle>{group.name}</DialogTitle>
             <DialogDescription>Log data below.</DialogDescription>
           </DialogHeader>
