@@ -1,29 +1,24 @@
 import {
   ActiveSplitDeep,
   CADENCE_TO_DESCRIPTION_MAP,
-  DayPayload,
   SPLIT_TYPE_TO_DESCRIPTION,
   SPLIT_TYPES,
   WorkoutSchedule,
 } from "@repo/database";
-import { ScheduleTable } from "../ScheduleTable";
 import { SplitWorkoutCard } from "../SplitWorkoutCard";
 import { Button } from "../ui/button";
 import { useDeactivateSplit } from "@/hooks/useDeactivateSplit";
 import toast from "react-hot-toast";
 import { useQueryClient } from "@tanstack/react-query";
-import { useMemo } from "react";
-import { useRouter } from "next/router";
 import {
   Section,
   SectionContent,
   SectionDescription,
-  SectionHeader,
   SectionTitle,
 } from "./components/sections";
 import { Page } from "./components/pages";
 import { HorizontalCarousel } from "../HorizontalCarousel";
-import { formatDistanceToNow, isAfter, isToday } from "date-fns";
+import { isAfter, isToday } from "date-fns";
 import { MiniLoggedWorkoutCard } from "./components/MiniLoggedWorkoutCard";
 import { UpcomingWorkoutCard } from "./components/UpcomingWorkoutCard";
 

@@ -1,33 +1,25 @@
 import { StrengthGroupSchemaType } from "@/lib/formSchemas/log";
-import { Check, ChevronRight, Dumbbell, HexagonIcon } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Check, HexagonIcon, VideoOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useFormContext, useWatch } from "react-hook-form";
 import { cn } from "@/lib/utils";
-import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { VolumeProgressBar } from "./VolumeProgressBar";
-import { ScrollArea } from "@/components/ui/scroll-area";
-
-interface ContentProps {
-  group: StrengthGroupSchemaType;
+interface LogExerciseProps {
   groupIdx: number;
 }
-const Content = ({ group, groupIdx }: ContentProps) => {
-  const form = useFormContext();
+export const LogExercise = ({ groupIdx }: LogExerciseProps) => {
+  const { control, setValue, getValues, register } = useFormContext();
+  const group = useWatch({
+    control,
+    name: `strengthGroups.${groupIdx}`,
+  }) as StrengthGroupSchemaType;
   const router = useRouter();
+
   const [currentIdx, setCurrentIdx] = useState<number>(
     group.sets.findIndex((set) => !set.dateLogged),
   );
-  const { setValue, getValues } = form;
-
   const logCurrentIndex = (e: React.MouseEvent) => {
     e?.preventDefault();
     setValue(
@@ -51,7 +43,14 @@ const Content = ({ group, groupIdx }: ContentProps) => {
   };
 
   return (
-    <div className="w-full flex flex-col gap-4 mx-2">
+    <div className="w-full flex flex-col gap-4">
+      <div className="w-full h-[175px] rounded-lg bg-stone-200 shadow-inner flex flex-col items-center justify-center text-stone-300">
+        <VideoOff size={30} />
+      </div>
+      <div className="flex flex-col">
+        <div className="text-xl font-bold">{group.name}</div>
+        <div className="text-stone-500">Log data below.</div>
+      </div>
       {group.sets.map((set, setIdx) => {
         const { dateLogged } = set;
         return (
@@ -87,7 +86,7 @@ const Content = ({ group, groupIdx }: ContentProps) => {
                     setIdx === currentIdx ? "border-stone-400" : null,
                     set?.dateLogged ? "text-green-700" : null,
                   )}
-                  {...form.register(
+                  {...register(
                     `strengthGroups.${groupIdx}.sets.${setIdx}.reps`,
                   )}
                   placeholder=" "
@@ -112,7 +111,7 @@ const Content = ({ group, groupIdx }: ContentProps) => {
                     setIdx === currentIdx ? "border-stone-400" : null,
                     set?.dateLogged ? "text-green-700" : null,
                   )}
-                  {...form.register(
+                  {...register(
                     `strengthGroups.${groupIdx}.sets.${setIdx}.weight`,
                   )}
                   placeholder=" "
@@ -137,7 +136,10 @@ const Content = ({ group, groupIdx }: ContentProps) => {
           <Button
             className="grow font-bold h-[50px] text-lg"
             variant="outline"
-            onClick={() => router.push(window.location.pathname)}
+            onClick={(e) => {
+              e.preventDefault();
+              router.push(window.location.pathname);
+            }}
           >
             Done
           </Button>
@@ -151,7 +153,10 @@ const Content = ({ group, groupIdx }: ContentProps) => {
           ) : (
             <Button
               className="grow font-bold h-[50px] text-lg"
-              onClick={() => router.push(window.location.pathname)}
+              onClick={(e) => {
+                e.preventDefault();
+                router.push(window.location.pathname);
+              }}
             >
               Finish
             </Button>
@@ -159,105 +164,5 @@ const Content = ({ group, groupIdx }: ContentProps) => {
         </div>
       </div>
     </div>
-  );
-};
-
-export const ExerciseFormSection = ({
-  group,
-  groupIdx,
-}: Pick<ContentProps, "group" | "groupIdx">) => {
-  const form = useFormContext();
-  const params = useSearchParams();
-  const name = params.get("name");
-  const router = useRouter();
-  const param_unique_name = name?.replace(/ /g, "");
-  const group_unique_name = group.name?.replace(/ /g, "");
-
-  const data = useWatch({ control: form.control, name: "strengthGroups" })[
-    groupIdx
-  ];
-
-  const loggedSets = data.sets.filter((set) => set.dateLogged);
-  const allCompleted = loggedSets.length === data.sets.length;
-  const setsText = loggedSets?.length
-    ? loggedSets.map((set) => `${set.reps}x${set.weight ?? "-"}`).join(", ")
-    : undefined;
-  const completionText = allCompleted ? (
-    <Check size={14} />
-  ) : (
-    `${loggedSets.length}/${data.sets.length} sets`
-  );
-
-  const handleDialogOpenAutoFocus = (
-    event: React.FocusEvent<HTMLDivElement>,
-  ) => {
-    event?.preventDefault();
-    const firstUnloggedSetIndex = group.sets.findIndex(
-      (set) => !set.dateLogged,
-    );
-    const inputElement = document.getElementById(
-      `${groupIdx}-${firstUnloggedSetIndex}-weight`,
-    );
-
-    if (inputElement) {
-      // delay for opening
-      setTimeout(() => {
-        (inputElement as HTMLInputElement).focus();
-      }, 100);
-    }
-  };
-  return (
-    <>
-      <div
-        className="flex items-center justify-between w-full"
-        onClick={() =>
-          router.push(`${window.location.pathname}?name=${group_unique_name}`)
-        }
-      >
-        <div className="h-[90px] w-[70px] rounded bg-stone-100 relative border-[1px] flex flex-col items-center justify-center">
-          {loggedSets.length && completionText ? (
-            <div
-              className={cn(
-                "bg-yellow-300 flex items-center justify-center rounded-md h-[20px] w-[50px] text-[10px] absolute top-1 -right-3 shadow text-black z-50 font-bold",
-                allCompleted
-                  ? "h-6 w-6 -right-2 bg-green-600 border-none text-white rounded-full"
-                  : "",
-              )}
-            >
-              {completionText}
-            </div>
-          ) : null}
-          <div>
-            <Dumbbell className="text-stone-200" />
-          </div>
-        </div>
-        <div className="grow flex flex-col font-bold px-2 text-lg">
-          <div className="text-wrap max-md:max-w-[200px]">{group.name}</div>
-          <div className="text-sm font-normal text-stone-600 flex items-center gap-2">
-            {setsText ? (
-              <div className="text-green-500">{setsText}</div>
-            ) : (
-              <div className="text-stone-400">Not logged</div>
-            )}
-          </div>
-        </div>
-
-        <ChevronRight className="text-stone-400" />
-      </div>
-
-      <Dialog open={group_unique_name === param_unique_name}>
-        <DialogContent
-          className="bg-white flex flex-col items-center max-md:h-screen max-md:min-w-screen max-md:pt-[50px]"
-          hideCloseIcon
-          onOpenAutoFocus={(e) => handleDialogOpenAutoFocus(e)}
-        >
-          <DialogHeader className="text-left w-full flex-col">
-            <DialogTitle>{group.name}</DialogTitle>
-            <DialogDescription>Log data below.</DialogDescription>
-          </DialogHeader>
-          <Content group={group} groupIdx={groupIdx} />
-        </DialogContent>
-      </Dialog>
-    </>
   );
 };
