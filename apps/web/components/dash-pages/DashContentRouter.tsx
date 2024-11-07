@@ -8,7 +8,6 @@ import { LogWorkoutPage } from "./LogWorkoutPage";
 import { CreatePage } from "./CreatePage/CreatePage";
 import { Construction } from "lucide-react";
 import { EmptyActivePage } from "./EmptyActivePage";
-import { LogPage } from "./LogPage";
 
 const isLogWorkoutRoute = (paths?: string[]) => {
   return (

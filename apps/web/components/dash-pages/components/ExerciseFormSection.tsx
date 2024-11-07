@@ -1,12 +1,5 @@
 import { StrengthGroupSchemaType } from "@/lib/formSchemas/log";
-import {
-  Check,
-  ChevronRight,
-  Dumbbell,
-  HexagonIcon,
-  Timer,
-  Weight,
-} from "lucide-react";
+import { Check, ChevronRight, Dumbbell, HexagonIcon } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -20,24 +13,13 @@ import { cn } from "@/lib/utils";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { useTimer } from "./useTimer";
-import { TimerButton } from "./TimerButton";
-import { convertMsToText } from "./helpers";
+import { VolumeProgressBar } from "./VolumeProgressBar";
 
 interface ContentProps {
   group: StrengthGroupSchemaType;
   groupIdx: number;
-  restTimeRemaining?: number;
-  startTimer: (secs: number) => void;
-  resetTime: () => void;
 }
-const Content = ({
-  group,
-  groupIdx,
-  restTimeRemaining,
-  resetTime,
-  startTimer,
-}: ContentProps) => {
+const Content = ({ group, groupIdx }: ContentProps) => {
   const form = useFormContext();
   const router = useRouter();
   const [currentIdx, setCurrentIdx] = useState<number>(
@@ -51,15 +33,13 @@ const Content = ({
       `strengthGroups.${groupIdx}.sets.${currentIdx}.dateLogged`,
       new Date(),
     );
+    const groupVals = getValues("strengthGroups")[groupIdx];
 
     // calc next index
-    const groupVals = getValues("strengthGroups")[groupIdx];
     const nextIdx = groupVals.sets.findIndex((set) => !set.dateLogged);
     if (nextIdx > -1 && nextIdx < group.sets.length) {
       setCurrentIdx(currentIdx + 1);
-      resetTime();
     } else {
-      resetTime();
       setCurrentIdx(-1);
     }
   };
@@ -70,7 +50,7 @@ const Content = ({
   };
 
   return (
-    <div className="w-full flex flex-col gap-2 mx-2">
+    <div className="w-full flex flex-col gap-4 mx-2">
       {group.sets.map((set, setIdx) => {
         const { dateLogged } = set;
         return (
@@ -148,16 +128,11 @@ const Content = ({
           </div>
         );
       })}
-      <div className="flex flex-col mt-2">
-        <div className="self-end">
-          <TimerButton
-            timeRemaining={restTimeRemaining}
-            startCountdown={() => startTimer(60)}
-            stopCountdown={resetTime}
-          />
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col grow">
+          <VolumeProgressBar group={group} />
         </div>
-
-        <div className="flex items-center gap-2 mt-2">
+        <div className="flex items-center gap-2">
           <Button
             className="grow font-bold h-[50px] text-lg"
             variant="outline"
@@ -167,7 +142,6 @@ const Content = ({
           </Button>
           {currentIdx > -1 ? (
             <Button
-              disabled={restTimeRemaining ? true : false}
               className="grow font-bold h-[50px] text-lg"
               onClick={(e) => logCurrentIndex(e)}
             >
@@ -197,7 +171,6 @@ export const ExerciseFormSection = ({
   const router = useRouter();
   const param_unique_name = name?.replace(/ /g, "");
   const group_unique_name = group.name?.replace(/ /g, "");
-  const { timeRemaining, startCountDown, resetCountdown } = useTimer();
 
   const data = useWatch({ control: form.control, name: "strengthGroups" })[
     groupIdx
@@ -265,12 +238,6 @@ export const ExerciseFormSection = ({
             ) : (
               <div className="text-stone-400">Not logged</div>
             )}
-            {timeRemaining ? (
-              <div className="flex items-center text-red-500 gap-[2px]">
-                <Timer size={12} className="" />{" "}
-                {convertMsToText(timeRemaining)}
-              </div>
-            ) : null}
           </div>
         </div>
 
@@ -287,13 +254,7 @@ export const ExerciseFormSection = ({
             <DialogTitle>{group.name}</DialogTitle>
             <DialogDescription>Log data below.</DialogDescription>
           </DialogHeader>
-          <Content
-            group={group}
-            groupIdx={groupIdx}
-            resetTime={resetCountdown}
-            startTimer={startCountDown}
-            restTimeRemaining={timeRemaining}
-          />
+          <Content group={group} groupIdx={groupIdx} />
         </DialogContent>
       </Dialog>
     </>

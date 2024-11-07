@@ -4,7 +4,6 @@ export type DeepTemplateWorkout = Prisma.TemplateWorkoutGetPayload<{
   include: {
     profile: true;
     id: true;
-    preWorkoutGroups: true;
     strengthGroups: {
       include: {
         sets: {
@@ -18,8 +17,6 @@ export type DeepTemplateWorkout = Prisma.TemplateWorkoutGetPayload<{
         };
       };
     };
-    cardioGroups: true;
-    postWorkoutGroups: true;
   };
 }>;
 
