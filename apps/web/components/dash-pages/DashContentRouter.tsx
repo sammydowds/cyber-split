@@ -4,7 +4,7 @@ import { ProfilePage } from "./ProfilePage";
 import { ActiveSplitPage } from "./ActiveSplitPage";
 import { ActiveSplitDeep, DeepLoggedWorkout, SplitDeep } from "@repo/database";
 import { Profile } from "@repo/database/dist/src/client";
-import { LogWorkoutPage } from "./LogWorkoutPage";
+import { LogWorkoutPage } from "./LogWorkoutPage/LogWorkoutPage";
 import { CreatePage } from "./CreatePage/CreatePage";
 import { Construction } from "lucide-react";
 import { EmptyActivePage } from "./EmptyActivePage";

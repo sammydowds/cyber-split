@@ -1,15 +1,14 @@
 import { ActiveSplitDeep } from "@repo/database";
-import { Section, SectionHeader } from "./components/sections";
-import { Page } from "./components/pages";
-import { WorkoutMarker } from "../WorkoutMarker";
+import { Section, SectionHeader } from "../components/sections";
+import { Page } from "../components/pages";
+import { WorkoutMarker } from "../../WorkoutMarker";
 import Link from "next/link";
-import { useDraftLoggedWorkout } from "./hooks/useDraftLoggedWorkout";
-import { LogWorkoutForm } from "./components/LogWorkoutForm";
+import { useDraftLoggedWorkout } from "../hooks/useDraftLoggedWorkout";
+import { LogWorkoutForm } from "./LogWorkoutForm";
 import { deleteFromDB, LOG_WORKOUT_KEY } from "@/lib/indexedDb";
 import { useQueryClient } from "@tanstack/react-query";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import { Loader, RotateCcw } from "lucide-react";
-import { useTimer } from "./components/useTimer";
 
 interface LogWorkoutPageProps {
   activeSplit: ActiveSplitDeep;
