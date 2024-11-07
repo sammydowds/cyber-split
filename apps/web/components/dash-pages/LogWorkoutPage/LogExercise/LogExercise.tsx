@@ -1,5 +1,5 @@
 import { StrengthGroupSchemaType } from "@/lib/formSchemas/log";
-import { Check, HexagonIcon } from "lucide-react";
+import { Check, HexagonIcon, VideoOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useFormContext, useWatch } from "react-hook-form";
 import { cn } from "@/lib/utils";
@@ -16,7 +16,7 @@ export const LogExercise = ({ groupIdx }: LogExerciseProps) => {
     name: `strengthGroups.${groupIdx}`,
   }) as StrengthGroupSchemaType;
   const router = useRouter();
-  console.log(group);
+
   const [currentIdx, setCurrentIdx] = useState<number>(
     group.sets.findIndex((set) => !set.dateLogged),
   );
@@ -44,6 +44,9 @@ export const LogExercise = ({ groupIdx }: LogExerciseProps) => {
 
   return (
     <div className="w-full flex flex-col gap-4">
+      <div className="w-full h-[175px] rounded-lg bg-stone-200 shadow-inner flex flex-col items-center justify-center text-stone-300">
+        <VideoOff size={30} />
+      </div>
       <div className="flex flex-col">
         <div className="text-xl font-bold">{group.name}</div>
         <div className="text-stone-500">Log data below.</div>

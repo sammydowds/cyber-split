@@ -1,7 +1,7 @@
 import { StrengthGroupSchemaType } from "@/lib/formSchemas/log";
 import { cn } from "@/lib/utils";
 import { Check, ChevronRight, Dumbbell } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useFormContext, useWatch } from "react-hook-form";
 
 interface GroupSummaryProps {

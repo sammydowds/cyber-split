@@ -1,5 +1,5 @@
 import { ActiveSplitDeep } from "@repo/database";
-import { Section } from "lucide-react";
+import { Loader, Section } from "lucide-react";
 import { useDraftLoggedWorkout } from "../hooks/useDraftLoggedWorkout";
 import { useQueryClient } from "@tanstack/react-query";
 import { Page } from "../components/pages";
@@ -19,13 +19,20 @@ export const LogWorkoutPage = ({
     isPending,
     isRefetching,
   } = useDraftLoggedWorkout(workoutId);
-  const queryClient = useQueryClient();
 
   if (isPending) {
     return (
       <Page>
         <Section></Section>
       </Page>
+    );
+  }
+
+  if (isRefetching) {
+    return (
+      <div className="w-full mt-12 flex flex-col items-center">
+        <Loader className="animate-spin" />
+      </div>
     );
   }
 
@@ -39,16 +46,10 @@ export const LogWorkoutPage = ({
     );
   }
 
-  const handleResetForm = async (e: React.MouseEvent) => {
-    e?.preventDefault();
-    await deleteFromDB(`${LOG_WORKOUT_KEY}-${workout.id}`);
-    queryClient.invalidateQueries({ queryKey: ["logData", workout.id] });
-  };
-
   return (
-    <div className="mt-12 px-4 flex flex-col items-center gap-6 w-full">
+    <div className="mt-8 px-4 flex flex-col items-center gap-6 w-full">
       <div className="max-w-[500px]">
-        <LogWorkoutPageForm workout={workout} />;
+        <LogWorkoutPageForm workout={workout} />
       </div>
     </div>
   );
