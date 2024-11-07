@@ -32,6 +32,7 @@ export const setSchema = z.object({
 export const strengthGroupSchema = z.object({
   name: z.string(),
   sets: z.array(setSchema),
+  previousVolume: z.number().nullable().optional(),
 });
 
 export const schema = z.object({

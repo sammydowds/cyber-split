@@ -5,7 +5,7 @@ import {
 } from "./programming";
 import { createActiveSplitWorkoutSchedule } from "./programming/createActiveSplitWorkoutSchedule";
 import { SPLIT_TYPES } from "./programming/enums";
-import { DeepLoggedWorkout, SplitDeep } from "./types";
+import { DeepLoggedWorkout, DeepTemplateWorkout, SplitDeep } from "./types";
 
 export const WORKOUT_LABELS = ["A", "B", "C", "D"] as const;
 const getWorkoutLetterFromIndex = (idx: number, count: number) => {
@@ -265,32 +265,87 @@ export const findUniqueTemplate = async (id: string) => {
   });
 };
 
-export const lookupLastLoggedSet = async (
+export const lastLoggedWorkout = async (
   profileId: string,
-  exerciseId: string,
+  templateWorkoutId: string,
 ) => {
-  const lastSets = await prisma.set.findMany({
+  const lastLogged = await prisma.loggedWorkout.findFirst({
+    where: {
+      profileId,
+      templateWorkoutId,
+    },
+    include: {
+      strengthGroups: {
+        include: {
+          sets: {
+            include: {
+              exercise: {
+                include: {
+                  equipment: true,
+                },
+              },
+            },
+          },
+        },
+      },
+    },
     orderBy: {
       dateLogged: "desc",
     },
-    where: {
-      exerciseId,
-      StrengthGroup: {
-        LoggedWorkout: {
-          profileId,
-        },
-      },
-      weight: {
-        not: null,
-      },
-      dateLogged: {
-        not: null,
-      },
-    },
-    take: 1,
   });
 
-  return lastSets[0];
+  return lastLogged;
+};
+
+/**
+ * Prefills a workout template with data from a previously logged workout.
+ * If the template was updated after the logged workout's date, the original template is returned unchanged.
+ *
+ * @param template - The workout template to be prefilled (without profile data)
+ * @param loggedWorkout - The previously logged workout to use as a source (without Split data)
+ * @returns The prefilled template with exercise data from the logged workout, or the original template if it was updated more recently
+ */
+export const prefillTemplate = (
+  template?: Omit<DeepTemplateWorkout, "profile"> | null,
+  loggedWorkout?: Omit<DeepLoggedWorkout, "Split"> | null,
+) => {
+  if (!template) {
+    return null;
+  }
+  if (!loggedWorkout?.dateLogged) {
+    return template;
+  }
+
+  // ensure the template was not updated after date logged
+  const { updated } = template;
+  const { dateLogged } = loggedWorkout;
+  if (updated && dateLogged && updated.getTime() > dateLogged.getTime()) {
+    return template;
+  }
+
+  // fill with previously logged groups
+  let tempGroups: any = [];
+  loggedWorkout.strengthGroups.map((group) => {
+    let volume = 0;
+    tempGroups.push({
+      ...group,
+      sets: group.sets.map((set) => {
+        if (set.dateLogged && set.reps && set.weight) {
+          volume = volume + set.reps * set.weight;
+        }
+        return {
+          ...set,
+          exercise: {
+            ...set.exercise,
+          },
+          dateLogged: null,
+        };
+      }),
+      previousVolume: volume,
+    });
+  });
+
+  return { ...template, strengthGroups: tempGroups };
 };
 
 export const deleteSplit = async (id: string, profileId: string) => {

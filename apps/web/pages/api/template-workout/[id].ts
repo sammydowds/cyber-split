@@ -2,44 +2,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 import {
   findUniqueTemplate,
   getProfile,
-  lookupLastLoggedSet,
+  lastLoggedWorkout,
+  prefillTemplate,
 } from "@repo/database";
-import { DeepTemplateWorkout } from "@repo/database";
-
-const populateWeight = async (
-  profileId: string,
-  groups: DeepTemplateWorkout["strengthGroups"],
-) => {
-  const newStrengthGroups = [];
-  const exerciseIdToLastSet: { [k: string]: any } = {};
-
-  if (groups) {
-    for (const group of groups) {
-      const updatedSets = [];
-      for (const s of group.sets) {
-        const { exercise } = s;
-        let lastSet: any | null = null;
-
-        if (exercise.id in exerciseIdToLastSet) {
-          lastSet = exerciseIdToLastSet[exercise.id];
-        } else {
-          lastSet = await lookupLastLoggedSet(profileId, exercise.id);
-          if (lastSet) {
-            exerciseIdToLastSet[exercise.id] = lastSet;
-          }
-        }
-        updatedSets.push({
-          ...s,
-          weight: lastSet?.weight,
-          previousWeight: lastSet?.weight,
-          previousReps: lastSet?.reps,
-        });
-      }
-      newStrengthGroups.push({ ...group, sets: updatedSets });
-    }
-  }
-  return newStrengthGroups;
-};
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "GET") {
@@ -56,16 +21,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
   const { id: templateId } = req.query;
 
-  const template = await findUniqueTemplate(templateId as string);
+  let template = await findUniqueTemplate(templateId as string);
+  let lastLoggedWorkoutOfTemplate = template?.id
+    ? await lastLoggedWorkout(profile.id, template?.id)
+    : null;
 
-  // prefill strength sets weight
-  if (template?.strengthGroups) {
-    template.strengthGroups = await populateWeight(
-      profile.id as string,
-      template.strengthGroups,
-    );
-  }
-
+  template = prefillTemplate(template, lastLoggedWorkoutOfTemplate);
   return res.status(200).json({ data: template });
 };
 
