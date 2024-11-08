@@ -1,118 +1,117 @@
-id,name,bodyPart,mode,instructions,mediaUrl,type,exRxLink,classification,target,synergists,stabilizers,dynamicStabilizers
-e0011,Cable Rope Tricep Extension,TRICEPS,PUSH,,020013,STRENGTH,https://exrx.net/WeightExercises/Triceps/CBPushdown,NEUTRAL,TRICEPS_BRACHII,,,
-e0012,Skull Crushers,TRICEPS,PUSH,,413013,STRENGTH,https://exrx.net/WeightExercises/Triceps/BBLyingTriExtSC,BASIC,TRICEPS_BRACHII,,,
-e0013,Machine Tricep Extension,TRICEPS,PUSH,,172213,STRENGTH,https://exrx.net/WeightExercises/Triceps/LVTriExtPreacherPad,NEUTRAL,TRICEPS_BRACHII,,,
-e0014,Tate Press,TRICEPS,PUSH,,043613,STRENGTH,,AUXILIARY,TRICEPS_BRACHII,,,
-e0015,Cobra Press,TRICEPS,PUSH,,348813,STRENGTH,,AUXILIARY,TRICEPS_BRACHII,,,
-e0016,Barbell Bench Press,CHEST,PUSH,,002513,STRENGTH,https://exrx.net/WeightExercises/PectoralSternal/BBBenchPress,BASIC,PECTORALIS_MAJOR_STERNAL,,,
-e0017,Barbell Incline Press,CHEST,PUSH,,004713,STRENGTH,https://exrx.net/WeightExercises/PectoralClavicular/BBInclineBenchPress,NEUTRAL,PECTORALIS_MAJOR_CLAVICULAR,,,
-e0018,Smith Machine Bench Press,CHEST,PUSH,,074813,STRENGTH,https://exrx.net/WeightExercises/PectoralSternal/SMBenchPress,BASIC,PECTORALIS_MAJOR_STERNAL,,,
-e0019,Cable Crossover ,CHEST,PUSH,,022713,STRENGTH,https://exrx.net/WeightExercises/PectoralSternal/CBStandingFly,AUXILIARY,PECTORALIS_MAJOR_STERNAL,,,
-e0020,Machine Fly,CHEST,PUSH,,059613,STRENGTH,https://exrx.net/WeightExercises/PectoralSternal/LVSeatedFly,AUXILIARY,PECTORALIS_MAJOR_STERNAL,,,
-e0021,Push Up,CHEST,PUSH,,066213,STRENGTH,https://exrx.net/WeightExercises/PectoralSternal/BWPushup,NEUTRAL,PECTORALIS_MAJOR_STERNAL,,,
-e0022,EZ-Bar Curl,BICEPS,PULL,,044713,STRENGTH,https://exrx.net/WeightExercises/Biceps/BBCurl,BASIC,BICEPS_BRACHII,,,
-e0023,Hammer Curls,FOREARMS,PULL,,031313,STRENGTH,https://exrx.net/WeightExercises/Brachioradialis/DBHammerCurl,AUXILIARY,BRACHORADIALIS,,,
-e0024,Incline Dumbbell Curls,BICEPS,PULL,,031513,STRENGTH,https://exrx.net/WeightExercises/Biceps/DBInclineCurl,NEUTRAL,BICEPS_BRACHII,,,
-e0025,Dumbbell Curls,BICEPS,PULL,,028513,STRENGTH,https://exrx.net/WeightExercises/Biceps/DBCurl,BASIC,BICEPS_BRACHII,,,
-e0026,Preacher Curls,BICEPS,PULL,,640613,STRENGTH,https://exrx.net/WeightExercises/Brachialis/BBPreacherCurl,AUXILIARY,BRACHIALIS,,,
-e0027,Cable Preacher Curls,BICEPS,PULL,,019513,STRENGTH,https://exrx.net/WeightExercises/Brachialis/CBPreacherCurl,AUXILIARY,BRACHIALIS,,,
-e0028,Seated Leg Curl,HAMSTRINGS,LOWER,,059913,STRENGTH,https://exrx.net/WeightExercises/Hamstrings/LVSeatedLegCurl,BASIC,HAMSTRINGS,,,
-e0029,Deadlift,GLUTES,LOWER,,003213,STRENGTH,https://exrx.net/WeightExercises/GluteusMaximus/BBDeadlift,BASIC,GLUTEUS_MAXIMUS,"QUADS,HAMSTRINGS",ERECTOR_SPINAE,
-e0030,Dumbbell Stiff Legged Deadlift,HAMSTRINGS,LOWER,,334013,STRENGTH,https://exrx.net/WeightExercises/Hamstrings/DBStrBackStrLegDeadlift,NEUTRAL,HAMSTRINGS,,,
-e0031,Romanian Deadlift,HAMSTRINGS,LOWER,,008513,STRENGTH,https://exrx.net/WeightExercises/OlympicLifts/RomanianDeadlift,,,,,
-e0032,Goodmorning,HAMSTRINGS,LOWER,,009013,STRENGTH,https://exrx.net/WeightExercises/Hamstrings/BBGoodMorning,NEUTRAL,HAMSTRINGS,,ERECTOR_SPINAE,
-e0033,Ab Crunch Machine,ABS,CORE,,145213,STRENGTH,https://exrx.net/WeightExercises/RectusAbdominis/LVSeatedCrunch,BASIC,,,,
-e0034,Vertical Leg Raise,ABS,CORE,,296313,STRENGTH,https://exrx.net/WeightExercises/HipFlexors/BWVerticalStraightLegRaise,BASIC,,,,
-e0035,Crunches,ABS,CORE,,027413,STRENGTH,https://exrx.net/WeightExercises/RectusAbdominis/BWCrunch,BASIC,,,,
-e0036,Vertical Knee Raise,ABS,CORE,,510713,STRENGTH,https://exrx.net/WeightExercises/HipFlexors/BWVerticalLegRaise,BASIC,,,,
-e0037,Decline Sit-Up,ABS ,CORE,,028213,STRENGTH,https://exrx.net/WeightExercises/HipFlexors/WtDeclineSitup,BASIC,,,,
-e0038,Sit Up,ABS,CORE,,073613,STRENGTH,https://exrx.net/WeightExercises/RectusAbdominis/BWSitUp,BASIC,,,,
-e0039,Lat Pulldown,BACK,PULL,,015013,STRENGTH,https://exrx.net/WeightExercises/LatissimusDorsi/CBFrontPulldown,BASIC,LATISSIMUS_DORSI,,,
-e0040,Dumbbell Row,BACK,PULL,,029213,STRENGTH,https://exrx.net/WeightExercises/BackGeneral/DBBentOverRow,BASIC,BACK_GENERAL,,,
-e0041,Cable Row,BACK ,PULL,,086113,STRENGTH,https://exrx.net/WeightExercises/BackGeneral/CBSeatedRow,BASIC,BACK_GENERAL,,,
-e0042,Landmine Row,BACK,PULL,,403813,STRENGTH,,,,,,
-e0043,Leg Extension,QUADS,LOWER,,338613,STRENGTH,https://exrx.net/WeightExercises/Quadriceps/LVLegExtension,AUXILIARY,QUADS,,,
-e0044,Barbell Lunge,QUADS,LOWER,,005413,STRENGTH,https://exrx.net/WeightExercises/Quadriceps/BBLunge,AUXILIARY,QUADS,GLUTEUS_MAXIMUS,ERECTOR_SPINAE,
-e0045,Dumbell Single Leg Lunge,QUADS,LOWER,,429013,STRENGTH,https://exrx.net/WeightExercises/Quadriceps/DBLunge,AUXILIARY,QUADS,GLUTEUS_MAXIMUS,ERECTOR_SPINAE,
-e0046,Barbell Squat,QUADS,LOWER,,359313,STRENGTH,https://exrx.net/WeightExercises/Quadriceps/BBSquat,BASIC,QUADS,GLUTEUS_MAXIMUS,ERECTOR_SPINAE,
-e0047,Machine Leg Press,QUADS,LOWER,,295113,STRENGTH,https://exrx.net/WeightExercises/Quadriceps/SLSeatedLegPress,BASIC,QUADS,GLUTEUS_MAXIMUS,,
-e0048,Glute Kickback Machine,GLUTES,LOWER,,660113,STRENGTH,,AUXILIARY,GLUTEUS_MAXIMUS,,,
-e0049,Kettlebell Swing American,GLUTES,LOWER,,054913,STRENGTH,https://exrx.net/WeightExercises/Kettlebell/KBTwoArmSwing,AUXILIARY,,,,
-e0050,Stability Ball Hip Bridge,GLUTES,LOWER,,061813,STRENGTH,,BASIC,,,,
-e0051,Smith Machine Glute Bridge,GLUTES,LOWER,,,STRENGTH,,BASIC,,,,
-e0052,Mini Loop Fire Hydrant,GLUTES,LOWER,,242113,STRENGTH,,AUXILIARY,,,,
-e0053,Hip Thrust,GLUTES,LOWER,,207213,STRENGTH,,BASIC,,,,
-e0054,Cable Lateral Raise,SHOULDERS,PUSH,,017813,STRENGTH,https://exrx.net/WeightExercises/DeltoidLateral/CBLateralRaise,NEUTRAL,DELTOID_LATERAL,,,
-e0055,Dumbbell Lateral Raise,SHOULDERS,PUSH,,033413,STRENGTH,https://exrx.net/WeightExercises/DeltoidLateral/DBLateralRaise,NEUTRAL,DELTOID_LATERAL,,,
-e0056,Dumbbell Front Raise,SHOULDERS,PUSH,,031013,STRENGTH,https://exrx.net/WeightExercises/DeltoidAnterior/DBFrontRaise,AUXILIARY,DELTOID_ANTERIOR,,,
-e0057,Dumbbell Shoulder Press,SHOULDERS,PUSH,,042613,STRENGTH,https://exrx.net/WeightExercises/DeltoidAnterior/DBShoulderPress,BASIC,DELTOID_ANTERIOR,,,
-e0058,Dumbbell Back Fly,SHOULDERS,PUSH,,250013,STRENGTH,https://exrx.net/WeightExercises/DeltoidPosterior/DBRearLateralRaise,AUXILIARY,DELTOID_POSTERIOR,,,
-e0059,Barbell Shrug,TRAPS,PULL,,009513,STRENGTH,https://exrx.net/WeightExercises/TrapeziusUpper/BBShrug,BASIC,TRAPEZIUS_UPPER,,,
-e0060,Barbell Behind the Back Shrug,TRAPS,PULL,,373013,STRENGTH,,,,,,
-e0061,Smith Machine Shrug,TRAPS,PULL,,076713,STRENGTH,https://exrx.net/WeightExercises/TrapeziusUpper/SMShrug,BASIC,TRAPEZIUS_UPPER,,,
-e0062,Dumbbell Shrug,TRAPS,PULL,,040613,STRENGTH,https://exrx.net/WeightExercises/TrapeziusUpper/DBShrug,BASIC,TRAPEZIUS_UPPER,,,
-e0063,Cable Upright Row,SHOULDERS,PULL,,024613,STRENGTH,https://exrx.net/WeightExercises/DeltoidLateral/CBUprightRow,BASIC,DELTOID_LATERAL,,,
-e0064,Upright Row,TRAPS,PULL,,012013,STRENGTH,https://exrx.net/WeightExercises/DeltoidLateral/BBUprightRow,BASIC,DELTOID_LATERAL,,,
-e0065,Palms Down Dumbbell Wrist Curl,FOREARMS,PULL,,036613,STRENGTH,https://exrx.net/WeightExercises/WristExtensors/DBReverseWristCurl,BASIC,,,,
-e0066,Palms Down Barbell Wrist Curl,FOREARMS,PULL,,141113,STRENGTH,https://exrx.net/WeightExercises/WristExtensors/BBReverseWristCurl,BASIC,,,,
-e0067,Palms Up Dumbbell Wrist Curl,FOREARMS,PULL,,036413,STRENGTH,https://exrx.net/WeightExercises/WristFlexors/DBWristCurl,BASIC,,,,
-e0068,Palms Up Barbell Wrist Curl,FOREARMS,PULL,,141213,STRENGTH,https://exrx.net/WeightExercises/WristFlexors/BBWristCurl,BASIC,,,,
-e0069,Handle Band Reverse Wrist Curl,FOREARMS,PULL,,099413,STRENGTH,,BASIC,,,,
-e0070,Machine Hip Adductor Machine,ADDUCTORS,LOWER,,059813,STRENGTH,https://exrx.net/WeightExercises/HipAdductors/LVSeatedHipAdduction,AUXILIARY,,,,
-e0071,Machine Hip Abductor Machine,ABDUCTORS,LOWER,,059713,STRENGTH,https://exrx.net/WeightExercises/HipAbductor/LVSeatedHipAbduction,AUXILIARY,,,,
-e0072,Calf Press,CALVES,LOWER,,233513,STRENGTH,https://exrx.net/WeightExercises/Gastrocnemius/SLSeatedCalfPress,BASIC,,,,
-e0073,Standing Dumbbell Calf Raise,CALVES,LOWER,,041713,STRENGTH,https://exrx.net/WeightExercises/Gastrocnemius/DBStandingCalfRaise,BASIC,,,,
-e0074,Standing Barbell Calf Raise,CALVES,LOWER,,137213,STRENGTH,https://exrx.net/WeightExercises/Gastrocnemius/BBStandingCalfRaise,BASIC,,,,
-e0075,Single Leg Standing Calf Raise,CALVES,LOWER,,505213,STRENGTH,https://exrx.net/WeightExercises/Gastrocnemius/BWSingleLegCalfRaise,BASIC,,,,
-e0076,Seated Back Extension,LOWERBACK,PULL,,057313,STRENGTH,https://exrx.net/WeightExercises/ErectorSpinae/LVBackExtensionN,AUXILIARY,ERECTOR_SPINAE,,,
-e0077,Back Extensions,LOWERBACK,PULL,,,STRENGTH,https://exrx.net/WeightExercises/ErectorSpinae/Wt45Hyperextension,NEUTRAL,ERECTOR_SPINAE,,,
-e0078,Superman,LOWERBACK,PULL,,080413,STRENGTH,https://exrx.net/WeightExercises/ErectorSpinae/Superman,AUXILIARY,ERECTOR_SPINAE,,,
-e0079,Shoulder Stretch,SHOULDERS,,,198013,FLEXIBILITY,,,,,,
-e0080,Toe Touch,HAMSTRINGS,,,321213,FLEXIBILITY,,,,,,
-e0081,Samson Stretch,GLUTES,,,493013,FLEXIBILITY,,,,,,
-e0082,Butterfly Stretch,ADDUCTORS,,,149413,FLEXIBILITY,,,,,,
-e0083,Cobra Stretch,ABS,,,148213,FLEXIBILITY,,,,,,
-e0084,Knees To Chest,LOWERBACK,,,055913,FLEXIBILITY,,,,,,
-e0085,Cat Cow,LOWERBACK,,,458013,FLEXIBILITY,,,,,,
-e0086,Calf Stretch,CALVES,,,137713,FLEXIBILITY,,,,,,
-e0087,Jog,,,,068413,FLEXIBILITY,,,,,,
-e0088,Bodyweight Squats,,,,078713,FLEXIBILITY,,,,,,
-e0089,Bodyweight Lunges,,,,061213,FLEXIBILITY,,,,,,
-e0090,Leg Swings,ABDUCTORS,,,095513,FLEXIBILITY,,,,,,
-e0091,Arm Circles,SHOULDERS,,,390513,FLEXIBILITY,,,,,,
-e0092,Run,,,,068413,CARDIO,,,,,,
-e0093,Stair Stepper,,,,231113,CARDIO,,,,,,
-e0094,Jump Rope,,,,261213,CARDIO,,,,,,
-e0095,Sprint,,,,085813,CARDIO,,,,,,
-e0096,Walk,,,,082813,CARDIO,,,,,,
-e0097,Rowing,,,,116113,CARDIO,,,,,,
-e0098,Cycling,,,,233113,CARDIO,,,,,,
-e0099,Windmill ,,,,"390813
-",FLEXIBILITY,,,,,,
-e0100,Bodyweight Squats,QUADS,,,078713,STRENGTH,https://exrx.net/WeightExercises/Quadriceps/BWSquat,BASIC,QUADS,,,
-e0101,Bodyweight Lunges,QUADS,,,061213,STRENGTH,https://exrx.net/WeightExercises/Quadriceps/BWLunge,NEUTRAL,QUADS,,,
-e0102,Silent Burpee,CHEST,,,503913,STRENGTH,,,,,,
-e0103,Burpee,CHEST,,,116013,STRENGTH,https://exrx.net/Aerobic/Exercises/Burpee,,,,,
-e0104,Mountain Climber,ABS,CORE,,063013,STRENGTH,https://exrx.net/Aerobic/Exercises/MountainClimber,,,,,
-e0105,Pull Up,BACK,PULL,,065213,STRENGTH,https://exrx.net/WeightExercises/LatissimusDorsi/BWPullup,BASIC,LATISSIMUS_DORSI,,,
-e0106,Flutter Kicks,ABS,CORE,,045913,STRENGTH,https://exrx.net/WeightExercises/HipFlexors/BWScissorKick,BASIC,,,,
-e107,Shoulder Tap,SHOULDERS,,,369913,STRENGTH,,,,,,
-e108,Diamond Pushup,TRICEPS,,,028313,STRENGTH,,,,,,
-e109,Bird Dog,BACK,,,441613,STRENGTH,,,,,,
-e110,Side Plank Hip Adduction,ADDUCTORS,,,177513,STRENGTH,,,,,,
-e111,Side Bridge Hip Abduction,ABDUCTORS,,,177413,STRENGTH,,,,,,
-e112,Bridge Hip Abduction,ABDUCTORS,,,014413,STRENGTH,,,,,,
-e113,Glute Bridge,GLUTES,,,247113,STRENGTH,,,,,,
-e114,Single Leg Deadlift,HAMSTRINGS,,,392813,STRENGTH,,,,,,
-e115,Single Leg Calf Raise,CALVES,,,476113,STRENGTH,,,,,,
-e116,Machine-assisted Triceps Dip,TRICEPS,PUSH,,,STRENGTH,https://exrx.net/WeightExercises/Triceps/ASTriDip,BASIC,TRICEPS_BRACHII,,,
-e117,Close Grip Bench Press,TRICEPS,PUSH,,,STRENGTH,https://exrx.net/WeightExercises/Triceps/SMCloseGripBenchPress,BASIC,TRICEPS_BRACHII,,,
-e118,Bench Dip,TRICEPS,PUSH,,,STRENGTH,https://exrx.net/WeightExercises/Triceps/BWBenchDipFloor,BASIC,PECTORALIS_MAJOR_STERNAL,,,
-e119,Machine-assisted Chest Dip,CHEST,PUSH,,,STRENGTH,https://exrx.net/WeightExercises/PectoralSternal/AsChestDip,BASIC,PECTORALIS_MAJOR_STERNAL,,,
-e120,Dumbbell Bench Press,CHEST,PUSH,,,STRENGTH,https://exrx.net/WeightExercises/PectoralSternal/DBBenchPress,BASIC,PECTORALIS_MAJOR_STERNAL,,,
-e121,Chest Press,CHEST,PUSH,,,STRENGTH,https://exrx.net/WeightExercises/PectoralSternal/LVChestPress,AUXILIARY,PECTORALIS_MAJOR_STERNAL,,,
-e122,Incline Dumbbell Bench Press,CHEST,PUSH,,,STRENGTH,https://exrx.net/WeightExercises/PectoralSternal/DBBenchPress,BASIC,PECTORALIS_MAJOR_CLAVICULAR,,,
-e123,Smith Machine Squat,QUADS,LOWER,,,STRENGTH,https://exrx.net/WeightExercises/Quadriceps/SMSquat,BASIC,QUADS,,ERECTOR_SPINAE,
-e124,Dumbbell Split Squat,QUADS,LOWER,,,STRENGTH,https://exrx.net/WeightExercises/GluteusMaximus/DBSplitSquat,BASIC,QUADS,,ERECTOR_SPINAE,
-e125,Dumbbell Step Up,QUADS,LOWER,,,STRENGTH,https://exrx.net/WeightExercises/Quadriceps/DBStepUp,BASIC,QUADS,,ERECTOR_SPINAE,
-e126,Barbell Split Squat,QUADS,LOWER,,,STRENGTH,https://exrx.net/WeightExercises/Quadriceps/BBSingleLegSplitSquat,BASIC,QUADS,,ERECTOR_SPINAE,
+id,name,bodyPart,mode,instructions,mediaUrl,type,exRxLink,classification,target,synergists,stabilizers,dynamicStabilizers,youtubeId
+e0011,Cable Rope Tricep Extension,TRICEPS,PUSH,,20013,STRENGTH,https://exrx.net/WeightExercises/Triceps/CBPushdown,NEUTRAL,TRICEPS_BRACHII,,,,JDEDaZTEzGE
+e0012,Skull Crushers,TRICEPS,PUSH,,413013,STRENGTH,https://exrx.net/WeightExercises/Triceps/BBLyingTriExtSC,BASIC,TRICEPS_BRACHII,,,,jO2Jl9eZpXk
+e0013,Machine Tricep Extension,TRICEPS,PUSH,,172213,STRENGTH,https://exrx.net/WeightExercises/Triceps/LVTriExtPreacherPad,NEUTRAL,TRICEPS_BRACHII,,,,_JoblP7fggo
+e0014,Tate Press,TRICEPS,PUSH,,43613,STRENGTH,,AUXILIARY,TRICEPS_BRACHII,,,,cZJ-4Ll3uAo
+e0015,Cobra Press,TRICEPS,PUSH,,348813,STRENGTH,,AUXILIARY,TRICEPS_BRACHII,,,,
+e0016,Barbell Bench Press,CHEST,PUSH,,2513,STRENGTH,https://exrx.net/WeightExercises/PectoralSternal/BBBenchPress,BASIC,PECTORALIS_MAJOR_STERNAL,,,,ejI1Nlsul9k
+e0017,Barbell Incline Press,CHEST,PUSH,,4713,STRENGTH,https://exrx.net/WeightExercises/PectoralClavicular/BBInclineBenchPress,NEUTRAL,PECTORALIS_MAJOR_CLAVICULAR,,,,PZ7waXzAzZc
+e0018,Smith Machine Bench Press,CHEST,PUSH,,74813,STRENGTH,https://exrx.net/WeightExercises/PectoralSternal/SMBenchPress,BASIC,PECTORALIS_MAJOR_STERNAL,,,,1UMDU-HmGYc
+e0019,Cable Crossover,CHEST,PUSH,,22713,STRENGTH,https://exrx.net/WeightExercises/PectoralSternal/CBStandingFly,AUXILIARY,PECTORALIS_MAJOR_STERNAL,,,,hhruLxo9yZU
+e0020,Machine Fly,CHEST,PUSH,,59613,STRENGTH,https://exrx.net/WeightExercises/PectoralSternal/LVSeatedFly,AUXILIARY,PECTORALIS_MAJOR_STERNAL,,,,eGjt4lk6g34
+e0021,Push Up,CHEST,PUSH,,66213,STRENGTH,https://exrx.net/WeightExercises/PectoralSternal/BWPushup,NEUTRAL,PECTORALIS_MAJOR_STERNAL,,,,0pkjOk0EiAk
+e0022,EZ-Bar Curl,BICEPS,PULL,,44713,STRENGTH,https://exrx.net/WeightExercises/Biceps/BBCurl,BASIC,BICEPS_BRACHII,,,,-gSM-kqNlUw
+e0023,Hammer Curls,FOREARMS,PULL,,31313,STRENGTH,https://exrx.net/WeightExercises/Brachioradialis/DBHammerCurl,AUXILIARY,BRACHORADIALIS,,,,RIEMoYL_h1Y
+e0024,Incline Dumbbell Curls,BICEPS,PULL,,31513,STRENGTH,https://exrx.net/WeightExercises/Biceps/DBInclineCurl,NEUTRAL,BICEPS_BRACHII,,,,aG7CXiKxepw
+e0025,Dumbbell Curls,BICEPS,PULL,,28513,STRENGTH,https://exrx.net/WeightExercises/Biceps/DBCurl,BASIC,BICEPS_BRACHII,,,,l1tXK8CzxB4
+e0026,Preacher Curls,BICEPS,PULL,,640613,STRENGTH,https://exrx.net/WeightExercises/Brachialis/BBPreacherCurl,AUXILIARY,BRACHIALIS,,,,dgaJQXa0kbg
+e0027,Cable Preacher Curls,BICEPS,PULL,,19513,STRENGTH,https://exrx.net/WeightExercises/Brachialis/CBPreacherCurl,AUXILIARY,BRACHIALIS,,,,
+e0028,Seated Leg Curl,HAMSTRINGS,LOWER,,59913,STRENGTH,https://exrx.net/WeightExercises/Hamstrings/LVSeatedLegCurl,BASIC,HAMSTRINGS,,,,ceG0f6ntNcw
+e0029,Deadlift,GLUTES,LOWER,,3213,STRENGTH,https://exrx.net/WeightExercises/GluteusMaximus/BBDeadlift,BASIC,GLUTEUS_MAXIMUS,"QUADS,HAMSTRINGS",ERECTOR_SPINAE,,TN3DHmd1Fe8
+e0030,Dumbbell Stiff Legged Deadlift,HAMSTRINGS,LOWER,,334013,STRENGTH,https://exrx.net/WeightExercises/Hamstrings/DBStrBackStrLegDeadlift,NEUTRAL,HAMSTRINGS,,,,6USOovx8pYI
+e0031,Romanian Deadlift,HAMSTRINGS,LOWER,,8513,STRENGTH,https://exrx.net/WeightExercises/OlympicLifts/RomanianDeadlift,,,,,,bT5OOBgY4bc
+e0032,Goodmorning,HAMSTRINGS,LOWER,,9013,STRENGTH,https://exrx.net/WeightExercises/Hamstrings/BBGoodMorning,NEUTRAL,HAMSTRINGS,,ERECTOR_SPINAE,,2k5W4PTlCDw
+e0033,Ab Crunch Machine,ABS,CORE,,145213,STRENGTH,https://exrx.net/WeightExercises/RectusAbdominis/LVSeatedCrunch,BASIC,,,,,V7p_DmkYLZw
+e0034,Vertical Leg Raise,ABS,CORE,,296313,STRENGTH,https://exrx.net/WeightExercises/HipFlexors/BWVerticalStraightLegRaise,BASIC,,,,,l-mPHKQFMkk
+e0035,Crunches,ABS,CORE,,27413,STRENGTH,https://exrx.net/WeightExercises/RectusAbdominis/BWCrunch,BASIC,,,,,Xyd_fa5zoEU
+e0036,Vertical Knee Raise,ABS,CORE,,510713,STRENGTH,https://exrx.net/WeightExercises/HipFlexors/BWVerticalLegRaise,BASIC,,,,,mnj37_qShjg
+e0037,Decline Sit-Up,ABS,CORE,,28213,STRENGTH,https://exrx.net/WeightExercises/HipFlexors/WtDeclineSitup,BASIC,,,,,N7hf1_vcX5w
+e0038,Sit Up,ABS,CORE,,73613,STRENGTH,https://exrx.net/WeightExercises/RectusAbdominis/BWSitUp,BASIC,,,,,f9Yi_74xF_c
+e0039,Lat Pulldown,BACK,PULL,,15013,STRENGTH,https://exrx.net/WeightExercises/LatissimusDorsi/CBFrontPulldown,BASIC,LATISSIMUS_DORSI,,,,NAIEnMjN-6w
+e0040,Dumbbell Row,BACK,PULL,,29213,STRENGTH,https://exrx.net/WeightExercises/BackGeneral/DBBentOverRow,BASIC,BACK_GENERAL,,,,aVH_cG4UISc
+e0041,Cable Row,BACK,PULL,,86113,STRENGTH,https://exrx.net/WeightExercises/BackGeneral/CBSeatedRow,BASIC,BACK_GENERAL,,,,q7Fn27BfIHU
+e0042,Landmine Row,BACK,PULL,,403813,STRENGTH,,,,,,,8shgaY2G1tM
+e0043,Leg Extension,QUADS,LOWER,,338613,STRENGTH,https://exrx.net/WeightExercises/Quadriceps/LVLegExtension,AUXILIARY,QUADS,,,,s1JfTvyWdTs
+e0044,Barbell Lunge,QUADS,LOWER,,5413,STRENGTH,https://exrx.net/WeightExercises/Quadriceps/BBLunge,AUXILIARY,QUADS,GLUTEUS_MAXIMUS,ERECTOR_SPINAE,,Z6i2IQqTuU0
+e0045,Dumbell Single Leg Lunge,QUADS,LOWER,,429013,STRENGTH,https://exrx.net/WeightExercises/Quadriceps/DBLunge,AUXILIARY,QUADS,GLUTEUS_MAXIMUS,ERECTOR_SPINAE,,9gglI77Kzq8
+e0046,Barbell Squat,QUADS,LOWER,,359313,STRENGTH,https://exrx.net/WeightExercises/Quadriceps/BBSquat,BASIC,QUADS,GLUTEUS_MAXIMUS,ERECTOR_SPINAE,,j-KDHkRMer0
+e0047,Machine Leg Press,QUADS,LOWER,,295113,STRENGTH,https://exrx.net/WeightExercises/Quadriceps/SLSeatedLegPress,BASIC,QUADS,GLUTEUS_MAXIMUS,,,B8KqmwdomoU
+e0048,Glute Kickback Machine,GLUTES,LOWER,,660113,STRENGTH,,AUXILIARY,GLUTEUS_MAXIMUS,,,,1-8Glxuf2z0
+e0049,Kettlebell Swing American,GLUTES,LOWER,,54913,STRENGTH,https://exrx.net/WeightExercises/Kettlebell/KBTwoArmSwing,AUXILIARY,,,,,d94xX-AQZ0A
+e0050,Stability Ball Hip Bridge,GLUTES,LOWER,,61813,STRENGTH,,BASIC,,,,,8Ta_A9vAEGs
+e0051,Smith Machine Glute Bridge,GLUTES,LOWER,,,STRENGTH,,BASIC,,,,,BakGsAociA4
+e0052,Mini Loop Fire Hydrant,GLUTES,LOWER,,242113,STRENGTH,,AUXILIARY,,,,,
+e0053,Hip Thrust,GLUTES,LOWER,,207213,STRENGTH,,BASIC,,,,,XbIKVSp0Fm0
+e0054,Cable Lateral Raise,SHOULDERS,PUSH,,17813,STRENGTH,https://exrx.net/WeightExercises/DeltoidLateral/CBLateralRaise,NEUTRAL,DELTOID_LATERAL,,,,Z5FA9aq3L6A
+e0055,Dumbbell Lateral Raise,SHOULDERS,PUSH,,33413,STRENGTH,https://exrx.net/WeightExercises/DeltoidLateral/DBLateralRaise,NEUTRAL,DELTOID_LATERAL,,,,XPPfnSEATJA
+e0056,Dumbbell Front Raise,SHOULDERS,PUSH,,31013,STRENGTH,https://exrx.net/WeightExercises/DeltoidAnterior/DBFrontRaise,AUXILIARY,DELTOID_ANTERIOR,,,,zkP0MsTcIVU
+e0057,Dumbbell Shoulder Press,SHOULDERS,PUSH,,42613,STRENGTH,https://exrx.net/WeightExercises/DeltoidAnterior/DBShoulderPress,BASIC,DELTOID_ANTERIOR,,,,OM23fjJB3-0
+e0058,Dumbbell Back Fly,SHOULDERS,PUSH,,250013,STRENGTH,https://exrx.net/WeightExercises/DeltoidPosterior/DBRearLateralRaise,AUXILIARY,DELTOID_POSTERIOR,,,,hf7jnF45N_I
+e0059,Barbell Shrug,TRAPS,PULL,,9513,STRENGTH,https://exrx.net/WeightExercises/TrapeziusUpper/BBShrug,BASIC,TRAPEZIUS_UPPER,,,,larn3Asl6oM
+e0060,Barbell Behind the Back Shrug,TRAPS,PULL,,373013,STRENGTH,,,,,,,886maSVQUWo
+e0061,Smith Machine Shrug,TRAPS,PULL,,76713,STRENGTH,https://exrx.net/WeightExercises/TrapeziusUpper/SMShrug,BASIC,TRAPEZIUS_UPPER,,,,4PItuEWCTog
+e0062,Dumbbell Shrug,TRAPS,PULL,,40613,STRENGTH,https://exrx.net/WeightExercises/TrapeziusUpper/DBShrug,BASIC,TRAPEZIUS_UPPER,,,,_t3lrPI6Ns4
+e0063,Cable Upright Row,SHOULDERS,PULL,,24613,STRENGTH,https://exrx.net/WeightExercises/DeltoidLateral/CBUprightRow,BASIC,DELTOID_LATERAL,,,,WNz7O59GORA
+e0064,Upright Row,TRAPS,PULL,,12013,STRENGTH,https://exrx.net/WeightExercises/DeltoidLateral/BBUprightRow,BASIC,DELTOID_LATERAL,,,,fy-Ou88ruAk
+e0065,Palms Down Dumbbell Wrist Curl,FOREARMS,PULL,,36613,STRENGTH,https://exrx.net/WeightExercises/WristExtensors/DBReverseWristCurl,BASIC,,,,,jtQslxR3f0A
+e0066,Palms Down Barbell Wrist Curl,FOREARMS,PULL,,141113,STRENGTH,https://exrx.net/WeightExercises/WristExtensors/BBReverseWristCurl,BASIC,,,,,Zvc9YJ9keeI
+e0067,Palms Up Dumbbell Wrist Curl,FOREARMS,PULL,,36413,STRENGTH,https://exrx.net/WeightExercises/WristFlexors/DBWristCurl,BASIC,,,,,3VLTzIrnb5g
+e0068,Palms Up Barbell Wrist Curl,FOREARMS,PULL,,141213,STRENGTH,https://exrx.net/WeightExercises/WristFlexors/BBWristCurl,BASIC,,,,,dQtMZ3ZEGwU
+e0069,Handle Band Reverse Wrist Curl,FOREARMS,PULL,,99413,STRENGTH,,BASIC,,,,,
+e0070,Machine Hip Adductor Machine,ADDUCTORS,LOWER,,59813,STRENGTH,https://exrx.net/WeightExercises/HipAdductors/LVSeatedHipAdduction,AUXILIARY,,,,,
+e0071,Machine Hip Abductor Machine,ABDUCTORS,LOWER,,59713,STRENGTH,https://exrx.net/WeightExercises/HipAbductor/LVSeatedHipAbduction,AUXILIARY,,,,,
+e0072,Calf Press,CALVES,LOWER,,233513,STRENGTH,https://exrx.net/WeightExercises/Gastrocnemius/SLSeatedCalfPress,BASIC,,,,,g_E7_q1z2bo
+e0073,Standing Dumbbell Calf Raise,CALVES,LOWER,,41713,STRENGTH,https://exrx.net/WeightExercises/Gastrocnemius/DBStandingCalfRaise,BASIC,,,,,GyWw_Q_aIbE
+e0074,Standing Barbell Calf Raise,CALVES,LOWER,,137213,STRENGTH,https://exrx.net/WeightExercises/Gastrocnemius/BBStandingCalfRaise,BASIC,,,,,SpwcssWT0p4
+e0075,Single Leg Standing Calf Raise,CALVES,LOWER,,505213,STRENGTH,https://exrx.net/WeightExercises/Gastrocnemius/BWSingleLegCalfRaise,BASIC,,,,,KcTEGifMTDY
+e0076,Seated Back Extension,LOWERBACK,PULL,,57313,STRENGTH,https://exrx.net/WeightExercises/ErectorSpinae/LVBackExtensionN,AUXILIARY,ERECTOR_SPINAE,,,,4sla2xidkD0
+e0077,Back Extensions,LOWERBACK,PULL,,,STRENGTH,https://exrx.net/WeightExercises/ErectorSpinae/Wt45Hyperextension,NEUTRAL,ERECTOR_SPINAE,,,,ZaLvgeHC_54
+e0078,Superman,LOWERBACK,PULL,,80413,STRENGTH,https://exrx.net/WeightExercises/ErectorSpinae/Superman,AUXILIARY,ERECTOR_SPINAE,,,,v4nNlF3WDs0
+e0079,Shoulder Stretch,SHOULDERS,,,198013,FLEXIBILITY,,,,,,,
+e0080,Toe Touch,HAMSTRINGS,,,321213,FLEXIBILITY,,,,,,,
+e0081,Samson Stretch,GLUTES,,,493013,FLEXIBILITY,,,,,,,
+e0082,Butterfly Stretch,ADDUCTORS,,,149413,FLEXIBILITY,,,,,,,
+e0083,Cobra Stretch,ABS,,,148213,FLEXIBILITY,,,,,,,
+e0084,Knees To Chest,LOWERBACK,,,55913,FLEXIBILITY,,,,,,,
+e0085,Cat Cow,LOWERBACK,,,458013,FLEXIBILITY,,,,,,,
+e0086,Calf Stretch,CALVES,,,137713,FLEXIBILITY,,,,,,,
+e0087,Jog,,,,68413,FLEXIBILITY,,,,,,,
+e0088,Bodyweight Squats,,,,78713,FLEXIBILITY,,,,,,,
+e0089,Bodyweight Lunges,,,,61213,FLEXIBILITY,,,,,,,
+e0090,Leg Swings,ABDUCTORS,,,95513,FLEXIBILITY,,,,,,,
+e0091,Arm Circles,SHOULDERS,,,390513,FLEXIBILITY,,,,,,,
+e0092,Run,,,,68413,CARDIO,,,,,,,
+e0093,Stair Stepper,,,,231113,CARDIO,,,,,,,
+e0094,Jump Rope,,,,261213,CARDIO,,,,,,,
+e0095,Sprint,,,,85813,CARDIO,,,,,,,
+e0096,Walk,,,,82813,CARDIO,,,,,,,
+e0097,Rowing,,,,116113,CARDIO,,,,,,,
+e0098,Cycling,,,,233113,CARDIO,,,,,,,
+e0099,Windmill,,,,390813,FLEXIBILITY,,,,,,,
+e0100,Bodyweight Squats,QUADS,,,78713,STRENGTH,https://exrx.net/WeightExercises/Quadriceps/BWSquat,BASIC,QUADS,,,,iiKn5FiVUjI
+e0101,Bodyweight Lunges,QUADS,,,61213,STRENGTH,https://exrx.net/WeightExercises/Quadriceps/BWLunge,NEUTRAL,QUADS,,,,krxGoIpg9XQ
+e0102,Silent Burpee,CHEST,,,503913,STRENGTH,,,,,,,
+e0103,Burpee,CHEST,,,116013,STRENGTH,https://exrx.net/Aerobic/Exercises/Burpee,,,,,,
+e0104,Mountain Climber,ABS,CORE,,63013,STRENGTH,https://exrx.net/Aerobic/Exercises/MountainClimber,,,,,,
+e0105,Pull Up,BACK,PULL,,65213,STRENGTH,https://exrx.net/WeightExercises/LatissimusDorsi/BWPullup,BASIC,LATISSIMUS_DORSI,,,,jgFel4wZl3I
+e0106,Flutter Kicks,ABS,CORE,,45913,STRENGTH,https://exrx.net/WeightExercises/HipFlexors/BWScissorKick,BASIC,,,,,5V4CETRga4E
+e107,Shoulder Tap,SHOULDERS,,,369913,STRENGTH,,,,,,,
+e108,Diamond Pushup,TRICEPS,,,28313,STRENGTH,,,,,,,
+e109,Bird Dog,BACK,,,441613,STRENGTH,,,,,,,
+e110,Side Plank Hip Adduction,ADDUCTORS,,,177513,STRENGTH,,,,,,,
+e111,Side Bridge Hip Abduction,ABDUCTORS,,,177413,STRENGTH,,,,,,,
+e112,Bridge Hip Abduction,ABDUCTORS,,,14413,STRENGTH,,,,,,,
+e113,Glute Bridge,GLUTES,,,247113,STRENGTH,,,,,,,
+e114,Single Leg Deadlift,HAMSTRINGS,,,392813,STRENGTH,,,,,,,
+e115,Single Leg Calf Raise,CALVES,,,476113,STRENGTH,,,,,,,
+e116,Machine-assisted Triceps Dip,TRICEPS,PUSH,,,STRENGTH,https://exrx.net/WeightExercises/Triceps/ASTriDip,BASIC,TRICEPS_BRACHII,,,,zQ9ELqwBgAE
+e117,Close Grip Bench Press,TRICEPS,PUSH,,,STRENGTH,https://exrx.net/WeightExercises/Triceps/SMCloseGripBenchPress,BASIC,TRICEPS_BRACHII,,,,XEFDMwmrLAM
+e118,Bench Dip,TRICEPS,PUSH,,,STRENGTH,https://exrx.net/WeightExercises/Triceps/BWBenchDipFloor,BASIC,PECTORALIS_MAJOR_STERNAL,,,,yvAzWxRsnqU
+e119,Machine-assisted Chest Dip,CHEST,PUSH,,,STRENGTH,https://exrx.net/WeightExercises/PectoralSternal/AsChestDip,BASIC,PECTORALIS_MAJOR_STERNAL,,,,zQ9ELqwBgAE
+e120,Dumbbell Bench Press,CHEST,PUSH,,,STRENGTH,https://exrx.net/WeightExercises/PectoralSternal/DBBenchPress,BASIC,PECTORALIS_MAJOR_STERNAL,,,,ZaDlbm8E8Tg
+e121,Chest Press,CHEST,PUSH,,,STRENGTH,https://exrx.net/WeightExercises/PectoralSternal/LVChestPress,AUXILIARY,PECTORALIS_MAJOR_STERNAL,,,,tzudm_FA4ew
+e122,Incline Dumbbell Bench Press,CHEST,PUSH,,,STRENGTH,https://exrx.net/WeightExercises/PectoralSternal/DBBenchPress,BASIC,PECTORALIS_MAJOR_CLAVICULAR,,,,8bfJ3sfUTos
+e123,Smith Machine Squat,QUADS,LOWER,,,STRENGTH,https://exrx.net/WeightExercises/Quadriceps/SMSquat,BASIC,QUADS,,ERECTOR_SPINAE,,QcmonZUuumg
+e124,Dumbbell Split Squat,QUADS,LOWER,,,STRENGTH,https://exrx.net/WeightExercises/GluteusMaximus/DBSplitSquat,BASIC,QUADS,,ERECTOR_SPINAE,,Wcmg-3iHwjQ
+e125,Dumbbell Step Up,QUADS,LOWER,,,STRENGTH,https://exrx.net/WeightExercises/Quadriceps/DBStepUp,BASIC,QUADS,,ERECTOR_SPINAE,,DxUNi119Qzs
+e126,Barbell Split Squat,QUADS,LOWER,,,STRENGTH,https://exrx.net/WeightExercises/Quadriceps/BBSingleLegSplitSquat,BASIC,QUADS,,ERECTOR_SPINAE,,iHkBjcx9CiQ

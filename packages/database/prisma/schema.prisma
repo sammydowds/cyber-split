@@ -74,6 +74,7 @@ model Exercise {
   instructions       String[]
   tips               String[]
   mediaUrl           String?
+  youtubeId          String?
   equipment          Equipment[]
   Set                Set[]
 }

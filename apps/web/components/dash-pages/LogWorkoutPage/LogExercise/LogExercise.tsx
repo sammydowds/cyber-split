@@ -1,5 +1,5 @@
 import { StrengthGroupSchemaType } from "@/lib/formSchemas/log";
-import { Check, HexagonIcon, VideoOff } from "lucide-react";
+import { Check, HexagonIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useFormContext, useWatch } from "react-hook-form";
 import { cn } from "@/lib/utils";
@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { VolumeProgressBar } from "./VolumeProgressBar";
 import { TipsAndInstructions } from "./TipsAndInstructions";
+import ReactPlayer from "react-player";
 interface LogExerciseProps {
   groupIdx: number;
 }
@@ -43,10 +44,16 @@ export const LogExercise = ({ groupIdx }: LogExerciseProps) => {
     setCurrentIdx(setIdx);
   };
 
+  const exerciseYoutubeId = group.sets[0]?.exercise?.youtubeId;
+
   return (
     <div className="w-full flex flex-col gap-4">
-      <div className="w-full h-[175px] rounded-lg bg-stone-200 shadow-inner flex flex-col items-center justify-center text-stone-300">
-        <VideoOff size={30} />
+      <div className="w-full h-[225px] rounded-lg bg-stone-200 flex flex-col items-center justify-center text-stone-300 overflow-hidden">
+        <ReactPlayer
+          height="100%"
+          width="100%"
+          url={`https://www.youtube.com/watch?v=${exerciseYoutubeId}`}
+        />
       </div>
       <div className="flex flex-col">
         <div className="text-xl font-bold">{group.name}</div>

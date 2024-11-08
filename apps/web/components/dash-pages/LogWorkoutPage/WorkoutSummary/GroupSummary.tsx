@@ -28,6 +28,9 @@ export const GroupSummary = ({ group, groupIdx }: GroupSummaryProps) => {
     `${loggedSets.length}/${data.sets.length} sets`
   );
 
+  const exerciseYoutubeId = group.sets[0]?.exercise?.youtubeId;
+  console.log(exerciseYoutubeId);
+
   return (
     <div
       className="flex items-center justify-between w-full"
@@ -35,7 +38,7 @@ export const GroupSummary = ({ group, groupIdx }: GroupSummaryProps) => {
         router.push(`${window.location.pathname}?name=${group_unique_name}`)
       }
     >
-      <div className="h-[90px] w-[70px] rounded bg-stone-100 relative border-[1px] flex flex-col items-center justify-center">
+      <div className="h-[70px] w-[100px] rounded bg-stone-100 relative flex flex-col items-center justify-center">
         {loggedSets.length && completionText ? (
           <div
             className={cn(
@@ -48,8 +51,13 @@ export const GroupSummary = ({ group, groupIdx }: GroupSummaryProps) => {
             {completionText}
           </div>
         ) : null}
-        <div>
-          <VideoOff className="text-stone-200" />
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden rounded">
+          <img
+            src={`https://img.youtube.com/vi/${exerciseYoutubeId}/hqdefault.jpg`}
+            alt="YouTube Thumbnail"
+            style={{ cursor: "pointer" }}
+            className="w-full h-full object-cover"
+          />
         </div>
       </div>
       <div className="grow flex flex-col font-bold px-2 text-lg">
