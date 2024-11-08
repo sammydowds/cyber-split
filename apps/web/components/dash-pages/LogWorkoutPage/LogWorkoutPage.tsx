@@ -47,8 +47,8 @@ export const LogWorkoutPage = ({
   }
 
   return (
-    <div className="mt-8 px-4 flex flex-col items-center gap-6 w-full">
-      <div className="max-w-[500px]">
+    <div className="mt-8 px-4 flex mb-[75px] flex-col items-center gap-6 w-full">
+      <div className="md:w-[500px] max-md:w-full">
         <LogWorkoutPageForm workout={workout} />
       </div>
     </div>
