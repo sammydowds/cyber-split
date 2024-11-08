@@ -23,7 +23,7 @@ export const UpcomingWorkoutCard = ({
   const router = useRouter();
 
   return (
-    <div className="flex flex-col w-full max-md:min-w-[250px] md:max-w-[250px] relative border-[1px] rounded p-2">
+    <div className="flex flex-col w-full max-md:min-w-[250px] md:max-w-[250px] relative border-[1px] rounded p-2 bg-white">
       <div className="flex flex-col gap-[4px] font-bold absolute top-[6px] right-2 text-[12px]">
         {scheduledDate && isToday(scheduledDate) ? (
           <div className="text-white bg-red-500 px-[6px] rounded-full">

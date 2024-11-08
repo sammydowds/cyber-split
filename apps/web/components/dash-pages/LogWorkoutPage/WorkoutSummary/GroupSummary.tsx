@@ -1,6 +1,6 @@
 import { StrengthGroupSchemaType } from "@/lib/formSchemas/log";
 import { cn } from "@/lib/utils";
-import { Check, ChevronRight, Dumbbell } from "lucide-react";
+import { Check, ChevronRight, Dumbbell, VideoOff } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useFormContext, useWatch } from "react-hook-form";
 
@@ -49,7 +49,7 @@ export const GroupSummary = ({ group, groupIdx }: GroupSummaryProps) => {
           </div>
         ) : null}
         <div>
-          <Dumbbell className="text-stone-200" />
+          <VideoOff className="text-stone-200" />
         </div>
       </div>
       <div className="grow flex flex-col font-bold px-2 text-lg">

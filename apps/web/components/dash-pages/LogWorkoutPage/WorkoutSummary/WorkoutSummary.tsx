@@ -21,7 +21,7 @@ export const WorkoutSummary = () => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="flex flex-col items-center gap-2">
       <div className="flex items-center gap-[8px] w-full">
         <div className="text-sm">
           <h2 className="text-2xl font-bold">{workout?.name}</h2>
