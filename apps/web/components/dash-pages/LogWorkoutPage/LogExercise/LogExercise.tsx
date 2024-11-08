@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { VolumeProgressBar } from "./VolumeProgressBar";
+import { TipsAndInstructions } from "./TipsAndInstructions";
 interface LogExerciseProps {
   groupIdx: number;
 }
@@ -163,6 +164,7 @@ export const LogExercise = ({ groupIdx }: LogExerciseProps) => {
           )}
         </div>
       </div>
+      <TipsAndInstructions exercise={group.sets[0].exercise} />
     </div>
   );
 };

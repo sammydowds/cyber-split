@@ -71,7 +71,8 @@ model Exercise {
   synergists         String[]
   stabilizers        String[]
   dynamicStabilizers String[]
-  instructions       String?
+  instructions       String[]
+  tips               String[]
   mediaUrl           String?
   equipment          Equipment[]
   Set                Set[]
