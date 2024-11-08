@@ -17,10 +17,13 @@
     "studio": "prisma studio",
     "build": "tsc",
     "build:scripts": "tsc scripts/*.ts --outDir out/scripts --skipLibCheck",
-    "update:exercises": "node out/scripts/scripts/upsertExercises.js"
+    "update:exercises": "node out/scripts/scripts/upsertExercises.js",
+    "get:instructions": "node out/scripts/addInstructionsAndTips.js"
   },
   "dependencies": {
-    "@prisma/client": "5.15.0"
+    "@prisma/client": "5.15.0",
+    "csv-parser": "^3.0.0",
+    "openai": "^4.71.1"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
