@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
-import { SplitDeep } from "@repo/database";
+import { ActiveSplitDeep } from "@repo/database";
 import { Separator } from "@/components/ui/separator";
 import { WorkoutMarker } from "./WorkoutMarker";
 import { useRouter } from "next/router";
@@ -18,24 +18,21 @@ import { FormSchemaType } from "@/lib/formSchemas/create";
 import toast from "react-hot-toast";
 import { ArrowRightLeft } from "lucide-react";
 
-interface WorkoutCardProps {
-  split: Partial<SplitDeep>;
-  index: number;
+interface WorkoutTemplateCardProps {
+  workout?: ActiveSplitDeep["split"]["workouts"][number];
   onWorkoutChange?: (workout: FormSchemaType["workouts"][number]) => void;
-  hideCta?: boolean;
   editable?: boolean;
+  hideCta?: boolean;
 }
-export const SplitWorkoutCard = ({
-  split,
-  index,
-  hideCta,
+export const WorkoutTemplateCard = ({
+  workout,
   onWorkoutChange,
-  editable = false,
-}: WorkoutCardProps) => {
+  editable,
+  hideCta,
+}: WorkoutTemplateCardProps) => {
   const router = useRouter();
-  const workout = split?.workouts?.[index];
 
-  if (!split.workouts?.length || !workout) {
+  if (!workout) {
     return null;
   }
 

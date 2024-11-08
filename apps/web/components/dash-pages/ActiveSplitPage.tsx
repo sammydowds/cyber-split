@@ -5,7 +5,6 @@ import {
   SPLIT_TYPES,
   WorkoutSchedule,
 } from "@repo/database";
-import { SplitWorkoutCard } from "../SplitWorkoutCard";
 import { Button } from "../ui/button";
 import { useDeactivateSplit } from "@/hooks/useDeactivateSplit";
 import toast from "react-hot-toast";
@@ -21,6 +20,7 @@ import { HorizontalCarousel } from "../HorizontalCarousel";
 import { isAfter, isToday } from "date-fns";
 import { MiniLoggedWorkoutCard } from "./components/MiniLoggedWorkoutCard";
 import { UpcomingWorkoutCard } from "./components/UpcomingWorkoutCard";
+import { WorkoutTemplateCard } from "../WorkoutTemplateCard";
 
 interface ActiveSplitPageProps {
   activeSplit: ActiveSplitDeep;
@@ -136,11 +136,11 @@ export const ActiveSplitPage = ({ activeSplit }: ActiveSplitPageProps) => {
           <HorizontalCarousel>
             {activeSplit.split.workouts?.map((_, idx: number) => {
               return (
-                <SplitWorkoutCard
+                <WorkoutTemplateCard
                   key={`workout-card-${idx}`}
-                  split={activeSplit.split}
-                  index={idx}
-                  hideCta={false}
+                  workout={activeSplit.split.workouts[idx]}
+                  hideCta
+                  editable
                 />
               );
             })}

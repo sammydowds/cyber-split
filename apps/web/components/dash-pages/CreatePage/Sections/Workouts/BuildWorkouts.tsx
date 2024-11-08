@@ -3,12 +3,12 @@ import { useGenerateSplitWorkouts } from "@/hooks/useGenerateSplitWorkouts";
 import { useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
-import { SplitWorkoutCard } from "@/components/SplitWorkoutCard";
 import { LoadingWorkoutCard } from "@/components/LoadingWorkoutCard";
 import { Repeat2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { FormSchemaType } from "@/lib/formSchemas/create";
 import { HorizontalCarousel } from "@/components/HorizontalCarousel";
+import { WorkoutTemplateCard } from "@/components/WorkoutTemplateCard";
 
 export const BuildWorkouts = () => {
   const form = useFormContext();
@@ -75,10 +75,9 @@ export const BuildWorkouts = () => {
         ) : null}
         {!generatingWorkouts
           ? workouts?.map((_: any, idx: number) => (
-              <SplitWorkoutCard
+              <WorkoutTemplateCard
                 key={workouts[idx].name}
-                split={{ workouts }}
-                index={idx}
+                workout={workouts[idx]}
                 onWorkoutChange={(workout) => handleWorkoutChange(workout)}
                 hideCta
                 editable
