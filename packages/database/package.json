@@ -17,7 +17,7 @@
     "studio": "prisma studio",
     "build": "tsc",
     "build:scripts": "tsc scripts/*.ts --outDir out/scripts --skipLibCheck",
-    "update:exercises": "node out/scripts/scripts/upsertExercises.js",
+    "update:exercises": "node out/scripts/upsertExercises.js",
     "get:instructions": "node out/scripts/addInstructionsAndTips.js"
   },
   "dependencies": {
