@@ -34,12 +34,12 @@ export const CreatePage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center mt-4">
+    <div className="flex flex-col items-center mt-8">
       <div className="w-full md:max-w-[600px]">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-6 flex flex-col"
+            className="flex flex-col"
           >
             <Name />
             <SplitType />
