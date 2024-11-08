@@ -91,7 +91,7 @@ export const SplitWorkoutCard = ({
   };
 
   return (
-    <Card className="min-w-[245px] overflow-hidden shadow-sm rounded-lg relative">
+    <Card className="min-w-[300px] overflow-hidden shadow-sm rounded-lg relative">
       <CardHeader className="p-[8px]">
         <CardTitle className="flex justify-between items-center">
           <div className="flex items-center gap-2 ml-[4px]">
@@ -104,7 +104,7 @@ export const SplitWorkoutCard = ({
         </CardTitle>
       </CardHeader>
       <Separator />
-      <CardContent className="p-0 overflow-scroll h-[200px]">
+      <CardContent className="p-0 overflow-scroll h-[240px]">
         <Table className="bg-white flex flex-col gap-[4px]">
           <TableBody>
             {workout?.strengthGroups?.map((g, idx) => {
