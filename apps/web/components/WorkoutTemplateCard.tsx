@@ -60,7 +60,7 @@ export const WorkoutTemplateCard = ({
       }
     });
     toast(
-      <div className="flex flex-col text-sm gap-[4px] text-stone-500 w-[245px] z-[100]">
+      <div className="flex flex-col text-sm gap-[4px] text-stone-500 w-[225px] z-[100]">
         <div className="flex gap-[6px] items-center font-bold text-sm tracking-tighter">
           <WorkoutMarker
             text={workout.letterLabel}

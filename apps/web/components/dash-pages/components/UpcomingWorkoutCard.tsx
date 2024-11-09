@@ -20,12 +20,12 @@ export const UpcomingWorkoutCard = ({
   });
 
   return (
-    <div className="flex flex-col w-full w-[340px] min-w-[340px] relative border-[1px] rounded p-2 bg-white gap-2 shadow">
+    <div className="flex flex-col w-full relative border-[1px] rounded-lg p-2 bg-white gap-2">
       <div className="flex items-center justify-between font-bold px-2 text-black">
         <div className="uppercase text-sm">{indexText}</div>
-        <div className="flex flex-col gap-[4px] font-bold">
+        <div className="flex flex-col gap-[4px] font-bold text-sm">
           {scheduledDate && isToday(scheduledDate) ? (
-            <div className="text-white bg-red-600 px-[12px] rounded">Today</div>
+            <div className="text-white bg-red-600 px-[10px] text-sm">Today</div>
           ) : (
             untilText
           )}

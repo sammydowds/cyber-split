@@ -25,18 +25,15 @@ export const WorkoutSummary = () => {
       <div className="flex items-center gap-[8px] w-full">
         <div className="text-sm">
           <h2 className="text-2xl font-bold">{workout?.name}</h2>
-          <div className="flex items-center gap-[6px]">
-            Workout{" "}
-            <WorkoutMarker
-              className="text-xs h-4 w-4"
-              text={workout?.letterLabel ?? ""}
-            />{" "}
-            of{" "}
-            <Link href={"/dashboard/active"} className="underline text-sm">
-              {workout.name}
-            </Link>
-          </div>
         </div>
+      </div>
+      <div className="flex self-start">
+        <Link
+          href="/dashboard/active"
+          className="underline text-stone-600 text-sm"
+        >
+          Return to split
+        </Link>
       </div>
       <div className="flex flex-row justify-between items-center w-full">
         <div className="font-bold">
