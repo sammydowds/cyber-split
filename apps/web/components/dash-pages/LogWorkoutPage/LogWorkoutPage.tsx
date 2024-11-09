@@ -22,9 +22,9 @@ export const LogWorkoutPage = ({
 
   if (isPending) {
     return (
-      <Page>
-        <Section></Section>
-      </Page>
+      <div className="w-full mt-12 flex flex-col items-center">
+        <Loader className="animate-spin" />
+      </div>
     );
   }
 
