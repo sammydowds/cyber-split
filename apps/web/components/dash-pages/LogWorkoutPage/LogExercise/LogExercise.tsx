@@ -52,6 +52,7 @@ export const LogExercise = ({ groupIdx }: LogExerciseProps) => {
         <ReactPlayer
           height="100%"
           width="100%"
+          muted
           url={`https://www.youtube.com/watch?v=${exerciseYoutubeId}`}
         />
       </div>
