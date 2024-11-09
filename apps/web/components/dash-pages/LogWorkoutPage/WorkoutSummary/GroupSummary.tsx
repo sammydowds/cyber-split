@@ -29,7 +29,6 @@ export const GroupSummary = ({ group, groupIdx }: GroupSummaryProps) => {
   );
 
   const exerciseYoutubeId = group.sets[0]?.exercise?.youtubeId;
-  console.log(exerciseYoutubeId);
 
   return (
     <div

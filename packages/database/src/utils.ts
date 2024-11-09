@@ -5,7 +5,12 @@ import {
 } from "./programming";
 import { createActiveSplitWorkoutSchedule } from "./programming/createActiveSplitWorkoutSchedule";
 import { SPLIT_TYPES } from "./programming/enums";
-import { DeepLoggedWorkout, DeepTemplateWorkout, SplitDeep } from "./types";
+import {
+  DeepLoggedWorkout,
+  DeepTemplateWorkout,
+  SplitDeep,
+  WorkoutVolumeApiPayload,
+} from "./types";
 
 export const WORKOUT_LABELS = ["A", "B", "C", "D"] as const;
 const getWorkoutLetterFromIndex = (idx: number, count: number) => {
@@ -378,6 +383,88 @@ export const findSplit = async (id: string) => {
       },
     },
   });
+};
+
+const getVolumeDataFromLoggedWorkouts = (
+  loggedWorkouts?: SplitDeep["loggedWorkouts"],
+): WorkoutVolumeApiPayload => {
+  if (!loggedWorkouts?.length) {
+    return {};
+  }
+  const volumeByWorkout: WorkoutVolumeApiPayload = {};
+  loggedWorkouts.forEach((workout) => {
+    if (!workout.templateWorkoutId) return;
+    let totalVolume = 0;
+    workout.strengthGroups.forEach((group) => {
+      group.sets.forEach((set) => {
+        if (set.dateLogged && set.weight && set.reps) {
+          totalVolume += set.weight * set.reps;
+        }
+      });
+    });
+
+    if (!volumeByWorkout[workout.templateWorkoutId]) {
+      volumeByWorkout[workout.templateWorkoutId] = {
+        data: [],
+        workoutName: workout.name,
+        workoutLabel: workout.letterLabel || "",
+      };
+    }
+    volumeByWorkout[workout.templateWorkoutId].data.push({
+      dateLogged: workout?.dateLogged?.getTime() ?? new Date().getTime(),
+      volume: totalVolume,
+    });
+  });
+
+  // Sort data points by date and calculate trends
+  Object.values(volumeByWorkout).forEach((workoutData) => {
+    workoutData.data.sort((a, b) => a.dateLogged - b.dateLogged);
+    if (workoutData.data.length >= 2) {
+      const firstVolume = workoutData.data[0].volume;
+      const firstDateLogged = workoutData.data[0].dateLogged;
+      const lastVolume = workoutData.data[workoutData.data.length - 1].volume;
+      const volumeChange =
+        typeof firstVolume === "number" && firstVolume !== 0
+          ? ((lastVolume - firstVolume) / firstVolume) * 100
+          : 0;
+      if (volumeChange) {
+        const volumeChangePercent = Math.abs(volumeChange).toFixed(0);
+        const verb = volumeChange > 0 ? "up" : "down";
+        const trendText = `Volume has gone ${verb} ${volumeChangePercent}% since first logged workout (${new Date(firstDateLogged).toLocaleDateString("en-us", { day: "2-digit", month: "2-digit", year: "2-digit" })}).`;
+        workoutData.trend = trendText;
+      }
+    }
+  });
+
+  return volumeByWorkout;
+};
+
+export const getSplitWorkoutVolume = async (
+  splitId: string,
+): Promise<WorkoutVolumeApiPayload> => {
+  const data = await prisma.split.findUnique({
+    where: {
+      id: splitId,
+    },
+    select: {
+      loggedWorkouts: {
+        include: {
+          strengthGroups: {
+            include: {
+              sets: {
+                select: {
+                  dateLogged: true,
+                  weight: true,
+                  reps: true,
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  });
+  return getVolumeDataFromLoggedWorkouts(data?.loggedWorkouts);
 };
 
 export const getAllSplits = async (profileId: string) => {

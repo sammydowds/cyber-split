@@ -180,3 +180,18 @@ export const GROUPS = [
   BodyPart.ABDUCTORS,
   BodyPart.ADDUCTORS,
 ];
+
+export interface WorkoutVolumeDataPayload {
+  dateLogged: number;
+  volume: number;
+}
+export interface WorkoutVolumeData {
+  data: WorkoutVolumeDataPayload[];
+  workoutName: string;
+  workoutLabel: string;
+  trend?: string;
+}
+
+export interface WorkoutVolumeApiPayload {
+  [workoutTemplateId: string]: WorkoutVolumeData;
+}

@@ -25,7 +25,9 @@ export const UpcomingWorkoutCard = ({
         <div className="uppercase text-sm">{indexText}</div>
         <div className="flex flex-col gap-[4px] font-bold text-sm">
           {scheduledDate && isToday(scheduledDate) ? (
-            <div className="text-red-600 font-extrabold text-sm tracking-tighter">Today</div>
+            <div className="text-red-600 font-extrabold text-sm tracking-tighter">
+              Today
+            </div>
           ) : (
             untilText
           )}

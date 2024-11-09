@@ -18,21 +18,28 @@ import {
 import { Page } from "./components/pages";
 import { HorizontalCarousel } from "../HorizontalCarousel";
 import { isAfter, isToday } from "date-fns";
-import { MiniLoggedWorkoutCard } from "./components/MiniLoggedWorkoutCard";
 import { UpcomingWorkoutCard } from "./components/UpcomingWorkoutCard";
 import { WorkoutTemplateCard } from "../WorkoutTemplateCard";
+import { WorkoutVolumeCard } from "../WorkoutVolumeCard";
+import { useSplitWorkoutVolume } from "@/hooks/useSplitWorkoutVolume";
 
 interface ActiveSplitPageProps {
   activeSplit: ActiveSplitDeep;
 }
 export const ActiveSplitPage = ({ activeSplit }: ActiveSplitPageProps) => {
   const queryClient = useQueryClient();
+  const { data: volumeData, isPending: loadingVolumeData } =
+    useSplitWorkoutVolume(activeSplit?.split?.id);
   const { mutate: deactivateActiveSplit } = useDeactivateSplit({
     onSuccess: () => {
       toast.success("Deactivated split");
       queryClient.invalidateQueries({ queryKey: ["activeSplit"] });
     },
   });
+
+  if (!activeSplit?.split) {
+    return null;
+  }
 
   return (
     <Page>
@@ -41,7 +48,7 @@ export const ActiveSplitPage = ({ activeSplit }: ActiveSplitPageProps) => {
           <div className="flex md:flex-row md:items-center max-md:flex-col gap-2 leading-3">
             <div className="flex gap-[8px] items-center">
               <h2 className="text-3xl font-bold max-md:max-w-[300px] truncate">
-                {activeSplit.split.name}
+                {activeSplit?.split?.name}
               </h2>
             </div>
           </div>
@@ -112,16 +119,17 @@ export const ActiveSplitPage = ({ activeSplit }: ActiveSplitPageProps) => {
             <SectionTitle>Logged Volume</SectionTitle>
           </div>
           <SectionContent>
-            <HorizontalCarousel>
-              {activeSplit.split.loggedWorkouts?.map((workout, idx) => {
-                return (
-                  <MiniLoggedWorkoutCard
-                    key={`workout-card-${idx}`}
-                    workout={workout}
-                  />
-                );
-              })}
-            </HorizontalCarousel>
+            {loadingVolumeData || !volumeData ? (
+              <></>
+            ) : (
+              <HorizontalCarousel>
+                {Object.keys(volumeData)?.map((key, idx) => {
+                  return (
+                    <WorkoutVolumeCard workoutVolumeData={volumeData[key]} />
+                  );
+                })}
+              </HorizontalCarousel>
+            )}
           </SectionContent>
         </Section>
       ) : null}

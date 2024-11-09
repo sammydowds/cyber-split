@@ -1,9 +1,7 @@
 import { ActiveSplitDeep } from "@repo/database";
 import { Loader, Section } from "lucide-react";
 import { useDraftLoggedWorkout } from "../hooks/useDraftLoggedWorkout";
-import { useQueryClient } from "@tanstack/react-query";
 import { Page } from "../components/pages";
-import { deleteFromDB, LOG_WORKOUT_KEY } from "@/lib/indexedDb";
 import { LogWorkoutPageForm } from "./LogWorkoutPageForm";
 
 interface LogWorkoutPageProps {
