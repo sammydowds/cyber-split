@@ -53,6 +53,8 @@ export const LogExercise = ({ groupIdx }: LogExerciseProps) => {
           height="100%"
           width="100%"
           muted
+          loop
+          playing
           url={`https://www.youtube.com/watch?v=${exerciseYoutubeId}`}
         />
       </div>
@@ -60,6 +62,7 @@ export const LogExercise = ({ groupIdx }: LogExerciseProps) => {
         <div className="text-xl font-bold">{group.name}</div>
         <div className="text-stone-500">Log data below.</div>
       </div>
+      <div className="my-[8px] flex flex-col gap-[8px]">
       {group.sets.map((set, setIdx) => {
         const { dateLogged } = set;
         return (
@@ -137,6 +140,8 @@ export const LogExercise = ({ groupIdx }: LogExerciseProps) => {
           </div>
         );
       })}
+      </div>
+
       <div className="flex flex-col gap-4">
         <div className="flex flex-col grow">
           <VolumeProgressBar group={group} />
