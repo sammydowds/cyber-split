@@ -1,6 +1,5 @@
 import { useFormContext, useWatch } from "react-hook-form";
 import { GroupSummary } from "./GroupSummary";
-import { WorkoutMarker } from "@/components/WorkoutMarker";
 import Link from "next/link";
 import { deleteFromDB, LOG_WORKOUT_KEY } from "@/lib/indexedDb";
 import { useQueryClient } from "@tanstack/react-query";

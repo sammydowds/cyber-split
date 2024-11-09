@@ -53,10 +53,10 @@ export const VolumeProgressBar = ({
             ) : null}
           </div>
         </div>
-        <div className="absolute w-full -top-2 left-0 bg-gradient-to-r from-sidebar/90 from-70% via-green-400 to-red-600 h-2"></div>
+        <div className="absolute w-full -top-[12px] left-0 bg-gradient-to-r from-transparent from-70% via-green-400 to-red-600 h-[12px]"></div>
         <ProgressPrimitive.Root
           className={cn(
-            "relative h-2 w-full overflow-hidden rounded-none text-stone-200 bg-primary/20",
+            "relative h-[12px] w-full overflow-hidden rounded-none text-stone-200 bg-primary/20",
           )}
         >
           <ProgressPrimitive.Indicator
