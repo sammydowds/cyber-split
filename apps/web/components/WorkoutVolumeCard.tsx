@@ -39,7 +39,7 @@ export function WorkoutVolumeCard({
   }
 
   return (
-    <Card className="w-[300px] min-w-[300px] shadow-none">
+    <Card className="w-[300px] min-w-[300px] shadow-none border-none">
       <CardHeader>
         <CardTitle>
           <div className="flex items-center gap-2">

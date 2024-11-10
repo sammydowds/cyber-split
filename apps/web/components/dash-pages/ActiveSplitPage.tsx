@@ -47,7 +47,7 @@ export const ActiveSplitPage = ({ activeSplit }: ActiveSplitPageProps) => {
         <div className="flex flex-col px-6">
           <div className="flex md:flex-row md:items-center max-md:flex-col gap-2 leading-3">
             <div className="flex gap-[8px] items-center">
-              <h2 className="text-3xl font-bold max-md:max-w-[300px] truncate">
+              <h2 className="text-3xl font-bold max-md:max-w-[300px]">
                 {activeSplit?.split?.name}
               </h2>
             </div>
