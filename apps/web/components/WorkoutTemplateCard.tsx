@@ -134,18 +134,18 @@ export const WorkoutTemplateCard = ({
           </TableBody>
         </Table>
       </CardContent>
-      {hideCta ? null : (
-        <>
-          <Separator />
-          <CardFooter
-            className={cn("flex items-center justify-center px-[4px] py-2")}
-          >
+      <>
+        <Separator />
+        <CardFooter
+          className={cn("flex items-center justify-center px-[4px] py-2")}
+        >
+          {hideCta ? null : (
             <Button className="w-full font-bold" onClick={handleClickLog}>
               Log Workout
             </Button>
-          </CardFooter>
-        </>
-      )}
+          )}
+        </CardFooter>
+      </>
     </Card>
   );
 };
