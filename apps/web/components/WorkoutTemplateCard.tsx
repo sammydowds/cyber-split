@@ -137,7 +137,9 @@ export const WorkoutTemplateCard = ({
       <>
         <Separator />
         <CardFooter
-          className={cn("flex items-center justify-center px-[4px] py-2 min-h-[32px]")}
+          className={cn(
+            "flex items-center justify-center px-[4px] py-2 min-h-[32px]",
+          )}
         >
           {hideCta ? null : (
             <Button className="w-full font-bold" onClick={handleClickLog}>
