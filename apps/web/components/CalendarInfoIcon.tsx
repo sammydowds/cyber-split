@@ -7,7 +7,7 @@ export const CalendarInfoIcon = ({ date }: CalendarInfoIconProps) => {
   const day = d.toLocaleDateString("en-us", { day: "2-digit" });
   const weekday = d.toLocaleDateString("en-us", { weekday: "short" });
   return (
-    <div className="rounded text-white flex flex-col items-center w-12 overflow-hidden bg-white shadow border-red-600 border-[1px]">
+    <div className="rounded text-white flex flex-col items-center w-12 overflow-hidden bg-white shadow-lg border-red-600 border-[1px] font-bold">
       <div className="bg-red-600 w-full h-full text-[10px] text-center">
         {month}
       </div>

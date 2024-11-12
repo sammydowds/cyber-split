@@ -20,9 +20,9 @@ export const UpcomingWorkoutCard = ({
 
   return (
     <div className="relative pt-[16px]">
-      <div className="absolute top-0 right-1 bg-gradient-to-r from-yellow-200 to-stone-100 h-[75px] w-[50%] rounded-sm z-0">
+      <div className="absolute top-0 right-1 bg-gradient-to-r from-yellow-300 to-stone-100 h-[75px] w-[50%] rounded-sm z-0">
         <div className="flex items-center justify-between font-bold px-[10px] text-black">
-          <div className="text-stone-700 text-[11px] font-bold">{indexText}</div>
+          <div className="text-black text-[11px] font-bold">{indexText}</div>
         </div>
       </div>
       <div className="relative w-max z-20">
