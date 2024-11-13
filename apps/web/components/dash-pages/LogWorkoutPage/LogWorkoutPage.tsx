@@ -1,17 +1,12 @@
-import { ActiveSplitDeep } from "@repo/database";
 import { Loader, Section } from "lucide-react";
 import { useDraftLoggedWorkout } from "../hooks/useDraftLoggedWorkout";
 import { Page } from "../components/pages";
 import { LogWorkoutPageForm } from "./LogWorkoutPageForm";
 
 interface LogWorkoutPageProps {
-  activeSplit: ActiveSplitDeep;
   workoutId: string;
 }
-export const LogWorkoutPage = ({
-  workoutId,
-  activeSplit,
-}: LogWorkoutPageProps) => {
+export const LogWorkoutPage = ({ workoutId }: LogWorkoutPageProps) => {
   const {
     data: workout,
     isPending,

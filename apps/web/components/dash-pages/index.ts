@@ -1,2 +1,2 @@
-export * from "./ActiveSplitPage";
+export * from "./HomePage";
 export * from "./LibraryPage";

@@ -54,7 +54,6 @@ export const LogExercise = ({ groupIdx }: LogExerciseProps) => {
           width="100%"
           muted
           loop
-          playing
           url={`https://www.youtube.com/watch?v=${exerciseYoutubeId}`}
         />
       </div>

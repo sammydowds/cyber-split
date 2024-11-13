@@ -1,6 +1,6 @@
 import { StrengthGroupSchemaType } from "@/lib/formSchemas/log";
 import { cn } from "@/lib/utils";
-import { Check, ChevronRight, Dumbbell, VideoOff } from "lucide-react";
+import { Check, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useFormContext, useWatch } from "react-hook-form";
 
