@@ -385,6 +385,33 @@ export const findSplit = async (id: string) => {
   });
 };
 
+export const findActiveSplit = async (id: string) => {
+  return await prisma.activeSplit.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      split: {
+        include: {
+          workouts: {
+            include: {
+              strengthGroups: {
+                include: {
+                  sets: {
+                    include: {
+                      exercise: true
+                    }
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  });
+};
+
 const getVolumeDataFromLoggedWorkouts = (
   loggedWorkouts?: SplitDeep["loggedWorkouts"],
 ): WorkoutVolumeApiPayload => {

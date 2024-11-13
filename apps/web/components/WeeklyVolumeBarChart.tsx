@@ -26,14 +26,14 @@ const chartData = [
 const chartConfig = {
   volume: {
     label: "Volume",
-    color: "#10b981",
+    color: "#6ee7b7",
   },
 } satisfies ChartConfig;
 
 const getBarColor = (entry: any, index: number, data: any[]) => {
   if (index === 0) return chartConfig.volume.color; // First bar color
   const prevVolume = data[index - 1].volume;
-  return entry.volume >= prevVolume ? "#10b981" : "#f87171";
+  return entry.volume >= prevVolume ? "#6ee7b7" : "#fda4af";
 };
 
 export function WeeklyVolumeBarChart() {
