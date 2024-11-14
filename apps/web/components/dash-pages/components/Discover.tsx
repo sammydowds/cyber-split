@@ -43,7 +43,10 @@ const DiffcultyBadge = ({ split }: DifficultyBadgeProps) => {
   }
 
   if (
-    (split.type === SPLIT_TYPES.THREE_DAY && (split.cadence === THREE_DAY_CADENCE.FIVE_DAYS_PER_WEEK || split.cadence === THREE_DAY_CADENCE.SIX_DAYS_PER_WEEK || split.cadence === THREE_DAY_CADENCE.THREE_ON_ONE_OFF)) ||
+    (split.type === SPLIT_TYPES.THREE_DAY &&
+      (split.cadence === THREE_DAY_CADENCE.FIVE_DAYS_PER_WEEK ||
+        split.cadence === THREE_DAY_CADENCE.SIX_DAYS_PER_WEEK ||
+        split.cadence === THREE_DAY_CADENCE.THREE_ON_ONE_OFF)) ||
     split.type === SPLIT_TYPES.FOUR_DAY
   ) {
     return (
@@ -99,17 +102,26 @@ const DiscoverCard = ({ split }: DiscoverCard) => {
 };
 
 export const Discover = () => {
-  const { data, isPending } = useDiscoverSplits();
+  const { data, isPending, isRefetching, refetch } = useDiscoverSplits();
+
+  const handleReGenerate = () => {
+    refetch();
+  };
   return (
     <div className="flex flex-col w-full md:max-w-[800px] mx-auto justify-center">
-      <div className="font-semibold tracking-tighter text-lg px-4 py-2 flex flex-col">
-        <div>Discover</div>
-        <div className="font-semibold text-stone-500 tracking-tighter leading-4">
-          Choose a split to start.
+      <div className="flex items-center justify-between">
+        <div className="font-semibold tracking-tighter text-lg px-4 py-2 flex flex-col">
+          <div>Discover</div>
+          <div className="font-semibold text-stone-500 tracking-tighter leading-4">
+            Choose a split to start.
+          </div>
+        </div>
+        <div>
+          <Button onClick={handleReGenerate} disabled={isRefetching} className="font-bold">Regenerate</Button>
         </div>
       </div>
       <HorizontalCarousel>
-        {isPending ? (
+        {isPending || isRefetching ? (
           <div className="h-[400px] flex items-center justify-center w-full">
             <Loading />
           </div>

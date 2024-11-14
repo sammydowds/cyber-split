@@ -773,6 +773,11 @@ export const discoverSplits = async () => {
     {
       cadence: FB_CADENCE.TWO_DAYS_PER_WEEK,
       type: SPLIT_TYPES.FB,
+      muscles: FB_MUSCLES.UL,
+    },
+    {
+      cadence: FB_CADENCE.TWO_DAYS_PER_WEEK,
+      type: SPLIT_TYPES.FB,
       muscles: FB_MUSCLES.LTA,
     },
     {
