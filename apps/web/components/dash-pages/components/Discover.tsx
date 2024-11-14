@@ -6,6 +6,7 @@ import { useDiscoverSplits } from "@/hooks/useDiscoverSplits";
 import {
   CADENCE_TO_DESCRIPTION_MAP,
   DiscoverSplitDeep,
+  FB_CADENCE,
   SPLIT_TYPE_TO_DESCRIPTION,
   SPLIT_TYPE_TO_META_DESCRIPTION,
   SPLIT_TYPES,
@@ -17,9 +18,12 @@ interface DifficultyBadgeProps {
   split: SplitDeep;
 }
 const DiffcultyBadge = ({ split }: DifficultyBadgeProps) => {
-  if (split.type === SPLIT_TYPES.FB) {
+  if (
+    split.type === SPLIT_TYPES.FB &&
+    split.cadence === FB_CADENCE.TWO_DAYS_PER_WEEK
+  ) {
     return (
-      <div className="bg-blue-200 text-blue-800 p-[6px] font-bold text-xs rounded-sm">
+      <div className="bg-blue-100 text-blue-800 p-[6px] font-bold text-xs rounded-sm">
         Beginner
       </div>
     );
@@ -31,7 +35,7 @@ const DiffcultyBadge = ({ split }: DifficultyBadgeProps) => {
       split.cadence === TWO_DAY_CADENCE.THREE_DAYS_PER_WEEK)
   ) {
     return (
-      <div className="bg-blue-200 text-blue-800 p-[6px] font-bold text-xs rounded-sm">
+      <div className="bg-blue-100 text-blue-800 p-[6px] font-bold text-xs rounded-sm">
         Beginner
       </div>
     );
@@ -42,13 +46,13 @@ const DiffcultyBadge = ({ split }: DifficultyBadgeProps) => {
     split.type === SPLIT_TYPES.FOUR_DAY
   ) {
     return (
-      <div className="bg-orange-200 text-orange-900 p-[6px] font-bold text-xs rounded-sm">
+      <div className="bg-red-100 text-red-900 p-[6px] font-bold text-xs rounded-sm">
         Advanced
       </div>
     );
   }
   return (
-    <div className="bg-fuchsia-200 text-fuchsia-900 p-[6px] font-bold text-xs rounded-sm">
+    <div className="bg-fuchsia-100 text-fuchsia-900 p-[6px] font-bold text-xs rounded-sm">
       Intermediate
     </div>
   );

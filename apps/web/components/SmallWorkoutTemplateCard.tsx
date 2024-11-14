@@ -86,7 +86,7 @@ export const SmallWorkoutTemplateCard = ({
   };
 
   return (
-    <Card className="min-w-[220px] overflow-hidden shadow-sm rounded-lg relative">
+    <Card className="min-w-[220px] overflow-hidden shadow-sm rounded-sm relative">
       <CardHeader className="p-[8px]">
         <CardTitle className="flex justify-between items-center">
           <div className="flex items-center gap-2 ml-[4px]">

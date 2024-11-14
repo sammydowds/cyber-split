@@ -786,6 +786,11 @@ export const discoverSplits = async () => {
       muscles: TWO_DAY_MUSCLES.PP,
     },
     {
+      cadence: TWO_DAY_CADENCE.THREE_DAYS_PER_WEEK,
+      type: SPLIT_TYPES.TWO_DAY,
+      muscles: TWO_DAY_MUSCLES.TLA,
+    },
+    {
       cadence: THREE_DAY_CADENCE.THREE_DAYS_PER_WEEK_STAGGERED,
       type: SPLIT_TYPES.THREE_DAY,
       muscles: THREE_DAY_MUSCLES.PPL,
@@ -799,6 +804,11 @@ export const discoverSplits = async () => {
       cadence: FOUR_DAY_CADENCE.FOUR_DAYS_PER_WEEK,
       type: SPLIT_TYPES.FOUR_DAY,
       muscles: FOUR_DAY_MUSCLES.BBCTTSCA,
+    },
+    {
+      cadence: FOUR_DAY_CADENCE.FOUR_ON_ONE_OFF,
+      type: SPLIT_TYPES.FOUR_DAY,
+      muscles: FOUR_DAY_MUSCLES.TPTPLAPLAP,
     },
   ];
 
