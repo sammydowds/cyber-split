@@ -7,9 +7,9 @@ interface UserStatsProps {
   activeSplit?: ActiveSplitDeep;
 }
 export const UserStats = ({ activeSplit }: UserStatsProps) => {
-    if (!activeSplit) {
-        return null
-    }
+  if (!activeSplit) {
+    return null;
+  }
   return (
     <div className="bg-white flex-col gap-2 px-2">
       <div className="flex gap-4">
@@ -21,17 +21,15 @@ export const UserStats = ({ activeSplit }: UserStatsProps) => {
             </AvatarFallback>
           </Avatar>
         </div>
-          <div>
-            <p className="text-xs tracking-tighter font-semibold">
-              Active Split
-            </p>
-            <Link
-              href={`/dashboard/details/${activeSplit.id}`}
-              className="underline"
-            >
-              {activeSplit.split.name}
-            </Link>
-          </div>
+        <div>
+          <p className="text-xs tracking-tighter font-semibold">Active Split</p>
+          <Link
+            href={`/dashboard/details/${activeSplit.id}`}
+            className="underline"
+          >
+            {activeSplit.split.name}
+          </Link>
+        </div>
       </div>
     </div>
   );

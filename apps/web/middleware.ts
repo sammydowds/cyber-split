@@ -41,6 +41,7 @@ export const config = {
     "/api/create-logged-workout",
     "/api/create-split",
     "/api/deactivate-split",
+    "/api/discover",
     "/api/delete-split",
     "/api/generate-split-workouts",
     "/api/profile",

@@ -38,7 +38,7 @@ const getBarColor = (entry: any, index: number, data: any[]) => {
 
 export function WeeklyVolumeBarChart() {
   return (
-    <div className="px-2">
+    <div className="px-2 max-w-[500px] w-full">
       <div>
         <div className="font-semibold text-lg tracking-tighter">
           Weekly Volume

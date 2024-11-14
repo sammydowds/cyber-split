@@ -63,6 +63,39 @@ export type SplitDeep = Prisma.SplitGetPayload<{
   };
 }>;
 
+export type DiscoverSplitDeep = Prisma.SplitGetPayload<{
+  include: {
+    workouts: {
+      include: {
+        letterLabel: true;
+        strengthGroups: {
+          include: {
+            sets: {
+              include: {
+                exercise: true;
+              };
+            };
+          };
+        };
+      };
+    };
+    loggedWorkouts: {
+      include: {
+        letterLabel: true;
+        strengthGroups: {
+          include: {
+            sets: {
+              include: {
+                exercise: true;
+              };
+            };
+          };
+        };
+      };
+    };
+  };
+}> & { muscles?: string };
+
 export type ActiveSplitDeep = Prisma.ActiveSplitGetPayload<{
   include: {
     split: {
