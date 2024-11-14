@@ -117,7 +117,7 @@ export const Discover = () => {
           </div>
         </div>
         <div>
-          <Button onClick={handleReGenerate} disabled={isRefetching} className="font-bold">Regenerate</Button>
+          <Button onClick={handleReGenerate} disabled={isRefetching} className="font-bold mr-2">Regenerate</Button>
         </div>
       </div>
       <HorizontalCarousel>
