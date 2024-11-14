@@ -11,6 +11,7 @@ import {
   SPLIT_TYPE_TO_META_DESCRIPTION,
   SPLIT_TYPES,
   SplitDeep,
+  THREE_DAY_CADENCE,
   TWO_DAY_CADENCE,
 } from "@repo/database";
 
@@ -42,7 +43,7 @@ const DiffcultyBadge = ({ split }: DifficultyBadgeProps) => {
   }
 
   if (
-    split.type === SPLIT_TYPES.THREE_DAY ||
+    (split.type === SPLIT_TYPES.THREE_DAY && (split.cadence === THREE_DAY_CADENCE.FIVE_DAYS_PER_WEEK || split.cadence === THREE_DAY_CADENCE.SIX_DAYS_PER_WEEK || split.cadence === THREE_DAY_CADENCE.THREE_ON_ONE_OFF)) ||
     split.type === SPLIT_TYPES.FOUR_DAY
   ) {
     return (
