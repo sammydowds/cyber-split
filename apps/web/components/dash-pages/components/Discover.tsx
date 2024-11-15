@@ -16,10 +16,48 @@ import {
 } from "@repo/database";
 import { cn } from "@/lib/utils";
 import { SampleWeekSchedule } from "@/components/SampleWeekSchedule";
+import { useMemo } from "react";
+
+interface Level {
+  level: 0 | 1 | 2
+}
+const getBgColorByDifficulty = ({ level }: Level) => {
+  return level === 0 ? "bg-green-600" : level === 1 ? "bg-orange-500" : "bg-red-600";
+}
+
+interface GetDifficultyArgs {
+  split: SplitDeep
+}
+const getDifficultyLevel = ({ split }: GetDifficultyArgs) => {
+  if (
+    split.type === SPLIT_TYPES.FB &&
+    split.cadence === FB_CADENCE.TWO_DAYS_PER_WEEK
+  ) {
+    return 0;
+  }
+
+  if (
+    split.type === SPLIT_TYPES.TWO_DAY &&
+    (split.cadence === TWO_DAY_CADENCE.TWO_DAYS_PER_WEEK ||
+      split.cadence === TWO_DAY_CADENCE.THREE_DAYS_PER_WEEK)
+  ) {
+    return 0;
+  }
+
+  if (
+    (split.type === SPLIT_TYPES.THREE_DAY &&
+      (split.cadence === THREE_DAY_CADENCE.FIVE_DAYS_PER_WEEK ||
+        split.cadence === THREE_DAY_CADENCE.SIX_DAYS_PER_WEEK ||
+        split.cadence === THREE_DAY_CADENCE.THREE_ON_ONE_OFF)) ||
+    split.type === SPLIT_TYPES.FOUR_DAY
+  ) {
+    return 2;
+  }
+  return 1; 
+}
 
 const DifficultyDots = ({ level }: { level: 0 | 1 | 2 }) => {
-  const color =
-    level === 0 ? "bg-green-600" : level === 1 ? "bg-orange-500" : "bg-red-600";
+  const color = getBgColorByDifficulty({ level })
   return (
     <div className="flex items-center gap-[3px]">
       <div className={cn("h-2 w-5 rounded-l-sm bg-stone-200", color)}></div>
@@ -39,49 +77,21 @@ const DifficultyDots = ({ level }: { level: 0 | 1 | 2 }) => {
   );
 };
 
-interface DifficultyBadgeProps {
-  split: SplitDeep;
-}
-const DiffcultyBadge = ({ split }: DifficultyBadgeProps) => {
-  if (
-    split.type === SPLIT_TYPES.FB &&
-    split.cadence === FB_CADENCE.TWO_DAYS_PER_WEEK
-  ) {
-    return <DifficultyDots level={0} />;
-  }
-
-  if (
-    split.type === SPLIT_TYPES.TWO_DAY &&
-    (split.cadence === TWO_DAY_CADENCE.TWO_DAYS_PER_WEEK ||
-      split.cadence === TWO_DAY_CADENCE.THREE_DAYS_PER_WEEK)
-  ) {
-    return <DifficultyDots level={0} />;
-  }
-
-  if (
-    (split.type === SPLIT_TYPES.THREE_DAY &&
-      (split.cadence === THREE_DAY_CADENCE.FIVE_DAYS_PER_WEEK ||
-        split.cadence === THREE_DAY_CADENCE.SIX_DAYS_PER_WEEK ||
-        split.cadence === THREE_DAY_CADENCE.THREE_ON_ONE_OFF)) ||
-    split.type === SPLIT_TYPES.FOUR_DAY
-  ) {
-    return <DifficultyDots level={2} />;
-  }
-  return <DifficultyDots level={1} />;
-};
-
 interface DiscoverCard {
   split: DiscoverSplitDeep;
 }
 const DiscoverCard = ({ split }: DiscoverCard) => {
+  const difficultyLevel = useMemo(() => {
+    return getDifficultyLevel({ split })
+  }, [split])
   return (
-    <div className="min-h-[400px] w-[345px] min-w-[345px] rounded bg-gradient-to-br from-white from-40% to-stone-100 flex flex-col justify-between gap-2">
+    <div className="min-h-[400px] w-[345px] min-w-[345px] rounded bg-white flex flex-col justify-between gap-2">
       <div className="">
         <div className="flex items-center justify-between p-2 px-4">
           <div className="text tracking-tighter font-semibold">
             {SPLIT_TYPE_TO_DESCRIPTION[split.type as SPLIT_TYPES]}
           </div>
-          <DiffcultyBadge split={split} />
+          <DifficultyDots level={difficultyLevel} />
         </div>
       </div>
       <div className="px-4">
