@@ -15,6 +15,7 @@ import {
   TWO_DAY_CADENCE,
 } from "@repo/database";
 import { cn } from "@/lib/utils";
+import { SampleWeekSchedule } from "@/components/SampleWeekSchedule";
 
 const DifficultyDots = ({ level }: { level: 0 | 1 | 2 }) => {
   const color =
@@ -74,7 +75,7 @@ interface DiscoverCard {
 }
 const DiscoverCard = ({ split }: DiscoverCard) => {
   return (
-    <div className="min-h-[400px] w-[345px] min-w-[345px] rounded bg-gradient-to-br from-white from-40% to-stone-100 flex flex-col justify-between">
+    <div className="min-h-[400px] w-[345px] min-w-[345px] rounded bg-gradient-to-br from-white from-40% to-stone-100 flex flex-col justify-between gap-2">
       <div className="">
         <div className="flex items-center justify-between p-2 px-4">
           <div className="text tracking-tighter font-semibold">
@@ -82,6 +83,9 @@ const DiscoverCard = ({ split }: DiscoverCard) => {
           </div>
           <DiffcultyBadge split={split} />
         </div>
+      </div>
+      <div className="px-4">
+        <SampleWeekSchedule split={split} />
       </div>
       <div className="px-4">
         <div className="flex inline">
@@ -96,6 +100,7 @@ const DiscoverCard = ({ split }: DiscoverCard) => {
           </div>
         </div>
       </div>
+
       <HorizontalCarousel>
         {split.workouts.map((workout) => {
           return <SmallWorkoutTemplateCard workout={workout} hideCta />;
