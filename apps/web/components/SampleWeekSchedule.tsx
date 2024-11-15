@@ -13,23 +13,23 @@ export const SampleWeekSchedule = ({ split }: SampleWeekScheduleProps) => {
   return (
     <div className="flex flex-col w-full">
       <div className="flex items-center text-xs text-stone-500 gap-2">
-        {
-            firstWeek.map(day => {
-                return (
-                    <div className="flex flex-col items-center">
-                    <div>{day.date.toLocaleDateString('en-us', { weekday: "short"})}</div>
-                    <div className="h-8 w-8 bg-stone-200 rounded flex items-center justify-center">
-                    {
-                        day?.workout?.letterLabel ? (
-                            <WorkoutMarker className="h-5 w-5 text-[12px]" text={day.workout.letterLabel} />
-                        ) : null 
-                    }
-                        </div>
-
-                  </div>
-                )
-            })
-        }
+        {firstWeek.map((day) => {
+          return (
+            <div className="flex flex-col items-center">
+              <div>
+                {day.date.toLocaleDateString("en-us", { weekday: "short" })}
+              </div>
+              <div className="h-8 w-8 bg-stone-200 rounded flex items-center justify-center">
+                {day?.workout?.letterLabel ? (
+                  <WorkoutMarker
+                    className="h-5 w-5 text-[12px]"
+                    text={day.workout.letterLabel}
+                  />
+                ) : null}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

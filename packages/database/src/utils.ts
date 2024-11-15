@@ -759,46 +759,45 @@ function fisherYatesShuffle<T>(array: T[]): T[] {
 }
 
 const BEGINNER_TEMPLATES = [
-    {
-      cadence: FB_CADENCE.TWO_DAYS_PER_WEEK,
-      type: SPLIT_TYPES.FB,
-      muscles: FB_MUSCLES.UL,
-    },
-    {
-      cadence: FB_CADENCE.TWO_DAYS_PER_WEEK,
-      type: SPLIT_TYPES.FB,
-      muscles: FB_MUSCLES.LTA,
-    },
-    {
-      cadence: TWO_DAY_CADENCE.TWO_DAYS_PER_WEEK,
-      type: SPLIT_TYPES.TWO_DAY,
-      muscles: TWO_DAY_MUSCLES.UL,
-    },
-    {
-      cadence: TWO_DAY_CADENCE.THREE_DAYS_PER_WEEK,
-      type: SPLIT_TYPES.TWO_DAY,
-      muscles: TWO_DAY_MUSCLES.PP,
-    },
-
-]
+  {
+    cadence: FB_CADENCE.TWO_DAYS_PER_WEEK,
+    type: SPLIT_TYPES.FB,
+    muscles: FB_MUSCLES.UL,
+  },
+  {
+    cadence: FB_CADENCE.TWO_DAYS_PER_WEEK,
+    type: SPLIT_TYPES.FB,
+    muscles: FB_MUSCLES.LTA,
+  },
+  {
+    cadence: TWO_DAY_CADENCE.TWO_DAYS_PER_WEEK,
+    type: SPLIT_TYPES.TWO_DAY,
+    muscles: TWO_DAY_MUSCLES.UL,
+  },
+  {
+    cadence: TWO_DAY_CADENCE.THREE_DAYS_PER_WEEK,
+    type: SPLIT_TYPES.TWO_DAY,
+    muscles: TWO_DAY_MUSCLES.PP,
+  },
+];
 
 const INTERMEDIATE_TEMPLATES = [
-    {
-      cadence: FB_CADENCE.THREE_DAYS_PER_WEEK,
-      type: SPLIT_TYPES.FB,
-      muscles: FB_MUSCLES.PP,
-    },
-    {
-      cadence: TWO_DAY_CADENCE.FOUR_DAYS_PER_WEEK,
-      type: SPLIT_TYPES.TWO_DAY,
-      muscles: TWO_DAY_MUSCLES.PP,
-    },
-    {
-      cadence: THREE_DAY_CADENCE.THREE_DAYS_PER_WEEK_STAGGERED,
-      type: SPLIT_TYPES.THREE_DAY,
-      muscles: THREE_DAY_MUSCLES.PPL,
-    },
-]
+  {
+    cadence: FB_CADENCE.THREE_DAYS_PER_WEEK,
+    type: SPLIT_TYPES.FB,
+    muscles: FB_MUSCLES.PP,
+  },
+  {
+    cadence: TWO_DAY_CADENCE.FOUR_DAYS_PER_WEEK,
+    type: SPLIT_TYPES.TWO_DAY,
+    muscles: TWO_DAY_MUSCLES.PP,
+  },
+  {
+    cadence: THREE_DAY_CADENCE.THREE_DAYS_PER_WEEK_STAGGERED,
+    type: SPLIT_TYPES.THREE_DAY,
+    muscles: THREE_DAY_MUSCLES.PPL,
+  },
+];
 
 const ADVANCED_TEMPLATES = [
   {
@@ -807,22 +806,22 @@ const ADVANCED_TEMPLATES = [
     muscles: THREE_DAY_MUSCLES.CBLSA,
   },
 
-    {
-      cadence: THREE_DAY_CADENCE.FIVE_DAYS_PER_WEEK,
-      type: SPLIT_TYPES.THREE_DAY,
-      muscles: THREE_DAY_MUSCLES.PPL,
-    },
-    {
-      cadence: FOUR_DAY_CADENCE.FOUR_DAYS_PER_WEEK,
-      type: SPLIT_TYPES.FOUR_DAY,
-      muscles: FOUR_DAY_MUSCLES.BBCTTSCA,
-    },
-    {
-      cadence: FOUR_DAY_CADENCE.FOUR_ON_ONE_OFF,
-      type: SPLIT_TYPES.FOUR_DAY,
-      muscles: FOUR_DAY_MUSCLES.TPTPLAPLAP,
-    },
-]
+  {
+    cadence: THREE_DAY_CADENCE.FIVE_DAYS_PER_WEEK,
+    type: SPLIT_TYPES.THREE_DAY,
+    muscles: THREE_DAY_MUSCLES.PPL,
+  },
+  {
+    cadence: FOUR_DAY_CADENCE.FOUR_DAYS_PER_WEEK,
+    type: SPLIT_TYPES.FOUR_DAY,
+    muscles: FOUR_DAY_MUSCLES.BBCTTSCA,
+  },
+  {
+    cadence: FOUR_DAY_CADENCE.FOUR_ON_ONE_OFF,
+    type: SPLIT_TYPES.FOUR_DAY,
+    muscles: FOUR_DAY_MUSCLES.TPTPLAPLAP,
+  },
+];
 /**
  * Generates a list of splits - which can be activated.
  *
@@ -831,7 +830,10 @@ const ADVANCED_TEMPLATES = [
 type SampleTemplate = Partial<SplitDeep> & { muscles: string };
 export const discoverSplits = async () => {
   const beginnerSamples = fisherYatesShuffle(BEGINNER_TEMPLATES).slice(0, 2);
-  const intermediateSamples = fisherYatesShuffle(INTERMEDIATE_TEMPLATES).slice(0, 2);
+  const intermediateSamples = fisherYatesShuffle(INTERMEDIATE_TEMPLATES).slice(
+    0,
+    2,
+  );
   const advancedSamples = fisherYatesShuffle(ADVANCED_TEMPLATES).slice(0, 2);
   let sampleTemplates: SampleTemplate[] = [
     ...beginnerSamples,

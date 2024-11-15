@@ -19,14 +19,18 @@ import { SampleWeekSchedule } from "@/components/SampleWeekSchedule";
 import { useMemo } from "react";
 
 interface Level {
-  level: 0 | 1 | 2
+  level: 0 | 1 | 2;
 }
 const getBgColorByDifficulty = ({ level }: Level) => {
-  return level === 0 ? "bg-green-600" : level === 1 ? "bg-orange-500" : "bg-red-600";
-}
+  return level === 0
+    ? "bg-green-600"
+    : level === 1
+      ? "bg-orange-500"
+      : "bg-red-600";
+};
 
 interface GetDifficultyArgs {
-  split: SplitDeep
+  split: SplitDeep;
 }
 const getDifficultyLevel = ({ split }: GetDifficultyArgs) => {
   if (
@@ -53,11 +57,11 @@ const getDifficultyLevel = ({ split }: GetDifficultyArgs) => {
   ) {
     return 2;
   }
-  return 1; 
-}
+  return 1;
+};
 
 const DifficultyDots = ({ level }: { level: 0 | 1 | 2 }) => {
-  const color = getBgColorByDifficulty({ level })
+  const color = getBgColorByDifficulty({ level });
   return (
     <div className="flex items-center gap-[3px]">
       <div className={cn("h-2 w-5 rounded-l-sm bg-stone-200", color)}></div>
@@ -82,8 +86,8 @@ interface DiscoverCard {
 }
 const DiscoverCard = ({ split }: DiscoverCard) => {
   const difficultyLevel = useMemo(() => {
-    return getDifficultyLevel({ split })
-  }, [split])
+    return getDifficultyLevel({ split });
+  }, [split]);
   return (
     <div className="min-h-[400px] w-[345px] min-w-[345px] rounded bg-white flex flex-col justify-between gap-2">
       <div className="">
@@ -150,7 +154,7 @@ export const Discover = () => {
       </div>
       <HorizontalCarousel>
         {isPending || isRefetching ? (
-          <div className="h-[400px] flex items-center justify-center w-full">
+          <div className="h-[458px] flex items-center justify-center w-full">
             <Loading />
           </div>
         ) : (
