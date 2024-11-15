@@ -14,6 +14,29 @@ import {
   THREE_DAY_CADENCE,
   TWO_DAY_CADENCE,
 } from "@repo/database";
+import { cn } from "@/lib/utils";
+
+const DifficultyDots = ({ level }: { level: 0 | 1 | 2 }) => {
+  const color =
+    level === 0 ? "bg-green-600" : level === 1 ? "bg-orange-500" : "bg-red-600";
+  return (
+    <div className="flex items-center gap-[3px]">
+      <div className={cn("h-2 w-5 rounded-l-sm bg-stone-200", color)}></div>
+      <div
+        className={cn(
+          "h-2 w-5 rounded-none bg-stone-200",
+          level >= 1 ? color : "",
+        )}
+      ></div>
+      <div
+        className={cn(
+          "h-2 w-5 rounded-r-sm bg-stone-200",
+          level >= 2 ? color : "",
+        )}
+      ></div>
+    </div>
+  );
+};
 
 interface DifficultyBadgeProps {
   split: SplitDeep;
@@ -23,11 +46,7 @@ const DiffcultyBadge = ({ split }: DifficultyBadgeProps) => {
     split.type === SPLIT_TYPES.FB &&
     split.cadence === FB_CADENCE.TWO_DAYS_PER_WEEK
   ) {
-    return (
-      <div className="bg-blue-100 text-blue-800 p-[6px] font-bold text-xs rounded-sm">
-        Beginner
-      </div>
-    );
+    return <DifficultyDots level={0} />;
   }
 
   if (
@@ -35,11 +54,7 @@ const DiffcultyBadge = ({ split }: DifficultyBadgeProps) => {
     (split.cadence === TWO_DAY_CADENCE.TWO_DAYS_PER_WEEK ||
       split.cadence === TWO_DAY_CADENCE.THREE_DAYS_PER_WEEK)
   ) {
-    return (
-      <div className="bg-blue-100 text-blue-800 p-[6px] font-bold text-xs rounded-sm">
-        Beginner
-      </div>
-    );
+    return <DifficultyDots level={0} />;
   }
 
   if (
@@ -49,17 +64,9 @@ const DiffcultyBadge = ({ split }: DifficultyBadgeProps) => {
         split.cadence === THREE_DAY_CADENCE.THREE_ON_ONE_OFF)) ||
     split.type === SPLIT_TYPES.FOUR_DAY
   ) {
-    return (
-      <div className="bg-red-100 text-red-900 p-[6px] font-bold text-xs rounded-sm">
-        Advanced
-      </div>
-    );
+    return <DifficultyDots level={2} />;
   }
-  return (
-    <div className="bg-fuchsia-100 text-fuchsia-900 p-[6px] font-bold text-xs rounded-sm">
-      Intermediate
-    </div>
-  );
+  return <DifficultyDots level={1} />;
 };
 
 interface DiscoverCard {
@@ -69,7 +76,7 @@ const DiscoverCard = ({ split }: DiscoverCard) => {
   return (
     <div className="min-h-[400px] w-[345px] min-w-[345px] rounded bg-gradient-to-br from-white from-40% to-stone-100 flex flex-col justify-between">
       <div className="">
-        <div className="flex items-center justify-between p-2 pl-4">
+        <div className="flex items-center justify-between p-2 px-4">
           <div className="text tracking-tighter font-semibold">
             {SPLIT_TYPE_TO_DESCRIPTION[split.type as SPLIT_TYPES]}
           </div>
@@ -117,7 +124,13 @@ export const Discover = () => {
           </div>
         </div>
         <div>
-          <Button onClick={handleReGenerate} disabled={isRefetching} className="font-bold mr-2">Regenerate</Button>
+          <Button
+            onClick={handleReGenerate}
+            disabled={isRefetching}
+            className="font-bold mr-2"
+          >
+            Regenerate
+          </Button>
         </div>
       </div>
       <HorizontalCarousel>
