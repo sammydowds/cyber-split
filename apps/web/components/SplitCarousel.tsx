@@ -9,10 +9,7 @@ import {
   THREE_DAY_CADENCE,
   TWO_DAY_CADENCE,
 } from "@repo/database";
-import {
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useMemo, useState, useEffect, useRef } from "react";
 import { SampleWeekSchedule } from "./SampleWeekSchedule";
 import { cn } from "@/lib/utils";
@@ -141,6 +138,7 @@ export const SplitCarousel = ({ splits }: SplitCarouselProps) => {
 
   const touchStart = useRef<number | null>(null);
   const touchEnd = useRef<number | null>(null);
+  const touchStartTime = useRef<number | null>(null);
 
   // the required distance between touchStart and touchEnd to be detected as a swipe
   const minSwipeDistance = 50;
@@ -148,13 +146,12 @@ export const SplitCarousel = ({ splits }: SplitCarouselProps) => {
   const onTouchStart = (e: React.TouchEvent) => {
     touchEnd.current = null;
     touchStart.current = e.targetTouches[0].clientX;
+    touchStartTime.current = Date.now();
   };
 
   const onTouchMove = (e: React.TouchEvent) => {
     touchEnd.current = e.targetTouches[0].clientX;
   };
-
-
 
   const handleNextClick = () => {
     setIsAnimatingFoward(true);
@@ -173,12 +170,21 @@ export const SplitCarousel = ({ splits }: SplitCarouselProps) => {
   const onTouchEnd = () => {
     if (!touchStart.current || !touchEnd.current) return;
     const distance = touchStart.current - touchEnd.current;
+    const timeElapsed = touchStartTime?.current
+      ? Date.now() - touchStartTime?.current
+      : 0;
+    const velocity = Math.abs(distance / timeElapsed);
+    const velocityTriggered = velocity > 0.5;
+
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
-    if (isLeftSwipe) {
-        handleNextClick()
-    } else if (isRightSwipe) {
-        handlePreviousClick()
+
+    if (velocityTriggered) {
+      if (isLeftSwipe) {
+        handleNextClick();
+      } else if (isRightSwipe) {
+        handlePreviousClick();
+      }
     }
   };
 
@@ -230,7 +236,12 @@ export const SplitCarousel = ({ splits }: SplitCarouselProps) => {
         >
           <ChevronRight />
         </Button>
-        <div className="relative w-full" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} onTouchMove={onTouchMove}>
+        <div
+          className="relative w-full"
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+          onTouchMove={onTouchMove}
+        >
           {/* from left old card*/}
           <div
             className={`absolute inset-0 flex items-center justify-center transition-transform duration-300 ${isAnimatingFoward ? "opacity-100 -translate-x-[100%]" : "opacity-0"}`}
