@@ -19,10 +19,10 @@ export const SampleWeekSchedule = ({ split }: SampleWeekScheduleProps) => {
               <div>
                 {day.date.toLocaleDateString("en-us", { weekday: "short" })}
               </div>
-              <div className="h-8 w-8 bg-stone-200 rounded flex items-center justify-center">
+              <div className="h-10 w-10 bg-stone-200 rounded flex items-center justify-center">
                 {day?.workout?.letterLabel ? (
                   <WorkoutMarker
-                    className="h-5 w-5 text-[12px]"
+                    className="h-7 w-7 text-[14px]"
                     text={day.workout.letterLabel}
                   />
                 ) : null}

@@ -16,6 +16,9 @@ import { cn } from "@/lib/utils";
 import { HorizontalCarousel } from "./HorizontalCarousel";
 import { SmallWorkoutTemplateCard } from "./SmallWorkoutTemplateCard";
 import { Button } from "@/components/ui/button";
+import { Separator } from "./ui/separator";
+import { Badge } from "./ui/badge";
+import { WorkoutTemplateCard } from "./WorkoutTemplateCard";
 
 interface Level {
   level: 0 | 1 | 2;
@@ -63,16 +66,16 @@ const DifficultyDots = ({ level }: { level: 0 | 1 | 2 }) => {
   const color = getBgColorByDifficulty({ level });
   return (
     <div className="flex items-center gap-[3px]">
-      <div className={cn("h-2 w-5 rounded-l-sm bg-stone-200", color)}></div>
+      <div className={cn("h-2 w-8 rounded-l-sm bg-stone-200", color)}></div>
       <div
         className={cn(
-          "h-2 w-5 rounded-none bg-stone-200",
+          "h-2 w-8 rounded-none bg-stone-200",
           level >= 1 ? color : "",
         )}
       ></div>
       <div
         className={cn(
-          "h-2 w-5 rounded-r-sm bg-stone-200",
+          "h-2 w-8 rounded-r-sm bg-stone-200",
           level >= 2 ? color : "",
         )}
       ></div>
@@ -80,47 +83,78 @@ const DifficultyDots = ({ level }: { level: 0 | 1 | 2 }) => {
   );
 };
 
-interface DiscoverCard {
+const getUniqueEquipment = (split: DiscoverSplitDeep) => {
+  const equipmentSet = new Set<string>();
+
+  split.workouts.forEach((workout) => {
+    workout.strengthGroups.forEach((group) => {
+      group.sets.forEach((set) => {
+        equipmentSet.add(set.exercise.equipment[0]?.name);
+      });
+    });
+  });
+
+  return Array.from(equipmentSet);
+};
+
+interface SplitCardProps {
   split: DiscoverSplitDeep;
 }
-const DiscoverCard = ({ split }: DiscoverCard) => {
+const SplitCard = ({ split }: SplitCardProps) => {
   const difficultyLevel = useMemo(() => {
     return getDifficultyLevel({ split });
   }, [split]);
-  return (
-    <div className="min-h-[400px] w-[345px] max-md:w-screen max-md:rounded-none min-w-[345px] rounded bg-white flex flex-col justify-between gap-2">
-      <div className="">
-        <div className="flex items-center justify-between p-2 px-4">
-          <div className="text tracking-tighter font-semibold">
-            {SPLIT_TYPE_TO_DESCRIPTION[split.type as SPLIT_TYPES]}
-          </div>
-          <DifficultyDots level={difficultyLevel} />
-        </div>
-      </div>
-      <div className="px-4">
-        <SampleWeekSchedule split={split} />
-      </div>
-      <div className="px-4">
-        <div className="flex inline">
-          <div className="text-sm">
-            In the gym{" "}
-            <span className="lowercase">
-              {" "}
-              {CADENCE_TO_DESCRIPTION_MAP[split.type][split.cadence]}, rotating
-              between{" "}
-              {SPLIT_TYPE_TO_META_DESCRIPTION[split.type as SPLIT_TYPES]}.
-            </span>
-          </div>
-        </div>
-      </div>
 
-      <HorizontalCarousel>
-        {split.workouts.map((workout) => {
-          return <SmallWorkoutTemplateCard workout={workout} hideCta />;
-        })}
-      </HorizontalCarousel>
-      <div className="p-2 w-full">
-        <Button className="w-full font-bold">Begin</Button>
+  const equipment = getUniqueEquipment(split).filter(Boolean);
+  return (
+    <div className="max-w-[800px] max-md:w-screen max-md:rounded-none rounded bg-white flex flex-col justify-between gap-2">
+      <div className="flex md:flex-row max-md:flex-col">
+        <div className="flex flex-col justify-between md:max-w-[400px] max-md:min-h-[275px] p-[8px] gap-[12px]">
+          <div className="flex items-center justify-between p-2 px-4">
+            <div className="text-2xl tracking-tighter font-semibold">
+              {SPLIT_TYPE_TO_DESCRIPTION[split.type as SPLIT_TYPES]}
+            </div>
+            <DifficultyDots level={difficultyLevel} />
+          </div>
+          <div className="px-4 flex flex-col gap-[4px]">
+            <SampleWeekSchedule split={split} />
+            <div className="flex inline">
+              <div className="">
+                In the gym{" "}
+                <span className="lowercase">
+                  {" "}
+                  {CADENCE_TO_DESCRIPTION_MAP[split.type][split.cadence]},
+                  rotating between{" "}
+                  {SPLIT_TYPE_TO_META_DESCRIPTION[split.type as SPLIT_TYPES]}.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div className="flex items-center gap-[3px] h-[150px] px-2 overflow-y-auto overflow-hidden">
+            <div className="flex flex-wrap gap-[4px] items-center">
+              {equipment.map((e) => {
+                return (
+                  <Badge className="bg-stone-100 text-black shadow-none h-[20px]">
+                    {e}
+                  </Badge>
+                );
+              })}
+            </div>
+          </div>
+          <div className="p-2 w-full">
+            <Button className="w-full font-bold">Begin</Button>
+          </div>
+        </div>
+        <div className="h-fill w-[1px] bg-stone-300 max-md:hidden"></div>
+        <div className="h-[1px] w-fill bg-stone-300 md:hidden mx-6 my-4"></div>
+        <div className="md:max-w-[400px] py-4 flex flex-col justify-center">
+          <div className="tracking-tighter font-semibold pl-4">Workouts</div>
+          <HorizontalCarousel>
+            {split.workouts.map((workout) => {
+              return <WorkoutTemplateCard workout={workout} hideCta />;
+            })}
+          </HorizontalCarousel>
+        </div>
       </div>
     </div>
   );
@@ -203,7 +237,7 @@ export const SplitCarousel = ({ splits }: SplitCarouselProps) => {
   }
 
   return (
-    <div className="flex flex-col w-full items-center min-h-[500px] gap-4">
+    <div className="flex flex-col w-full items-center gap-4">
       <div className="flex items-center gap-[4px] min-h-[30px]">
         {splits.map((s, idx) => {
           return (
@@ -223,14 +257,14 @@ export const SplitCarousel = ({ splits }: SplitCarouselProps) => {
       </div>
       <div className="w-full relative">
         <Button
-          className="bg-white text-black rounded-full h-12 w-12 absolute left-8 top-50% max-md:hidden z-50"
+          className="bg-white text-black rounded-full h-12 w-12 absolute left-8 top-[30%] max-md:hidden z-50"
           size="icon"
           onClick={handlePreviousClick}
         >
           <ChevronLeft />
         </Button>
         <Button
-          className="bg-white text-black rounded-full h-12 w-12 absolute right-8 top-50% max-md:hidden z-50"
+          className="bg-white text-black rounded-full h-12 w-12 absolute right-8 top-[30%] max-md:hidden z-50"
           size="icon"
           onClick={handleNextClick}
         >
@@ -246,30 +280,30 @@ export const SplitCarousel = ({ splits }: SplitCarouselProps) => {
           <div
             className={`absolute inset-0 flex items-center justify-center transition-transform duration-300 ${isAnimatingFoward ? "opacity-100 -translate-x-[100%]" : "opacity-0"}`}
           >
-            <DiscoverCard split={splits[previousIndex]} />
+            <SplitCard split={splits[previousIndex]} />
           </div>
           {/* from right old card*/}
           <div
             className={`absolute inset-0 flex items-center justify-center transition-transform duration-300 ${isAnimatingBackward ? "opacity-100 translate-x-[100%]" : "opacity-0"}`}
           >
-            <DiscoverCard split={splits[previousIndex]} />
+            <SplitCard split={splits[previousIndex]} />
           </div>
           <div
             className={`flex items-center justify-center transition-transform duration-300 ${isAnimatingFoward || isAnimatingBackward ? "opacity-0" : "opacity-100"}`}
           >
-            <DiscoverCard split={splits[index]} />
+            <SplitCard split={splits[index]} />
           </div>
           {/* from right new card */}
           <div
             className={`absolute inset-0 flex items-center justify-center transition-transform duration-300 ${isAnimatingFoward ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full"}`}
           >
-            <DiscoverCard split={splits[index]} />
+            <SplitCard split={splits[index]} />
           </div>
           {/* from left new card */}
           <div
             className={`absolute inset-0 flex items-center justify-center transition-transform duration-300 ${isAnimatingBackward ? "opacity-100 -translate-x-0" : "opacity-0 -translate-x-full"}`}
           >
-            <DiscoverCard split={splits[index]} />
+            <SplitCard split={splits[index]} />
           </div>
         </div>
       </div>
