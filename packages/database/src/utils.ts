@@ -829,12 +829,12 @@ const ADVANCED_TEMPLATES = [
  */
 type SampleTemplate = Partial<SplitDeep> & { muscles: string };
 export const discoverSplits = async () => {
-  const beginnerSamples = fisherYatesShuffle(BEGINNER_TEMPLATES).slice(0, 2);
+  const beginnerSamples = fisherYatesShuffle(BEGINNER_TEMPLATES).slice(0, 3);
   const intermediateSamples = fisherYatesShuffle(INTERMEDIATE_TEMPLATES).slice(
     0,
-    2,
+    3,
   );
-  const advancedSamples = fisherYatesShuffle(ADVANCED_TEMPLATES).slice(0, 2);
+  const advancedSamples = fisherYatesShuffle(ADVANCED_TEMPLATES).slice(0, 3);
   let sampleTemplates: SampleTemplate[] = [
     ...beginnerSamples,
     ...intermediateSamples,
