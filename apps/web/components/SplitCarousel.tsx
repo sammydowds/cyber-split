@@ -156,7 +156,7 @@ const SplitCard = ({ split }: SplitCardProps) => {
             <Button className="w-full font-bold text-xl h-[40px]">Begin</Button>
           </div>
         </div>
-        <div className="h-fill w-[1px] bg-stone-300 max-md:hidden"></div>
+        <div className="h-fill w-[1px] bg-stone-300 max-md:hidden z-10"></div>
         <div className="h-[1px] w-fill bg-stone-300 md:hidden mx-6 my-4"></div>
         <div className="md:max-w-[400px] py-4 flex flex-col justify-center">
           <div className="tracking-tighter font-semibold pl-4">Workouts</div>
