@@ -20,13 +20,13 @@ import { WorkoutTemplateCard } from "./WorkoutTemplateCard";
 
 const ScrollInstructions = () => {
   return (
-    <div className="relative flex items-center text-stone-500 gap-[4px]">
-      <Pointer strokeWidth={1.5} className="z-10" />
+    <div className="relative flex items-center text-stone-600 gap-[4px]">
+      <Pointer strokeWidth={1.5} className="z-10" size={18} />
       <div className="text-xs tracking-tighter font-bold">Swipe to explore</div>
-      <div className="h-[1px] w-[6px] bg-red-600 absolute top-[2px] -left-[2px] z-0"></div>
-      <div className="h-[1px] w-[6px] bg-red-600 absolute top-[4px] -left-[2px] z-0"></div>
-      <div className="h-[1px] w-[6px] bg-red-600 absolute top-[2px] left-[12px] z-0"></div>
-      <div className="h-[1px] w-[6px] bg-red-600 absolute top-[4px] left-[12px] z-0"></div>
+      <div className="h-[1px] w-[6px] bg-red-600 absolute top-[2px] -left-[3px] z-0"></div>
+      <div className="h-[1px] w-[6px] bg-red-600 absolute top-[4px] -left-[3px] z-0"></div>
+      <div className="h-[1px] w-[6px] bg-red-600 absolute top-[2px] left-[9px] z-0"></div>
+      <div className="h-[1px] w-[6px] bg-red-600 absolute top-[4px] left-[9px] z-0"></div>
     </div>
   );
 };
@@ -153,7 +153,7 @@ const SplitCard = ({ split }: SplitCardProps) => {
             </div>
           </div>
           <div className="p-2 w-full">
-            <Button className="w-full font-bold">Begin</Button>
+            <Button className="w-full font-bold text-xl h-[40px]">Begin</Button>
           </div>
         </div>
         <div className="h-fill w-[1px] bg-stone-300 max-md:hidden"></div>
@@ -249,27 +249,36 @@ export const SplitCarousel = ({ splits }: SplitCarouselProps) => {
 
   return (
     <div className="flex flex-col w-full items-center gap-4">
-      <div className="flex max-md:justify-between md:justify-center items-center w-full min-h-[30px] px-2">
-        <div className="flex items-center gap-[4px]">
-          {splits.map((s, idx) => {
-            return (
-              <div
-                id={s.id}
-                className={cn(
-                  "rounded-full h-[6px] w-[6px] border-black border-[1px] transition-all duration-300",
-                  idx === index
-                    ? "bg-black h-3 w-3"
-                    : viewed.includes(idx)
-                      ? "bg-black"
-                      : "",
-                )}
-              ></div>
-            );
-          })}
+      <div className="flex justify-between max-md:items-center md:items-end w-full min-h-[30px] px-2 max-w-[700px] relative">
+        <div className="">
+          <div className="font-semibold tracking-tighter text-2xl max-md:text-lg">
+            Discover
+          </div>
+          <div className="font-semibold tracking-tighter text-md max-md:text-sm text-stone-500">
+            Find a split that works for you.
+          </div>
         </div>
-
-        <div className="md:hidden">
-          <ScrollInstructions />
+        <div className="flex flex-col items-center gap-[8px]">
+          <div className="md:hidden">
+            <ScrollInstructions />
+          </div>
+          <div className="flex items-center gap-[4px]">
+            {splits.map((s, idx) => {
+              return (
+                <div
+                  id={s.id}
+                  className={cn(
+                    "rounded-full h-[6px] w-[6px] border-black border-[1px] transition-all duration-300",
+                    idx === index
+                      ? "bg-black h-3 w-3"
+                      : viewed.includes(idx)
+                        ? "bg-black"
+                        : "",
+                  )}
+                ></div>
+              );
+            })}
+          </div>
         </div>
       </div>
       <div className="w-full relative">
