@@ -173,10 +173,11 @@ const SplitCard = ({ split }: SplitCardProps) => {
 
 interface SplitCarouselProps {
   splits: DiscoverSplitDeep[];
+  refetch?: () => void;
 }
-export const SplitCarousel = ({ splits }: SplitCarouselProps) => {
+export const SplitCarousel = ({ splits, refetch }: SplitCarouselProps) => {
   const [index, setIndex] = useState(0);
-  const [viewed, setViewed] = useState<number[]>([]);
+  const [viewed, setViewed] = useState<Set<number>>(new Set());
   const [isAnimatingFoward, setIsAnimatingFoward] = useState(false);
   const [isAnimatingBackward, setIsAnimatingBackward] = useState(false);
   const [previousIndex, setPreviousIndex] = useState(1);
@@ -200,14 +201,14 @@ export const SplitCarousel = ({ splits }: SplitCarouselProps) => {
 
   const handleNextClick = () => {
     setIsAnimatingFoward(true);
-    setViewed([...viewed, index]);
+    setViewed((prev) => new Set(prev).add(index));
     setPreviousIndex(index);
     setIndex((prevIndex) => (prevIndex + 1) % splits.length);
   };
 
   const handlePreviousClick = () => {
     setIsAnimatingBackward(true);
-    setViewed([...viewed, index]);
+    setViewed((prev) => new Set(prev).add(index));
     setPreviousIndex(index);
     setIndex((prevIndex) => (prevIndex - 1 + splits.length) % splits.length);
   };
@@ -251,7 +252,7 @@ export const SplitCarousel = ({ splits }: SplitCarouselProps) => {
     <div className="flex flex-col w-full items-center gap-4">
       <div className="flex justify-between max-md:items-center md:items-end w-full min-h-[30px] px-2 max-w-[700px] relative">
         <div className="">
-          <div className="font-semibold tracking-tighter text-2xl max-md:text-lg">
+          <div className="font-semibold tracking-tighter text-2xl max-md:text-lg gap-[4px] flex items-center">
             Discover
           </div>
           <div className="font-semibold tracking-tighter text-md max-md:text-sm text-stone-500">
@@ -259,9 +260,16 @@ export const SplitCarousel = ({ splits }: SplitCarouselProps) => {
           </div>
         </div>
         <div className="flex flex-col items-center gap-[8px]">
-          <div className="md:hidden">
-            <ScrollInstructions />
-          </div>
+          {viewed.size >= splits.length - 1 ? (
+            <Button className="font-bold" size="sm" onClick={refetch}>
+              View More
+            </Button>
+          ) : (
+            <div className="md:hidden">
+              <ScrollInstructions />
+            </div>
+          )}
+
           <div className="flex items-center gap-[4px]">
             {splits.map((s, idx) => {
               return (
@@ -271,7 +279,7 @@ export const SplitCarousel = ({ splits }: SplitCarouselProps) => {
                     "rounded-full h-[6px] w-[6px] border-black border-[1px] transition-all duration-300",
                     idx === index
                       ? "bg-black h-3 w-3"
-                      : viewed.includes(idx)
+                      : viewed.has(idx)
                         ? "bg-black"
                         : "",
                   )}

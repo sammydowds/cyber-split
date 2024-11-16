@@ -20,7 +20,7 @@ export const HomePage = ({ activeSplit }: HomePageProps) => {
               <Loading />
             </div>
           ) : (
-            <SplitCarousel splits={data ?? []} />
+            <SplitCarousel refetch={refetch} splits={data ?? []} />
           )}
         </div>
         <UserStats activeSplit={activeSplit} />
