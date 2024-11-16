@@ -9,16 +9,27 @@ import {
   THREE_DAY_CADENCE,
   TWO_DAY_CADENCE,
 } from "@repo/database";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Pointer } from "lucide-react";
 import { useMemo, useState, useEffect, useRef } from "react";
 import { SampleWeekSchedule } from "./SampleWeekSchedule";
 import { cn } from "@/lib/utils";
 import { HorizontalCarousel } from "./HorizontalCarousel";
-import { SmallWorkoutTemplateCard } from "./SmallWorkoutTemplateCard";
 import { Button } from "@/components/ui/button";
-import { Separator } from "./ui/separator";
 import { Badge } from "./ui/badge";
 import { WorkoutTemplateCard } from "./WorkoutTemplateCard";
+
+const ScrollInstructions = () => {
+  return (
+    <div className="relative flex items-center text-stone-500 gap-[4px]">
+      <Pointer strokeWidth={1.5} className="z-10" />
+      <div className="text-xs tracking-tighter font-bold">Swipe to explore</div>
+      <div className="h-[1px] w-[6px] bg-red-600 absolute top-[2px] -left-[2px] z-0"></div>
+      <div className="h-[1px] w-[6px] bg-red-600 absolute top-[4px] -left-[2px] z-0"></div>
+      <div className="h-[1px] w-[6px] bg-red-600 absolute top-[2px] left-[12px] z-0"></div>
+      <div className="h-[1px] w-[6px] bg-red-600 absolute top-[4px] left-[12px] z-0"></div>
+    </div>
+  );
+};
 
 interface Level {
   level: 0 | 1 | 2;
@@ -238,22 +249,28 @@ export const SplitCarousel = ({ splits }: SplitCarouselProps) => {
 
   return (
     <div className="flex flex-col w-full items-center gap-4">
-      <div className="flex items-center gap-[4px] min-h-[30px]">
-        {splits.map((s, idx) => {
-          return (
-            <div
-              id={s.id}
-              className={cn(
-                "rounded-full h-[6px] w-[6px] border-black border-[1px] transition-all duration-300",
-                idx === index
-                  ? "bg-black h-3 w-3"
-                  : viewed.includes(idx)
-                    ? "bg-black"
-                    : "",
-              )}
-            ></div>
-          );
-        })}
+      <div className="flex max-md:justify-between md:justify-center items-center w-full min-h-[30px] px-2">
+        <div className="flex items-center gap-[4px]">
+          {splits.map((s, idx) => {
+            return (
+              <div
+                id={s.id}
+                className={cn(
+                  "rounded-full h-[6px] w-[6px] border-black border-[1px] transition-all duration-300",
+                  idx === index
+                    ? "bg-black h-3 w-3"
+                    : viewed.includes(idx)
+                      ? "bg-black"
+                      : "",
+                )}
+              ></div>
+            );
+          })}
+        </div>
+
+        <div className="md:hidden">
+          <ScrollInstructions />
+        </div>
       </div>
       <div className="w-full relative">
         <Button

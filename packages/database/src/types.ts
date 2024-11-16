@@ -74,8 +74,8 @@ export type DiscoverSplitDeep = Prisma.SplitGetPayload<{
               include: {
                 exercise: {
                   include: {
-                    equipment: true
-                  }
+                    equipment: true;
+                  };
                 };
               };
             };
