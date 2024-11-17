@@ -63,6 +63,13 @@ export type SplitDeep = Prisma.SplitGetPayload<{
   };
 }>;
 
+export interface CreateActivateSplitPayload {
+  split: Pick<DiscoverSplitDeep, "cadence" | "type" | "workouts">;
+  end: Date;
+  start: Date;
+  schedule: Object;
+}
+
 export type DiscoverSplitDeep = Prisma.SplitGetPayload<{
   include: {
     workouts: {

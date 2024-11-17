@@ -28,7 +28,7 @@ export const SplitUpcomingWorkouts = ({
             (day: WorkoutSchedule[number][number], dayIdx: number) => {
               const { workout, date } = day;
               const workoutData = activeSplit.split.workouts.filter(
-                (template) => template.id === workout?.id,
+                (template) => template.letterLabel === workout?.letterLabel,
               )[0];
               const d = new Date(date);
               if (

@@ -17,6 +17,9 @@ import { HorizontalCarousel } from "./HorizontalCarousel";
 import { Button } from "@/components/ui/button";
 import { Badge } from "./ui/badge";
 import { WorkoutTemplateCard } from "./WorkoutTemplateCard";
+import { useCreateActivateSplit } from "@/hooks/useCreateActivateSplit";
+import { Loading } from "./Loading";
+import { useQueryClient } from "@tanstack/react-query";
 
 const ScrollInstructions = () => {
   return (
@@ -96,7 +99,6 @@ const DifficultyDots = ({ level }: { level: 0 | 1 | 2 }) => {
 
 const getUniqueEquipment = (split: DiscoverSplitDeep) => {
   const equipmentSet = new Set<string>();
-
   split.workouts.forEach((workout) => {
     workout.strengthGroups.forEach((group) => {
       group.sets.forEach((set) => {
@@ -115,6 +117,17 @@ const SplitCard = ({ split }: SplitCardProps) => {
   const difficultyLevel = useMemo(() => {
     return getDifficultyLevel({ split });
   }, [split]);
+  const queryClient = useQueryClient();
+  const { mutate: beginSplit, isPending: beginningSplit } =
+    useCreateActivateSplit({
+      onSuccess: () => {
+        queryClient.invalidateQueries();
+      },
+    });
+
+  const handleBeginClick = (data: DiscoverSplitDeep) => {
+    beginSplit({ ...data });
+  };
 
   const equipment = getUniqueEquipment(split).filter(Boolean);
   return (
@@ -153,7 +166,13 @@ const SplitCard = ({ split }: SplitCardProps) => {
             </div>
           </div>
           <div className="p-2 w-full">
-            <Button className="w-full font-bold text-xl h-[40px]">Begin</Button>
+            <Button
+              disabled={beginningSplit}
+              className="w-full font-bold text-xl h-[40px]"
+              onClick={() => handleBeginClick(split)}
+            >
+              {beginningSplit ? <Loading /> : "Begin"}
+            </Button>
           </div>
         </div>
         <div className="h-fill w-[1px] bg-stone-300 max-md:hidden z-10"></div>

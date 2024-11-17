@@ -42,7 +42,6 @@ export const DashContentRouter = ({
   const paths = router.query.slug as string[];
 
   if (isSplitDetailsRoute(paths)) {
-    console.log("hello", paths[2]);
     return <ActiveSplitDetailPage id={paths[1]} />;
   }
 

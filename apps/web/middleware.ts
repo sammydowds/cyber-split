@@ -37,6 +37,7 @@ export const middleware = async (request: NextRequest) => {
 export const config = {
   matcher: [
     "/api/active-split/:path*",
+    "/api/create-activate-split",
     "/api/activate-split",
     "/api/create-logged-workout",
     "/api/create-split",

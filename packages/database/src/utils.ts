@@ -1,9 +1,8 @@
-import { ActiveSplit, Prisma, prisma } from "./client";
+import { Prisma, prisma } from "./client";
 import {
   SPLIT_TYPE_PROGRAMMING_LABEL_MAP,
   SPLIT_TYPE_PROGRAMMING_MAP,
 } from "./programming";
-import { createActiveSplitWorkoutSchedule } from "./programming/createActiveSplitWorkoutSchedule";
 import {
   FB_CADENCE,
   FB_MUSCLES,
@@ -16,8 +15,10 @@ import {
   TWO_DAY_MUSCLES,
 } from "./programming/enums";
 import {
+  CreateActivateSplitPayload,
   DeepLoggedWorkout,
   DeepTemplateWorkout,
+  DiscoverSplitDeep,
   SplitDeep,
   WorkoutVolumeApiPayload,
 } from "./types";
@@ -207,18 +208,6 @@ export const createActiveSplit = async (
   end: Date = new Date(new Date().setDate(new Date().getDate() + 30)),
   schedule: any,
 ) => {
-  // create schedule
-  const baseSplit = await prisma.split.findUnique({
-    where: {
-      id: splitId,
-    },
-    select: {
-      cadence: true,
-      skipDays: true,
-      workouts: true,
-    },
-  });
-
   return await prisma.activeSplit.create({
     data: {
       splitId,
@@ -226,6 +215,57 @@ export const createActiveSplit = async (
       schedule,
       start,
       end,
+    },
+  });
+};
+
+interface CreateActivateSplitArgs extends CreateActivateSplitPayload {
+  profileId: string;
+}
+export const createAndActivateSplit = async (data: CreateActivateSplitArgs) => {
+  return await prisma.activeSplit.create({
+    data: {
+      profile: {
+        connect: {
+          id: data.profileId,
+        },
+      },
+      split: {
+        create: {
+          loggedWorkouts: {
+            create: [],
+          },
+          cadence: data.split.cadence,
+          type: data.split.type,
+          profileId: data.profileId,
+          active: true,
+          name: `Generated - ${new Date().toLocaleDateString("en-us")}`,
+          workouts: {
+            create: data.split.workouts.map((workout) => ({
+              profileId: data.profileId,
+              units: "IMPERIAL",
+              name: workout.name,
+              letterLabel: workout.letterLabel,
+              strengthGroups: {
+                create: workout.strengthGroups.map((group) => ({
+                  name: group.name,
+                  sets: {
+                    create: group.sets.map((set) => ({
+                      ...set,
+                      exercise: {
+                        connect: { id: set.exercise.id },
+                      },
+                    })),
+                  },
+                })),
+              },
+            })),
+          },
+        },
+      },
+      schedule: data.schedule as any,
+      start: data.start,
+      end: data.end,
     },
   });
 };
