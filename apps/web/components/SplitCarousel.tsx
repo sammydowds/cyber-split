@@ -291,14 +291,14 @@ export const SplitCarousel = ({ splits, refetch }: SplitCarouselProps) => {
       </div>
       <div className="w-full relative">
         <Button
-          className="bg-white text-black rounded-full h-12 w-12 absolute left-8 top-[30%] max-md:hidden z-50"
+          className="bg-white text-black rounded-full h-12 w-12 absolute left-8 top-[30%] max-md:hidden z-50 hover:bg-white"
           size="icon"
           onClick={handlePreviousClick}
         >
           <ChevronLeft />
         </Button>
         <Button
-          className="bg-white text-black rounded-full h-12 w-12 absolute right-8 top-[30%] max-md:hidden z-50"
+          className="bg-white text-black rounded-full h-12 w-12 absolute right-8 top-[30%] max-md:hidden z-50 hover:bg-white"
           size="icon"
           onClick={handleNextClick}
         >
