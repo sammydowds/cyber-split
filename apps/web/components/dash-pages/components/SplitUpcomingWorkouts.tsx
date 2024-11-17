@@ -15,12 +15,9 @@ export const SplitUpcomingWorkouts = ({
   }
   return (
     <div className="flex flex-col">
-      <Link href="/" className="flex flex-col px-2">
-        <div className="font-semibold text-xl tracking-tighter flex items-center gap-[4px]">
-          Upcoming Workouts
-        </div>
-      </Link>
-
+      <div className="font-semibold text-xl tracking-tighter flex items-center gap-[4px]">
+        Upcoming Workouts
+      </div>
       <HorizontalCarousel>
         {/* @ts-ignore json to WorkoutSchedule types */}
         {activeSplit?.schedule?.map((week, weekIdx) => {

@@ -449,7 +449,11 @@ export const findActiveSplit = async (id: string) => {
                 include: {
                   sets: {
                     include: {
-                      exercise: true,
+                      exercise: {
+                        include: {
+                          equipment: true,
+                        },
+                      },
                     },
                   },
                 },
@@ -759,7 +763,11 @@ export const getActiveSchedule = async (profileId: string) => {
                 include: {
                   sets: {
                     include: {
-                      exercise: true,
+                      exercise: {
+                        include: {
+                          equipment: true,
+                        },
+                      },
                     },
                   },
                 },
