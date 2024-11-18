@@ -2,8 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { FetchOptions, useFetchOptions } from "@/hooks/useFetchOptions";
 import { ActiveSplitDeep } from "@repo/database";
 
-const fetchActiveScheduledSplit = async (options: FetchOptions) => {
-  const res = await fetch("/api/active-split", {
+const fetchActiveSplit = async (options: FetchOptions) => {
+  const res = await fetch("/api/active", {
     method: "GET",
     ...options.options,
   });
@@ -15,12 +15,12 @@ const fetchActiveScheduledSplit = async (options: FetchOptions) => {
   return data?.data;
 };
 
-const useActiveScheduledSplit = () => {
+const useActiveSplit = () => {
   const opts = useFetchOptions();
   return useQuery<ActiveSplitDeep>({
     queryKey: ["activeSplit"],
-    queryFn: () => fetchActiveScheduledSplit(opts),
+    queryFn: () => fetchActiveSplit(opts),
   });
 };
 
-export { useActiveScheduledSplit };
+export { useActiveSplit };

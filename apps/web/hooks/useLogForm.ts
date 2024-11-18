@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { LogWorkoutSchema, schema } from "../../../lib/formSchemas/log";
+import { LogWorkoutSchema, schema } from "@/lib/formSchemas/log";
 import { useCreateLoggedWorkout } from "@/hooks/useCreateLoggedWorkout";
 import { clearDB, LOG_WORKOUT_KEY, saveToDB } from "@/lib/indexedDb";
 import toast from "react-hot-toast";

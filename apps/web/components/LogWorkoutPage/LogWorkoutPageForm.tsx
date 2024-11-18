@@ -1,7 +1,7 @@
 import { Form } from "@/components/ui/form";
 import { LogExercise } from "./LogExercise/LogExercise";
 import { WorkoutSummary } from "./WorkoutSummary/WorkoutSummary";
-import { useLogForm } from "../hooks/useLogForm";
+import { useLogForm } from "@/hooks/useLogForm";
 import { DeepLoggedWorkout } from "@repo/database";
 import { Button } from "@/components/ui/button";
 import { Loader } from "lucide-react";

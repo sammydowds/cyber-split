@@ -2,7 +2,7 @@ import { CalendarInfoIcon } from "@/components/CalendarInfoIcon";
 import {
   useUpcomingWorkoutCardData,
   UseUpcomingWorkoutCardProps,
-} from "./useUpcomingWorkoutCardData";
+} from "../hooks/useUpcomingWorkoutCardData";
 import { WorkoutTemplateCard } from "@/components/WorkoutTemplateCard";
 
 export const UpcomingWorkoutCard = ({

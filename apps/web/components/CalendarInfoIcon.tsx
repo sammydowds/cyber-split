@@ -12,7 +12,9 @@ export const CalendarInfoIcon = ({ date }: CalendarInfoIconProps) => {
         {month}
       </div>
       <div className="flex flex-col gap-[0px] text-center w-full py-[2px]">
-        <div className="text-[16px] text-black m-0 leading-4 font-bold">{day}</div>
+        <div className="text-[16px] text-black m-0 leading-4 font-bold">
+          {day}
+        </div>
         <div className="text-[10px] text-stone-400 leading-3">{weekday}</div>
       </div>
     </div>

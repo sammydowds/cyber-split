@@ -1,6 +1,5 @@
 import { useFormContext, useWatch } from "react-hook-form";
 import { GroupSummary } from "./GroupSummary";
-import Link from "next/link";
 import { deleteFromDB, LOG_WORKOUT_KEY } from "@/lib/indexedDb";
 import { useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
@@ -25,14 +24,6 @@ export const WorkoutSummary = () => {
         <div className="text-sm">
           <h2 className="text-2xl font-bold">{workout?.name}</h2>
         </div>
-      </div>
-      <div className="flex self-start">
-        <Link
-          href="/dashboard/active"
-          className="underline text-stone-600 text-sm"
-        >
-          Return to split
-        </Link>
       </div>
       <div className="flex flex-row justify-between items-center w-full">
         <div className="font-bold">
