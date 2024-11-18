@@ -33,7 +33,7 @@ export default function Dashboard() {
         }
       >
         <DashboardSidebar>
-          <div className="py-8 max-md:w-screen h-full">
+          <div className="py-8 w-screen h-full">
             {loadingData ? (
               <div className="w-full flex items-center justify-center mt-8">
                 <Loader className="animate-spin" />

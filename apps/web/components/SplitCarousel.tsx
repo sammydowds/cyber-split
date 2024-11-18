@@ -3,9 +3,6 @@ import { ChevronLeft, ChevronRight, Pointer } from "lucide-react";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { useCreateActivateSplit } from "@/hooks/useCreateActivateSplit";
-import { Loading } from "./Loading";
-import { useQueryClient } from "@tanstack/react-query";
 import { DiscoverSplitCard } from "./DiscoverSplitCard";
 
 const ScrollInstructions = () => {
@@ -28,71 +25,47 @@ interface SplitCarouselProps {
 export const SplitCarousel = ({ splits, refetch }: SplitCarouselProps) => {
   const [index, setIndex] = useState(0);
   const [viewed, setViewed] = useState<Set<number>>(new Set());
-  const [isAnimatingFoward, setIsAnimatingFoward] = useState(false);
-  const [isAnimatingBackward, setIsAnimatingBackward] = useState(false);
-  const [previousIndex, setPreviousIndex] = useState(1);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const touchStart = useRef<number | null>(null);
-  const touchEnd = useRef<number | null>(null);
-  const touchStartTime = useRef<number | null>(null);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const visibleIndex = cardRefs.current.indexOf(
+              entry.target as HTMLDivElement,
+            );
+            if (visibleIndex !== -1) {
+              setIndex(visibleIndex);
+              setViewed((prev) => new Set(prev).add(visibleIndex));
+            }
+          }
+        });
+      },
+      { threshold: 0.5 },
+    );
 
-  // the required distance between touchStart and touchEnd to be detected as a swipe
-  const minSwipeDistance = 50;
+    cardRefs.current.forEach((card) => {
+      if (card) observer.observe(card);
+    });
 
-  const onTouchStart = (e: React.TouchEvent) => {
-    touchEnd.current = null;
-    touchStart.current = e.targetTouches[0].clientX;
-    touchStartTime.current = Date.now();
-  };
+    return () => {
+      observer.disconnect();
+    };
+  }, [splits]);
 
-  const onTouchMove = (e: React.TouchEvent) => {
-    touchEnd.current = e.targetTouches[0].clientX;
-  };
-
-  const handleNextClick = () => {
-    setIsAnimatingFoward(true);
-    setViewed((prev) => new Set(prev).add(index));
-    setPreviousIndex(index);
-    setIndex((prevIndex) => (prevIndex + 1) % splits.length);
-  };
-
-  const handlePreviousClick = () => {
-    setIsAnimatingBackward(true);
-    setViewed((prev) => new Set(prev).add(index));
-    setPreviousIndex(index);
-    setIndex((prevIndex) => (prevIndex - 1 + splits.length) % splits.length);
-  };
-
-  const onTouchEnd = () => {
-    if (!touchStart.current || !touchEnd.current) return;
-    const distance = touchStart.current - touchEnd.current;
-    const timeElapsed = touchStartTime?.current
-      ? Date.now() - touchStartTime?.current
-      : 0;
-    const velocity = Math.abs(distance / timeElapsed);
-    const velocityTriggered = velocity > 0.5;
-
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-
-    if (velocityTriggered) {
-      if (isLeftSwipe) {
-        handleNextClick();
-      } else if (isRightSwipe) {
-        handlePreviousClick();
-      }
+  // needed for now, because scroll-behavior: smooth not working
+  const handleScroll = (direction: number) => {
+    const targetIndex = index + direction;
+    const targetElement = cardRefs.current[targetIndex];
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "start",
+      });
     }
   };
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsAnimatingBackward(false), 300);
-    return () => clearTimeout(timer);
-  }, [index, setIsAnimatingBackward]);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsAnimatingFoward(false), 300);
-    return () => clearTimeout(timer);
-  }, [index, setIsAnimatingFoward]);
 
   if (!splits.length) {
     return null;
@@ -110,7 +83,7 @@ export const SplitCarousel = ({ splits, refetch }: SplitCarouselProps) => {
           </div>
         </div>
         <div className="flex flex-col items-center gap-[8px]">
-          {viewed.size >= splits.length - 1 ? (
+          {viewed.size >= splits.length ? (
             <Button className="font-bold" size="sm" onClick={refetch}>
               View More
             </Button>
@@ -140,59 +113,37 @@ export const SplitCarousel = ({ splits, refetch }: SplitCarouselProps) => {
         </div>
       </div>
       <div className="w-full relative">
-        <Button
-          className="bg-white text-black rounded-full h-12 w-12 absolute left-8 top-[30%] max-md:hidden z-50 hover:bg-white"
-          size="icon"
-          onClick={handlePreviousClick}
+        <a
+          className={cn(
+            "h-12 w-12 rounded-full items-center justify-center flex bg-white absolute top-[30%] left-8 max-md:hidden hover:cursor-pointer z-10",
+            index === 0 ? "hidden" : "",
+          )}
+          onClick={() => handleScroll(-1)}
         >
           <ChevronLeft />
-        </Button>
-        <Button
-          className="bg-white text-black rounded-full h-12 w-12 absolute right-8 top-[30%] max-md:hidden z-50 hover:bg-white"
-          size="icon"
-          onClick={handleNextClick}
+        </a>
+        <a
+          className={cn(
+            "h-12 w-12 rounded-full items-center justify-center flex bg-white absolute top-[30%] right-8 max-md:hidden hover:cursor-pointer z-10",
+            index === splits.length - 1 ? "hidden" : "",
+          )}
+          onClick={() => handleScroll(1)}
         >
           <ChevronRight />
-        </Button>
-        <div
-          className="relative w-full"
-          onTouchStart={onTouchStart}
-          onTouchEnd={onTouchEnd}
-          onTouchMove={onTouchMove}
-        >
-          {/* from left old card*/}
-          <div
-            className={`absolute inset-0 flex items-center justify-center transition-transform duration-300 z-0 ${isAnimatingFoward ? "opacity-100 -translate-x-[100%]" : "opacity-0"}`}
-          >
-            <DiscoverSplitCard
-              split={splits[previousIndex]}
-            ></DiscoverSplitCard>
-          </div>
-          {/* from right old card*/}
-          <div
-            className={`absolute inset-0 flex items-center justify-center transition-transform duration-300 z-0 ${isAnimatingBackward ? "opacity-100 translate-x-[100%]" : "opacity-0"}`}
-          >
-            <DiscoverSplitCard
-              split={splits[previousIndex]}
-            ></DiscoverSplitCard>
-          </div>
-          <div
-            className={`flex items-center justify-center transition-transform duration-300 z-10 ${isAnimatingFoward || isAnimatingBackward ? "opacity-0" : "opacity-100"}`}
-          >
-            <DiscoverSplitCard split={splits[index]}></DiscoverSplitCard>
-          </div>
-          {/* from right new card */}
-          <div
-            className={`absolute inset-0 flex items-center justify-center transition-transform duration-300 z-0 ${isAnimatingFoward ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full"}`}
-          >
-            <DiscoverSplitCard split={splits[index]}></DiscoverSplitCard>
-          </div>
-          {/* from left new card */}
-          <div
-            className={`absolute inset-0 flex items-center justify-center transition-transform duration-300 z-0 ${isAnimatingBackward ? "opacity-100 -translate-x-0" : "opacity-0 -translate-x-full"}`}
-          >
-            <DiscoverSplitCard split={splits[index]}></DiscoverSplitCard>
-          </div>
+        </a>
+
+        <div className="snap-x snap-mandatory flex flex-nowrap w-full gap-8 overflow-x-scroll py-2 px-3">
+          {splits.map((split, idx) => {
+            return (
+              <div
+                id={`discover-${idx}`}
+                ref={(el) => (cardRefs.current[idx] = el)}
+                className="flex items-center justify-center w-full max-w-full flex-shrink-0 snap-center"
+              >
+                <DiscoverSplitCard split={split}></DiscoverSplitCard>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
