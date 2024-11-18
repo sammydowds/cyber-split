@@ -84,7 +84,11 @@ export const SplitCarousel = ({ splits, refetch }: SplitCarouselProps) => {
         </div>
         <div className="flex flex-col items-center gap-[8px]">
           {viewed.size >= splits.length ? (
-            <Button className="font-bold" size="sm" onClick={refetch}>
+            <Button
+              className="font-bold max-md:hidden"
+              size="sm"
+              onClick={refetch}
+            >
               View More
             </Button>
           ) : (
@@ -93,7 +97,11 @@ export const SplitCarousel = ({ splits, refetch }: SplitCarouselProps) => {
             </div>
           )}
 
-          <div className="flex items-center gap-[4px]">
+          <Button className="font-bold md:hidden" size="sm" onClick={refetch}>
+            View More
+          </Button>
+
+          <div className="flex items-center gap-[4px] max-md:hidden">
             {splits.map((s, idx) => {
               return (
                 <div
