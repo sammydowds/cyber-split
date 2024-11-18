@@ -23,14 +23,7 @@ export default function Dashboard() {
 
   return (
     <main className="w-full bg-stone-100">
-      <nav className="flex items-center h-[50px] fixed bg-white w-full z-[1000] shadow">
-        <div className="h-[60px] flex items-center text-lg py-4 px-2 relative">
-          <div className="h-[30px] w-[150px] relative overflow-hidden rounded">
-            <Image src="/logo.png" alt="logo" fill />
-          </div>
-        </div>
-      </nav>
-      <div className="mt-[50px] h-full w-full">
+      <div className="md:mt-[50px] h-full w-full">
         {loadingData ? (
           <div className="w-full h-full flex items-center justify-center">
             <Loading />
