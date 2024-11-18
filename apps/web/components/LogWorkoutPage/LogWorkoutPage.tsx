@@ -1,6 +1,5 @@
 import { Loader, Section } from "lucide-react";
-import { useDraftLoggedWorkout } from "../hooks/useDraftLoggedWorkout";
-import { Page } from "../components/pages";
+import { useDraftLoggedWorkout } from "@/hooks/useDraftLoggedWorkout";
 import { LogWorkoutPageForm } from "./LogWorkoutPageForm";
 
 interface LogWorkoutPageProps {
@@ -31,11 +30,11 @@ export const LogWorkoutPage = ({ workoutId }: LogWorkoutPageProps) => {
 
   if (!isPending && !workout) {
     return (
-      <Page>
-        <Section>
+      <div>
+        <div>
           <div>Oops. We had an issue loading that workout.</div>;
-        </Section>
-      </Page>
+        </div>
+      </div>
     );
   }
 

@@ -45,7 +45,7 @@ export const WorkoutTemplateCard = ({
   );
 
   const handleClickLog = () => {
-    router.push(`/dashboard/log-workout/${workout.id}`);
+    router.push(`/log-workout/${workout.id}`);
   };
 
   const handleWorkoutChange = (

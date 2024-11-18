@@ -1,6 +1,6 @@
 import { DiscoverSplitDeep } from "@repo/database";
 import { ChevronLeft, ChevronRight, Pointer } from "lucide-react";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { DiscoverSplitCard } from "./DiscoverSplitCard";
@@ -112,7 +112,7 @@ export const SplitCarousel = ({ splits, refetch }: SplitCarouselProps) => {
           </div>
         </div>
       </div>
-      <div className="w-full relative">
+      <div className="w-full max-w-[1200px] relative py-4">
         <a
           className={cn(
             "h-12 w-12 rounded-full items-center justify-center flex bg-white absolute top-[30%] left-8 max-md:hidden hover:cursor-pointer z-10",

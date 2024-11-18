@@ -1,12 +1,12 @@
 import { ActiveSplitDeep } from "@repo/database";
-import { SplitUpcomingWorkouts } from "./components/SplitUpcomingWorkouts";
-import { SplitCarousel } from "../SplitCarousel";
+import { SplitUpcomingWorkouts } from "./SplitUpcomingWorkouts";
+import { SplitCarousel } from "./SplitCarousel";
 import { useDiscoverSplits } from "@/hooks/useDiscoverSplits";
-import { Loading } from "../Loading";
-import { Button } from "../ui/button";
+import { Loading } from "./Loading";
+import { Button } from "./ui/button";
 import { useDeactivateSplit } from "@/hooks/useDeactivateSplit";
 import { useQueryClient } from "@tanstack/react-query";
-import { ActivatedSplitCard } from "../ActivatedSplitCard";
+import { ActivatedSplitCard } from "./ActivatedSplitCard";
 
 interface HomePageProps {
   activeSplit?: ActiveSplitDeep;
@@ -22,7 +22,7 @@ export const HomePage = ({ activeSplit }: HomePageProps) => {
 
   if (!activeSplit?.split) {
     return (
-      <div className="pt-8 flex justify-center">
+      <div className="flex justify-center">
         <div className="flex flex-col items-center w-full gap-6 text-black">
           <div className="w-full bg-yellow-300 py-4 flex items-center">
             {isPending || isRefetching ? (
@@ -38,7 +38,7 @@ export const HomePage = ({ activeSplit }: HomePageProps) => {
     );
   }
   return (
-    <div className="w-full flex flex-col gap-4 items-center bg-stone-100 h-full py-8">
+    <div className="w-full flex flex-col gap-4 items-center bg-stone-100 h-full py-4">
       <ActivatedSplitCard split={activeSplit.split}>
         <Button
           variant="destructive"

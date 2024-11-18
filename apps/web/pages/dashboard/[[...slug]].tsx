@@ -4,10 +4,9 @@ import { useProfile } from "@/hooks/useProfile";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import * as React from "react";
-import { SidebarProvider } from "@/components/ui/sidebar";
-import { DashContentRouter } from "@/components/dash-pages/DashContentRouter";
-import { DashboardSidebar } from "@/components/DashboardSidebar";
-import { Loader } from "lucide-react";
+import { HomePage } from "@/components/HomePage";
+import { Loading } from "@/components/Loading";
+import Image from "next/image";
 
 export default function Dashboard() {
   const { data: activeSplit, isPending: loadingActiveScheduledSplit } =
@@ -24,26 +23,14 @@ export default function Dashboard() {
 
   return (
     <main className="w-full">
-      <SidebarProvider
-        style={
-          {
-            "--sidebar-width": "19rem",
-            overflow: "hidden",
-          } as React.CSSProperties
-        }
-      >
-        <DashboardSidebar>
-          <div className="py-8 w-screen h-full">
-            {loadingData ? (
-              <div className="w-full flex items-center justify-center mt-8">
-                <Loader className="animate-spin" />
-              </div>
-            ) : (
-              <DashContentRouter activeSplit={activeSplit} profile={profile} />
-            )}
+      <nav className="flex items-center h-[50px]">
+        <div className="h-[60px] flex items-center text-lg py-4 px-2 relative">
+          <div className="h-[30px] w-[150px] relative overflow-hidden rounded">
+            <Image src="/logo.png" alt="logo" fill />
           </div>
-        </DashboardSidebar>
-      </SidebarProvider>
+        </div>
+      </nav>
+      {loadingData ? <Loading /> : <HomePage activeSplit={activeSplit} />}
     </main>
   );
 }
