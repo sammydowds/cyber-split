@@ -1,5 +1,7 @@
 import {
+  ActiveSplitDeep,
   CADENCE_TO_DESCRIPTION_MAP,
+  Day,
   DiscoverSplitDeep,
   FB_CADENCE,
   SPLIT_TYPE_TO_DESCRIPTION,
@@ -8,6 +10,7 @@ import {
   SplitDeep,
   THREE_DAY_CADENCE,
   TWO_DAY_CADENCE,
+  WorkoutSchedule,
 } from "@repo/database";
 import { useMemo, ReactNode } from "react";
 import { SampleWeekSchedule } from "./SampleWeekSchedule";
@@ -15,6 +18,14 @@ import { cn } from "@/lib/utils";
 import { HorizontalCarousel } from "./HorizontalCarousel";
 import { Badge } from "./ui/badge";
 import { WorkoutTemplateCard } from "./WorkoutTemplateCard";
+import { MonthTable } from "./MonthTable";
+import { ScheduleTable } from "./ScheduleTable";
+import { SplitUpcomingWorkouts } from "./SplitUpcomingWorkouts";
+import { isAfter, isToday } from "date-fns";
+import { Button } from "./ui/button";
+import { CalendarInfoIcon } from "./CalendarInfoIcon";
+import { WorkoutMarker } from "./WorkoutMarker";
+import { useRouter } from "next/router";
 
 interface Level {
   level: 0 | 1 | 2;
@@ -93,21 +104,23 @@ const getUniqueEquipment = (split: DiscoverSplitDeep) => {
 };
 
 interface ActivatedSplitCardProps {
-  split: SplitDeep;
+  activeSplit: ActiveSplitDeep;
   children: ReactNode;
 }
 export const ActivatedSplitCard = ({
-  split,
+  activeSplit,
   children,
 }: ActivatedSplitCardProps) => {
+  const router = useRouter();
+  const { split, schedule } = activeSplit;
   const difficultyLevel = useMemo(() => {
     return getDifficultyLevel({ split });
   }, [split]);
   const equipment = getUniqueEquipment(split).filter(Boolean);
   return (
     <div className="max-w-[800px] max-md:w-screen max-md:rounded-none rounded bg-white flex flex-col justify-between gap-2 border-[1px] text-black">
-      <div className="flex md:flex-row max-md:flex-col">
-        <div className="flex flex-col justify-between md:max-w-[400px] max-md:min-h-[275px] p-[8px] gap-[12px]">
+      <div className="flex max-md:flex-col md:grid md:grid-cols-2 max-md:w-full items-center">
+        <div className="flex flex-col justify-between md:max-w-[400px] max-md:min-h-[340px] p-[8px] gap-[12px]">
           <div className="flex items-center justify-between p-2 px-4">
             <div className="text-2xl tracking-tighter font-semibold">
               {SPLIT_TYPE_TO_DESCRIPTION[split.type as SPLIT_TYPES]}
@@ -141,15 +154,71 @@ export const ActivatedSplitCard = ({
           </div>
           <div className="p-2 w-full">{children}</div>
         </div>
-        <div className="h-fill w-[1px] bg-stone-300 max-md:hidden z-10"></div>
-        <div className="h-[1px] w-fill bg-stone-300 md:hidden mx-6 my-4"></div>
-        <div className="md:max-w-[400px] py-4 flex flex-col justify-center">
+        <div className="md:max-w-[400px] w-full py-4 flex flex-col justify-center">
           <div className="tracking-tighter font-semibold pl-4">Workouts</div>
           <HorizontalCarousel>
             {split.workouts.map((workout) => {
               return <WorkoutTemplateCard workout={workout} hideCta />;
             })}
           </HorizontalCarousel>
+        </div>
+        <div className="p-4">
+          <div className="font-semibold text-xl tracking-tighter flex items-center gap-[4px]">
+            This Month's Schedule
+          </div>
+          {schedule ? <ScheduleTable schedule={schedule as any} /> : null}
+        </div>
+        <div className="p-4 h-full w-full">
+          <div className="flex flex-col gap-2">
+            <div className="font-semibold text-xl tracking-tighter flex items-center gap-[4px]">
+              Upcoming
+            </div>
+            <div className="flex flex-col overflow-y-scroll overflow-hidden h-full md:max-h-[300px] w-full gap-2">
+              {/* @ts-ignore json to WorkoutSchedule types */}
+              {activeSplit?.schedule?.map((week, weekIdx) => {
+                return week.map(
+                  (day: WorkoutSchedule[number][number], dayIdx: number) => {
+                    const { workout, date } = day;
+                    const workoutData = activeSplit.split.workouts.filter(
+                      (template) =>
+                        template.letterLabel === workout?.letterLabel,
+                    )[0];
+                    const d = new Date(date);
+                    if (
+                      workout &&
+                      workoutData &&
+                      (isToday(d) || isAfter(d, new Date()))
+                    ) {
+                      return (
+                        <div className="flex flex-col gap-[8px] border-[1px] rounded p-2">
+                          <div className="flex items-center justify-between px-2">
+                            <div className="font-semibold text-xl flex items-center gap-2">
+                              <WorkoutMarker text={workout.letterLabel ?? ""} />
+                              {workout.name}
+                            </div>
+                            <div>
+                              <CalendarInfoIcon date={d} />
+                            </div>
+                          </div>
+                          <div>
+                            <Button
+                              className="font-bold w-full"
+                              size="lg"
+                              onClick={() =>
+                                router.push(`/log-workout/${workoutData.id}`)
+                              }
+                            >
+                              Log Workout
+                            </Button>
+                          </div>
+                        </div>
+                      );
+                    }
+                  },
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </div>

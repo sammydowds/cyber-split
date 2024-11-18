@@ -39,7 +39,7 @@ export const HomePage = ({ activeSplit }: HomePageProps) => {
   }
   return (
     <div className="w-full flex flex-col gap-4 items-center bg-stone-100 h-full py-4">
-      <ActivatedSplitCard split={activeSplit.split}>
+      <ActivatedSplitCard activeSplit={activeSplit}>
         <Button
           variant="destructive"
           disabled={deactivating}
@@ -49,9 +49,6 @@ export const HomePage = ({ activeSplit }: HomePageProps) => {
           End
         </Button>
       </ActivatedSplitCard>
-      <div className="max-w-[800px] max-md:w-full">
-        <SplitUpcomingWorkouts activeSplit={activeSplit} />
-      </div>
     </div>
   );
 };
