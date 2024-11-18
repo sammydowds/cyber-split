@@ -120,7 +120,7 @@ export const ActivatedSplitCard = ({
   return (
     <div className="max-w-[800px] max-md:w-screen max-md:rounded-none rounded bg-white flex flex-col justify-between gap-2 border-[1px] text-black">
       <div className="flex max-md:flex-col md:grid md:grid-cols-2 max-md:w-full items-center">
-        <div className="flex flex-col justify-between md:max-w-[400px] max-md:min-h-[340px] p-[8px] gap-[12px]">
+        <div className="flex flex-col justify-between md:max-w-[400px] p-[8px] gap-[12px]">
           <div className="flex items-center justify-between p-2 px-4">
             <div className="text-2xl tracking-tighter font-semibold">
               {SPLIT_TYPE_TO_DESCRIPTION[split.type as SPLIT_TYPES]}
@@ -141,7 +141,7 @@ export const ActivatedSplitCard = ({
               </div>
             </div>
           </div>
-          <div className="flex items-center gap-[3px] h-[150px] px-2 overflow-y-auto overflow-hidden">
+          <div className="flex items-center gap-[3px] overflow-y-auto overflow-hidden">
             <div className="flex flex-wrap gap-[4px] items-center">
               {equipment.map((e) => {
                 return (

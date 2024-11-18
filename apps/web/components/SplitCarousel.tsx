@@ -112,7 +112,7 @@ export const SplitCarousel = ({ splits, refetch }: SplitCarouselProps) => {
           </div>
         </div>
       </div>
-      <div className="w-full max-w-[1200px] relative py-4">
+      <div className="w-full max-w-[1100px] relative py-4">
         <a
           className={cn(
             "h-12 w-12 rounded-full items-center justify-center flex bg-white absolute top-[30%] left-8 max-md:hidden hover:cursor-pointer z-10",

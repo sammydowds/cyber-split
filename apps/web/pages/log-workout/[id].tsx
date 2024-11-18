@@ -19,9 +19,9 @@ const LogWorkoutPage = () => {
   }
 
   return (
-    <div>
+    <main className="w-full h-full flex items-center justify-center">
       <LogWorkout workoutId={id as string} />
-    </div>
+    </main>
   );
 };
 
