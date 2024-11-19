@@ -136,7 +136,7 @@ export const ActivatedSplitCard = ({
   const equipment = getUniqueEquipment(split).filter(Boolean);
   return (
     <div className="max-w-[800px] max-md:w-screen max-md:rounded-none rounded bg-white flex flex-col justify-between gap-2 md:border-[1px] text-black">
-      <div className="flex max-md:flex-col md:flex-row max-md:w-full">
+      <div className="flex max-md:flex-col md:flex-row max-md:w-full max-md:gap-4">
         <div className="flex flex-col justify-between md:max-w-[400px] md:p-[8px] gap-[12px]">
           <div className="flex items-center justify-between p-2 px-4">
             <div className="flex items-center gap-[4px]">
@@ -174,12 +174,12 @@ export const ActivatedSplitCard = ({
             </div>
           </div>
         </div>
-        <div className="p-4 h-full w-full">
-          <div className="flex flex-col gap-2">
-            <div className="font-semibold text-xl tracking-tighter flex items-center gap-[4px]">
-              Upcoming ({upcomingWorkouts.length})
-            </div>
-            <div className="flex flex-col overflow-y-scroll overflow-hidden h-full max-h-[300px] w-full gap-2">
+        <div className="h-fill w-full md:max-h-[325px] max-md:h-[500px]">
+          <div className="flex flex-col gap-2 h-full relative">
+            <div className="flex flex-col overflow-y-scroll overflow-hidden h-full w-full pt-2 pb-4 px-2 gap-2">
+              <div className="font-bold tracking-tighter px-2">
+                Upcoming
+              </div>
               {upcomingWorkouts.map(
                 ({
                   workout,
