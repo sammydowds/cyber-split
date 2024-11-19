@@ -28,7 +28,7 @@ export const useLogForm = (
       queryCient.invalidateQueries();
       form.reset();
       toast.success("Workout saved to server.", { duration: 3000 });
-      router.push("/dashboard/active");
+      router.push("/dashboard");
     },
   });
 

@@ -340,6 +340,9 @@ export const lastLoggedWorkout = async (
                 },
               },
             },
+            orderBy: {
+              dateLogged: "asc",
+            },
           },
         },
       },
