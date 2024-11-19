@@ -1,6 +1,7 @@
 import { Loader, Section } from "lucide-react";
 import { useDraftLoggedWorkout } from "@/hooks/useDraftLoggedWorkout";
 import { LogWorkoutPageForm } from "./LogWorkoutPageForm";
+import { Loading } from "../Loading";
 
 interface LogWorkoutPageProps {
   workoutId: string;
@@ -15,7 +16,7 @@ export const LogWorkoutPage = ({ workoutId }: LogWorkoutPageProps) => {
   if (isPending) {
     return (
       <div className="w-full mt-12 flex flex-col items-center">
-        <Loader className="animate-spin" />
+        <Loading />
       </div>
     );
   }
@@ -23,7 +24,7 @@ export const LogWorkoutPage = ({ workoutId }: LogWorkoutPageProps) => {
   if (isRefetching) {
     return (
       <div className="w-full mt-12 flex flex-col items-center">
-        <Loader className="animate-spin" />
+        <Loading />
       </div>
     );
   }

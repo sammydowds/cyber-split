@@ -6,6 +6,7 @@ import { DeepLoggedWorkout } from "@repo/database";
 import { Button } from "@/components/ui/button";
 import { Loader } from "lucide-react";
 import { useSearchParams } from "next/navigation";
+import { Loading } from "../Loading";
 
 interface LogWorkoutPageFormProps {
   workout: DeepLoggedWorkout;
@@ -36,7 +37,7 @@ export const LogWorkoutPageForm = ({ workout }: LogWorkoutPageFormProps) => {
               type="submit"
               className="max-md:w-full font-bold h-[50px] text-lg"
             >
-              {isSaving ? <Loader className="animate-spin" /> : "Log Workout"}
+              {isSaving ? <Loading /> : "Finish Workout"}
             </Button>
           </>
         )}
