@@ -4,7 +4,6 @@ import { WorkoutSummary } from "./WorkoutSummary/WorkoutSummary";
 import { useLogForm } from "@/hooks/useLogForm";
 import { DeepLoggedWorkout } from "@repo/database";
 import { Button } from "@/components/ui/button";
-import { Loader } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { Loading } from "../Loading";
 
