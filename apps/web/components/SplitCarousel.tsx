@@ -72,7 +72,7 @@ export const SplitCarousel = ({ splits, refetch }: SplitCarouselProps) => {
   }
 
   return (
-    <div className="flex flex-col w-full items-center gap-4">
+    <div className="flex flex-col w-full items-center">
       <div className="flex justify-between max-md:items-center md:items-end w-full min-h-[30px] px-2 max-w-[700px] relative">
         <div className="">
           <div className="font-semibold tracking-tighter text-2xl max-md:text-lg gap-[4px] flex items-center">
@@ -83,23 +83,12 @@ export const SplitCarousel = ({ splits, refetch }: SplitCarouselProps) => {
           </div>
         </div>
         <div className="flex flex-col items-center gap-[8px]">
-          {viewed.size >= splits.length ? (
-            <Button
-              className="font-bold max-md:hidden"
-              size="sm"
-              onClick={refetch}
-            >
-              View More
-            </Button>
-          ) : (
-            <div className="md:hidden">
-              <ScrollInstructions />
-            </div>
-          )}
-
-          <Button className="font-bold md:hidden" size="sm" onClick={refetch}>
+          <Button className="font-bold" size="sm" onClick={refetch}>
             View More
           </Button>
+          <div className="md:hidden">
+            <ScrollInstructions />
+          </div>
 
           <div className="flex items-center gap-[4px] max-md:hidden">
             {splits.map((s, idx) => {
@@ -120,7 +109,7 @@ export const SplitCarousel = ({ splits, refetch }: SplitCarouselProps) => {
           </div>
         </div>
       </div>
-      <div className="w-full max-w-[1100px] relative py-4">
+      <div className="w-full max-w-[1100px] relative pb-4">
         <a
           className={cn(
             "h-12 w-12 rounded-full items-center justify-center flex bg-white absolute top-[30%] left-8 max-md:hidden hover:cursor-pointer z-10",
