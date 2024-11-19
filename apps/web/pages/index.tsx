@@ -52,6 +52,7 @@ export default function Landing() {
             )}
           </nav>
         </div>
+        <div></div>
       </header>
       <section className="w-full flex flex-col items-center gap-[20px] mt-[80px]">
         <div className="w-[500px] max-md:w-full flex flex-col gap-[8px] px-4">

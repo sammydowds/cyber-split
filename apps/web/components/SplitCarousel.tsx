@@ -82,31 +82,33 @@ export const SplitCarousel = ({ splits, refetch }: SplitCarouselProps) => {
             Find a split that works for you.
           </div>
         </div>
-        <div className="flex flex-col items-center gap-[8px]">
+        <div className="flex flex-col items-center gap-2 md:hidden">
           <Button className="font-bold" size="sm" onClick={refetch}>
-            View More
+            Generate More
           </Button>
-          <div className="md:hidden">
+          <div>
             <ScrollInstructions />
           </div>
-
-          <div className="flex items-center gap-[4px] max-md:hidden">
-            {splits.map((s, idx) => {
-              return (
-                <div
-                  id={s.id}
-                  className={cn(
-                    "rounded-full h-[6px] w-[6px] border-black border-[1px] transition-all duration-300",
-                    idx === index
-                      ? "bg-black h-3 w-3"
-                      : viewed.has(idx)
-                        ? "bg-black"
-                        : "",
-                  )}
-                ></div>
-              );
-            })}
-          </div>
+        </div>
+        <div className="flex items-center gap-[6px] max-md:hidden space-between">
+          {splits.map((s, idx) => {
+            return (
+              <div
+                id={s.id}
+                className={cn(
+                  "rounded-full h-[6px] w-[6px] border-black border-[1px] transition-all duration-300",
+                  idx === index
+                    ? "bg-black h-3 w-3"
+                    : viewed.has(idx)
+                      ? "bg-black"
+                      : "",
+                )}
+              ></div>
+            );
+          })}
+          <Button className="font-bold ml-2" size="sm" onClick={refetch}>
+            Generate More
+          </Button>
         </div>
       </div>
       <div className="w-full max-w-[1100px] relative pb-4">

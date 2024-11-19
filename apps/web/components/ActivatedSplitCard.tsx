@@ -20,6 +20,7 @@ import { Button } from "./ui/button";
 import { CalendarInfoIcon } from "./CalendarInfoIcon";
 import { WorkoutMarker } from "./WorkoutMarker";
 import { useRouter } from "next/router";
+import { EndSplitDropdown } from "./EndSplitDropdown";
 
 interface Level {
   level: 0 | 1 | 2;
@@ -99,11 +100,9 @@ const getUniqueEquipment = (split: DiscoverSplitDeep) => {
 
 interface ActivatedSplitCardProps {
   activeSplit: ActiveSplitDeep;
-  children: ReactNode;
 }
 export const ActivatedSplitCard = ({
   activeSplit,
-  children,
 }: ActivatedSplitCardProps) => {
   const router = useRouter();
   const { split, schedule } = activeSplit;
@@ -137,12 +136,16 @@ export const ActivatedSplitCard = ({
   const equipment = getUniqueEquipment(split).filter(Boolean);
   return (
     <div className="max-w-[800px] max-md:w-screen max-md:rounded-none rounded bg-white flex flex-col justify-between gap-2 md:border-[1px] text-black">
-      <div className="flex max-md:flex-col md:flex-row max-md:w-full items-center">
-        <div className="flex flex-col justify-between md:max-w-[400px] p-[8px] gap-[12px]">
+      <div className="flex max-md:flex-col md:flex-row max-md:w-full">
+        <div className="flex flex-col justify-between md:max-w-[400px] md:p-[8px] gap-[12px]">
           <div className="flex items-center justify-between p-2 px-4">
-            <div className="text-2xl tracking-tighter font-semibold">
-              {SPLIT_TYPE_TO_DESCRIPTION[split.type as SPLIT_TYPES]}
+            <div className="flex items-center gap-[4px]">
+              <div className="text-2xl tracking-tighter font-semibold">
+                {SPLIT_TYPE_TO_DESCRIPTION[split.type as SPLIT_TYPES]}
+              </div>
+              <EndSplitDropdown id={activeSplit.id} />
             </div>
+
             <DifficultyDots level={difficultyLevel} />
           </div>
           <div className="px-4 flex flex-col gap-[4px]">
@@ -159,7 +162,7 @@ export const ActivatedSplitCard = ({
               </div>
             </div>
           </div>
-          <div className="flex items-center gap-[3px] overflow-y-auto overflow-hidden">
+          <div className="flex items-center gap-[3px] overflow-y-auto overflow-hidden max-md:hidden">
             <div className="flex flex-wrap gap-[4px] items-center">
               {equipment.map((e) => {
                 return (
@@ -170,7 +173,6 @@ export const ActivatedSplitCard = ({
               })}
             </div>
           </div>
-          <div className="p-2 w-full">{children}</div>
         </div>
         <div className="p-4 h-full w-full">
           <div className="flex flex-col gap-2">

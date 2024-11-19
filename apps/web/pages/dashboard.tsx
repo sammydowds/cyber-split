@@ -77,16 +77,7 @@ export default function Dashboard() {
         {/* active split sections */}
         {activeSplit ? (
           <div className="w-full flex flex-col gap-4 items-center h-full md:py-4">
-            <ActivatedSplitCard activeSplit={activeSplit}>
-              <Button
-                variant="destructive"
-                disabled={deactivating}
-                className="w-full font-bold text-xl h-[40px]"
-                onClick={() => deactivate({ id: activeSplit.id })}
-              >
-                End
-              </Button>
-            </ActivatedSplitCard>
+            <ActivatedSplitCard activeSplit={activeSplit} />
           </div>
         ) : null}
       </div>
