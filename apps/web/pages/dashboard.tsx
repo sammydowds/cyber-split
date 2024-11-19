@@ -59,7 +59,7 @@ export default function Dashboard() {
               <div className="flex flex-col items-center w-full gap-6 text-black">
                 <div className="w-full bg-yellow-300 py-4 flex items-center">
                   {loadingDiscoverSplits || refetchingDiscoverSplits ? (
-                    <div className="min-h-[460px] flex items-center justify-center w-full">
+                    <div className="min-h-[505px] flex items-center justify-center w-full">
                       <Loading />
                     </div>
                   ) : (
