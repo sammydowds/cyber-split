@@ -175,7 +175,7 @@ export const ActivatedSplitCard = ({
         <div className="p-4 h-full w-full">
           <div className="flex flex-col gap-2">
             <div className="font-semibold text-xl tracking-tighter flex items-center gap-[4px]">
-              Upcoming
+              Upcoming ({upcomingWorkouts.length})
             </div>
             <div className="flex flex-col overflow-y-scroll overflow-hidden h-full max-h-[300px] w-full gap-2">
               {upcomingWorkouts.map(
