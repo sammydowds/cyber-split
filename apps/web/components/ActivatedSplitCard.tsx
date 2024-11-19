@@ -107,6 +107,30 @@ export const ActivatedSplitCard = ({
 }: ActivatedSplitCardProps) => {
   const router = useRouter();
   const { split, schedule } = activeSplit;
+
+  const upcomingWorkouts = useMemo(() => {
+    // @ts-ignore json list
+    return schedule
+      ?.flatMap((week) =>
+        week.map((day: WorkoutSchedule[number][number]) => {
+          const { workout, date } = day;
+          const workoutData = activeSplit.split.workouts.find(
+            (template) => template.letterLabel === workout?.letterLabel,
+          );
+          const d = new Date(date);
+          if (
+            workout &&
+            workoutData &&
+            (isToday(d) || isAfter(d, new Date()))
+          ) {
+            return { workout, workoutData, date: d };
+          }
+          return null;
+        }),
+      )
+      .filter(Boolean);
+  }, [activeSplit]);
+
   const difficultyLevel = useMemo(() => {
     return getDifficultyLevel({ split });
   }, [split]);
@@ -154,49 +178,42 @@ export const ActivatedSplitCard = ({
               Upcoming
             </div>
             <div className="flex flex-col overflow-y-scroll overflow-hidden h-full max-h-[300px] w-full gap-2">
-              {/* @ts-ignore json to WorkoutSchedule types */}
-              {activeSplit?.schedule?.map((week, weekIdx) => {
-                return week.map(
-                  (day: WorkoutSchedule[number][number], dayIdx: number) => {
-                    const { workout, date } = day;
-                    const workoutData = activeSplit.split.workouts.filter(
-                      (template) =>
-                        template.letterLabel === workout?.letterLabel,
-                    )[0];
-                    const d = new Date(date);
-                    if (
-                      workout &&
-                      workoutData &&
-                      (isToday(d) || isAfter(d, new Date()))
-                    ) {
-                      return (
-                        <div className="flex flex-col gap-[8px] border-[1px] rounded p-2 min-w-[345px]">
-                          <div className="flex items-center justify-between px-2">
-                            <div className="font-semibold text-xl flex items-center gap-2">
-                              <WorkoutMarker text={workout.letterLabel ?? ""} />
-                              {workout.name}
-                            </div>
-                            <div>
-                              <CalendarInfoIcon date={d} />
-                            </div>
-                          </div>
-                          <div>
-                            <Button
-                              className="font-bold w-full"
-                              size="lg"
-                              onClick={() =>
-                                router.push(`/log-workout/${workoutData.id}`)
-                              }
-                            >
-                              Log Workout
-                            </Button>
-                          </div>
+              {upcomingWorkouts.map(
+                ({
+                  workout,
+                  workoutData,
+                  date,
+                }: {
+                  workout: any;
+                  workoutData: any;
+                  date: Date;
+                }) => {
+                  return (
+                    <div className="flex flex-col gap-[8px] border-[1px] rounded p-2 md:min-w-[345px] max-md:w-full">
+                      <div className="flex items-center justify-between px-2">
+                        <div className="font-semibold text-xl flex items-center gap-2">
+                          <WorkoutMarker text={workout.letterLabel ?? ""} />
+                          {workout.name}
                         </div>
-                      );
-                    }
-                  },
-                );
-              })}
+                        <div>
+                          <CalendarInfoIcon date={date} />
+                        </div>
+                      </div>
+                      <div>
+                        <Button
+                          className="font-bold w-full"
+                          size="lg"
+                          onClick={() =>
+                            router.push(`/log-workout/${workoutData.id}`)
+                          }
+                        >
+                          Log Workout
+                        </Button>
+                      </div>
+                    </div>
+                  );
+                },
+              )}
             </div>
           </div>
         </div>
