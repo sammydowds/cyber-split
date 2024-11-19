@@ -73,7 +73,7 @@ export const SplitCarousel = ({ splits, refetch }: SplitCarouselProps) => {
 
   return (
     <div className="flex flex-col w-full items-center">
-      <div className="flex justify-between max-md:items-center md:items-end w-full min-h-[30px] px-2 max-w-[700px] relative">
+      <div className="flex justify-between md:items-end w-full min-h-[30px] px-2 max-w-[700px] relative">
         <div className="">
           <div className="font-semibold tracking-tighter text-2xl max-md:text-lg gap-[4px] flex items-center">
             Discover
