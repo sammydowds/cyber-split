@@ -23,12 +23,12 @@ export const useLogForm = (
   const router = useRouter();
   const { mutate: save, isPending: isSaving } = useCreateLoggedWorkout({
     onSuccess: async (data) => {
+      const { id } = data?.data;
       setLoggedWorkout(data?.data);
       await clearDB();
       queryCient.invalidateQueries();
       form.reset();
-      toast.success("Workout saved to server.", { duration: 3000 });
-      router.push("/dashboard");
+      router.push(`/post-workout/${id}?showConfetti=true`);
     },
   });
 

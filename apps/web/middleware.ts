@@ -52,5 +52,6 @@ export const config = {
     "/api/active",
     "/api/template-workout/:path*",
     "/api/split/:path*",
+    "/api/post-workout/:path*",
   ],
 };

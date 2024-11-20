@@ -19,6 +19,8 @@ import {
   DeepLoggedWorkout,
   DeepTemplateWorkout,
   DiscoverSplitDeep,
+  ExerciseVolumePayload,
+  PostWorkoutData,
   SplitDeep,
   WorkoutVolumeApiPayload,
 } from "./types";
@@ -904,4 +906,101 @@ export const discoverSplits = async () => {
   }
 
   return sampleTemplates;
+};
+
+export const getPostWorkoutData = async (
+  workoutId: string,
+): Promise<PostWorkoutData> => {
+  const loggedWorkout = await prisma.loggedWorkout.findUnique({
+    where: { id: workoutId },
+    include: {
+      strengthGroups: {
+        include: {
+          sets: {
+            include: {
+              exercise: true,
+            },
+          },
+        },
+      },
+      Split: true,
+    },
+  });
+
+  const lastFiveLoggedWorkouts = await prisma.loggedWorkout.findMany({
+    where: {
+      profileId: loggedWorkout?.profileId,
+      templateWorkoutId: loggedWorkout?.templateWorkoutId,
+      id: {
+        not: workoutId,
+      },
+    },
+    orderBy: {
+      dateLogged: "desc",
+    },
+    take: 5,
+    include: {
+      strengthGroups: {
+        include: {
+          sets: {
+            include: {
+              exercise: true,
+            },
+          },
+        },
+      },
+      Split: true,
+    },
+  });
+
+  const loggedWorkoutCount = await prisma.loggedWorkout.count({
+    where: { profileId: loggedWorkout?.profileId },
+  });
+
+  if (!loggedWorkout) {
+    throw new Error("Workout not found");
+  }
+
+  let exerciseVolumes: { [k: string]: ExerciseVolumePayload } = {};
+  const workouts = [loggedWorkout, ...lastFiveLoggedWorkouts];
+  workouts.forEach((workout) => {
+    workout.strengthGroups.forEach((group) => {
+      let tempVolume = 0;
+      let key = group.name;
+      group.sets.forEach((set) => {
+        if (set.weight && set.reps && set.dateLogged) {
+          const setVol = set.weight * set.reps;
+          tempVolume += setVol;
+        }
+      });
+      if (key in exerciseVolumes) {
+        exerciseVolumes[key] = {
+          data: [
+            ...exerciseVolumes[key]["data"],
+            {
+              date: workout.dateLogged ?? new Date(),
+              volume: tempVolume,
+            },
+          ],
+        };
+      } else {
+        exerciseVolumes[key] = {
+          data: [
+            {
+              date: workout.dateLogged ?? new Date(),
+              volume: tempVolume,
+            },
+          ],
+        };
+      }
+    });
+  });
+
+  const postWorkoutData: PostWorkoutData = {
+    ...loggedWorkout,
+    exerciseVolumes,
+    loggedWorkoutCount,
+  };
+
+  return postWorkoutData;
 };
