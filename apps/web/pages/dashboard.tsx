@@ -6,11 +6,8 @@ import toast from "react-hot-toast";
 import * as React from "react";
 import { Loading } from "@/components/Loading";
 import { useDiscoverSplits } from "@/hooks/useDiscoverSplits";
-import { useQueryClient } from "@tanstack/react-query";
-import { useDeactivateSplit } from "@/hooks/useDeactivateSplit";
 import { SplitCarousel } from "@/components/SplitCarousel";
 import { ActivatedSplitCard } from "@/components/ActivatedSplitCard";
-import { Button } from "@/components/ui/button";
 
 export default function Dashboard() {
   const {
@@ -29,13 +26,6 @@ export default function Dashboard() {
     enabled:
       !activeSplit && !loadingActiveScheduledSplit && !refetchingActiveSplit,
   });
-  const queryClient = useQueryClient();
-  const { mutate: deactivate, isPending: deactivating } = useDeactivateSplit({
-    onSuccess: () => {
-      queryClient.invalidateQueries();
-    },
-  });
-
   if (!profile && !loadingProfile) {
     toast.error("You have been logged out.");
     router.push("/login");
@@ -44,8 +34,8 @@ export default function Dashboard() {
   const loadingData = loadingActiveScheduledSplit || loadingProfile;
 
   return (
-    <main className="w-full bg-stone-100">
-      <div className="md:mt-[50px] h-full w-full">
+    <main className="w-full min-h-screen bg-stone-100">
+      <div className="md:pt-[50px] h-full w-full">
         {loadingData ? (
           <div className="w-full h-full flex items-center justify-center">
             <Loading />

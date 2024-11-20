@@ -177,9 +177,7 @@ export const ActivatedSplitCard = ({
         <div className="h-fill w-full md:max-h-[325px] max-md:h-[500px]">
           <div className="flex flex-col gap-2 h-full relative">
             <div className="flex flex-col overflow-y-scroll overflow-hidden h-full w-full pt-2 pb-4 px-2 gap-2">
-              <div className="font-bold tracking-tighter px-2">
-                Upcoming
-              </div>
+              <div className="font-bold tracking-tighter px-2">Upcoming</div>
               {upcomingWorkouts.map(
                 ({
                   workout,
