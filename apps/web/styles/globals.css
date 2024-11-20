@@ -98,10 +98,10 @@ body {
   }
   body {
     @apply bg-background text-foreground;
-    scroll-behavior: smooth!important;
+    scroll-behavior: smooth !important;
   }
   html {
     -webkit-tap-highlight-color: transparent;
-      scroll-behavior: smooth !important;
+    scroll-behavior: smooth !important;
   }
 }

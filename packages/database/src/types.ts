@@ -239,3 +239,11 @@ export interface WorkoutVolumeData {
 export interface WorkoutVolumeApiPayload {
   [workoutTemplateId: string]: WorkoutVolumeData;
 }
+
+export interface ExerciseVolumePayload {
+  data: { date: Date; volume: number }[];
+}
+export interface PostWorkoutData extends DeepLoggedWorkout {
+  exerciseVolumes: { [id: string]: ExerciseVolumePayload };
+  loggedWorkoutCount: number;
+}

@@ -11,7 +11,7 @@ import {
   TWO_DAY_CADENCE,
   WorkoutSchedule,
 } from "@repo/database";
-import { useMemo, ReactNode } from "react";
+import { useMemo } from "react";
 import { SampleWeekSchedule } from "./SampleWeekSchedule";
 import { cn } from "@/lib/utils";
 import { Badge } from "./ui/badge";
@@ -109,7 +109,7 @@ export const ActivatedSplitCard = ({
 
   const upcomingWorkouts = useMemo(() => {
     // @ts-ignore json list
-    return schedule
+    const tempUpcoming = schedule
       ?.flatMap((week) =>
         week.map((day: WorkoutSchedule[number][number]) => {
           const { workout, date } = day;
@@ -128,6 +128,8 @@ export const ActivatedSplitCard = ({
         }),
       )
       .filter(Boolean);
+
+    return tempUpcoming?.length > 2 ? tempUpcoming.slice(0, 3) : tempUpcoming;
   }, [activeSplit]);
 
   const difficultyLevel = useMemo(() => {
@@ -135,8 +137,8 @@ export const ActivatedSplitCard = ({
   }, [split]);
   const equipment = getUniqueEquipment(split).filter(Boolean);
   return (
-    <div className="max-w-[800px] max-md:w-screen max-md:rounded-none rounded bg-white flex flex-col justify-between gap-2 md:border-[1px] text-black">
-      <div className="flex max-md:flex-col md:flex-row max-md:w-full max-md:gap-4">
+    <div className="max-w-[800px] max-md:w-screen max-md:rounded-none rounded bg-white flex flex-col justify-between gap-2 md:border-[1px] text-black max-md:px-4 max-md:pt-4 max-md:min-h-full">
+      <div className="flex max-md:flex-col md:flex-row max-md:w-full max-md:gap-4 h-full">
         <div className="flex flex-col justify-between md:max-w-[400px] md:p-[8px] gap-[12px]">
           <div className="flex items-center justify-between p-2 px-4">
             <div className="flex items-center gap-[4px]">
@@ -174,7 +176,7 @@ export const ActivatedSplitCard = ({
             </div>
           </div>
         </div>
-        <div className="h-fill w-full md:max-h-[325px] max-md:h-[500px]">
+        <div className="h-fill w-full md:max-h-[325px] max-md:grow">
           <div className="flex flex-col gap-2 h-full relative">
             <div className="flex flex-col overflow-y-scroll overflow-hidden h-full w-full pt-2 pb-4 px-2 gap-2">
               <div className="font-bold tracking-tighter px-2">Upcoming</div>
