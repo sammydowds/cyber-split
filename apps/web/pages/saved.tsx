@@ -4,9 +4,7 @@ import { useProfile } from "@/hooks/useProfile";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import * as React from "react";
-import { Loading } from "@/components/Loading";
 import { useDiscoverSplits } from "@/hooks/useDiscoverSplits";
-import { SplitCarousel } from "@/components/SplitCarousel";
 import { NavBar } from "@/components/NavBar";
 
 export default function Dashboard() {
@@ -31,31 +29,7 @@ export default function Dashboard() {
     <main className="w-full min-h-screen bg-stone-100">
       <NavBar />
       <div className="md:pt-[50px] h-full w-full flex flex-col gap-12">
-        {loadingData ? (
-          <div className="w-full h-full flex items-center justify-center">
-            <Loading />
-          </div>
-        ) : null}
-
-        {/* discover section */}
-        <>
-          <div className="flex justify-center">
-            <div className="flex flex-col items-center w-full gap-6 text-black">
-              <div className="w-full bg-yellow-300 py-4 flex items-center">
-                {loadingDiscoverSplits || refetchingDiscoverSplits ? (
-                  <div className="min-h-[505px] flex items-center justify-center w-full">
-                    <Loading />
-                  </div>
-                ) : (
-                  <SplitCarousel
-                    refetch={refetch}
-                    splits={discoverSplits ?? []}
-                  />
-                )}
-              </div>
-            </div>
-          </div>
-        </>
+        Coming soon
       </div>
     </main>
   );

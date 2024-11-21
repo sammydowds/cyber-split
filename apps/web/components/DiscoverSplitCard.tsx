@@ -19,6 +19,7 @@ import { Button } from "./ui/button";
 import { useCreateActivateSplit } from "@/hooks/useCreateActivateSplit";
 import { useQueryClient } from "@tanstack/react-query";
 import { Loading } from "./Loading";
+import { useRouter } from "next/router";
 
 interface Level {
   level: 0 | 1 | 2;
@@ -104,10 +105,12 @@ export const DiscoverSplitCard = ({ split }: DiscoverSplitCardProps) => {
     return getDifficultyLevel({ split });
   }, [split]);
   const queryClient = useQueryClient();
+  const router = useRouter();
   const { mutate: beginSplit, isPending: beginningSplit } =
     useCreateActivateSplit({
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["activeSplit"] });
+        router.push("/dashboard");
       },
     });
 

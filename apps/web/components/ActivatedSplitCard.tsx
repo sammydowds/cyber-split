@@ -21,6 +21,7 @@ import { CalendarInfoIcon } from "./CalendarInfoIcon";
 import { WorkoutMarker } from "./WorkoutMarker";
 import { useRouter } from "next/router";
 import { EndSplitDropdown } from "./EndSplitDropdown";
+import { getUpcomingWorkouts } from "@/lib/getUpcomingWorkouts";
 
 interface Level {
   level: 0 | 1 | 2;
@@ -105,31 +106,11 @@ export const ActivatedSplitCard = ({
   activeSplit,
 }: ActivatedSplitCardProps) => {
   const router = useRouter();
-  const { split, schedule } = activeSplit;
+  const { split } = activeSplit;
 
   const upcomingWorkouts = useMemo(() => {
-    // @ts-ignore json list
-    const tempUpcoming = schedule
-      ?.flatMap((week) =>
-        week.map((day: WorkoutSchedule[number][number]) => {
-          const { workout, date } = day;
-          const workoutData = activeSplit.split.workouts.find(
-            (template) => template.letterLabel === workout?.letterLabel,
-          );
-          const d = new Date(date);
-          if (
-            workout &&
-            workoutData &&
-            (isToday(d) || isAfter(d, new Date()))
-          ) {
-            return { workout, workoutData, date: d };
-          }
-          return null;
-        }),
-      )
-      .filter(Boolean);
-
-    return tempUpcoming?.length > 2 ? tempUpcoming.slice(0, 3) : tempUpcoming;
+    const tempUpcoming = getUpcomingWorkouts(activeSplit);
+    return tempUpcoming?.length > 2 ? tempUpcoming.slice(0, 2) : tempUpcoming;
   }, [activeSplit]);
 
   const difficultyLevel = useMemo(() => {
@@ -181,15 +162,7 @@ export const ActivatedSplitCard = ({
             <div className="flex flex-col overflow-y-scroll overflow-hidden h-full w-full pt-2 pb-4 px-2 gap-2">
               <div className="font-bold tracking-tighter px-2">Upcoming</div>
               {upcomingWorkouts.map(
-                ({
-                  workout,
-                  workoutData,
-                  date,
-                }: {
-                  workout: any;
-                  workoutData: any;
-                  date: Date;
-                }) => {
+                ({ workout, date }: { workout: any; id: any; date: Date }) => {
                   return (
                     <div className="flex flex-col gap-[8px] border-[1px] rounded p-2 md:min-w-[345px] max-md:w-full">
                       <div className="flex items-center justify-between px-2">
@@ -206,7 +179,7 @@ export const ActivatedSplitCard = ({
                           className="font-bold w-full"
                           size="lg"
                           onClick={() =>
-                            router.push(`/log-workout/${workoutData.id}`)
+                            router.push(`/log-workout/${workout.id}`)
                           }
                         >
                           Log Workout

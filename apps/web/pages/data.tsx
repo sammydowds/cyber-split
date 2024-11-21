@@ -32,38 +32,7 @@ export default function Dashboard() {
     <main className="w-full min-h-screen bg-stone-100">
       <NavBar />
       <div className="md:pt-[50px] h-full w-full flex flex-col gap-12">
-        {loadingData ? (
-          <div className="w-full h-full flex items-center justify-center">
-            <Loading />
-          </div>
-        ) : null}
-
-        {/* active split sections */}
-        {activeSplit ? (
-          <div className="w-full flex flex-col gap-4 items-center md:py-4">
-            <ActivatedSplitCard activeSplit={activeSplit} />
-          </div>
-        ) : null}
-
-        {/* discover section */}
-        <>
-          <div className="flex justify-center">
-            <div className="flex flex-col items-center w-full gap-6 text-black">
-              <div className="w-full bg-yellow-300 py-4 flex items-center">
-                {loadingDiscoverSplits || refetchingDiscoverSplits ? (
-                  <div className="min-h-[505px] flex items-center justify-center w-full">
-                    <Loading />
-                  </div>
-                ) : (
-                  <SplitCarousel
-                    refetch={refetch}
-                    splits={discoverSplits ?? []}
-                  />
-                )}
-              </div>
-            </div>
-          </div>
-        </>
+        Coming soon
       </div>
     </main>
   );
