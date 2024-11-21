@@ -25,24 +25,22 @@ export default function Dashboard() {
     router.push("/login");
   }
 
-  const loadingData = loadingActiveScheduledSplit || loadingProfile;
+  const loadingData =
+    loadingActiveScheduledSplit ||
+    loadingProfile ||
+    loadingDiscoverSplits ||
+    refetchingDiscoverSplits;
 
   return (
     <main className="w-full min-h-screen bg-stone-100">
       <NavBar />
       <div className="md:pt-[50px] h-full w-full flex flex-col gap-12">
-        {loadingData ? (
-          <div className="w-full h-full flex items-center justify-center">
-            <Loading />
-          </div>
-        ) : null}
-
         {/* discover section */}
         <>
           <div className="flex justify-center">
             <div className="flex flex-col items-center w-full gap-6 text-black">
               <div className="w-full bg-yellow-300 py-4 flex items-center">
-                {loadingDiscoverSplits || refetchingDiscoverSplits ? (
+                {loadingData ? (
                   <div className="min-h-[505px] flex items-center justify-center w-full">
                     <Loading />
                   </div>
