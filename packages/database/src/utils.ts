@@ -997,7 +997,9 @@ export const getPostWorkoutData = async (
   });
 
   Object.keys(exerciseVolumes).forEach((key) => {
-    exerciseVolumes[key].data.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    exerciseVolumes[key].data.sort(
+      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+    );
   });
 
   const postWorkoutData: PostWorkoutData = {
