@@ -1,20 +1,15 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { useSession } from "@/hooks/useSession";
 import { useRouter } from "next/router";
 import { TextGenerateEffect } from "@/components/TextGenerationEffect";
+import { NavBar } from "@/components/NavBar";
 
 export default function Landing() {
-  const { data } = useSession();
   const router = useRouter();
 
   return (
     <main className="w-screen mb-[100px]">
-      <nav className="flex items-center justify-start py-4 px-4 bg-stone-100">
-        <div className="h-[30px] w-[165px] relative overflow-hidden rounded">
-          <Image src="/logo.png" alt="logo" fill />
-        </div>
-      </nav>
+      <NavBar />
       <header className="flex flex-col items-center justify-start w-full mt-14">
         <div className="w-[500px] max-md:w-full flex flex-col gap-[20px] px-6">
           <h1 className="text-5xl max-md:text-4xl font-bold tracking-tight text-black w-full align-left max-w-[340px]">
@@ -27,29 +22,10 @@ export default function Landing() {
             <Button
               className="w-full font-bold text-[16px]"
               size="lg"
-              onClick={() => router.push("/get-started")}
+              onClick={() => router.push("/discover")}
             >
-              Join
+              Discover Splits
             </Button>
-            {data ? (
-              <Button
-                className="w-full font-bold text-[16px]"
-                size="lg"
-                variant="secondary"
-                onClick={() => router.push("/dashboard")}
-              >
-                Dashboard
-              </Button>
-            ) : (
-              <Button
-                className="w-full font-bold text-[16px]"
-                size="lg"
-                variant="secondary"
-                onClick={() => router.push("/login")}
-              >
-                Login
-              </Button>
-            )}
           </nav>
         </div>
         <div></div>

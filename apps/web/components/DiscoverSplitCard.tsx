@@ -9,17 +9,14 @@ import {
   THREE_DAY_CADENCE,
   TWO_DAY_CADENCE,
 } from "@repo/database";
-import { useMemo, ReactNode, useCallback } from "react";
+import { useMemo } from "react";
 import { SampleWeekSchedule } from "./SampleWeekSchedule";
 import { cn } from "@/lib/utils";
 import { HorizontalCarousel } from "./HorizontalCarousel";
 import { Badge } from "./ui/badge";
 import { WorkoutTemplateCard } from "./WorkoutTemplateCard";
 import { Button } from "./ui/button";
-import { useCreateActivateSplit } from "@/hooks/useCreateActivateSplit";
-import { useQueryClient } from "@tanstack/react-query";
-import { Loading } from "./Loading";
-import { useRouter } from "next/router";
+import { Download, FileText } from "lucide-react";
 
 interface Level {
   level: 0 | 1 | 2;
@@ -104,15 +101,6 @@ export const DiscoverSplitCard = ({ split }: DiscoverSplitCardProps) => {
   const difficultyLevel = useMemo(() => {
     return getDifficultyLevel({ split });
   }, [split]);
-  const queryClient = useQueryClient();
-  const router = useRouter();
-  const { mutate: beginSplit, isPending: beginningSplit } =
-    useCreateActivateSplit({
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ["activeSplit"] });
-        router.push("/dashboard");
-      },
-    });
 
   const equipment = getUniqueEquipment(split).filter(Boolean);
   return (
@@ -150,15 +138,15 @@ export const DiscoverSplitCard = ({ split }: DiscoverSplitCardProps) => {
               })}
             </div>
           </div>
-          <div className="p-2 w-full">
+          {/* <div className="p-2 w-full">
             <Button
-              disabled={beginningSplit}
-              className="w-full font-bold text-xl h-[40px]"
-              onClick={() => beginSplit(split)}
+              className="w-full text-lg h-[40px] font-bold flex items-center gap-[8px]"
+              onClick={() => console.log("HELLO WORLD")}
             >
-              {beginningSplit ? <Loading /> : "Begin"}
+              <Download />
+              Download PDF
             </Button>
-          </div>
+          </div> */}
         </div>
         <div className="h-fill w-[1px] bg-stone-300 max-md:hidden z-10"></div>
         <div className="h-[1px] w-fill bg-stone-300 md:hidden mx-6 my-4"></div>

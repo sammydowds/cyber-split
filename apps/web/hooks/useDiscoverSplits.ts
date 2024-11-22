@@ -1,15 +1,9 @@
-import {
-  UseMutationOptions,
-  useQuery,
-  UseQueryOptions,
-} from "@tanstack/react-query";
-import { FetchOptions, useFetchOptions } from "@/hooks/useFetchOptions";
-import { ActiveSplitDeep, DiscoverSplitDeep, SplitDeep } from "@repo/database";
+import { useQuery, UseQueryOptions } from "@tanstack/react-query";
+import { DiscoverSplitDeep } from "@repo/database";
 
-const fetchDiscoverSplits = async (options: FetchOptions) => {
+const fetchDiscoverSplits = async () => {
   const res = await fetch("/api/discover", {
     method: "GET",
-    ...options.options,
   });
 
   if (!res.ok) {
@@ -22,10 +16,9 @@ const fetchDiscoverSplits = async (options: FetchOptions) => {
 const useDiscoverSplits = (
   options?: Partial<UseQueryOptions<DiscoverSplitDeep[]>>,
 ) => {
-  const opts = useFetchOptions();
   return useQuery<DiscoverSplitDeep[]>({
     queryKey: ["discoverSplits"],
-    queryFn: () => fetchDiscoverSplits(opts),
+    queryFn: () => fetchDiscoverSplits(),
     ...options,
   });
 };
