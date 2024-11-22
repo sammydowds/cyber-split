@@ -107,12 +107,12 @@ export const SplitDocument = ({ split }: SplitDocumentProps) => {
           <Text style={{ textDecoration: "underline", fontWeight: "bold" }}>
             {ratingText}
           </Text>{" "}
-          level of difficulty. For this split you will complete one of the
-          workouts below{" "}
+          level of difficulty. For this split you will be working out{" "}
           <Text style={styles.keyWords}>
             {CADENCE_TO_DESCRIPTION_MAP[split.type][split.cadence]}
           </Text>
-          .
+          . The rotation of those workouts is within the title of this document
+          where each character represents a day of the week (X = rest day).
         </Text>
         <Text style={styles.text}>
           Perform this split for 4 weeks at minimum. Each workout your goal
