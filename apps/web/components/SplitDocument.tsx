@@ -103,10 +103,10 @@ export const SplitDocument = ({ split }: SplitDocumentProps) => {
   const splitDifficultyRating = getSplitDifficultyLevel({ split });
   const ratingText =
     splitDifficultyRating === 1
-      ? "INTERMEDIATE"
+      ? "an intermediate"
       : splitDifficultyRating === 2
-        ? "ADVANCED"
-        : "BEGINNER";
+        ? "an advanced"
+        : "a beginner";
 
   const { schedule } = createActiveSplitWorkoutSchedule({
     split,
@@ -195,18 +195,12 @@ export const SplitDocument = ({ split }: SplitDocumentProps) => {
           </View>
         </View>
         <Text style={styles.text}>
-          This split is{" "}
-          <Text style={{ textDecoration: "underline", fontWeight: "bold" }}>
-            {ratingText}
-          </Text>{" "}
-          level of difficulty. For this split you will be working out{" "}
+          This split is <Text>{ratingText}</Text> level of difficulty. For this
+          split you will be working out{" "}
           <Text style={styles.keyWords}>
             {CADENCE_TO_DESCRIPTION_MAP[split.type][split.cadence]}
           </Text>
-          . A schedule you could follow is listed below:
-        </Text>
-        <Text style={styles.text}>
-          Perform this split for 4 weeks at minimum. Each workout your goal
+          . Perform this split for 4 weeks at minimum. Each workout your goal
           should be to increase the reps or weight you are lifting to
           progressively overload as time goes on. After four weeks, find a new
           split or modify a similar one.
