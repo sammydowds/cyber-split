@@ -7,12 +7,7 @@ import {
   Font,
   Link,
 } from "@react-pdf/renderer";
-import {
-  CADENCE_TO_DESCRIPTION_MAP,
-  DiscoverSplitDeep,
-  SPLIT_TYPE_TO_DESCRIPTION,
-  SPLIT_TYPES,
-} from "@repo/database";
+import { CADENCE_TO_DESCRIPTION_MAP, DiscoverSplitDeep } from "@repo/database";
 import { getBodyPartsFromWorkout } from "@/lib/getBodyPartsFromWorkout";
 import { estimateTimeOfWorkout } from "@/lib/estimateTimeOfWorkout";
 import { getUniqueEquipment } from "@/lib/getUniqueEquipmentFromSplit";
@@ -113,14 +108,13 @@ export const SplitDocument = ({ split }: SplitDocumentProps) => {
             {ratingText}
           </Text>{" "}
           level of difficulty. For this split you will complete one of the
-          workouts{" "}
+          workouts below{" "}
           <Text style={styles.keyWords}>
             {CADENCE_TO_DESCRIPTION_MAP[split.type][split.cadence]}
           </Text>
-          .{" "}
-          {split.workouts.length > 1
-            ? `It is your job to rotate between the ${split.workouts.length} workouts below over the course of those days.`
-            : "You need to complete the workout below on each of those days you choose to workout."}{" "}
+          .
+        </Text>
+        <Text style={styles.text}>
           Perform this split for 4 weeks at minimum. Each workout your goal
           should be to increase the reps or weight you are lifting to
           progressively overload as time goes on. After four weeks, find a new
