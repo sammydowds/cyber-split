@@ -131,7 +131,7 @@ export const SplitCarousel = ({ splits, refetch }: SplitCarouselProps) => {
           <ChevronRight />
         </a>
 
-        <div className="snap-x snap-mandatory flex flex-nowrap w-full gap-8 overflow-x-scroll py-2 px-3">
+        <div className="snap-x snap-mandatory flex flex-nowrap w-full gap-8 overflow-x-scroll py-2">
           {splits.map((split, idx) => {
             return (
               <div

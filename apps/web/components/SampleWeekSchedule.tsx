@@ -22,7 +22,7 @@ export const SampleWeekSchedule = ({ split }: SampleWeekScheduleProps) => {
               <div className="h-10 w-10 bg-stone-200 rounded flex items-center justify-center max-md:h-8 max-md:w-8">
                 {day?.workout?.letterLabel ? (
                   <WorkoutMarker
-                    className="h-7 w-7 text-[14px]"
+                    className="h-6 w-6 md:h-7 md:w-7 shadow-none text-[14px]"
                     text={day.workout.letterLabel}
                   />
                 ) : null}
