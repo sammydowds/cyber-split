@@ -112,6 +112,8 @@ export const DiscoverSplitCard = ({ split }: DiscoverSplitCardProps) => {
               <PDFDownloadLink
                 document={<SplitDocument split={split} />}
                 fileName={`${split.type}-${split.cadence}.pdf`}
+                target="_blank"
+                rel="noopener noreferrer" // Adds security measures
               >
                 {/* @ts-ignore */}
                 {({ loading }) =>
