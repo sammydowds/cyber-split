@@ -13,20 +13,16 @@ import { useRouter } from "next/router";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { StrengthGroup } from "@repo/database/src/client";
-import { SwapGroupDropdown } from "./SwapGroupDropdown";
-import { FormSchemaType } from "@/lib/formSchemas/create";
 import toast from "react-hot-toast";
 import { ArrowRightLeft } from "lucide-react";
 
 interface WorkoutTemplateCardProps {
   workout?: ActiveSplitDeep["split"]["workouts"][number];
-  onWorkoutChange?: (workout: FormSchemaType["workouts"][number]) => void;
   editable?: boolean;
   hideCta?: boolean;
 }
 export const WorkoutTemplateCard = ({
   workout,
-  onWorkoutChange,
   editable,
   hideCta,
 }: WorkoutTemplateCardProps) => {
@@ -84,7 +80,6 @@ export const WorkoutTemplateCard = ({
         style: { padding: "2px" },
       },
     );
-    onWorkoutChange?.({ ...workout, strengthGroups: newGroups });
   };
 
   return (
@@ -118,15 +113,6 @@ export const WorkoutTemplateCard = ({
                       </div>
                     </div>
                     <div className="leading-5 text-[14px]">{g.name}</div>
-                  </TableCell>
-                  <TableCell>
-                    {editable ? (
-                      <SwapGroupDropdown
-                        oldGroup={g}
-                        onClickGroup={handleWorkoutChange}
-                        ignoreExercises={ignoreExercises}
-                      />
-                    ) : null}
                   </TableCell>
                 </TableRow>
               );
