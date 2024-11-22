@@ -120,7 +120,11 @@ export const SplitDocument = ({ split }: SplitDocumentProps) => {
           .{" "}
           {split.workouts.length > 1
             ? `It is your job to rotate between the ${split.workouts.length} workouts below over the course of those days.`
-            : "You need to complete the workout below on each of those days you choose to workout."}
+            : "You need to complete the workout below on each of those days you choose to workout."}{" "}
+          Perform this split for 4 weeks at minimum. Each workout your goal
+          should be to increase the reps or weight you are lifting to
+          progressively overload as time goes on. After four weeks, find a new
+          split or modify a similar one.
         </Text>
         <Text style={styles.text}>
           Equipment needed: {getUniqueEquipment(split).join(", ")}.

@@ -16,7 +16,7 @@ export default function Landing() {
             Weight training made easier.
           </h1>
           <h2 className="text-2xl tracking-tight text-black w-full align-left">
-            Your space to organize and prioritize your weightraining.
+            Algorithmically build your next weight training split.
           </h2>
           <nav className="flex flex-col items-center w-full gap-2">
             <Button
