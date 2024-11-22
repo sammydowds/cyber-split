@@ -1,22 +1,22 @@
 import {
   CADENCE_TO_DESCRIPTION_MAP,
   DiscoverSplitDeep,
-  FB_CADENCE,
   SPLIT_TYPE_TO_DESCRIPTION,
   SPLIT_TYPE_TO_META_DESCRIPTION,
   SPLIT_TYPES,
   SplitDeep,
-  THREE_DAY_CADENCE,
-  TWO_DAY_CADENCE,
 } from "@repo/database";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { SampleWeekSchedule } from "./SampleWeekSchedule";
 import { cn } from "@/lib/utils";
 import { HorizontalCarousel } from "./HorizontalCarousel";
 import { Badge } from "./ui/badge";
 import { WorkoutTemplateCard } from "./WorkoutTemplateCard";
 import { Button } from "./ui/button";
-import { Download, FileText } from "lucide-react";
+import { Download } from "lucide-react";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import { SplitDocument } from "./SplitDocument";
+import { getSplitDifficultyLevel } from "@/lib/getDifficultyLevel";
 
 interface Level {
   level: 0 | 1 | 2;
@@ -27,37 +27,6 @@ const getBgColorByDifficulty = ({ level }: Level) => {
     : level === 1
       ? "bg-orange-500"
       : "bg-red-600";
-};
-
-interface GetDifficultyArgs {
-  split: SplitDeep;
-}
-const getDifficultyLevel = ({ split }: GetDifficultyArgs) => {
-  if (
-    split.type === SPLIT_TYPES.FB &&
-    split.cadence === FB_CADENCE.TWO_DAYS_PER_WEEK
-  ) {
-    return 0;
-  }
-
-  if (
-    split.type === SPLIT_TYPES.TWO_DAY &&
-    (split.cadence === TWO_DAY_CADENCE.TWO_DAYS_PER_WEEK ||
-      split.cadence === TWO_DAY_CADENCE.THREE_DAYS_PER_WEEK)
-  ) {
-    return 0;
-  }
-
-  if (
-    (split.type === SPLIT_TYPES.THREE_DAY &&
-      (split.cadence === THREE_DAY_CADENCE.FIVE_DAYS_PER_WEEK ||
-        split.cadence === THREE_DAY_CADENCE.SIX_DAYS_PER_WEEK ||
-        split.cadence === THREE_DAY_CADENCE.THREE_ON_ONE_OFF)) ||
-    split.type === SPLIT_TYPES.FOUR_DAY
-  ) {
-    return 2;
-  }
-  return 1;
 };
 
 const DifficultyDots = ({ level }: { level: 0 | 1 | 2 }) => {
@@ -99,7 +68,7 @@ interface DiscoverSplitCardProps {
 }
 export const DiscoverSplitCard = ({ split }: DiscoverSplitCardProps) => {
   const difficultyLevel = useMemo(() => {
-    return getDifficultyLevel({ split });
+    return getSplitDifficultyLevel({ split });
   }, [split]);
 
   const equipment = getUniqueEquipment(split).filter(Boolean);
@@ -138,15 +107,25 @@ export const DiscoverSplitCard = ({ split }: DiscoverSplitCardProps) => {
               })}
             </div>
           </div>
-          {/* <div className="p-2 w-full">
-            <Button
-              className="w-full text-lg h-[40px] font-bold flex items-center gap-[8px]"
-              onClick={() => console.log("HELLO WORLD")}
-            >
-              <Download />
-              Download PDF
+          <div className="p-2 w-full">
+            <Button asChild className="flex items-center font-bold gap-2">
+              <PDFDownloadLink
+                document={<SplitDocument split={split} />}
+                fileName={`${split.type}-${split.cadence}.pdf`}
+              >
+                {/* @ts-ignore */}
+                {({ loading }) =>
+                  loading ? (
+                    "Loading document..."
+                  ) : (
+                    <>
+                      <Download /> Download PDF
+                    </>
+                  )
+                }
+              </PDFDownloadLink>
             </Button>
-          </div> */}
+          </div>
         </div>
         <div className="h-fill w-[1px] bg-stone-300 max-md:hidden z-10"></div>
         <div className="h-[1px] w-fill bg-stone-300 md:hidden mx-6 my-4"></div>
