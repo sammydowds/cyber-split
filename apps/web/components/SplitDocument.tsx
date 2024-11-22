@@ -21,7 +21,7 @@ import { getSplitDifficultyLevel } from "@/lib/getDifficultyLevel";
 // Helpful: https://gist.github.com/sadikay/d5457c52e7fb2347077f5b0fe5ba9300
 Font.register({
   family: "Roboto",
-  src: "http://fonts.gstatic.com/s/roboto/v16/zN7GBFwfMP4uA6AR0HCoLQ.ttf",
+  src: "https://fonts.gstatic.com/s/roboto/v16/zN7GBFwfMP4uA6AR0HCoLQ.ttf",
 });
 
 const styles = StyleSheet.create({
