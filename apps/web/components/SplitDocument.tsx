@@ -48,12 +48,17 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 18,
-    margin: 12,
+    marginLeft: 12,
+    marginRight: 12,
+    marginTop: 6,
+    marginBottom: 6,
     fontFamily: "Roboto",
     fontWeight: "bold",
   },
   text: {
-    margin: 12,
+    marginTop: 8,
+    marginBottom: 8,
+    marginLeft: 14,
     fontSize: 14,
     textAlign: "justify",
     fontFamily: "Times-Roman",
@@ -122,10 +127,10 @@ export const SplitDocument = ({ split }: SplitDocumentProps) => {
           style={{
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
             width: "100%",
-            marginTop: 12,
+            marginTop: 20,
             marginBottom: 14,
+            marginLeft: 12,
           }}
         >
           <View
@@ -135,7 +140,7 @@ export const SplitDocument = ({ split }: SplitDocumentProps) => {
               alignItems: "center",
               justifyContent: "center",
               flexWrap: "wrap",
-              width: "80%",
+              width: "100%",
               gap: 12,
             }}
           >
@@ -194,13 +199,18 @@ export const SplitDocument = ({ split }: SplitDocumentProps) => {
             })}
           </View>
         </View>
+
         <Text style={styles.text}>
           This split is <Text>{ratingText}</Text> level of difficulty. For this
           split you will be working out{" "}
           <Text style={styles.keyWords}>
             {CADENCE_TO_DESCRIPTION_MAP[split.type][split.cadence]}
           </Text>
-          . Perform this split for 4 weeks at minimum. Each workout your goal
+          .
+        </Text>
+
+        <Text style={styles.text}>
+          Perform this split for 4 weeks at minimum. Each workout your goal
           should be to increase the reps or weight you are lifting to
           progressively overload as time goes on. After four weeks, find a new
           split or modify a similar one.
@@ -210,31 +220,32 @@ export const SplitDocument = ({ split }: SplitDocumentProps) => {
           Equipment needed: {getUniqueEquipment(split).join(", ")}.
         </Text>
 
-        {split.workouts.map((workout) => {
-          return (
-            <>
-              <Text style={styles.titleHeader} break>
-                Workout
-              </Text>
-              <Text style={styles.title}>{workout.letterLabel}</Text>
-              <Text style={styles.text}>
-                This workout will target{" "}
-                {getBodyPartsFromWorkout(workout).join(", ")}. This workout
-                should take about {estimateTimeOfWorkout(workout)} minutes.
-                Perform the following exercises in order.
-              </Text>
-              {workout.strengthGroups.map((group, idx) => {
-                return (
-                  <>
-                    <Text style={styles.exerciseLine}>
-                      {idx + 1}. {group.name}
-                    </Text>
-                  </>
-                );
-              })}
-            </>
-          );
-        })}
+        <View break>
+          {split.workouts.map((workout) => {
+            return (
+              <View>
+                <Text style={{ fontSize: 14, marginLeft: 12, marginTop: 12 }}>
+                  Workout {workout.letterLabel}
+                </Text>
+                <Text style={styles.text}>
+                  This workout will target{" "}
+                  {getBodyPartsFromWorkout(workout).join(", ")}. This workout
+                  should take about {estimateTimeOfWorkout(workout)} minutes.
+                  Perform the following exercises in order.
+                </Text>
+                {workout.strengthGroups.map((group, idx) => {
+                  return (
+                    <>
+                      <Text style={styles.exerciseLine}>
+                        {idx + 1}. {group.name}
+                      </Text>
+                    </>
+                  );
+                })}
+              </View>
+            );
+          })}
+        </View>
       </Page>
     </Document>
   );
