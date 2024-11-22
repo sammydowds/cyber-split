@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import {
   Page,
   Text,
@@ -6,8 +6,13 @@ import {
   StyleSheet,
   Font,
   Link,
+  View,
 } from "@react-pdf/renderer";
-import { CADENCE_TO_DESCRIPTION_MAP, DiscoverSplitDeep } from "@repo/database";
+import {
+  CADENCE_TO_DESCRIPTION_MAP,
+  createActiveSplitWorkoutSchedule,
+  DiscoverSplitDeep,
+} from "@repo/database";
 import { getBodyPartsFromWorkout } from "@/lib/getBodyPartsFromWorkout";
 import { estimateTimeOfWorkout } from "@/lib/estimateTimeOfWorkout";
 import { getUniqueEquipment } from "@/lib/getUniqueEquipmentFromSplit";
@@ -81,7 +86,7 @@ const styles = StyleSheet.create({
     color: "grey",
   },
   tip: {
-    fontSize: 8,
+    fontSize: 10,
     marginLeft: 16,
   },
 });
@@ -97,6 +102,11 @@ export const SplitDocument = ({ split }: SplitDocumentProps) => {
       : splitDifficultyRating === 2
         ? "ADVANCED"
         : "BEGINNER";
+
+  const { schedule } = createActiveSplitWorkoutSchedule({
+    split,
+    startDate: new Date(),
+  });
   return (
     <Document>
       <Page size="A4" style={styles.body}>
@@ -111,18 +121,85 @@ export const SplitDocument = ({ split }: SplitDocumentProps) => {
           <Text style={styles.keyWords}>
             {CADENCE_TO_DESCRIPTION_MAP[split.type][split.cadence]}
           </Text>
-          . The rotation of those workouts is within the title of this document
-          where each character represents a day of the week (X = rest day).
+          . A schedule you could follow is listed below:
         </Text>
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              flexWrap: "wrap",
+              width: "80%",
+              gap: 12,
+            }}
+          >
+            {schedule?.map((week, idx) => {
+              return (
+                <View>
+                  <Text
+                    style={{
+                      fontSize: 10,
+                      fontWeight: 700,
+                      textDecoration: "underline",
+                    }}
+                  >
+                    Week {idx + 1} {idx === 0 ? "(This week)" : null}
+                  </Text>
+                  <View
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      width: "100%",
+                      fontSize: 12,
+                    }}
+                  >
+                    {week.map((day) => {
+                      if (!day.workout) {
+                        return (
+                          <View
+                            style={{ display: "flex", flexDirection: "row" }}
+                          >
+                            <Text>
+                              {new Date(day.date).toLocaleDateString("en-us")} -{" "}
+                            </Text>
+                            <Text>Rest</Text>
+                          </View>
+                        );
+                      }
+                      return (
+                        <View style={{ display: "flex", flexDirection: "row" }}>
+                          <Text>
+                            {new Date(day.date).toLocaleDateString("en-us")} -{" "}
+                          </Text>
+                          <Text>Workout {day.workout.letterLabel}</Text>
+                        </View>
+                      );
+                    })}
+                  </View>
+                </View>
+              );
+            })}
+          </View>
+        </View>
         <Text style={styles.text}>
           Perform this split for 4 weeks at minimum. Each workout your goal
           should be to increase the reps or weight you are lifting to
           progressively overload as time goes on. After four weeks, find a new
           split or modify a similar one.
         </Text>
+
         <Text style={styles.text}>
           Equipment needed: {getUniqueEquipment(split).join(", ")}.
         </Text>
+
         {split.workouts.map((workout) => {
           return (
             <>
