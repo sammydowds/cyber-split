@@ -89,6 +89,11 @@ const styles = StyleSheet.create({
     fontSize: 10,
     marginLeft: 16,
   },
+  exerciseLine: {
+    fontSize: 12,
+    marginLeft: 24,
+    marginBottom: 4,
+  },
 });
 
 interface SplitDocumentProps {
@@ -110,31 +115,25 @@ export const SplitDocument = ({ split }: SplitDocumentProps) => {
   return (
     <Document>
       <Page size="A4" style={styles.body}>
-        <Text style={styles.titleHeader}>Split</Text>
+        <Text style={styles.titleHeader}>Cyber Split</Text>
         <Text style={styles.title}>{split.cadence}</Text>
-        <Text style={styles.text}>
-          This split is{" "}
-          <Text style={{ textDecoration: "underline", fontWeight: "bold" }}>
-            {ratingText}
-          </Text>{" "}
-          level of difficulty. For this split you will be working out{" "}
-          <Text style={styles.keyWords}>
-            {CADENCE_TO_DESCRIPTION_MAP[split.type][split.cadence]}
-          </Text>
-          . A schedule you could follow is listed below:
-        </Text>
+
         <View
           style={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             width: "100%",
+            marginTop: 12,
+            marginBottom: 14,
           }}
         >
           <View
             style={{
               display: "flex",
               flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
               flexWrap: "wrap",
               width: "80%",
               gap: 12,
@@ -142,7 +141,13 @@ export const SplitDocument = ({ split }: SplitDocumentProps) => {
           >
             {schedule?.map((week, idx) => {
               return (
-                <View>
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
                   <Text
                     style={{
                       fontSize: 10,
@@ -190,6 +195,17 @@ export const SplitDocument = ({ split }: SplitDocumentProps) => {
           </View>
         </View>
         <Text style={styles.text}>
+          This split is{" "}
+          <Text style={{ textDecoration: "underline", fontWeight: "bold" }}>
+            {ratingText}
+          </Text>{" "}
+          level of difficulty. For this split you will be working out{" "}
+          <Text style={styles.keyWords}>
+            {CADENCE_TO_DESCRIPTION_MAP[split.type][split.cadence]}
+          </Text>
+          . A schedule you could follow is listed below:
+        </Text>
+        <Text style={styles.text}>
           Perform this split for 4 weeks at minimum. Each workout your goal
           should be to increase the reps or weight you are lifting to
           progressively overload as time goes on. After four weeks, find a new
@@ -213,22 +229,12 @@ export const SplitDocument = ({ split }: SplitDocumentProps) => {
                 should take about {estimateTimeOfWorkout(workout)} minutes.
                 Perform the following exercises in order.
               </Text>
-              {workout.strengthGroups.map((group) => {
+              {workout.strengthGroups.map((group, idx) => {
                 return (
                   <>
-                    {group.sets[0].exercise.exRxLink ? (
-                      <Link
-                        style={styles.text}
-                        src={group.sets[0].exercise.exRxLink}
-                      >
-                        {group.name}
-                      </Link>
-                    ) : (
-                      <Text style={styles.text}>{group.name}</Text>
-                    )}
-                    {group.sets[0].exercise.tips.map((tip) => {
-                      return <Text style={styles.tip}>• {tip}</Text>;
-                    })}
+                    <Text style={styles.exerciseLine}>
+                      {idx + 1}. {group.name}
+                    </Text>
                   </>
                 );
               })}
