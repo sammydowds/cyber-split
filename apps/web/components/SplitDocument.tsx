@@ -20,8 +20,8 @@ import { getSplitDifficultyLevel } from "@/lib/getDifficultyLevel";
 
 // Helpful: https://gist.github.com/sadikay/d5457c52e7fb2347077f5b0fe5ba9300
 Font.register({
-  family: "Roboto",
-  src: "https://fonts.gstatic.com/s/roboto/v16/zN7GBFwfMP4uA6AR0HCoLQ.ttf",
+  family: "Cutive Mono",
+  src: "http://fonts.gstatic.com/s/cutivemono/v5/N5odNRruTwjvCM8y77PhQZ0EAVxt0G0biEntp43Qt6E.ttf",
 });
 
 const styles = StyleSheet.create({
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     textAlign: "center",
-    fontFamily: "Roboto",
+    fontFamily: "Cutive Mono",
     fontWeight: "bold",
   },
   titleHeader: {
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     marginRight: 12,
     marginTop: 6,
     marginBottom: 6,
-    fontFamily: "Roboto",
+    fontFamily: "Cutive Mono",
     fontWeight: "bold",
   },
   text: {
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     marginLeft: 14,
     fontSize: 14,
     textAlign: "justify",
-    fontFamily: "Times-Roman",
+    fontFamily: "Cutive Mono",
   },
   image: {
     marginVertical: 15,
@@ -72,14 +72,15 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: "center",
     color: "grey",
+    fontFamily: "Cutive Mono",
   },
   keyWords: {
     fontSize: 14,
     fontWeight: 700,
     textAlign: "justify",
-    fontFamily: "Times-Roman",
     textDecoration: "underline",
     textTransform: "lowercase",
+    fontFamily: "Cutive Mono",
   },
   pageNumber: {
     position: "absolute",
@@ -93,11 +94,14 @@ const styles = StyleSheet.create({
   tip: {
     fontSize: 10,
     marginLeft: 16,
+    fontFamily: "Cutive Mono",
   },
   exerciseLine: {
     fontSize: 12,
     marginLeft: 24,
     marginBottom: 4,
+    fontFamily: "Cutive Mono",
+    fontWeight: "bold",
   },
 });
 
@@ -120,9 +124,7 @@ export const SplitDocument = ({ split }: SplitDocumentProps) => {
   return (
     <Document>
       <Page size="A4" style={styles.body}>
-        <Text style={styles.titleHeader}>Cyber Split</Text>
         <Text style={styles.title}>{split.cadence}</Text>
-
         <View
           style={{
             display: "flex",
@@ -131,6 +133,7 @@ export const SplitDocument = ({ split }: SplitDocumentProps) => {
             marginTop: 20,
             marginBottom: 14,
             marginLeft: 12,
+            fontFamily: "Cutive Mono",
           }}
         >
           <View
@@ -138,7 +141,6 @@ export const SplitDocument = ({ split }: SplitDocumentProps) => {
               display: "flex",
               flexDirection: "row",
               alignItems: "center",
-              justifyContent: "center",
               flexWrap: "wrap",
               width: "100%",
               gap: 12,
@@ -224,8 +226,16 @@ export const SplitDocument = ({ split }: SplitDocumentProps) => {
           {split.workouts.map((workout) => {
             return (
               <View>
-                <Text style={{ fontSize: 14, marginLeft: 12, marginTop: 12 }}>
-                  Workout {workout.letterLabel}
+                <Text
+                  style={{
+                    fontSize: 24,
+                    marginLeft: 12,
+                    marginTop: 12,
+                    fontFamily: "Cutive Mono",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {workout.letterLabel}
                 </Text>
                 <Text style={styles.text}>
                   This workout will target{" "}
