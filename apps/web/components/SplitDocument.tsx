@@ -21,7 +21,7 @@ import { getSplitDifficultyLevel } from "@/lib/getDifficultyLevel";
 // Helpful: https://gist.github.com/sadikay/d5457c52e7fb2347077f5b0fe5ba9300
 Font.register({
   family: "Cutive Mono",
-  src: "http://fonts.gstatic.com/s/cutivemono/v5/N5odNRruTwjvCM8y77PhQZ0EAVxt0G0biEntp43Qt6E.ttf",
+  src: "https://fonts.gstatic.com/s/cutivemono/v5/N5odNRruTwjvCM8y77PhQZ0EAVxt0G0biEntp43Qt6E.ttf",
 });
 
 const styles = StyleSheet.create({
