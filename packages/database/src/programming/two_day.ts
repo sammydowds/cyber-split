@@ -38,11 +38,6 @@ export const TWO_DAY_SPLIT_PROGRAMMING: Splits = {
     [
       { target: "QUADS", optional: false, filters: [INCLUDE_ERECTOR_SPINAE] },
       {
-        target: "QUADS",
-        optional: true,
-        filters: [EXCLUDE_ERECTOR_SPINAE, AUX_UTILITY],
-      },
-      {
         target: "HAMSTRINGS",
         optional: false,
         filters: [EXCLUDE_ERECTOR_SPINAE],
@@ -56,11 +51,6 @@ export const TWO_DAY_SPLIT_PROGRAMMING: Splits = {
   [TWO_DAY_MUSCLES.PP]: [
     [
       { target: "QUADS", optional: false, filters: [INCLUDE_ERECTOR_SPINAE] },
-      {
-        target: "QUADS",
-        optional: true,
-        filters: [INCLUDE_ERECTOR_SPINAE, AUX_UTILITY],
-      },
       {
         target: "CHEST",
         optional: false,
@@ -106,11 +96,6 @@ export const TWO_DAY_SPLIT_PROGRAMMING: Splits = {
     ],
     [
       { target: "QUADS", optional: false, filters: [INCLUDE_ERECTOR_SPINAE] },
-      {
-        target: "QUADS",
-        optional: true,
-        filters: [EXCLUDE_ERECTOR_SPINAE, AUX_UTILITY],
-      },
       {
         target: "HAMSTRINGS",
         optional: false,

@@ -28,11 +28,6 @@ export const THREE_DAY_SPLIT_PROGRAMMING: Splits = {
         filters: [CHEST_GENERAL, BASIC_UTILITY],
       },
       { target: "CHEST", optional: false, filters: [CHEST_UPPER] },
-      {
-        target: "CHEST",
-        optional: true,
-        filters: [CHEST_GENERAL, AUX_UTILITY],
-      },
       { target: "BACK", optional: false, filters: [BACK_LAT] },
       {
         target: "BACK",
@@ -45,10 +40,12 @@ export const THREE_DAY_SPLIT_PROGRAMMING: Splits = {
     ],
     [
       { target: "GLUTES", optional: false },
-      { target: "QUADS", optional: false },
-      { target: "QUADS", optional: true },
-      { target: "GLUTES", optional: true },
-      { target: "HAMSTRINGS", optional: false },
+      { target: "QUADS", optional: false, filters: [INCLUDE_ERECTOR_SPINAE] },
+      {
+        target: "HAMSTRINGS",
+        optional: false,
+        filters: [EXCLUDE_ERECTOR_SPINAE],
+      },
       { target: "CALVES", optional: false },
     ],
     [
@@ -56,7 +53,6 @@ export const THREE_DAY_SPLIT_PROGRAMMING: Splits = {
       { target: "SHOULDERS", optional: false, filters: [SHOULDER_LATERAL] },
       { target: "SHOULDERS", optional: false, filters: [SHOULDER_REAR] },
       { target: "TRICEPS", optional: false },
-      { target: "TRICEPS", optional: true },
       { target: "BICEPS", optional: false },
       { target: "FOREARMS", optional: true },
     ],
@@ -69,11 +65,6 @@ export const THREE_DAY_SPLIT_PROGRAMMING: Splits = {
         filters: [CHEST_GENERAL, BASIC_UTILITY],
       },
       { target: "CHEST", optional: false, filters: [CHEST_UPPER] },
-      {
-        target: "CHEST",
-        optional: true,
-        filters: [CHEST_GENERAL, AUX_UTILITY],
-      },
       { target: "SHOULDERS", optional: false, filters: [SHOULDER_LATERAL] },
       { target: "TRICEPS", optional: false },
     ],
@@ -88,11 +79,6 @@ export const THREE_DAY_SPLIT_PROGRAMMING: Splits = {
         optional: false,
         filters: [BACK_GENERAL, BASIC_UTILITY],
       },
-      {
-        target: "BACK",
-        optional: true,
-        filters: [BACK_LAT, EXCLUDE_ERECTOR_SPINAE],
-      },
       { target: "SHOULDERS", optional: true, filters: [SHOULDER_REAR] },
       { target: "TRAPS", optional: true },
       { target: "BICEPS", optional: false },
@@ -100,11 +86,6 @@ export const THREE_DAY_SPLIT_PROGRAMMING: Splits = {
     ],
     [
       { target: "QUADS", optional: false, filters: [INCLUDE_ERECTOR_SPINAE] },
-      {
-        target: "QUADS",
-        optional: true,
-        filters: [EXCLUDE_ERECTOR_SPINAE, AUX_UTILITY],
-      },
       { target: "GLUTES", optional: true, filters: [EXCLUDE_ERECTOR_SPINAE] },
       {
         target: "HAMSTRINGS",

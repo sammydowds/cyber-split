@@ -29,7 +29,7 @@ export const FB_SPLIT_PROGRAMMING: Splits = {
       },
       {
         target: "SHOULDERS",
-        optional: true,
+        optional: false,
         filters: [SHOULDER_LATERAL, NEUTRAL_UTILITY],
       },
       { target: "CALVES", optional: true, filters: [BASIC_UTILITY] },
@@ -64,7 +64,7 @@ export const FB_SPLIT_PROGRAMMING: Splits = {
       },
       {
         target: "SHOULDERS",
-        optional: true,
+        optional: false,
         filters: [SHOULDER_LATERAL, NEUTRAL_UTILITY],
       },
       { target: "BICEPS", optional: true, filters: [BASIC_UTILITY] },
@@ -97,7 +97,7 @@ export const FB_SPLIT_PROGRAMMING: Splits = {
       },
       {
         target: "SHOULDERS",
-        optional: true,
+        optional: false,
         filters: [SHOULDER_LATERAL, NEUTRAL_UTILITY],
       },
       {
